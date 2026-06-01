@@ -162,7 +162,6 @@ Demonstrated knowledge distillation by reconstructing model functionality purely
 │     Chettinad College of Engineering & Technology, Karur
 │     [Aug 2020 → Jun 2024]
 ```
-
 ---
 
 ## `> certifications --list`
@@ -173,29 +172,6 @@ Demonstrated knowledge distillation by reconstructing model functionality purely
 | 🏅 Machine Learning Pipelines with Azure ML Studio | IBM |
 | 🏅 Full Stack with Python Programming | Databricks |
 | 🏅 Automated Weather Classification | Coursera / Microsoft |
-
----
-
-## `> github --stats`
-
-<div align="center">
-
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&show_icons=true&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&icon_color=58a6ff&text_color=8b949e)
-
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_GITHUB_USERNAME&layout=compact&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&text_color=8b949e)
-
-</div>
-
----
-
-## `> connect --open`
-
-<div align="center">
-
-I'm always open to discussing **AI research, production GenAI architecture, agent design, or just vibing about the future of intelligent systems.**
-
-[![Email Me](https://img.shields.io/badge/Email_Me-aravindh1653%40gmail.com-0a0a0a?style=for-the-badge&logo=gmail&logoColor=white)](mailto:aravindh1653@gmail.com)
-[![LinkedIn](https://img.shields.io/badge/Connect-LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com)
 
 ---
 

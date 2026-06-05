@@ -1,4 +1,4 @@
-<!---<h1> Hey there! :wave:<br>
+<img width="1440" height="974" alt="image" src="https://github.com/user-attachments/assets/28f10373-fa2c-49c8-afa0-fad9e719e95c" /><!---<h1> Hey there! :wave:<br>
 I am <a href="https://www.amitramrakhyani.me/" target="_blank">Aravindh </a></h1>
 
 ### :man_technologist: About Me
@@ -27,12 +27,286 @@ I am <a href="https://www.amitramrakhyani.me/" target="_blank">Aravindh </a></h1
 
 <!-- ![Snake animation](https://github.com/Amit-Ramrakhyani/Amit-Ramrakhyani/blob/output/github-contribution-grid-snake.svg) -->
 
-<div align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/Amit-Ramrakhyani/Amit-Ramrakhyani/blob/output/github-contribution-grid-snake-dark.svg" />
-    <img alt="github-snake" src="https://github.com/Amit-Ramrakhyani/Amit-Ramrakhyani/blob/output/github-contribution-grid-snake-dark.svg" />
-  </picture>
-</div>
+
+<canvas id="c" style="display:block;border-radius:12px;width:100%"></canvas>
+<script>
+const cv=document.getElementById('c');
+const cx=cv.getContext('2d');
+const W=680,H=460;
+cv.width=W;cv.height=H;
+const CX=W/2,CY=H/2+20;
+
+const PLANETS=[
+  {name:'Mercury', au:0.387, period:0.241, ecc:0.206, color:'#a8a8a8', r:2.8,  rings:false, moons:0},
+  {name:'Venus',   au:0.723, period:0.615, ecc:0.007, color:'#e8c97a', r:5.5,  rings:false, moons:0},
+  {name:'Earth',   au:1.000, period:1.000, ecc:0.017, color:'#4a90d9', r:6,    rings:false, moons:1, moonDist:10, moonAngle:0, moonPeriod:0.075},
+  {name:'Mars',    au:1.524, period:1.881, ecc:0.093, color:'#c1440e', r:4,    rings:false, moons:0},
+  {name:'Jupiter', au:2.6,   period:11.86, ecc:0.049, color:'#c8863a', r:14,   rings:false, moons:0},
+  {name:'Saturn',  au:3.3,   period:29.46, ecc:0.057, color:'#e4d191', r:11,   rings:true,  moons:0},
+  {name:'Uranus',  au:3.9,   period:84.01, ecc:0.046, color:'#7de8e8', r:8,    rings:false, moons:0},
+  {name:'Neptune', au:4.4,   period:164.8, ecc:0.010, color:'#3f54ba', r:7,    rings:false, moons:0},
+];
+
+const AU=62;
+const START=[4.40,3.18,1.75,6.20,0.60,5.93,2.98,4.52];
+PLANETS.forEach((p,i)=>{p.angle=START[i];});
+
+const STARS=[];
+for(let i=0;i<300;i++){
+  STARS.push({x:Math.random()*W,y:Math.random()*H,s:Math.random()*1.5+0.2,ph:Math.random()*6.28,mag:Math.random()*0.7+0.3});
+}
+
+const ASTEROIDS=[];
+for(let i=0;i<140;i++){
+  const a=Math.random()*Math.PI*2;
+  const d=(AU*2.05)+(Math.random()*(AU*0.45));
+  ASTEROIDS.push({a,d,da:(Math.random()-0.5)*0.00025,s:Math.random()*0.8+0.3});
+}
+
+// Shooting stars
+const SHOOTS=[];
+let shootTimer=0;
+
+let frame=0;
+
+function getPlanetXY(p){
+  const a=p.au*AU;
+  const b=a*Math.sqrt(1-p.ecc*p.ecc);
+  const x=CX+a*Math.cos(p.angle)-a*p.ecc;
+  const y=CY+b*Math.sin(p.angle);
+  return{x,y};
+}
+
+function drawStars(){
+  STARS.forEach(s=>{
+    s.ph+=0.008;
+    const a=(0.3+Math.sin(s.ph)*0.25)*s.mag;
+    cx.beginPath();cx.arc(s.x,s.y,s.s,0,6.28);
+    cx.fillStyle=`rgba(255,255,255,${a})`;cx.fill();
+  });
+}
+
+function drawShoots(){
+  shootTimer++;
+  if(shootTimer>90){
+    shootTimer=0;
+    if(Math.random()<0.6){
+      SHOOTS.push({
+        x:Math.random()*W*0.6,
+        y:Math.random()*H*0.3,
+        vx:Math.random()*4+3,
+        vy:Math.random()*2+1,
+        life:1,
+        len:Math.random()*40+20
+      });
+    }
+  }
+  for(let i=SHOOTS.length-1;i>=0;i--){
+    const s=SHOOTS[i];
+    s.x+=s.vx;s.y+=s.vy;s.life-=0.03;
+    if(s.life<=0||s.x>W||s.y>H){SHOOTS.splice(i,1);continue;}
+    const grad=cx.createLinearGradient(s.x-s.vx*s.len/s.vx,s.y-s.vy*s.len/s.vx,s.x,s.y);
+    grad.addColorStop(0,`rgba(255,255,255,0)`);
+    grad.addColorStop(1,`rgba(255,255,255,${s.life*0.9})`);
+    cx.beginPath();
+    cx.moveTo(s.x-s.vx*(s.len/5),s.y-s.vy*(s.len/5));
+    cx.lineTo(s.x,s.y);
+    cx.strokeStyle=grad;cx.lineWidth=1.2;cx.stroke();
+    cx.beginPath();cx.arc(s.x,s.y,1,0,6.28);
+    cx.fillStyle=`rgba(255,255,255,${s.life})`;cx.fill();
+  }
+}
+
+function drawOrbits(){
+  PLANETS.forEach(p=>{
+    const a=p.au*AU;
+    const b=a*Math.sqrt(1-p.ecc*p.ecc);
+    cx.save();
+    cx.translate(CX-a*p.ecc,CY);
+    cx.beginPath();cx.ellipse(0,0,a,b,0,0,6.28);
+    cx.strokeStyle='rgba(255,255,255,0.07)';
+    cx.lineWidth=0.5;cx.stroke();
+    cx.restore();
+  });
+}
+
+function drawAsteroids(){
+  ASTEROIDS.forEach(a=>{
+    a.a+=a.da;
+    const focusOffset=(AU*2.05+AU*0.45/2)*0.049;
+    const x=CX+Math.cos(a.a)*a.d-focusOffset;
+    const y=CY+Math.sin(a.a)*a.d*0.93;
+    cx.beginPath();cx.arc(x,y,a.s,0,6.28);
+    cx.fillStyle='rgba(180,160,130,0.45)';cx.fill();
+  });
+}
+
+function drawSun(){
+  for(let i=4;i>=0;i--){
+    cx.beginPath();cx.arc(CX,CY,22+i*10,0,6.28);
+    cx.fillStyle=`rgba(255,${200-i*18},${30-i*5},${0.07-i*0.012})`;
+    cx.fill();
+  }
+  // Animated corona rays
+  for(let i=0;i<12;i++){
+    const a=(i/12)*6.28+frame*0.003;
+    const r1=22,r2=32+Math.sin(frame*0.05+i)*4;
+    cx.beginPath();
+    cx.moveTo(CX+Math.cos(a)*r1,CY+Math.sin(a)*r1);
+    cx.lineTo(CX+Math.cos(a)*r2,CY+Math.sin(a)*r2);
+    cx.strokeStyle='rgba(255,220,80,0.15)';cx.lineWidth=1.5;cx.stroke();
+  }
+  cx.beginPath();cx.arc(CX,CY,20,0,6.28);
+  cx.fillStyle='#fff4a0';cx.fill();
+  // Surface texture
+  cx.beginPath();cx.arc(CX,CY,20,0,6.28);
+  cx.strokeStyle='rgba(255,200,50,0.4)';cx.lineWidth=1;cx.stroke();
+  // Sunspot
+  if(Math.sin(frame*0.012)>0.2){
+    cx.beginPath();cx.arc(CX+6,CY+4,2,0,6.28);
+    cx.fillStyle='rgba(180,100,0,0.55)';cx.fill();
+  }
+  if(Math.sin(frame*0.018+1)>0.4){
+    cx.beginPath();cx.arc(CX-5,CY-5,1.5,0,6.28);
+    cx.fillStyle='rgba(180,100,0,0.4)';cx.fill();
+  }
+  cx.fillStyle='#fffde0';cx.font='bold 7px monospace';
+  cx.textAlign='center';cx.fillText('SOL',CX,CY+3);
+}
+
+function drawPlanets(){
+  PLANETS.forEach((p,i)=>{
+    const{x,y}=getPlanetXY(p);
+
+    // Saturn rings (behind planet)
+    if(p.rings){
+      cx.save();cx.translate(x,y);cx.scale(1,0.28);
+      cx.beginPath();cx.arc(0,0,p.r+12,0,6.28);
+      cx.strokeStyle='rgba(228,209,145,0.6)';cx.lineWidth=5;cx.stroke();
+      cx.beginPath();cx.arc(0,0,p.r+7,0,6.28);
+      cx.strokeStyle='rgba(200,180,110,0.35)';cx.lineWidth=2.5;cx.stroke();
+      cx.restore();
+    }
+
+    // Atmosphere glow
+    const rr=parseInt(p.color.slice(1,3),16);
+    const gg=parseInt(p.color.slice(3,5),16);
+    const bb=parseInt(p.color.slice(5,7),16);
+    cx.beginPath();cx.arc(x,y,p.r+5,0,6.28);
+    cx.fillStyle=`rgba(${rr},${gg},${bb},0.13)`;cx.fill();
+    cx.beginPath();cx.arc(x,y,p.r+3,0,6.28);
+    cx.fillStyle=`rgba(${rr},${gg},${bb},0.1)`;cx.fill();
+
+    // Planet body
+    cx.beginPath();cx.arc(x,y,p.r,0,6.28);
+    cx.fillStyle=p.color;cx.fill();
+
+    // Surface detail
+    if(i===2){ // Earth — blue shimmer + cloud band
+      cx.save();cx.beginPath();cx.arc(x,y,p.r,0,6.28);cx.clip();
+      cx.fillStyle='rgba(34,100,60,0.5)';
+      cx.fillRect(x-p.r,y-1,p.r*0.6,p.r*0.8);
+      cx.fillRect(x+p.r*0.2,y+1,p.r*0.5,p.r*0.6);
+      cx.fillStyle='rgba(255,255,255,0.18)';
+      cx.fillRect(x-p.r,y-p.r*0.3,p.r*2,p.r*0.25);
+      cx.restore();
+      cx.beginPath();cx.arc(x,y,p.r,0,6.28);
+      cx.strokeStyle='rgba(150,200,255,0.3)';cx.lineWidth=1;cx.stroke();
+    }
+    if(i===4){ // Jupiter bands
+      cx.save();cx.beginPath();cx.arc(x,y,p.r,0,6.28);cx.clip();
+      cx.fillStyle='rgba(180,120,60,0.35)';
+      cx.fillRect(x-p.r,y-3,p.r*2,4);
+      cx.fillRect(x-p.r,y+5,p.r*2,3);
+      cx.fillRect(x-p.r,y-8,p.r*2,2.5);
+      cx.fillStyle='rgba(220,160,80,0.2)';
+      cx.fillRect(x-p.r,y+1,p.r*2,2);
+      cx.restore();
+      // Great Red Spot
+      cx.save();cx.beginPath();cx.arc(x,y,p.r,0,6.28);cx.clip();
+      cx.beginPath();cx.ellipse(x+4,y+5,3,2,0,0,6.28);
+      cx.fillStyle='rgba(200,80,50,0.6)';cx.fill();
+      cx.restore();
+    }
+    if(i===5){ // Saturn surface bands
+      cx.save();cx.beginPath();cx.arc(x,y,p.r,0,6.28);cx.clip();
+      cx.fillStyle='rgba(180,160,80,0.3)';
+      cx.fillRect(x-p.r,y-2,p.r*2,3);
+      cx.fillRect(x-p.r,y+4,p.r*2,2);
+      cx.restore();
+    }
+    if(i===6){ // Uranus tilt line
+      cx.save();cx.beginPath();cx.arc(x,y,p.r,0,6.28);cx.clip();
+      cx.strokeStyle='rgba(120,230,230,0.3)';cx.lineWidth=2;
+      cx.beginPath();cx.moveTo(x-p.r,y);cx.lineTo(x+p.r,y+2);cx.stroke();
+      cx.restore();
+    }
+    if(i===0){ // Mercury craters
+      cx.save();cx.beginPath();cx.arc(x,y,p.r,0,6.28);cx.clip();
+      cx.beginPath();cx.arc(x-1,y-0.5,0.7,0,6.28);
+      cx.strokeStyle='rgba(80,80,80,0.6)';cx.lineWidth=0.5;cx.stroke();
+      cx.restore();
+    }
+
+    // Planet outline
+    cx.beginPath();cx.arc(x,y,p.r,0,6.28);
+    cx.strokeStyle=`rgba(${rr},${gg},${bb},0.5)`;cx.lineWidth=0.5;cx.stroke();
+
+    // Moon (Earth)
+    if(p.moons){
+      p.moonAngle+=0.022;
+      const mx=x+Math.cos(p.moonAngle)*p.moonDist;
+      const my=y+Math.sin(p.moonAngle)*p.moonDist*0.55;
+      cx.beginPath();cx.arc(mx,my,1.8,0,6.28);
+      cx.fillStyle='#cccccc';cx.fill();
+      cx.beginPath();cx.arc(mx,my,1.8,0,6.28);
+      cx.strokeStyle='rgba(200,200,200,0.4)';cx.lineWidth=0.5;cx.stroke();
+    }
+
+    // Label
+    cx.fillStyle='rgba(200,225,210,0.7)';
+    cx.font='8px monospace';cx.textAlign='center';
+    cx.fillText(p.name,x,y-p.r-5);
+  });
+}
+
+function drawHUD(){
+  // Speed legend / info
+  cx.fillStyle='rgba(0,10,5,0.7)';
+  cx.fillRect(6,6,178,50);
+  cx.strokeStyle='rgba(100,180,255,0.25)';cx.lineWidth=0.5;cx.strokeRect(6,6,178,50);
+  cx.fillStyle='#88ccff';cx.font='bold 9px monospace';cx.textAlign='left';
+  cx.fillText('SOLAR SYSTEM — REAL ORBITS',12,20);
+  cx.fillStyle='rgba(150,200,255,0.65)';cx.font='8px monospace';
+  cx.fillText('8 PLANETS  •  ASTEROID BELT',12,34);
+  cx.fillText('KEPLER ELLIPTICAL MECHANICS',12,46);
+}
+
+function updatePlanets(){
+  const ts=0.00065;
+  PLANETS.forEach(p=>{
+    p.angle+=((2*Math.PI)/p.period)*ts;
+  });
+}
+
+function tick(){
+  cx.clearRect(0,0,W,H);
+  cx.fillStyle='#000008';cx.fillRect(0,0,W,H);
+  drawStars();
+  drawShoots();
+  drawOrbits();
+  drawAsteroids();
+  drawSun();
+  drawPlanets();
+  drawHUD();
+  updatePlanets();
+  frame++;
+  requestAnimationFrame(tick);
+}
+
+tick();
+</script>
+
 
 </div>
 

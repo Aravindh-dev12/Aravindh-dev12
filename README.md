@@ -40,28 +40,7 @@
 
 
 <!--- stats & Trophy (start) -->
-<p align="center">
-  <!--- stats (start) -->
-<table align="center">
-<tr border="none">
-  <td width="50%" align="center">
-    <img  align="center"  src="https://github-readme-stats.anuraghazra1.vercel.app/api/top-langs/?username=amyth9&theme=react&hide_border=false&no-bg=true&no-frame=true&langs_count=7"/>
-  </td>
-</tr>
-</table>
-<!--- stats (end) -->
-
-<!--- trophy (start) -->
-<div align=center>
-  <a href="https://github.com/ryo-ma/github-profile-trophy" title="Go to Source">
-      <img align="center" width=84% src="https://github-profile-trophy.vercel.app/?username=amyth9&theme=tokyonight&row=1&column=7&margin-h=15&margin-w=5&no-bg=true" alt="TROPHY" />
-    </a>
-</div>
-<!--- trophy (start) -->
-
-<br/>
-
-</p>        
+     
 <!--- stats (end) -->
 <div align="center">
 <h2 align="center">Skills</h2>

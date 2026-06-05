@@ -70,12 +70,6 @@ I am <a href="https://www.amitramrakhyani.me/" target="_blank">Aravindh </a></h1
 <table align="center">
 <tr border="none">
   <td width="50%" align="center">
-    <img width=500 src="https://github-readme-stats-salesp07.vercel.app/api?username=amyth9&count_private=true&show_icons=true&theme=react&rank_icon=github&border_radius=10" alt="Readme Stats" />
-    <br>
-    <img width=500 src="https://github-readme-streak-stats-salesp07.vercel.app/?user=amyth9&count_private=true&theme=react&border_radius=10" alt="Streak Stats"/>
-  </td>
-  
-  <td width="50%" align="center">
     <img  align="center"  src="https://github-readme-stats.anuraghazra1.vercel.app/api/top-langs/?username=amyth9&theme=react&hide_border=false&no-bg=true&no-frame=true&langs_count=7"/>
   </td>
 </tr>
@@ -161,16 +155,14 @@ I am <a href="https://www.amitramrakhyani.me/" target="_blank">Aravindh </a></h1
 <div id="user-content-toc">
   <ul align="center">
     <summary><h2 style="display: inline-block">Connect With Me🤝</h2></summary>
-  </ul>
+  </ul>chrome-extension://ajiejmhbejpdgkkigpddefnjmgcbkenk/popup.html#
 </div>
 
 <!--icons and links-->
 <p align="center">
-<a href="https://amitramrakhyani.vercel.app/" target="blank"><img align="center" src="https://github.com/user-attachments/assets/2ea1190d-ce9c-4b82-af1f-9ab0b5a48506" alt="portfolio" height="50" width="50" /></a>
-<a href="https://www.linkedin.com/in/amitramrakhyani/" target="blank"><img align="center" src="https://user-images.githubusercontent.com/88904952/234979284-68c11d7f-1acc-4f0c-ac78-044e1037d7b0.png" alt="linkedin" height="50" width="50" /></a>
-<a href="https://x.com/AmitR_0911" target="blank"><img align="center" src="https://user-images.githubusercontent.com/88904952/234980676-61bfb021-ecc8-48f7-88e6-34c1b06c4a58.png" alt="X" height="50" width="50" /></a> 
-<a href="https://www.instagram.com/_amitramrakhyani_/" target="blank"><img align="center" src="https://user-images.githubusercontent.com/88904952/234981169-2dd1e58f-4b7e-468c-8213-034ba62156c3.png" alt="instagram" height="50" width="50" /></a>
-<a href="https://discordapp.com/users/" target="blank"><img align="center" src="https://user-images.githubusercontent.com/88904952/234982627-019fd336-6248-453c-9b05-97c13fd1d207.png" alt="discord" height="50" width="50" /></a>
+<a href="https://aravindh-portfolio-rsds.onrender.com/portfolio/" target="blank"><img align="center" src="https://github.com/user-attachments/assets/2ea1190d-ce9c-4b82-af1f-9ab0b5a48506" alt="portfolio" height="50" width="50" /></a>
+<a href="https://www.linkedin.com/in/aravindhanb/" target="blank"><img align="center" src="https://user-images.githubusercontent.com/88904952/234979284-68c11d7f-1acc-4f0c-ac78-044e1037d7b0.png" alt="linkedin" height="50" width="50" /></a>
+<a href="https://x.com/aravindh213" target="blank"><img align="center" src="https://user-images.githubusercontent.com/88904952/234980676-61bfb021-ecc8-48f7-88e6-34c1b06c4a58.png" alt="X" height="50" width="50" /></a> 
 <!-- <a href="https://leetcode.com/u/" target="blank"><img align="center" src="https://github.com/user-attachments/assets/155dc343-9754-473d-bc54-5baa6c0a5604" alt="leetcode" height="50" width="50" /></a> -->
 
 </p>

@@ -149,7 +149,6 @@ I am <a href="https://www.amitramrakhyani.me/" target="_blank">Aravindh </a></h1
 <div id="user-content-toc">
   <ul align="center">
     <summary><h2 style="display: inline-block">Connect With Me🤝</h2></summary>
-  </ul>chrome-extension://ajiejmhbejpdgkkigpddefnjmgcbkenk/popup.html#
 </div>
 
 <!--icons and links-->

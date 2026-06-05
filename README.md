@@ -1,23 +1,4 @@
-<img width="1440" height="974" alt="image" src="https://github.com/user-attachments/assets/28f10373-fa2c-49c8-afa0-fad9e719e95c" /><!---<h1> Hey there! :wave:<br>
-I am <a href="https://www.amitramrakhyani.me/" target="_blank">Aravindh </a></h1>
 
-### :man_technologist: About Me
-:mag: A CSE sophomore with keen interest in coding, robotics, astronomy and rocket science.
-
-<a href="https://www.linkedin.com/in/amit-ramrakhyani-73b076214/"><img src="https://user-images.githubusercontent.com/94364976/211248544-dfb2e806-e605-412a-918c-40eb1cd4023c.png" width="40" height="40"></a>
-<a href="https://twitter.com/AmitR_0911"><img src="https://user-images.githubusercontent.com/94364976/211249579-06b03ee3-710a-41b9-8396-e305853e1001.png" width="40" height="40"></a>
-<a href="https://www.instagram.com/amit_ramrakhyani_/"><img src="https://user-images.githubusercontent.com/94364976/211249851-926edd5b-eb81-4647-a3bc-49cd0e78ce32.png" width="40" height="40"></a>
--->
-
-
-<!--horizontal divider(gradiant)-->
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
-
-<!--profile visit count-->
-<div align="center">
-  
-[![](https://visitcount.itsvg.in/api?id=Amit-Ramrakhyani&label=Profile%20Views&color=0&icon=0&pretty=true)](https://visitcount.itsvg.in)  
-</div>
 
 <!--h1 without bottom border-->
 <div id="user-content-toc">

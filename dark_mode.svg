@@ -52,7 +52,7 @@
 <tspan x="390" y="350" class="cc">. </tspan><tspan class="key">Pull Requests</tspan>:<tspan class="cc" id="pr_data_dots"> ................. </tspan><tspan class="value" id="pr_data">0</tspan>
 <tspan x="390" y="370" class="cc">. </tspan><tspan class="key">Reviews</tspan>:<tspan class="cc" id="review_data_dots"> ................. </tspan><tspan class="value" id="review_data">0</tspan>
 <tspan x="390" y="390" class="cc">. </tspan><tspan class="key">Issues</tspan>:<tspan class="cc" id="issue_data_dots"> ................. </tspan><tspan class="value" id="issue_data">0</tspan>
-<tspan x="390" y="410" class="cc">. </tspan><tspan class="key">Followers</tspan>:<tspan class="cc" id="follower_data_dots"> ................. </tspan><tspan class="value" id="follower_data">0</tspan>
+<tspan x="390" y="410" class="cc">. </tspan><tspan class="key">Active Days</tspan>:<tspan class="cc" id="active_data_dots"> ................. </tspan><tspan class="value" id="active_data">0</tspan>
 <tspan x="390" y="430" class="cc">. </tspan><tspan class="key">Last Refresh</tspan>:<tspan class="cc" id="updated_data_dots"> ................. </tspan><tspan class="value" id="updated_data">pending</tspan>
 <tspan x="390" y="470" class="cc">. </tspan><tspan class="key">Signal</tspan>:<tspan class="cc"> ................ </tspan><tspan class="value">The code is the signal.</tspan>
 <tspan x="390" y="490" class="cc">. </tspan><tspan class="key">Handle</tspan>:<tspan class="cc"> ............... </tspan><tspan class="value">@Aravindh-dev12</tspan>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-label="Aravindhan Batman-inspired developer banner">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050505"/>
+      <stop offset="55%" stop-color="#0d0d0d"/>
+      <stop offset="100%" stop-color="#171717"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f5c518" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#f5c518" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="360" rx="26" fill="url(#bg)"/>
+  <ellipse cx="890" cy="170" rx="240" ry="190" fill="url(#glow)"/>
+  <g transform="translate(750 58)" fill="#050505" stroke="#f5c518" stroke-width="3">
+    <path d="M40 120 C95 92 132 61 151 20 C160 55 178 78 200 89 C222 78 240 55 249 20 C268 61 305 92 360 120 C326 119 294 127 272 145 C286 155 298 170 303 188 C273 171 244 164 220 169 C214 188 207 205 200 222 C193 205 186 188 180 169 C156 164 127 171 97 188 C102 170 114 155 128 145 C106 127 74 119 40 120 Z"/>
+  </g>
+  <text x="72" y="116" fill="#f5c518" font-family="monospace" font-size="24" letter-spacing="5">THE DARK MODE DEVELOPER</text>
+  <text x="72" y="186" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="700">ARAVINDHAN</text>
+  <text x="72" y="232" fill="#b7b7b7" font-family="monospace" font-size="22">building systems • shipping code • learning relentlessly</text>
+  <line x1="72" y1="270" x2="560" y2="270" stroke="#f5c518" stroke-width="3"/>
+  <text x="72" y="308" fill="#7e7e7e" font-family="monospace" font-size="17">@Aravindh-dev12  //  VENGEANCE, BUT MAKE IT SOFTWARE.</text>
+</svg>

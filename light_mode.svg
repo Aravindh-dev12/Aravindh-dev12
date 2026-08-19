@@ -1,71 +1,35 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<svg xmlns="http://www.w3.org/2000/svg" font-family="ConsolasFallback,Consolas,monospace" width="985px" height="530px" font-size="16px">
-<style>
-@font-face {
-src: local('Consolas'), local('Consolas Bold');
-font-family: 'ConsolasFallback';
-font-display: swap;
--webkit-size-adjust: 109%;
-size-adjust: 109%;
-}
-.key {fill: #953800;}
-.value {fill: #0a3069;}
-.addColor {fill: #1a7f37;}
-.delColor {fill: #cf222e;}
-.cc {fill: #c2cfde;}
-text, tspan {white-space: pre;}
-</style>
-<rect width="985px" height="530px" fill="#f6f8fa" rx="15"/>
-<text x="15" y="30" fill="#24292f" class="ascii">
-<tspan x="15" y="30">            ;;,, ,;,|g;~,,                      </tspan>
-<tspan x="15" y="50">         ,g@@@@@@l&amp;$$$@|,w$$@gy,            </tspan>
-<tspan x="15" y="70">        $@@@@@@@@@@$@@@@@@@@$$MW$k              </tspan>
-<tspan x="15" y="90">       $$@@@@@@B@@@@@@@@@@@@@$@$$g,$            </tspan>
-<tspan x="15" y="110">     g@llM**'''||%@@@@@$@@$@@@@@@@L$&amp;      </tspan>
-<tspan x="15" y="130">   @$&amp;$F         ''T%M$@@@@@@@@@@@$@$@     </tspan>
-<tspan x="15" y="150">  @@@@F              ']@@@@@@$$@$@@@@          </tspan>
-<tspan x="15" y="170">  @@@$L               |$@@@$$l$@@@@$F          </tspan>
-<tspan x="15" y="190"> ]@@@@L ,@@$@@@@L  ,l@$$$$$$$$$@@@@@           </tspan>
-<tspan x="15" y="210">  %$@@@$}',,gg@||@@@@l@g@ggg|l$&amp;$@@$       </tspan>
-<tspan x="15" y="230">  ]@@@@@'"*TTTTT'F  ]Wl|||''"'$]@@@@ </tspan>
-<tspan x="15" y="250">   $$@M$       ,#    ]gg,,,,,.r'$@$            </tspan>
-<tspan x="15" y="270">    &amp;$L        ' ,, ,,,'T''`    $$L        </tspan>
-<tspan x="15" y="290">     lL         T"||||!   `-    l"'  </tspan>
-<tspan x="15" y="310">     ' |        '||l||||"|L|  L `         </tspan>
-<tspan x="15" y="330">      ''   '|L++=*****""*"||` L|</tspan>
-<tspan x="15" y="350">        |           ,,      |||F               </tspan>
-<tspan x="15" y="370">        '         |||||||| ||l$                </tspan>
-<tspan x="15" y="390">          !                |l&amp;L            </tspan>
-<tspan x="15" y="410">           '!,       |||,||@M|L                </tspan>
-<tspan x="15" y="430">            ||l&amp;$@$$@$$$@$MT|||            </tspan>
-<tspan x="15" y="450">         |    |||lll$$llll|||||L               </tspan>
-<tspan x="15" y="470">    ,;y@        ||||||l||@|||||l               </tspan>
-<tspan x="15" y="490">,g$@$$$@         |||||||||||||||| $g,          </tspan>
-<tspan x="15" y="510">$$$$$$$$@    |    |||||||||||||| |$$@g         </tspan>
-</text>
-<text x="390" y="30" fill="#24292f">
-<tspan x="390" y="30">andrew@grant</tspan> -———————————————————————————————————————————-—-
-<tspan x="390" y="50" class="cc">. </tspan><tspan class="key">OS</tspan>:<tspan class="cc"> ........................ </tspan><tspan class="value">Windows 10, Android 14, Linux</tspan>
-<tspan x="390" y="70" class="cc">. </tspan><tspan class="key">Uptime</tspan>:<tspan class="cc" id="age_data_dots"> ...................... </tspan><tspan class="value" id="age_data">22 years, 5 months, 29 days</tspan>
-<tspan x="390" y="90" class="cc">. </tspan><tspan class="key">Host</tspan>:<tspan class="cc"> ............................. </tspan><tspan class="value">TTM Technologies, Inc.</tspan>
-<tspan x="390" y="110" class="cc">. </tspan><tspan class="key">Kernel</tspan>:<tspan class="cc"> ...... </tspan><tspan class="value">CAM (Computer Aided Manufacturing) Operator</tspan>
-<tspan x="390" y="130" class="cc">. </tspan><tspan class="key">IDE</tspan>:<tspan class="cc"> ........................ </tspan><tspan class="value">IDEA 2023.3.2, VSCode 1.96.0</tspan>
-<tspan x="390" y="150" class="cc">. </tspan>
-<tspan x="390" y="170" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Programming</tspan>:<tspan class="cc"> ..... </tspan><tspan class="value">Java, Python, JavaScript, C++</tspan>
-<tspan x="390" y="190" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Computer</tspan>:<tspan class="cc"> ......... </tspan><tspan class="value">HTML, CSS, JSON, LaTeX, YAML</tspan>
-<tspan x="390" y="210" class="cc">. </tspan><tspan class="key">Languages</tspan>.<tspan class="key">Real</tspan>:<tspan class="cc"> ......................... </tspan><tspan class="value">English, Spanish</tspan>
-<tspan x="390" y="230" class="cc">. </tspan>
-<tspan x="390" y="250" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Software</tspan>:<tspan class="cc"> .... </tspan><tspan class="value">Minecraft Modding, iOS Jailbreaking</tspan>
-<tspan x="390" y="270" class="cc">. </tspan><tspan class="key">Hobbies</tspan>.<tspan class="key">Hardware</tspan>:<tspan class="cc"> ............. </tspan><tspan class="value">Overclocking, Undervolting</tspan>
-<tspan x="390" y="310">- Contact</tspan> -——————————————————————————————————————————————-—-
-<tspan x="390" y="330" class="cc">. </tspan><tspan class="key">Email</tspan>.<tspan class="key">Personal</tspan>:<tspan class="cc"> ..................... </tspan><tspan class="value">agrantnmac@gmail.com</tspan>
-<tspan x="390" y="350" class="cc">. </tspan><tspan class="key">Email</tspan>.<tspan class="key">Personal</tspan>:<tspan class="cc"> .................... </tspan><tspan class="value">andrew@grant.software</tspan>
-<tspan x="390" y="370" class="cc">. </tspan><tspan class="key">Email</tspan>.<tspan class="key">Work</tspan>:<tspan class="cc"> ..................... </tspan><tspan class="value">Andrew.Grant@ttmtech.com</tspan>
-<tspan x="390" y="390" class="cc">. </tspan><tspan class="key">LinkedIn</tspan>:<tspan class="cc"> .................................... </tspan><tspan class="value">Andrew6rant</tspan>
-<tspan x="390" y="410" class="cc">. </tspan><tspan class="key">Discord</tspan>:<tspan class="cc"> ..................................... </tspan><tspan class="value">andrew6rant</tspan>
-<tspan x="390" y="450">- GitHub Stats</tspan> -—————————————————————————————————————————-—-
-<tspan x="390" y="470" class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc" id="repo_data_dots"> .... </tspan><tspan class="value" id="repo_data">95</tspan> {<tspan class="key">Contributed</tspan>: <tspan class="value" id="contrib_data">133</tspan>} | <tspan class="key">Stars</tspan>:<tspan class="cc" id="star_data_dots"> ........... </tspan><tspan class="value" id="star_data">342</tspan>
-<tspan x="390" y="490" class="cc">. </tspan><tspan class="key">Commmits</tspan>:<tspan class="cc" id="commit_data_dots"> ................. </tspan><tspan class="value" id="commit_data">2,116</tspan> | <tspan class="key">Followers</tspan>:<tspan class="cc" id="follower_data_dots"> ....... </tspan><tspan class="value" id="follower_data">196</tspan>
-<tspan x="390" y="510" class="cc">. </tspan><tspan class="key">Lines of Code on GitHub</tspan>:<tspan class="cc" id="loc_data_dots">. </tspan><tspan class="value" id="loc_data">446,276</tspan> ( <tspan class="addColor" id="loc_add">523,178</tspan><tspan class="addColor">++</tspan>, <tspan id="loc_del_dots"> </tspan><tspan class="delColor" id="loc_del">76,902</tspan><tspan class="delColor">--</tspan> )
-</text>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="985" height="530" viewBox="0 0 985 530" role="img" aria-label="Aravindhan GitHub profile">
+  <defs><clipPath id="portraitClip"><rect x="0" y="0" width="330" height="330" rx="22"/></clipPath></defs>
+  <rect width="985" height="530" rx="18" fill="#f6f8fa"/>
+  <rect x="14" y="14" width="957" height="502" rx="16" fill="#ffffff" stroke="#d0d7de"/>
+  <g transform="translate(24 62)">
+    <rect width="330" height="330" rx="22" fill="#efefdf"/>
+    <g clip-path="url(#portraitClip)">
+<path d="M 97 0 L 85 133 L 98 206 L 72 291 L 0 313 L 0 329 L 329 329 L 329 302 L 304 323 L 310 302 L 281 301 L 289 288 L 268 281 L 241 202 L 253 105 L 238 0 L 216 29 L 128 31 Z" fill="rgb(171,171,167)" fill-rule="evenodd"/>
+<path d="M 98 0 L 85 104 L 98 206 L 72 291 L 29 302 L 18 320 L 0 314 L 0 329 L 329 329 L 329 304 L 303 323 L 312 304 L 295 295 L 287 306 L 289 289 L 267 282 L 241 203 L 253 116 L 237 0 L 210 31 L 120 31 Z" fill="rgb(144,144,140)" fill-rule="evenodd"/>
+<path d="M 98 0 L 85 122 L 100 205 L 73 292 L 34 300 L 18 322 L 0 316 L 0 329 L 329 329 L 329 305 L 305 324 L 312 305 L 284 305 L 288 288 L 267 283 L 241 204 L 252 103 L 237 0 L 215 30 L 128 32 Z M 74 300 L 75 301 L 73 303 L 73 308 L 72 309 L 71 309 L 70 308 L 70 302 L 72 300 Z M 86 292 L 88 294 L 88 295 L 89 296 L 89 298 L 88 299 L 88 301 L 87 302 L 87 303 L 86 304 L 80 304 L 79 303 L 80 302 L 81 302 L 82 301 L 83 301 L 84 300 L 84 299 L 85 298 L 85 293 Z" fill="rgb(117,117,113)" fill-rule="evenodd"/>
+<path d="M 98 0 L 86 129 L 104 220 L 88 216 L 73 292 L 0 329 L 329 329 L 328 305 L 304 324 L 312 305 L 266 285 L 239 208 L 252 113 L 236 0 L 216 30 L 172 28 L 160 47 L 119 31 Z M 75 300 L 76 301 L 75 302 L 74 302 L 74 303 L 73 304 L 73 312 L 72 313 L 71 312 L 71 310 L 70 309 L 70 305 L 69 304 L 69 302 L 71 300 Z M 86 291 L 88 293 L 88 295 L 89 296 L 89 299 L 88 300 L 88 302 L 86 304 L 85 304 L 84 305 L 83 305 L 82 304 L 79 304 L 78 303 L 78 302 L 79 301 L 82 301 L 85 298 L 85 294 L 84 293 L 84 292 L 85 291 Z M 105 200 L 109 203 L 109 205 L 111 207 L 111 211 L 112 212 L 111 213 L 112 216 L 111 217 L 112 219 L 110 220 L 113 223 L 111 225 L 110 223 L 111 227 L 114 228 L 113 229 L 115 236 L 114 239 L 110 235 L 108 228 L 108 224 L 106 220 L 106 214 L 105 213 L 105 209 L 106 208 L 104 207 L 104 201 Z M 236 197 L 237 198 L 236 199 L 236 209 L 235 210 L 234 209 L 235 210 L 235 217 L 234 218 L 234 221 L 233 223 L 230 225 L 229 224 L 230 223 L 229 222 L 229 218 L 230 217 L 231 218 L 231 220 L 232 218 L 229 216 L 230 215 L 230 212 L 232 211 L 230 212 L 229 210 L 231 209 L 230 207 L 231 206 L 231 203 L 234 200 L 234 198 Z" fill="rgb(89,89,85)" fill-rule="evenodd"/>
+<path d="M 99 0 L 88 122 L 106 225 L 89 214 L 80 291 L 0 329 L 329 329 L 329 306 L 312 327 L 309 303 L 263 287 L 242 206 L 238 219 L 236 0 L 217 30 L 151 53 Z M 73 299 L 74 300 L 76 300 L 77 301 L 74 303 L 74 305 L 73 306 L 74 307 L 74 308 L 73 309 L 73 316 L 72 317 L 71 316 L 71 312 L 70 311 L 70 307 L 69 306 L 69 302 L 72 299 Z M 83 290 L 85 290 L 88 293 L 88 294 L 89 295 L 89 300 L 88 301 L 88 302 L 85 305 L 80 305 L 79 304 L 78 304 L 76 302 L 77 301 L 81 301 L 84 299 L 84 293 L 82 291 Z M 103 197 L 110 203 L 114 209 L 114 225 L 119 245 L 118 247 L 112 241 L 109 234 L 102 200 Z M 236 193 L 237 194 L 237 204 L 236 205 L 236 214 L 235 215 L 234 225 L 229 236 L 226 239 L 224 236 L 227 228 L 229 202 L 234 194 Z" fill="rgb(62,62,58)" fill-rule="evenodd"/>
+<path d="M 321 307 L 310 318 L 309 321 L 314 325 L 314 329 L 329 329 L 329 313 L 326 314 L 325 313 L 324 314 L 321 313 L 325 310 L 323 309 L 324 308 L 328 307 L 324 307 L 323 308 Z M 99 0 L 99 52 L 120 58 L 90 117 L 108 233 L 91 212 L 89 301 L 73 323 L 59 301 L 0 329 L 308 328 L 281 283 L 259 287 L 243 207 L 235 231 L 235 0 L 214 63 L 148 70 Z M 176 258 L 178 258 L 180 260 L 180 263 L 178 265 L 177 264 L 177 263 L 176 264 L 174 264 L 173 263 L 173 261 L 174 260 L 175 261 L 177 261 L 175 261 L 174 260 Z M 179 257 L 180 256 L 185 256 L 187 258 L 188 258 L 189 259 L 187 261 L 187 262 L 186 263 L 185 262 L 182 262 L 180 260 L 180 259 L 179 258 Z M 156 259 L 157 258 L 158 258 L 158 257 L 159 256 L 164 256 L 165 255 L 169 255 L 171 257 L 172 257 L 174 259 L 174 260 L 172 263 L 171 262 L 168 262 L 168 263 L 169 263 L 170 264 L 167 266 L 165 266 L 164 265 L 162 265 L 161 264 L 160 264 L 156 260 Z M 102 195 L 111 203 L 115 210 L 115 221 L 116 222 L 115 225 L 117 228 L 118 239 L 121 247 L 120 249 L 112 242 L 108 236 L 109 233 L 101 198 Z M 236 192 L 237 193 L 237 207 L 234 226 L 231 234 L 222 245 L 221 244 L 222 237 L 224 234 L 227 222 L 226 220 L 227 218 L 227 204 L 230 198 Z M 169 71 L 165 76 L 163 72 L 162 75 L 157 77 L 155 80 L 151 81 L 156 82 L 157 85 L 159 86 L 152 93 L 148 92 L 149 87 L 146 88 L 143 86 L 141 87 L 139 85 L 143 82 L 141 83 L 139 82 L 141 79 L 144 78 L 144 77 L 141 78 L 140 77 L 141 75 L 150 73 L 152 74 L 153 72 L 155 73 L 162 68 L 165 70 L 167 69 Z M 110 36 L 111 37 L 111 38 L 109 40 L 109 41 L 108 42 L 107 42 L 106 43 L 105 43 L 104 42 L 106 40 L 106 39 L 109 36 Z" fill="rgb(35,35,31)" fill-rule="evenodd"/>
+    </g>
+    <rect width="330" height="330" rx="22" fill="none" stroke="#9a6700" stroke-width="2"/>
+  </g>
+  <text x="24" y="430" fill="#9a6700" font-family="Consolas, Menlo, monospace" font-size="22" font-weight="700">THE DARK KNIGHT // DEV MODE</text>
+  <text x="24" y="458" fill="#57606a" font-family="Consolas, Menlo, monospace" font-size="15">Dark mode. Deep work. Clean commits.</text>
+  <text x="24" y="486" fill="#24292f" font-family="Consolas, Menlo, monospace" font-size="14">@Aravindh-dev12</text>
+  <text x="390" y="54" fill="#24292f" font-family="Consolas, Menlo, monospace" font-size="24" font-weight="700">aravindhan@github</text>
+  <line x1="390" y1="68" x2="944" y2="68" stroke="#d0d7de"/>
+  <text x="390" y="104" fill="#24292f" font-family="Consolas, Menlo, monospace" font-size="16"><tspan fill="#9a6700">Identity</tspan><tspan fill="#57606a"> ................. </tspan><tspan>Aravindhan</tspan></text>
+  <text x="390" y="134" fill="#24292f" font-family="Consolas, Menlo, monospace" font-size="16"><tspan fill="#9a6700">Handle</tspan><tspan fill="#57606a"> ................... </tspan><tspan>@Aravindh-dev12</tspan></text>
+  <text x="390" y="164" fill="#24292f" font-family="Consolas, Menlo, monospace" font-size="16"><tspan fill="#9a6700">Profile</tspan><tspan fill="#57606a"> .................. </tspan><tspan>Developer / Builder</tspan></text>
+  <text x="390" y="194" fill="#24292f" font-family="Consolas, Menlo, monospace" font-size="16"><tspan fill="#9a6700">Focus</tspan><tspan fill="#57606a"> .................... </tspan><tspan>AI · LLM · Web · Flutter</tspan></text>
+  <text x="390" y="246" fill="#24292f" font-family="Consolas, Menlo, monospace" font-size="18" font-weight="700">- GitHub Stats ------------------------------------------------</text>
+  <text x="390" y="282" fill="#24292f" font-family="Consolas, Menlo, monospace" font-size="16"><tspan fill="#9a6700">Public Repositories</tspan><tspan fill="#57606a" id="repo_data_dots"> ........ </tspan><tspan id="repo_data" font-weight="700">66</tspan></text>
+  <text x="390" y="312" fill="#24292f" font-family="Consolas, Menlo, monospace" font-size="16"><tspan fill="#9a6700">Profile Repository</tspan><tspan fill="#57606a"> ......... </tspan><tspan>Aravindh-dev12</tspan></text>
+  <text x="390" y="342" fill="#24292f" font-family="Consolas, Menlo, monospace" font-size="16"><tspan fill="#9a6700">Status</tspan><tspan fill="#57606a"> ................... </tspan><tspan>Building</tspan></text>
+  <text x="390" y="394" fill="#24292f" font-family="Consolas, Menlo, monospace" font-size="18" font-weight="700">- Build Signals -----------------------------------------------</text>
+  <text x="390" y="430" fill="#24292f" font-family="Consolas, Menlo, monospace" font-size="15"><tspan fill="#9a6700">AI</tspan><tspan fill="#57606a"> .... </tspan><tspan>LLM · RAG · NeuroSymbolic · AI tooling</tspan></text>
+  <text x="390" y="460" fill="#24292f" font-family="Consolas, Menlo, monospace" font-size="15"><tspan fill="#9a6700">Apps</tspan><tspan fill="#57606a"> .. </tspan><tspan>Flutter · Web · Video · Messaging</tspan></text>
+  <text x="390" y="490" fill="#24292f" font-family="Consolas, Menlo, monospace" font-size="15"><tspan fill="#9a6700">Mode</tspan><tspan fill="#57606a"> .. </tspan><tspan>Build in the shadows. Ship in the light.</tspan></text>
 </svg>

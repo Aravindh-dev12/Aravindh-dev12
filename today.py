@@ -79,10 +79,6 @@ def github_activity():
         followers { totalCount }
         contributionsCollection(from: $from, to: $to) {
           totalCommitContributions
-          totalIssueContributions
-          totalPullRequestContributions
-          totalPullRequestReviewContributions
-          restrictedContributionsCount
           contributionCalendar {
             totalContributions
             weeks {
@@ -133,9 +129,6 @@ def github_activity():
         "contrib_data": calendar["totalContributions"],
         "streak_data": f"{streak} day" + ("" if streak == 1 else "s"),
         "commit_data": collection["totalCommitContributions"],
-        "pr_data": collection["totalPullRequestContributions"],
-        "review_data": collection["totalPullRequestReviewContributions"],
-        "issue_data": collection["totalIssueContributions"],
         "active_data": active_days,
         "follower_data": user["followers"]["totalCount"],
         "updated_data": now.strftime("%Y-%m-%d UTC"),
@@ -244,17 +237,14 @@ def render_svg(theme_name, stats):
         stat_line(286, "Contributions", "contrib_data", stats["contrib_data"]),
         stat_line(306, "Current Streak", "streak_data", stats["streak_data"]),
         stat_line(326, "Commits", "commit_data", stats["commit_data"]),
-        stat_line(346, "Pull Requests", "pr_data", stats["pr_data"]),
-        stat_line(366, "Reviews", "review_data", stats["review_data"]),
-        stat_line(386, "Issues", "issue_data", stats["issue_data"]),
-        stat_line(406, "Active Days", "active_data", stats["active_data"]),
-        stat_line(426, "Followers", "follower_data", stats["follower_data"]),
-        stat_line(446, "Last Refresh", "updated_data", stats["updated_data"]),
+        stat_line(346, "Active Days", "active_data", stats["active_data"]),
+        stat_line(366, "Followers", "follower_data", stats["follower_data"]),
+        stat_line(386, "Last Refresh", "updated_data", stats["updated_data"]),
     ])
 
     footer_lines = "\n".join([
-        fixed_line(486, "Signal", "The code is the signal."),
-        fixed_line(506, "Handle", "@Aravindh-dev12"),
+        fixed_line(426, "Signal", "The code is the signal."),
+        fixed_line(446, "Handle", "@Aravindh-dev12"),
     ])
 
     swarm = bat_swarm(t)
@@ -293,6 +283,8 @@ def render_readme(cache_stamp):
       <img width="100%" alt="Aravindhan's Batman ASCII developer profile with daily GitHub activity" src="https://raw.githubusercontent.com/{USER_NAME}/{USER_NAME}/main/light_mode.svg?v={cache_stamp}">
     </picture>
   </a>
+
+  <p><em>"It's not who I am underneath, but what I do that defines me."</em><br><sub>— Batman Begins</sub></p>
 </div>
 '''
 

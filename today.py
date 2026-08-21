@@ -186,7 +186,6 @@ def realistic_bat(scale, flap_duration):
     """Angular bat silhouette with membrane-style wing joints, pointed ears and tail."""
     return (
         f'<g transform="scale({scale:.2f})">'
-        # Left wing: long leading edge + scalloped membrane trailing edge.
         '<g>'
         '<path d="M-3,-1 '
         'L-10,-5 L-18,-12 L-29,-17 L-41,-16 L-34,-9 '
@@ -197,7 +196,6 @@ def realistic_bat(scale, flap_duration):
         f'repeatCount="indefinite"/>'
         '</path>'
         '</g>'
-        # Right wing mirrors the left wing.
         '<g>'
         '<path d="M3,-1 '
         'L10,-5 L18,-12 L29,-17 L41,-16 L34,-9 '
@@ -208,40 +206,41 @@ def realistic_bat(scale, flap_duration):
         f'repeatCount="indefinite"/>'
         '</path>'
         '</g>'
-        # Compact head and tapered body.
         '<path d="M0,-10 C-4,-10 -6,-6 -5,-1 L-4,7 L0,17 L4,7 L5,-1 C6,-6 4,-10 0,-10 Z"/>'
-        # Tall pointed bat ears.
         '<path d="M-4,-8 L-8,-17 L-1,-12 Z M4,-8 L8,-17 L1,-12 Z"/>'
-        # Small tail membrane, another cue that this is a bat rather than an insect.
         '<path d="M-4,7 L0,18 L4,7 L2,13 L0,16 L-2,13 Z"/>'
         '</g>'
     )
 
 
 def bat_swarm(theme):
-    # Exactly 10 bats, continuously flying and flapping.
+    # Exactly 10 bats. The swarm appears briefly once every 3 seconds.
+    period = "3s"
     flights = [
-        ("-0.4s", "6.8s", "M20,72 C180,18 365,22 545,82 C725,142 875,112 970,42"),
-        ("-1.1s", "7.4s", "M18,160 C170,80 345,64 525,126 C700,187 865,160 972,92"),
-        ("-1.9s", "6.5s", "M20,265 C175,182 350,170 535,228 C720,286 875,257 972,185"),
-        ("-2.7s", "7.1s", "M18,368 C180,292 355,282 545,340 C730,395 878,365 970,292"),
-        ("-3.5s", "6.9s", "M24,474 C205,406 395,400 580,449 C760,495 895,472 970,410"),
-        ("-0.8s", "7.3s", "M968,74 C800,25 635,45 475,112 C315,178 160,155 25,72"),
-        ("-1.6s", "6.7s", "M970,180 C805,120 645,142 480,205 C315,268 150,238 20,158"),
-        ("-2.4s", "7.0s", "M972,288 C810,230 650,246 485,307 C315,370 150,342 18,262"),
-        ("-3.2s", "6.6s", "M970,392 C805,334 645,350 480,411 C310,470 148,442 18,360"),
-        ("-4.0s", "7.5s", "M965,490 C800,438 635,444 475,486 C315,525 150,510 22,445"),
+        "M20,72 C180,18 365,22 545,82 C725,142 875,112 970,42",
+        "M18,160 C170,80 345,64 525,126 C700,187 865,160 972,92",
+        "M20,265 C175,182 350,170 535,228 C720,286 875,257 972,185",
+        "M18,368 C180,292 355,282 545,340 C730,395 878,365 970,292",
+        "M24,474 C205,406 395,400 580,449 C760,495 895,472 970,410",
+        "M968,74 C800,25 635,45 475,112 C315,178 160,155 25,72",
+        "M970,180 C805,120 645,142 480,205 C315,268 150,238 20,158",
+        "M972,288 C810,230 650,246 485,307 C315,370 150,342 18,262",
+        "M970,392 C805,334 645,350 480,411 C310,470 148,442 18,360",
+        "M965,490 C800,438 635,444 475,486 C315,525 150,510 22,445",
     ]
 
-    pieces = [f'<g fill="{theme["ascii"]}" opacity="0.84" pointer-events="none">']
-    for index, (begin, duration, path) in enumerate(flights):
-        scale = 0.54 + (index % 4) * 0.08
-        flap_duration = f"{0.36 + (index % 3) * 0.06:.2f}s"
+    pieces = [f'<g fill="{theme["ascii"]}" pointer-events="none">']
+    for index, path in enumerate(flights):
+        scale = 0.50 + (index % 4) * 0.07
+        flap_duration = f"{0.36 + (index % 3) * 0.05:.2f}s"
         pieces.append(
-            '<g>'
+            '<g opacity="0">'
             f'{realistic_bat(scale, flap_duration)}'
-            f'<animateMotion path="{path}" begin="{begin}" dur="{duration}" '
-            'repeatCount="indefinite" rotate="auto"/>'
+            f'<animate attributeName="opacity" '
+            f'values="0;0.34;0.34;0;0" keyTimes="0;0.08;0.52;0.66;1" '
+            f'dur="{period}" repeatCount="indefinite"/>'
+            f'<animateMotion path="{path}" dur="{period}" '
+            f'repeatCount="indefinite" rotate="auto"/>'
             '</g>'
         )
     pieces.append('</g>')

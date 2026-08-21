@@ -183,30 +183,43 @@ def stat_line(y, label, element_id, value):
 
 
 def realistic_bat(scale, flap_duration):
+    """Angular bat silhouette with membrane-style wing joints, pointed ears and tail."""
     return (
         f'<g transform="scale({scale:.2f})">'
+        # Left wing: long leading edge + scalloped membrane trailing edge.
         '<g>'
-        '<path d="M-2,-2 C-8,-9 -17,-13 -29,-9 C-25,-5 -21,-1 -22,3 '
-        'C-26,2 -30,4 -34,9 C-28,9 -23,12 -18,15 '
-        'C-15,11 -12,10 -9,14 C-7,10 -5,7 -3,6 Z">'
-        f'<animateTransform attributeName="transform" type="scale" values="1 1;1 0.48;1 1" '
-        f'dur="{flap_duration}" repeatCount="indefinite"/>'
+        '<path d="M-3,-1 '
+        'L-10,-5 L-18,-12 L-29,-17 L-41,-16 L-34,-9 '
+        'L-45,-5 L-37,1 L-43,7 L-32,6 '
+        'L-27,14 L-19,9 L-13,16 L-8,7 L-3,4 Z">'
+        f'<animateTransform attributeName="transform" type="rotate" '
+        f'values="-18 -3 0;12 -3 0;-18 -3 0" dur="{flap_duration}" '
+        f'repeatCount="indefinite"/>'
         '</path>'
-        '<path d="M2,-2 C8,-9 17,-13 29,-9 C25,-5 21,-1 22,3 '
-        'C26,2 30,4 34,9 C28,9 23,12 18,15 '
-        'C15,11 12,10 9,14 C7,10 5,7 3,6 Z">'
-        f'<animateTransform attributeName="transform" type="scale" values="1 1;1 0.48;1 1" '
-        f'dur="{flap_duration}" repeatCount="indefinite"/>'
-        '</path>'
-        '<path d="M0,-9 C-3,-8 -4,-4 -3,1 L-2,10 L0,16 L2,10 L3,1 C4,-4 3,-8 0,-9 Z"/>'
-        '<path d="M-3,-7 L-6,-13 L-1,-10 Z M3,-7 L6,-13 L1,-10 Z"/>'
         '</g>'
+        # Right wing mirrors the left wing.
+        '<g>'
+        '<path d="M3,-1 '
+        'L10,-5 L18,-12 L29,-17 L41,-16 L34,-9 '
+        'L45,-5 L37,1 L43,7 L32,6 '
+        'L27,14 L19,9 L13,16 L8,7 L3,4 Z">'
+        f'<animateTransform attributeName="transform" type="rotate" '
+        f'values="18 3 0;-12 3 0;18 3 0" dur="{flap_duration}" '
+        f'repeatCount="indefinite"/>'
+        '</path>'
+        '</g>'
+        # Compact head and tapered body.
+        '<path d="M0,-10 C-4,-10 -6,-6 -5,-1 L-4,7 L0,17 L4,7 L5,-1 C6,-6 4,-10 0,-10 Z"/>'
+        # Tall pointed bat ears.
+        '<path d="M-4,-8 L-8,-17 L-1,-12 Z M4,-8 L8,-17 L1,-12 Z"/>'
+        # Small tail membrane, another cue that this is a bat rather than an insect.
+        '<path d="M-4,7 L0,18 L4,7 L2,13 L0,16 L-2,13 Z"/>'
         '</g>'
     )
 
 
 def bat_swarm(theme):
-    # Exactly 10 continuously flying bats with flapping membrane wings.
+    # Exactly 10 bats, continuously flying and flapping.
     flights = [
         ("-0.4s", "6.8s", "M20,72 C180,18 365,22 545,82 C725,142 875,112 970,42"),
         ("-1.1s", "7.4s", "M18,160 C170,80 345,64 525,126 C700,187 865,160 972,92"),
@@ -220,10 +233,10 @@ def bat_swarm(theme):
         ("-4.0s", "7.5s", "M965,490 C800,438 635,444 475,486 C315,525 150,510 22,445"),
     ]
 
-    pieces = [f'<g fill="{theme["ascii"]}" opacity="0.82" pointer-events="none">']
+    pieces = [f'<g fill="{theme["ascii"]}" opacity="0.84" pointer-events="none">']
     for index, (begin, duration, path) in enumerate(flights):
-        scale = 0.62 + (index % 4) * 0.10
-        flap_duration = f"{0.34 + (index % 3) * 0.06:.2f}s"
+        scale = 0.54 + (index % 4) * 0.08
+        flap_duration = f"{0.36 + (index % 3) * 0.06:.2f}s"
         pieces.append(
             '<g>'
             f'{realistic_bat(scale, flap_duration)}'

@@ -49,14 +49,11 @@
 <tspan x="390" y="286" class="cc">. </tspan><tspan class="key">Contributions</tspan>:<tspan class="cc" id="contrib_data_dots"> .... </tspan><tspan x="610" class="value" id="contrib_data">3,817</tspan>
 <tspan x="390" y="306" class="cc">. </tspan><tspan class="key">Current Streak</tspan>:<tspan class="cc" id="streak_data_dots"> ... </tspan><tspan x="610" class="value" id="streak_data">23 days</tspan>
 <tspan x="390" y="326" class="cc">. </tspan><tspan class="key">Commits</tspan>:<tspan class="cc" id="commit_data_dots"> .......... </tspan><tspan x="610" class="value" id="commit_data">1,549</tspan>
-<tspan x="390" y="346" class="cc">. </tspan><tspan class="key">Pull Requests</tspan>:<tspan class="cc" id="pr_data_dots"> .... </tspan><tspan x="610" class="value" id="pr_data">37</tspan>
-<tspan x="390" y="366" class="cc">. </tspan><tspan class="key">Reviews</tspan>:<tspan class="cc" id="review_data_dots"> .......... </tspan><tspan x="610" class="value" id="review_data">0</tspan>
-<tspan x="390" y="386" class="cc">. </tspan><tspan class="key">Issues</tspan>:<tspan class="cc" id="issue_data_dots"> ........... </tspan><tspan x="610" class="value" id="issue_data">0</tspan>
-<tspan x="390" y="406" class="cc">. </tspan><tspan class="key">Active Days</tspan>:<tspan class="cc" id="active_data_dots"> ...... </tspan><tspan x="610" class="value" id="active_data">191</tspan>
-<tspan x="390" y="426" class="cc">. </tspan><tspan class="key">Followers</tspan>:<tspan class="cc" id="follower_data_dots"> ........ </tspan><tspan x="610" class="value" id="follower_data">3</tspan>
-<tspan x="390" y="446" class="cc">. </tspan><tspan class="key">Last Refresh</tspan>:<tspan class="cc" id="updated_data_dots"> ..... </tspan><tspan x="610" class="value" id="updated_data">2026-08-21 UTC</tspan>
-<tspan x="390" y="486" class="cc">. </tspan><tspan class="key">Signal</tspan>:<tspan class="cc"> ........... </tspan><tspan x="610" class="value">The code is the signal.</tspan>
-<tspan x="390" y="506" class="cc">. </tspan><tspan class="key">Handle</tspan>:<tspan class="cc"> ........... </tspan><tspan x="610" class="value">@Aravindh-dev12</tspan>
+<tspan x="390" y="346" class="cc">. </tspan><tspan class="key">Active Days</tspan>:<tspan class="cc" id="active_data_dots"> ...... </tspan><tspan x="610" class="value" id="active_data">191</tspan>
+<tspan x="390" y="366" class="cc">. </tspan><tspan class="key">Followers</tspan>:<tspan class="cc" id="follower_data_dots"> ........ </tspan><tspan x="610" class="value" id="follower_data">3</tspan>
+<tspan x="390" y="386" class="cc">. </tspan><tspan class="key">Last Refresh</tspan>:<tspan class="cc" id="updated_data_dots"> ..... </tspan><tspan x="610" class="value" id="updated_data">2026-08-21 UTC</tspan>
+<tspan x="390" y="426" class="cc">. </tspan><tspan class="key">Signal</tspan>:<tspan class="cc"> ........... </tspan><tspan x="610" class="value">The code is the signal.</tspan>
+<tspan x="390" y="446" class="cc">. </tspan><tspan class="key">Handle</tspan>:<tspan class="cc"> ........... </tspan><tspan x="610" class="value">@Aravindh-dev12</tspan>
 </text>
 <defs><path id="mini-bat" d="M0 4 L4 1 L7 3 L10 0 L13 3 L16 1 L20 4 L16 5 L14 8 L10 6 L6 8 L4 5 Z"/></defs>
 <g fill="#24292f" pointer-events="none">

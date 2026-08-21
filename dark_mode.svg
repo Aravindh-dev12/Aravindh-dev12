@@ -34,28 +34,28 @@
 </text>
 <text x="390" y="30" fill="#c9d1d9">
 <tspan x="390" y="30">aravindhan@batcave</tspan> -—————————————————————————————————————————-—-
-<tspan x="390" y="50" class="cc">. </tspan><tspan class="key">Role</tspan>:<tspan class="cc"> ................. </tspan><tspan class="value">AI Builder · Full-Stack Developer</tspan>
-<tspan x="390" y="70" class="cc">. </tspan><tspan class="key">Focus</tspan>:<tspan class="cc"> ................. </tspan><tspan class="value">LLM · RAG · Agents · Web · Flutter</tspan>
-<tspan x="390" y="90" class="cc">. </tspan><tspan class="key">Stack</tspan>:<tspan class="cc"> ................. </tspan><tspan class="value">Python · TypeScript · Dart · GitHub</tspan>
-<tspan x="390" y="110" class="cc">. </tspan><tspan class="key">Status</tspan>:<tspan class="cc"> ................. </tspan><tspan class="value">Building · Learning · Shipping</tspan>
+<tspan x="390" y="50" class="cc">. </tspan><tspan class="key">Role</tspan>:<tspan class="cc"> ............. </tspan><tspan x="610" class="value">AI Builder · Full-Stack Developer</tspan>
+<tspan x="390" y="70" class="cc">. </tspan><tspan class="key">Focus</tspan>:<tspan class="cc"> ............ </tspan><tspan x="610" class="value">LLM · RAG · Agents · Web · Flutter</tspan>
+<tspan x="390" y="90" class="cc">. </tspan><tspan class="key">Stack</tspan>:<tspan class="cc"> ............ </tspan><tspan x="610" class="value">Python · TypeScript · Dart · GitHub</tspan>
+<tspan x="390" y="110" class="cc">. </tspan><tspan class="key">Status</tspan>:<tspan class="cc"> ........... </tspan><tspan x="610" class="value">Building · Learning · Shipping</tspan>
 <tspan x="390" y="130" class="cc">. </tspan>
 <tspan x="390" y="150">- Current Focus</tspan> -—————————————————————————————————————————-—-
-<tspan x="390" y="170" class="cc">. </tspan><tspan class="key">AI</tspan>:<tspan class="cc"> ................... </tspan><tspan class="value">LLM systems · RAG · agent workflows</tspan>
-<tspan x="390" y="190" class="cc">. </tspan><tspan class="key">Apps</tspan>:<tspan class="cc"> ................. </tspan><tspan class="value">Web products · Flutter · automation</tspan>
-<tspan x="390" y="210" class="cc">. </tspan><tspan class="key">Research</tspan>:<tspan class="cc"> ............. </tspan><tspan class="value">Neuro-symbolic · inference · retrieval</tspan>
-<tspan x="390" y="230" class="cc">. </tspan><tspan class="key">Mode</tspan>:<tspan class="cc"> ................. </tspan><tspan class="value">Build in the shadows. Ship in the light.</tspan>
+<tspan x="390" y="170" class="cc">. </tspan><tspan class="key">AI</tspan>:<tspan class="cc"> ............... </tspan><tspan x="610" class="value">LLM systems · RAG · agent workflows</tspan>
+<tspan x="390" y="190" class="cc">. </tspan><tspan class="key">Apps</tspan>:<tspan class="cc"> ............. </tspan><tspan x="610" class="value">Web products · Flutter · automation</tspan>
+<tspan x="390" y="210" class="cc">. </tspan><tspan class="key">Research</tspan>:<tspan class="cc"> ......... </tspan><tspan x="610" class="value">Neuro-symbolic · inference · retrieval</tspan>
+<tspan x="390" y="230" class="cc">. </tspan><tspan class="key">Mode</tspan>:<tspan class="cc"> ............. </tspan><tspan x="610" class="value">Build in the shadows. Ship in the light.</tspan>
 <tspan x="390" y="250" class="cc">. </tspan>
 <tspan x="390" y="266">- GitHub Activity · rolling 365 days</tspan> -——————————————————————-
-<tspan x="390" y="286" class="cc">. </tspan><tspan class="key">Contributions</tspan>:<tspan class="cc" id="contrib_data_dots"> ............... </tspan><tspan class="value" id="contrib_data">3,773</tspan>
-<tspan x="390" y="306" class="cc">. </tspan><tspan class="key">Current Streak</tspan>:<tspan class="cc" id="streak_data_dots"> ............. </tspan><tspan class="value" id="streak_data">23 days</tspan>
-<tspan x="390" y="326" class="cc">. </tspan><tspan class="key">Commits</tspan>:<tspan class="cc" id="commit_data_dots"> ............... </tspan><tspan class="value" id="commit_data">1,513</tspan>
-<tspan x="390" y="346" class="cc">. </tspan><tspan class="key">Pull Requests</tspan>:<tspan class="cc" id="pr_data_dots"> .................. </tspan><tspan class="value" id="pr_data">32</tspan>
-<tspan x="390" y="366" class="cc">. </tspan><tspan class="key">Reviews</tspan>:<tspan class="cc" id="review_data_dots"> ................... </tspan><tspan class="value" id="review_data">0</tspan>
-<tspan x="390" y="386" class="cc">. </tspan><tspan class="key">Issues</tspan>:<tspan class="cc" id="issue_data_dots"> ................... </tspan><tspan class="value" id="issue_data">0</tspan>
-<tspan x="390" y="406" class="cc">. </tspan><tspan class="key">Active Days</tspan>:<tspan class="cc" id="active_data_dots"> ................. </tspan><tspan class="value" id="active_data">191</tspan>
-<tspan x="390" y="426" class="cc">. </tspan><tspan class="key">Followers</tspan>:<tspan class="cc" id="follower_data_dots"> ................... </tspan><tspan class="value" id="follower_data">3</tspan>
-<tspan x="390" y="446" class="cc">. </tspan><tspan class="key">Last Refresh</tspan>:<tspan class="cc" id="updated_data_dots"> ...... </tspan><tspan class="value" id="updated_data">2026-08-21 UTC</tspan>
-<tspan x="390" y="486" class="cc">. </tspan><tspan class="key">Signal</tspan>:<tspan class="cc"> ................ </tspan><tspan class="value">The code is the signal.</tspan>
-<tspan x="390" y="506" class="cc">. </tspan><tspan class="key">Handle</tspan>:<tspan class="cc"> ............... </tspan><tspan class="value">@Aravindh-dev12</tspan>
+<tspan x="390" y="286" class="cc">. </tspan><tspan class="key">Contributions</tspan>:<tspan class="cc" id="contrib_data_dots"> .... </tspan><tspan x="610" class="value" id="contrib_data">3,817</tspan>
+<tspan x="390" y="306" class="cc">. </tspan><tspan class="key">Current Streak</tspan>:<tspan class="cc" id="streak_data_dots"> ... </tspan><tspan x="610" class="value" id="streak_data">23 days</tspan>
+<tspan x="390" y="326" class="cc">. </tspan><tspan class="key">Commits</tspan>:<tspan class="cc" id="commit_data_dots"> .......... </tspan><tspan x="610" class="value" id="commit_data">1,549</tspan>
+<tspan x="390" y="346" class="cc">. </tspan><tspan class="key">Pull Requests</tspan>:<tspan class="cc" id="pr_data_dots"> .... </tspan><tspan x="610" class="value" id="pr_data">37</tspan>
+<tspan x="390" y="366" class="cc">. </tspan><tspan class="key">Reviews</tspan>:<tspan class="cc" id="review_data_dots"> .......... </tspan><tspan x="610" class="value" id="review_data">0</tspan>
+<tspan x="390" y="386" class="cc">. </tspan><tspan class="key">Issues</tspan>:<tspan class="cc" id="issue_data_dots"> ........... </tspan><tspan x="610" class="value" id="issue_data">0</tspan>
+<tspan x="390" y="406" class="cc">. </tspan><tspan class="key">Active Days</tspan>:<tspan class="cc" id="active_data_dots"> ...... </tspan><tspan x="610" class="value" id="active_data">191</tspan>
+<tspan x="390" y="426" class="cc">. </tspan><tspan class="key">Followers</tspan>:<tspan class="cc" id="follower_data_dots"> ........ </tspan><tspan x="610" class="value" id="follower_data">3</tspan>
+<tspan x="390" y="446" class="cc">. </tspan><tspan class="key">Last Refresh</tspan>:<tspan class="cc" id="updated_data_dots"> ..... </tspan><tspan x="610" class="value" id="updated_data">2026-08-21 UTC</tspan>
+<tspan x="390" y="486" class="cc">. </tspan><tspan class="key">Signal</tspan>:<tspan class="cc"> ........... </tspan><tspan x="610" class="value">The code is the signal.</tspan>
+<tspan x="390" y="506" class="cc">. </tspan><tspan class="key">Handle</tspan>:<tspan class="cc"> ........... </tspan><tspan x="610" class="value">@Aravindh-dev12</tspan>
 </text>
 </svg>

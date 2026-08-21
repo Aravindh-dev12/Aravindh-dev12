@@ -1,60 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" font-family="ConsolasFallback,Consolas,monospace" width="985px" height="680px" font-size="16px" role="img" aria-label="Aravindhan Batman GitHub profile card">
+<svg xmlns="http://www.w3.org/2000/svg" font-family="ConsolasFallback,Consolas,monospace" width="985px" height="530px" font-size="16px" role="img" aria-label="Aravindhan Batman ASCII GitHub profile card">
 <style>
 @font-face { src: local('Consolas'), local('Consolas Bold'); font-family: 'ConsolasFallback'; font-display: swap; -webkit-size-adjust: 109%; size-adjust: 109%; }
-.key {fill: #f0c419; font-weight: 700;}
-.value {fill: #a5d6ff;}
-.cc {fill: #616e7f;}
-text, tspan {white-space: pre;}
+.key {fill: #f0c419;} .value {fill: #a5d6ff;} .cc {fill: #616e7f;} text, tspan {white-space: pre;}
 </style>
-
-<rect width="985px" height="680px" fill="#161b22" rx="15"/>
-
-<!-- Border only around the Batman symbol -->
-<rect x="16" y="18" width="342" height="410" rx="12" fill="none" stroke="#616e7f" stroke-width="1.2" opacity="0.60"/>
-
-<text x="24" y="50" fill="#c9d1d9" class="ascii" font-size="12px">
-<tspan x="24" y="50">                        _==/          i     i          \==_                        </tspan>
-<tspan x="24" y="77">                      /XX/            |\___/|            \XX\                      </tspan>
-<tspan x="24" y="104">                    /XXXX\            |XXXXX|            /XXXX\                    </tspan>
-<tspan x="24" y="131">                   |XXXXXX\_         _/XXXXX\_         _/XXXXXX|                   </tspan>
-<tspan x="24" y="158">                  XXXXXXXXXXXxxxxxxxXXXXXXXXXXXxxxxxxxXXXXXXXXXXX                  </tspan>
-<tspan x="24" y="185">                 |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|                 </tspan>
-<tspan x="24" y="212">                 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                 </tspan>
-<tspan x="24" y="239">                 |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|                 </tspan>
-<tspan x="24" y="266">                  XXXXXX/^^^^\XXXXXXXXXXXXXXXXXXXXX/^^^^\XXXXXX                  </tspan>
-<tspan x="24" y="293">                   |XXX|       \XXX/^^\XXXXX/^^\XXX/       |XXX|                   </tspan>
-<tspan x="24" y="320">                    \XX\       \X/    \XXX/    \X/       /XX/                    </tspan>
-<tspan x="24" y="347">                      &#x27;\        &#x27;      \X/      &#x27;        /&#x27;                      </tspan>
-<tspan x="24" y="374">                        &#x27;\_                    __/                               </tspan>
-<tspan x="24" y="401">                           &#x27;====__________====&#x27;                                  </tspan>
+<rect width="985px" height="530px" fill="#161b22" rx="15"/>
+<text x="15" y="30" fill="#c9d1d9" class="ascii" font-size="14px">
+<tspan x="15" y="30">           ;@s                2B,          </tspan>
+<tspan x="15" y="50">           i&amp;M.    .....     :S&amp;;          </tspan>
+<tspan x="15" y="70">           sB#HAAAAAAA25522A5GB&amp;s          </tspan>
+<tspan x="15" y="90">           A###SHM33533MMHHG#99&amp;5          </tspan>
+<tspan x="15" y="110">          .5HGGSSGHHGGGSSSGGS9BBH,         </tspan>
+<tspan x="15" y="130">          ;3MS#9##SSSSS#99999BBB#r         </tspan>
+<tspan x="15" y="150">          XhG9B9##SGS###99B&amp;&amp;&amp;BB95         </tspan>
+<tspan x="15" y="170">          5H9&amp;&amp;BB999999B9B&amp;&amp;&amp;&amp;&amp;BBM,        </tspan>
+<tspan x="15" y="190">         .hSB&amp;&amp;&amp;&amp;BBB999BBBB&amp;&amp;&amp;&amp;&amp;&amp;G:        </tspan>
+<tspan x="15" y="210">         .hBB&amp;&amp;&amp;BBBBBBBBBB&amp;&amp;&amp;&amp;&amp;B&amp;S;        </tspan>
+<tspan x="15" y="230">          5BB9BBBB&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;BB&amp;S:        </tspan>
+<tspan x="15" y="250">          ABBBBBB&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;B9M,        </tspan>
+<tspan x="15" y="270">          :HS9@&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;Hr         </tspan>
+<tspan x="15" y="290">           XH9B&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;@M          </tspan>
+<tspan x="15" y="310">           ;#@@&amp;&amp;&amp;&amp;&amp;&amp;B&amp;&amp;&amp;&amp;&amp;@@@@9A          </tspan>
+<tspan x="15" y="330">           ihMB&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;#35:         </tspan>
+<tspan x="15" y="350">          2Bh2#B##9B&amp;&amp;&amp;&amp;&amp;B99#BG39G,        </tspan>
+<tspan x="15" y="370">         ;hBShH&amp;#S##9BB99###9BHG9Mr        </tspan>
+<tspan x="15" y="390">         XG#BBG9B9##99B99##9B99&amp;#H5.       </tspan>
+<tspan x="15" y="410">        .3BBB&amp;&amp;BBBB9#S####9B&amp;&amp;@BB#Hi       </tspan>
+<tspan x="15" y="430">        ;G&amp;&amp;&amp;B&amp;&amp;&amp;&amp;&amp;B9###9B&amp;&amp;@@&amp;B&amp;B#2       </tspan>
+<tspan x="15" y="450">      .:5#&amp;&amp;@&amp;&amp;&amp;&amp;&amp;@@@@&amp;&amp;@@@@@&amp;B&amp;&amp;&amp;9G5H2,   </tspan>
+<tspan x="15" y="470">  :irX5hMMH&amp;@&amp;&amp;&amp;@@@&amp;&amp;&amp;&amp;@&amp;&amp;&amp;&amp;@&amp;&amp;&amp;@&amp;&amp;BB@5.sr,</tspan>
+<tspan x="15" y="490">;2H###9SHS9&amp;&amp;&amp;&amp;&amp;&amp;@@@@&amp;&amp;&amp;&amp;@&amp;&amp;&amp;&amp;@&amp;&amp;@@@&amp;&amp;#HSHs</tspan>
+<tspan x="15" y="510">M###999##BB&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;@&amp;&amp;&amp;@@&amp;&amp;@@@@&amp;&amp;&amp;Bh5</tspan>
 </text>
-
 <text x="390" y="30" fill="#c9d1d9">
-<tspan x="390" y="30">aravindhan@batcave</tspan> -——————————————————————————————————————————————
-<tspan x="390" y="50" class="cc">. </tspan><tspan class="key">Role</tspan><tspan x="545" y="50" class="cc">:</tspan><tspan x="558" y="50" class="cc">....................</tspan><tspan x="590" y="50" class="value">AI Builder · Full-Stack Developer</tspan>
-<tspan x="390" y="78" class="cc">. </tspan><tspan class="key">Focus</tspan><tspan x="545" y="78" class="cc">:</tspan><tspan x="558" y="78" class="cc">....................</tspan><tspan x="590" y="78" class="value">LLM · RAG · Agents · Web · Flutter</tspan>
-<tspan x="390" y="106" class="cc">. </tspan><tspan class="key">Stack</tspan><tspan x="545" y="106" class="cc">:</tspan><tspan x="558" y="106" class="cc">....................</tspan><tspan x="590" y="106" class="value">Python · TypeScript · Dart · GitHub</tspan>
-<tspan x="390" y="134" class="cc">. </tspan><tspan class="key">Status</tspan><tspan x="545" y="134" class="cc">:</tspan><tspan x="558" y="134" class="cc">....................</tspan><tspan x="590" y="134" class="value">Building · Learning · Shipping</tspan>
-
-<tspan x="390" y="166">- Current Focus</tspan> -———————————————————————————————————————————————
-<tspan x="390" y="194" class="cc">. </tspan><tspan class="key">AI</tspan><tspan x="545" y="194" class="cc">:</tspan><tspan x="558" y="194" class="cc">....................</tspan><tspan x="590" y="194" class="value">LLM systems · RAG · agent workflows</tspan>
-<tspan x="390" y="222" class="cc">. </tspan><tspan class="key">Apps</tspan><tspan x="545" y="222" class="cc">:</tspan><tspan x="558" y="222" class="cc">....................</tspan><tspan x="590" y="222" class="value">Web products · Flutter · automation</tspan>
-<tspan x="390" y="250" class="cc">. </tspan><tspan class="key">Research</tspan><tspan x="545" y="250" class="cc">:</tspan><tspan x="558" y="250" class="cc">....................</tspan><tspan x="590" y="250" class="value">Neuro-symbolic · inference · retrieval</tspan>
-<tspan x="390" y="278" class="cc">. </tspan><tspan class="key">Mode</tspan><tspan x="545" y="278" class="cc">:</tspan><tspan x="558" y="278" class="cc">....................</tspan><tspan x="590" y="278" class="value">Build in the shadows. Ship in the light.</tspan>
-
-<tspan x="390" y="306">- GitHub Activity · rolling 365 days</tspan> -——————————————————————————————
-<tspan x="390" y="334" class="cc">. </tspan><tspan class="key">Contributions</tspan><tspan x="545" y="334" class="cc">:</tspan><tspan x="558" y="334" class="cc">....................</tspan><tspan x="590" y="334" class="value" id="contrib_data">3,817</tspan>
-<tspan x="390" y="362" class="cc">. </tspan><tspan class="key">Current Streak</tspan><tspan x="545" y="362" class="cc">:</tspan><tspan x="558" y="362" class="cc">....................</tspan><tspan x="590" y="362" class="value" id="streak_data">23 days</tspan>
-<tspan x="390" y="390" class="cc">. </tspan><tspan class="key">Commits</tspan><tspan x="545" y="390" class="cc">:</tspan><tspan x="558" y="390" class="cc">....................</tspan><tspan x="590" y="390" class="value" id="commit_data">1,549</tspan>
-<tspan x="390" y="418" class="cc">. </tspan><tspan class="key">Pull Requests</tspan><tspan x="545" y="418" class="cc">:</tspan><tspan x="558" y="418" class="cc">....................</tspan><tspan x="590" y="418" class="value" id="pr_data">37</tspan>
-<tspan x="390" y="446" class="cc">. </tspan><tspan class="key">Reviews</tspan><tspan x="545" y="446" class="cc">:</tspan><tspan x="558" y="446" class="cc">....................</tspan><tspan x="590" y="446" class="value" id="review_data">0</tspan>
-<tspan x="390" y="474" class="cc">. </tspan><tspan class="key">Issues</tspan><tspan x="545" y="474" class="cc">:</tspan><tspan x="558" y="474" class="cc">....................</tspan><tspan x="590" y="474" class="value" id="issue_data">0</tspan>
-<tspan x="390" y="502" class="cc">. </tspan><tspan class="key">Active Days</tspan><tspan x="545" y="502" class="cc">:</tspan><tspan x="558" y="502" class="cc">....................</tspan><tspan x="590" y="502" class="value" id="active_data">191</tspan>
-<tspan x="390" y="530" class="cc">. </tspan><tspan class="key">Followers</tspan><tspan x="545" y="530" class="cc">:</tspan><tspan x="558" y="530" class="cc">....................</tspan><tspan x="590" y="530" class="value" id="follower_data">3</tspan>
-<tspan x="390" y="558" class="cc">. </tspan><tspan class="key">Last Refresh</tspan><tspan x="545" y="558" class="cc">:</tspan><tspan x="558" y="558" class="cc">....................</tspan><tspan x="590" y="558" class="value" id="updated_data">2026-08-21 UTC</tspan>
-
-<tspan x="390" y="614" class="cc">. </tspan><tspan class="key">Signal</tspan><tspan x="545" y="614" class="cc">:</tspan><tspan x="558" y="614" class="cc">....................</tspan><tspan x="590" y="614" class="value">The code is the signal.</tspan>
-<tspan x="390" y="642" class="cc">. </tspan><tspan class="key">Handle</tspan><tspan x="545" y="642" class="cc">:</tspan><tspan x="558" y="642" class="cc">....................</tspan><tspan x="590" y="642" class="value">@Aravindh-dev12</tspan>
+<tspan x="390" y="30">aravindhan@batcave</tspan> -—————————————————————————————————————————-—-
+<tspan x="390" y="50" class="cc">. </tspan><tspan class="key">Role</tspan>:<tspan class="cc"> ............. </tspan><tspan x="610" class="value">AI Builder · Full-Stack Developer</tspan>
+<tspan x="390" y="70" class="cc">. </tspan><tspan class="key">Focus</tspan>:<tspan class="cc"> ............ </tspan><tspan x="610" class="value">LLM · RAG · Agents · Web · Flutter</tspan>
+<tspan x="390" y="90" class="cc">. </tspan><tspan class="key">Stack</tspan>:<tspan class="cc"> ............ </tspan><tspan x="610" class="value">Python · TypeScript · Dart · GitHub</tspan>
+<tspan x="390" y="110" class="cc">. </tspan><tspan class="key">Status</tspan>:<tspan class="cc"> ........... </tspan><tspan x="610" class="value">Building · Learning · Shipping</tspan>
+<tspan x="390" y="130" class="cc">. </tspan>
+<tspan x="390" y="150">- Current Focus</tspan> -—————————————————————————————————————————-—-
+<tspan x="390" y="170" class="cc">. </tspan><tspan class="key">AI</tspan>:<tspan class="cc"> ............... </tspan><tspan x="610" class="value">LLM systems · RAG · agent workflows</tspan>
+<tspan x="390" y="190" class="cc">. </tspan><tspan class="key">Apps</tspan>:<tspan class="cc"> ............. </tspan><tspan x="610" class="value">Web products · Flutter · automation</tspan>
+<tspan x="390" y="210" class="cc">. </tspan><tspan class="key">Research</tspan>:<tspan class="cc"> ......... </tspan><tspan x="610" class="value">Neuro-symbolic · inference · retrieval</tspan>
+<tspan x="390" y="230" class="cc">. </tspan><tspan class="key">Mode</tspan>:<tspan class="cc"> ............. </tspan><tspan x="610" class="value">Build in the shadows. Ship in the light.</tspan>
+<tspan x="390" y="250" class="cc">. </tspan>
+<tspan x="390" y="266">- GitHub Activity · rolling 365 days</tspan> -——————————————————————-
+<tspan x="390" y="286" class="cc">. </tspan><tspan class="key">Contributions</tspan>:<tspan class="cc" id="contrib_data_dots"> .... </tspan><tspan x="610" class="value" id="contrib_data">3,817</tspan>
+<tspan x="390" y="306" class="cc">. </tspan><tspan class="key">Current Streak</tspan>:<tspan class="cc" id="streak_data_dots"> ... </tspan><tspan x="610" class="value" id="streak_data">23 days</tspan>
+<tspan x="390" y="326" class="cc">. </tspan><tspan class="key">Commits</tspan>:<tspan class="cc" id="commit_data_dots"> .......... </tspan><tspan x="610" class="value" id="commit_data">1,549</tspan>
+<tspan x="390" y="346" class="cc">. </tspan><tspan class="key">Pull Requests</tspan>:<tspan class="cc" id="pr_data_dots"> .... </tspan><tspan x="610" class="value" id="pr_data">37</tspan>
+<tspan x="390" y="366" class="cc">. </tspan><tspan class="key">Reviews</tspan>:<tspan class="cc" id="review_data_dots"> .......... </tspan><tspan x="610" class="value" id="review_data">0</tspan>
+<tspan x="390" y="386" class="cc">. </tspan><tspan class="key">Issues</tspan>:<tspan class="cc" id="issue_data_dots"> ........... </tspan><tspan x="610" class="value" id="issue_data">0</tspan>
+<tspan x="390" y="406" class="cc">. </tspan><tspan class="key">Active Days</tspan>:<tspan class="cc" id="active_data_dots"> ...... </tspan><tspan x="610" class="value" id="active_data">191</tspan>
+<tspan x="390" y="426" class="cc">. </tspan><tspan class="key">Followers</tspan>:<tspan class="cc" id="follower_data_dots"> ........ </tspan><tspan x="610" class="value" id="follower_data">3</tspan>
+<tspan x="390" y="446" class="cc">. </tspan><tspan class="key">Last Refresh</tspan>:<tspan class="cc" id="updated_data_dots"> ..... </tspan><tspan x="610" class="value" id="updated_data">2026-08-21 UTC</tspan>
+<tspan x="390" y="486" class="cc">. </tspan><tspan class="key">Signal</tspan>:<tspan class="cc"> ........... </tspan><tspan x="610" class="value">The code is the signal.</tspan>
+<tspan x="390" y="506" class="cc">. </tspan><tspan class="key">Handle</tspan>:<tspan class="cc"> ........... </tspan><tspan x="610" class="value">@Aravindh-dev12</tspan>
 </text>
+<defs><path id="mini-bat" d="M0 4 L4 1 L7 3 L10 0 L13 3 L16 1 L20 4 L16 5 L14 8 L10 6 L6 8 L4 5 Z"/></defs>
+<g fill="#c9d1d9" pointer-events="none">
+<g opacity="0"><g transform="scale(0.45)"><use href="#mini-bat"/></g><animate attributeName="opacity" values="0;0.85;0.7;0" keyTimes="0;0.18;0.78;1" begin="0s" dur="2.4s" repeatCount="1" fill="freeze"/><animateMotion path="M185,260 C120,180 95,75 240,28 C390,-18 620,18 760,55" begin="0s" dur="2.4s" repeatCount="1" fill="freeze"/></g>
+<g opacity="0"><g transform="scale(0.53)"><use href="#mini-bat"/></g><animate attributeName="opacity" values="0;0.85;0.7;0" keyTimes="0;0.18;0.78;1" begin="0.08s" dur="2.7s" repeatCount="1" fill="freeze"/><animateMotion path="M190,265 C90,235 45,120 175,55 C360,-32 690,5 915,110" begin="0.08s" dur="2.7s" repeatCount="1" fill="freeze"/></g>
+<g opacity="0"><g transform="scale(0.61)"><use href="#mini-bat"/></g><animate attributeName="opacity" values="0;0.85;0.7;0" keyTimes="0;0.18;0.78;1" begin="0.16s" dur="2.5s" repeatCount="1" fill="freeze"/><animateMotion path="M195,260 C135,325 85,455 260,505 C470,565 760,525 940,390" begin="0.16s" dur="2.5s" repeatCount="1" fill="freeze"/></g>
+<g opacity="0"><g transform="scale(0.69)"><use href="#mini-bat"/></g><animate attributeName="opacity" values="0;0.85;0.7;0" keyTimes="0;0.18;0.78;1" begin="0.24s" dur="2.8s" repeatCount="1" fill="freeze"/><animateMotion path="M200,255 C300,180 395,55 560,35 C760,10 900,105 960,245" begin="0.24s" dur="2.8s" repeatCount="1" fill="freeze"/></g>
+<g opacity="0"><g transform="scale(0.45)"><use href="#mini-bat"/></g><animate attributeName="opacity" values="0;0.85;0.7;0" keyTimes="0;0.18;0.78;1" begin="0.32s" dur="2.3s" repeatCount="1" fill="freeze"/><animateMotion path="M190,270 C105,300 30,390 165,475 C330,575 650,535 845,465" begin="0.32s" dur="2.3s" repeatCount="1" fill="freeze"/></g>
+<g opacity="0"><g transform="scale(0.53)"><use href="#mini-bat"/></g><animate attributeName="opacity" values="0;0.85;0.7;0" keyTimes="0;0.18;0.78;1" begin="0.40s" dur="2.6s" repeatCount="1" fill="freeze"/><animateMotion path="M205,250 C345,310 470,470 660,500 C815,525 940,430 968,320" begin="0.40s" dur="2.6s" repeatCount="1" fill="freeze"/></g>
+<g opacity="0"><g transform="scale(0.61)"><use href="#mini-bat"/></g><animate attributeName="opacity" values="0;0.85;0.7;0" keyTimes="0;0.18;0.78;1" begin="0.48s" dur="2.2s" repeatCount="1" fill="freeze"/><animateMotion path="M180,255 C105,205 65,105 245,72 C440,35 720,88 900,205" begin="0.48s" dur="2.2s" repeatCount="1" fill="freeze"/></g>
+<g opacity="0"><g transform="scale(0.69)"><use href="#mini-bat"/></g><animate attributeName="opacity" values="0;0.85;0.7;0" keyTimes="0;0.18;0.78;1" begin="0.56s" dur="2.9s" repeatCount="1" fill="freeze"/><animateMotion path="M200,265 C300,390 455,515 675,485 C850,462 945,340 965,210" begin="0.56s" dur="2.9s" repeatCount="1" fill="freeze"/></g>
+<g opacity="0"><g transform="scale(0.45)"><use href="#mini-bat"/></g><animate attributeName="opacity" values="0;0.85;0.7;0" keyTimes="0;0.18;0.78;1" begin="0.64s" dur="2.45s" repeatCount="1" fill="freeze"/><animateMotion path="M188,250 C260,155 395,70 575,74 C760,80 900,170 955,285" begin="0.64s" dur="2.45s" repeatCount="1" fill="freeze"/></g>
+<g opacity="0"><g transform="scale(0.53)"><use href="#mini-bat"/></g><animate attributeName="opacity" values="0;0.85;0.7;0" keyTimes="0;0.18;0.78;1" begin="0.72s" dur="2.65s" repeatCount="1" fill="freeze"/><animateMotion path="M198,270 C255,365 390,455 555,478 C750,505 890,435 945,350" begin="0.72s" dur="2.65s" repeatCount="1" fill="freeze"/></g>
+</g>
 </svg>

@@ -214,33 +214,32 @@ def realistic_bat(scale, flap_duration):
 
 
 def bat_swarm(theme):
-    # Exactly 10 bats. The swarm appears briefly once every 3 seconds.
-    period = "3s"
+    # Exactly 10 bats. Fly once when the SVG loads, then disappear until refresh.
     flights = [
-        "M20,72 C180,18 365,22 545,82 C725,142 875,112 970,42",
-        "M18,160 C170,80 345,64 525,126 C700,187 865,160 972,92",
-        "M20,265 C175,182 350,170 535,228 C720,286 875,257 972,185",
-        "M18,368 C180,292 355,282 545,340 C730,395 878,365 970,292",
-        "M24,474 C205,406 395,400 580,449 C760,495 895,472 970,410",
-        "M968,74 C800,25 635,45 475,112 C315,178 160,155 25,72",
-        "M970,180 C805,120 645,142 480,205 C315,268 150,238 20,158",
-        "M972,288 C810,230 650,246 485,307 C315,370 150,342 18,262",
-        "M970,392 C805,334 645,350 480,411 C310,470 148,442 18,360",
-        "M965,490 C800,438 635,444 475,486 C315,525 150,510 22,445",
+        ("0s", "2.4s", "M20,72 C180,18 365,22 545,82 C725,142 875,112 970,42"),
+        ("0.08s", "2.7s", "M18,160 C170,80 345,64 525,126 C700,187 865,160 972,92"),
+        ("0.16s", "2.5s", "M20,265 C175,182 350,170 535,228 C720,286 875,257 972,185"),
+        ("0.24s", "2.8s", "M18,368 C180,292 355,282 545,340 C730,395 878,365 970,292"),
+        ("0.32s", "2.3s", "M24,474 C205,406 395,400 580,449 C760,495 895,472 970,410"),
+        ("0.40s", "2.6s", "M968,74 C800,25 635,45 475,112 C315,178 160,155 25,72"),
+        ("0.48s", "2.2s", "M970,180 C805,120 645,142 480,205 C315,268 150,238 20,158"),
+        ("0.56s", "2.9s", "M972,288 C810,230 650,246 485,307 C315,370 150,342 18,262"),
+        ("0.64s", "2.45s", "M970,392 C805,334 645,350 480,411 C310,470 148,442 18,360"),
+        ("0.72s", "2.65s", "M965,490 C800,438 635,444 475,486 C315,525 150,510 22,445"),
     ]
 
     pieces = [f'<g fill="{theme["ascii"]}" pointer-events="none">']
-    for index, path in enumerate(flights):
+    for index, (begin, duration, path) in enumerate(flights):
         scale = 0.50 + (index % 4) * 0.07
         flap_duration = f"{0.36 + (index % 3) * 0.05:.2f}s"
         pieces.append(
             '<g opacity="0">'
             f'{realistic_bat(scale, flap_duration)}'
-            f'<animate attributeName="opacity" '
-            f'values="0;0.34;0.34;0;0" keyTimes="0;0.08;0.52;0.66;1" '
-            f'dur="{period}" repeatCount="indefinite"/>'
-            f'<animateMotion path="{path}" dur="{period}" '
-            f'repeatCount="indefinite" rotate="auto"/>'
+            f'<animate attributeName="opacity" values="0;0.34;0.28;0" '
+            f'keyTimes="0;0.15;0.78;1" begin="{begin}" dur="{duration}" '
+            f'repeatCount="1" fill="freeze"/>'
+            f'<animateMotion path="{path}" begin="{begin}" dur="{duration}" '
+            f'repeatCount="1" fill="freeze" rotate="auto"/>'
             '</g>'
         )
     pieces.append('</g>')

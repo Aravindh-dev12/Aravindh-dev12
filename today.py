@@ -18,20 +18,31 @@ if TOKEN:
     HEADERS["Authorization"] = f"Bearer {TOKEN}"
 
 BATMAN_ASCII = [
-    "                        _==/          i     i          \\==_                        ",
-    "                      /XX/            |\\___/|            \\XX\\                      ",
-    "                    /XXXX\\            |XXXXX|            /XXXX\\                    ",
-    "                   |XXXXXX\\_         _/XXXXX\\_         _/XXXXXX|                   ",
-    "                  XXXXXXXXXXXxxxxxxxXXXXXXXXXXXxxxxxxxXXXXXXXXXXX                  ",
-    "                 |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|                 ",
-    "                 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                 ",
-    "                 |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|                 ",
-    "                  XXXXXX/^^^^\\XXXXXXXXXXXXXXXXXXXXX/^^^^\\XXXXXX                  ",
-    "                   |XXX|       \\XXX/^^\\XXXXX/^^\\XXX/       |XXX|                   ",
-    "                    \\XX\\       \\X/    \\XXX/    \\X/       /XX/                    ",
-    "                      '\\        '      \\X/      '        /'                      ",
-    "                        '\\_                    __/                               ",
-    "                           '====__________===='                                  ",
+    "           ;@s                2B,          ",
+    "           i&M.    .....     :S&;          ",
+    "           sB#HAAAAAAA25522A5GB&s          ",
+    "           A###SHM33533MMHHG#99&5          ",
+    "          .5HGGSSGHHGGGSSSGGS9BBH,         ",
+    "          ;3MS#9##SSSSS#99999BBB#r         ",
+    "          XhG9B9##SGS###99B&&&BB95         ",
+    "          5H9&&BB999999B9B&&&&&BBM,        ",
+    "         .hSB&&&&BBB999BBBB&&&&&&G:        ",
+    "         .hBB&&&BBBBBBBBBB&&&&&B&S;        ",
+    "          5BB9BBBB&&&&&&&&&&&&BB&S:        ",
+    "          ABBBBBB&&&&&&&&&&&&&&B9M,        ",
+    "          :HS9@&&&&&&&&&&&&&&&&&Hr         ",
+    "           XH9B&&&&&&&&&&&&&&&&@M          ",
+    "           ;#@@&&&&&&B&&&&&@@@@9A          ",
+    "           ihMB&&&&&&&&&&&&&&&#35:         ",
+    "          2Bh2#B##9B&&&&&B99#BG39G,        ",
+    "         ;hBShH&#S##9BB99###9BHG9Mr        ",
+    "         XG#BBG9B9##99B99##9B99&#H5.       ",
+    "        .3BBB&&BBBB9#S####9B&&@BB#Hi       ",
+    "        ;G&&&B&&&&&B9###9B&&@@&B&B#2       ",
+    "      .:5#&&@&&&&&@@@@&&@@@@@&B&&&9G5H2,   ",
+    "  :irX5hMMH&@&&&@@@&&&&@&&&&@&&&@&&BB@5.sr,",
+    ";2H###9SHS9&&&&&&@@@@&&&&@&&&&@&&@@@&&#HSHs",
+    "M###999##BB&&&&&&&&&&&&&&@&&&@@&&@@@@&&&Bh5",
 ]
 
 THEMES = {
@@ -53,10 +64,9 @@ THEMES = {
     },
 }
 
-RIGHT_LABEL_X = 390
-RIGHT_COLON_X = 545
-RIGHT_DOTS_X = 558
-RIGHT_VALUE_X = 590
+RIGHT_X = 390
+VALUE_X = 610
+CHAR_WIDTH = 9.6
 
 
 def github_activity():
@@ -154,89 +164,123 @@ def fmt(value):
     return f"{value:,}" if isinstance(value, int) else str(value)
 
 
-def row(y, label, value, element_id=None):
+def leader_dots(label):
+    prefix_chars = 2 + len(label) + 1
+    used_width = prefix_chars * CHAR_WIDTH
+    gap_width = max(0, VALUE_X - RIGHT_X - used_width)
+    dot_count = max(3, int(gap_width / CHAR_WIDTH) - 2)
+    return " " + "." * dot_count + " "
+
+
+def fixed_line(y, label, value, element_id=None):
     safe_label = html.escape(label)
     safe_value = html.escape(fmt(value))
+    dots_id = f' id="{element_id}_dots"' if element_id else ""
     value_id = f' id="{element_id}"' if element_id else ""
     return (
-        f'<tspan x="{RIGHT_LABEL_X}" y="{y}" class="cc">. </tspan>'
-        f'<tspan class="key">{safe_label}</tspan>'
-        f'<tspan x="{RIGHT_COLON_X}" y="{y}" class="cc">:</tspan>'
-        f'<tspan x="{RIGHT_DOTS_X}" y="{y}" class="cc">....................</tspan>'
-        f'<tspan x="{RIGHT_VALUE_X}" y="{y}" class="value"{value_id}>{safe_value}</tspan>'
+        f'<tspan x="{RIGHT_X}" y="{y}" class="cc">. </tspan>'
+        f'<tspan class="key">{safe_label}</tspan>:'
+        f'<tspan class="cc"{dots_id}>{html.escape(leader_dots(label))}</tspan>'
+        f'<tspan x="{VALUE_X}" class="value"{value_id}>{safe_value}</tspan>'
     )
+
+
+def stat_line(y, label, element_id, value):
+    return fixed_line(y, label, value, element_id)
+
+
+def bat_swarm(theme):
+    bat = '<path id="mini-bat" d="M0 4 L4 1 L7 3 L10 0 L13 3 L16 1 L20 4 L16 5 L14 8 L10 6 L6 8 L4 5 Z"/>'
+    flights = [
+        ("0s", "2.4s", "M185,260 C120,180 95,75 240,28 C390,-18 620,18 760,55"),
+        ("0.08s", "2.7s", "M190,265 C90,235 45,120 175,55 C360,-32 690,5 915,110"),
+        ("0.16s", "2.5s", "M195,260 C135,325 85,455 260,505 C470,565 760,525 940,390"),
+        ("0.24s", "2.8s", "M200,255 C300,180 395,55 560,35 C760,10 900,105 960,245"),
+        ("0.32s", "2.3s", "M190,270 C105,300 30,390 165,475 C330,575 650,535 845,465"),
+        ("0.40s", "2.6s", "M205,250 C345,310 470,470 660,500 C815,525 940,430 968,320"),
+        ("0.48s", "2.2s", "M180,255 C105,205 65,105 245,72 C440,35 720,88 900,205"),
+        ("0.56s", "2.9s", "M200,265 C300,390 455,515 675,485 C850,462 945,340 965,210"),
+        ("0.64s", "2.45s", "M188,250 C260,155 395,70 575,74 C760,80 900,170 955,285"),
+        ("0.72s", "2.65s", "M198,270 C255,365 390,455 555,478 C750,505 890,435 945,350"),
+    ]
+
+    pieces = [f'<defs>{bat}</defs>', f'<g fill="{theme["ascii"]}" pointer-events="none">']
+    for index, (begin, duration, path) in enumerate(flights):
+        scale = 0.45 + (index % 4) * 0.08
+        pieces.append(
+            f'<g opacity="0">'
+            f'<g transform="scale({scale:.2f})"><use href="#mini-bat"/></g>'
+            f'<animate attributeName="opacity" values="0;0.85;0.7;0" keyTimes="0;0.18;0.78;1" '
+            f'begin="{begin}" dur="{duration}" repeatCount="1" fill="freeze"/>'
+            f'<animateMotion path="{path}" begin="{begin}" dur="{duration}" repeatCount="1" fill="freeze"/>'
+            f'</g>'
+        )
+    pieces.append('</g>')
+    return "\n".join(pieces)
 
 
 def render_svg(theme_name, stats):
     t = THEMES[theme_name]
-
     ascii_lines = "\n".join(
-        f'<tspan x="24" y="{50 + i * 27}">{html.escape(line)}</tspan>'
+        f'<tspan x="15" y="{30 + i * 20}">{html.escape(line)}</tspan>'
         for i, line in enumerate(BATMAN_ASCII)
     )
 
     profile_lines = "\n".join([
-        row(50, "Role", "AI Builder · Full-Stack Developer"),
-        row(78, "Focus", "LLM · RAG · Agents · Web · Flutter"),
-        row(106, "Stack", "Python · TypeScript · Dart · GitHub"),
-        row(134, "Status", "Building · Learning · Shipping"),
+        fixed_line(50, "Role", "AI Builder · Full-Stack Developer"),
+        fixed_line(70, "Focus", "LLM · RAG · Agents · Web · Flutter"),
+        fixed_line(90, "Stack", "Python · TypeScript · Dart · GitHub"),
+        fixed_line(110, "Status", "Building · Learning · Shipping"),
     ])
 
     focus_lines = "\n".join([
-        row(194, "AI", "LLM systems · RAG · agent workflows"),
-        row(222, "Apps", "Web products · Flutter · automation"),
-        row(250, "Research", "Neuro-symbolic · inference · retrieval"),
-        row(278, "Mode", "Build in the shadows. Ship in the light."),
+        fixed_line(170, "AI", "LLM systems · RAG · agent workflows"),
+        fixed_line(190, "Apps", "Web products · Flutter · automation"),
+        fixed_line(210, "Research", "Neuro-symbolic · inference · retrieval"),
+        fixed_line(230, "Mode", "Build in the shadows. Ship in the light."),
     ])
 
-    activity_lines = "\n".join([
-        row(334, "Contributions", stats["contrib_data"], "contrib_data"),
-        row(362, "Current Streak", stats["streak_data"], "streak_data"),
-        row(390, "Commits", stats["commit_data"], "commit_data"),
-        row(418, "Pull Requests", stats["pr_data"], "pr_data"),
-        row(446, "Reviews", stats["review_data"], "review_data"),
-        row(474, "Issues", stats["issue_data"], "issue_data"),
-        row(502, "Active Days", stats["active_data"], "active_data"),
-        row(530, "Followers", stats["follower_data"], "follower_data"),
-        row(558, "Last Refresh", stats["updated_data"], "updated_data"),
+    dynamic = "\n".join([
+        stat_line(286, "Contributions", "contrib_data", stats["contrib_data"]),
+        stat_line(306, "Current Streak", "streak_data", stats["streak_data"]),
+        stat_line(326, "Commits", "commit_data", stats["commit_data"]),
+        stat_line(346, "Pull Requests", "pr_data", stats["pr_data"]),
+        stat_line(366, "Reviews", "review_data", stats["review_data"]),
+        stat_line(386, "Issues", "issue_data", stats["issue_data"]),
+        stat_line(406, "Active Days", "active_data", stats["active_data"]),
+        stat_line(426, "Followers", "follower_data", stats["follower_data"]),
+        stat_line(446, "Last Refresh", "updated_data", stats["updated_data"]),
     ])
 
     footer_lines = "\n".join([
-        row(614, "Signal", "The code is the signal."),
-        row(642, "Handle", "@Aravindh-dev12"),
+        fixed_line(486, "Signal", "The code is the signal."),
+        fixed_line(506, "Handle", "@Aravindh-dev12"),
     ])
 
+    swarm = bat_swarm(t)
+
     return f'''<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" font-family="ConsolasFallback,Consolas,monospace" width="985px" height="680px" font-size="16px" role="img" aria-label="Aravindhan Batman GitHub profile card">
+<svg xmlns="http://www.w3.org/2000/svg" font-family="ConsolasFallback,Consolas,monospace" width="985px" height="530px" font-size="16px" role="img" aria-label="Aravindhan Batman ASCII GitHub profile card">
 <style>
 @font-face {{ src: local('Consolas'), local('Consolas Bold'); font-family: 'ConsolasFallback'; font-display: swap; -webkit-size-adjust: 109%; size-adjust: 109%; }}
-.key {{fill: {t['key']}; font-weight: 700;}}
-.value {{fill: {t['value']};}}
-.cc {{fill: {t['muted']};}}
-text, tspan {{white-space: pre;}}
+.key {{fill: {t['key']};}} .value {{fill: {t['value']};}} .cc {{fill: {t['muted']};}} text, tspan {{white-space: pre;}}
 </style>
-
-<rect width="985px" height="680px" fill="{t['background']}" rx="15"/>
-
-<!-- Border only around the Batman symbol -->
-<rect x="16" y="18" width="342" height="410" rx="12" fill="none" stroke="{t['muted']}" stroke-width="1.2" opacity="0.60"/>
-
-<text x="24" y="50" fill="{t['ascii']}" class="ascii" font-size="12px">
+<rect width="985px" height="530px" fill="{t['background']}" rx="15"/>
+<text x="15" y="30" fill="{t['ascii']}" class="ascii" font-size="14px">
 {ascii_lines}
 </text>
-
-<text x="{RIGHT_LABEL_X}" y="30" fill="{t['text']}">
-<tspan x="{RIGHT_LABEL_X}" y="30">aravindhan@batcave</tspan> -——————————————————————————————————————————————
+<text x="{RIGHT_X}" y="30" fill="{t['text']}">
+<tspan x="{RIGHT_X}" y="30">aravindhan@batcave</tspan> -—————————————————————————————————————————-—-
 {profile_lines}
-
-<tspan x="{RIGHT_LABEL_X}" y="166">- Current Focus</tspan> -———————————————————————————————————————————————
+<tspan x="{RIGHT_X}" y="130" class="cc">. </tspan>
+<tspan x="{RIGHT_X}" y="150">- Current Focus</tspan> -—————————————————————————————————————————-—-
 {focus_lines}
-
-<tspan x="{RIGHT_LABEL_X}" y="306">- GitHub Activity · rolling 365 days</tspan> -——————————————————————————————
-{activity_lines}
-
+<tspan x="{RIGHT_X}" y="250" class="cc">. </tspan>
+<tspan x="{RIGHT_X}" y="266">- GitHub Activity · rolling 365 days</tspan> -——————————————————————-
+{dynamic}
 {footer_lines}
 </text>
+{swarm}
 </svg>'''
 
 
@@ -246,12 +290,9 @@ def render_readme(cache_stamp):
   <a href="https://github.com/{USER_NAME}">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/{USER_NAME}/{USER_NAME}/main/dark_mode.svg?v={cache_stamp}">
-      <img width="100%" alt="Aravindhan's Batman developer profile with daily GitHub activity" src="https://raw.githubusercontent.com/{USER_NAME}/{USER_NAME}/main/light_mode.svg?v={cache_stamp}">
+      <img width="100%" alt="Aravindhan's Batman ASCII developer profile with daily GitHub activity" src="https://raw.githubusercontent.com/{USER_NAME}/{USER_NAME}/main/light_mode.svg?v={cache_stamp}">
     </picture>
   </a>
-
-  <p><em>"It's not who I am underneath, but what I do that defines me."</em></p>
-  <sub>— Batman Begins</sub>
 </div>
 '''
 

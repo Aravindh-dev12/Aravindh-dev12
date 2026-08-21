@@ -64,6 +64,10 @@ THEMES = {
     },
 }
 
+RIGHT_X = 390
+VALUE_X = 610
+CHAR_WIDTH = 9.6
+
 
 def github_activity():
     now = dt.datetime.now(dt.timezone.utc)
@@ -146,7 +150,6 @@ def current_streak(days, today):
     counts = {dt.date.fromisoformat(day["date"]): day["contributionCount"] for day in days}
     cursor = today
 
-    # A run near the start of the day should not kill yesterday's active streak.
     if counts.get(cursor, 0) == 0:
         cursor -= dt.timedelta(days=1)
 
@@ -161,19 +164,29 @@ def fmt(value):
     return f"{value:,}" if isinstance(value, int) else str(value)
 
 
-def dots(value, width=20):
-    return " " + "." * max(3, width - len(fmt(value))) + " "
+def leader_dots(label):
+    prefix_chars = 2 + len(label) + 1
+    used_width = prefix_chars * CHAR_WIDTH
+    gap_width = max(0, VALUE_X - RIGHT_X - used_width)
+    dot_count = max(3, int(gap_width / CHAR_WIDTH) - 2)
+    return " " + "." * dot_count + " "
+
+
+def fixed_line(y, label, value, element_id=None):
+    safe_label = html.escape(label)
+    safe_value = html.escape(fmt(value))
+    dots_id = f' id="{element_id}_dots"' if element_id else ""
+    value_id = f' id="{element_id}"' if element_id else ""
+    return (
+        f'<tspan x="{RIGHT_X}" y="{y}" class="cc">. </tspan>'
+        f'<tspan class="key">{safe_label}</tspan>:'
+        f'<tspan class="cc"{dots_id}>{html.escape(leader_dots(label))}</tspan>'
+        f'<tspan x="{VALUE_X}" class="value"{value_id}>{safe_value}</tspan>'
+    )
 
 
 def stat_line(y, label, element_id, value):
-    safe_value = html.escape(fmt(value))
-    safe_dots = html.escape(dots(value))
-    return (
-        f'<tspan x="390" y="{y}" class="cc">. </tspan>'
-        f'<tspan class="key">{html.escape(label)}</tspan>:'
-        f'<tspan class="cc" id="{element_id}_dots">{safe_dots}</tspan>'
-        f'<tspan class="value" id="{element_id}">{safe_value}</tspan>'
-    )
+    return fixed_line(y, label, value, element_id)
 
 
 def render_svg(theme_name, stats):
@@ -182,6 +195,20 @@ def render_svg(theme_name, stats):
         f'<tspan x="15" y="{30 + i * 20}">{html.escape(line)}</tspan>'
         for i, line in enumerate(BATMAN_ASCII)
     )
+
+    profile_lines = "\n".join([
+        fixed_line(50, "Role", "AI Builder · Full-Stack Developer"),
+        fixed_line(70, "Focus", "LLM · RAG · Agents · Web · Flutter"),
+        fixed_line(90, "Stack", "Python · TypeScript · Dart · GitHub"),
+        fixed_line(110, "Status", "Building · Learning · Shipping"),
+    ])
+
+    focus_lines = "\n".join([
+        fixed_line(170, "AI", "LLM systems · RAG · agent workflows"),
+        fixed_line(190, "Apps", "Web products · Flutter · automation"),
+        fixed_line(210, "Research", "Neuro-symbolic · inference · retrieval"),
+        fixed_line(230, "Mode", "Build in the shadows. Ship in the light."),
+    ])
 
     dynamic = "\n".join([
         stat_line(286, "Contributions", "contrib_data", stats["contrib_data"]),
@@ -195,6 +222,11 @@ def render_svg(theme_name, stats):
         stat_line(446, "Last Refresh", "updated_data", stats["updated_data"]),
     ])
 
+    footer_lines = "\n".join([
+        fixed_line(486, "Signal", "The code is the signal."),
+        fixed_line(506, "Handle", "@Aravindh-dev12"),
+    ])
+
     return f'''<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" font-family="ConsolasFallback,Consolas,monospace" width="985px" height="530px" font-size="16px" role="img" aria-label="Aravindhan Batman ASCII GitHub profile card">
 <style>
@@ -205,23 +237,16 @@ def render_svg(theme_name, stats):
 <text x="15" y="30" fill="{t['ascii']}" class="ascii" font-size="14px">
 {ascii_lines}
 </text>
-<text x="390" y="30" fill="{t['text']}">
-<tspan x="390" y="30">aravindhan@batcave</tspan> -—————————————————————————————————————————-—-
-<tspan x="390" y="50" class="cc">. </tspan><tspan class="key">Role</tspan>:<tspan class="cc"> ................. </tspan><tspan class="value">AI Builder · Full-Stack Developer</tspan>
-<tspan x="390" y="70" class="cc">. </tspan><tspan class="key">Focus</tspan>:<tspan class="cc"> ................. </tspan><tspan class="value">LLM · RAG · Agents · Web · Flutter</tspan>
-<tspan x="390" y="90" class="cc">. </tspan><tspan class="key">Stack</tspan>:<tspan class="cc"> ................. </tspan><tspan class="value">Python · TypeScript · Dart · GitHub</tspan>
-<tspan x="390" y="110" class="cc">. </tspan><tspan class="key">Status</tspan>:<tspan class="cc"> ................. </tspan><tspan class="value">Building · Learning · Shipping</tspan>
-<tspan x="390" y="130" class="cc">. </tspan>
-<tspan x="390" y="150">- Current Focus</tspan> -—————————————————————————————————————————-—-
-<tspan x="390" y="170" class="cc">. </tspan><tspan class="key">AI</tspan>:<tspan class="cc"> ................... </tspan><tspan class="value">LLM systems · RAG · agent workflows</tspan>
-<tspan x="390" y="190" class="cc">. </tspan><tspan class="key">Apps</tspan>:<tspan class="cc"> ................. </tspan><tspan class="value">Web products · Flutter · automation</tspan>
-<tspan x="390" y="210" class="cc">. </tspan><tspan class="key">Research</tspan>:<tspan class="cc"> ............. </tspan><tspan class="value">Neuro-symbolic · inference · retrieval</tspan>
-<tspan x="390" y="230" class="cc">. </tspan><tspan class="key">Mode</tspan>:<tspan class="cc"> ................. </tspan><tspan class="value">Build in the shadows. Ship in the light.</tspan>
-<tspan x="390" y="250" class="cc">. </tspan>
-<tspan x="390" y="266">- GitHub Activity · rolling 365 days</tspan> -——————————————————————-
+<text x="{RIGHT_X}" y="30" fill="{t['text']}">
+<tspan x="{RIGHT_X}" y="30">aravindhan@batcave</tspan> -—————————————————————————————————————————-—-
+{profile_lines}
+<tspan x="{RIGHT_X}" y="130" class="cc">. </tspan>
+<tspan x="{RIGHT_X}" y="150">- Current Focus</tspan> -—————————————————————————————————————————-—-
+{focus_lines}
+<tspan x="{RIGHT_X}" y="250" class="cc">. </tspan>
+<tspan x="{RIGHT_X}" y="266">- GitHub Activity · rolling 365 days</tspan> -——————————————————————-
 {dynamic}
-<tspan x="390" y="486" class="cc">. </tspan><tspan class="key">Signal</tspan>:<tspan class="cc"> ................ </tspan><tspan class="value">The code is the signal.</tspan>
-<tspan x="390" y="506" class="cc">. </tspan><tspan class="key">Handle</tspan>:<tspan class="cc"> ............... </tspan><tspan class="value">@Aravindh-dev12</tspan>
+{footer_lines}
 </text>
 </svg>'''
 

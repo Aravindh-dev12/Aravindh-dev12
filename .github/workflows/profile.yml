@@ -9,6 +9,7 @@ on:
       - main
     paths:
       - today.py
+      - bat_overlay.py
       - .github/workflows/profile.yml
 
 permissions:
@@ -34,6 +35,9 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN || github.token }}
           USER_NAME: Aravindh-dev12
         run: python today.py
+
+      - name: Apply optimized black bat swarm
+        run: python bat_overlay.py
 
       - name: Commit refreshed profile
         run: |

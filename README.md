@@ -1,9 +1,9 @@
-<!-- daily-refresh: 20260822220954 -->
+<!-- daily-refresh: 20260823020058 -->
 <div align="center">
   <a href="https://github.com/Aravindh-dev12">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Aravindh-dev12/Aravindh-dev12/main/dark_mode.svg?v=20260822220954">
-      <img width="100%" alt="Aravindhan's Batman ASCII developer profile with daily GitHub activity" src="https://raw.githubusercontent.com/Aravindh-dev12/Aravindh-dev12/main/light_mode.svg?v=20260822220954">
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Aravindh-dev12/Aravindh-dev12/main/dark_mode.svg?v=20260823020058">
+      <img width="100%" alt="Aravindhan's Batman ASCII developer profile with daily GitHub activity" src="https://raw.githubusercontent.com/Aravindh-dev12/Aravindh-dev12/main/light_mode.svg?v=20260823020058">
     </picture>
   </a>
 

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="190" viewBox="0 0 500 190" role="img" aria-label="Aravindhan GitHub statistics">
+  <rect x="0.5" y="0.5" width="499" height="189" rx="12" fill="#0d1117" stroke="#30363d"/>
+  <text x="24" y="34" fill="#39d353" font-size="17" font-weight="700" font-family="Segoe UI,Ubuntu,sans-serif">Aravindhan's GitHub</text>
+  <text x="476" y="34" text-anchor="end" fill="#8b949e" font-size="11" font-family="Segoe UI,Ubuntu,sans-serif">@Aravindh-dev12</text>
+  <line x1="24" y1="48" x2="476" y2="48" stroke="#21262d"/>
+  <text x="24" y="84" fill="#f0f6fc" font-size="28" font-weight="700" font-family="Segoe UI,Ubuntu,sans-serif">50+</text>
+  <text x="24" y="104" fill="#8b949e" font-size="11" font-family="Segoe UI,Ubuntu,sans-serif">public repositories</text>
+  <text x="185" y="84" fill="#f0f6fc" font-size="24" font-weight="700" font-family="Segoe UI,Ubuntu,sans-serif">AI</text>
+  <text x="185" y="104" fill="#8b949e" font-size="11" font-family="Segoe UI,Ubuntu,sans-serif">primary focus</text>
+  <text x="320" y="84" fill="#f0f6fc" font-size="20" font-weight="700" font-family="Segoe UI,Ubuntu,sans-serif">Full-stack</text>
+  <text x="320" y="104" fill="#8b949e" font-size="11" font-family="Segoe UI,Ubuntu,sans-serif">builder mode</text>
+  <line x1="24" y1="122" x2="476" y2="122" stroke="#21262d"/>
+  <text x="24" y="151" fill="#58a6ff" font-size="13" font-weight="600" font-family="Segoe UI,Ubuntu,sans-serif">LLM</text>
+  <text x="72" y="151" fill="#8b949e" font-size="13" font-family="Segoe UI,Ubuntu,sans-serif">•</text>
+  <text x="91" y="151" fill="#a371f7" font-size="13" font-weight="600" font-family="Segoe UI,Ubuntu,sans-serif">RAG</text>
+  <text x="139" y="151" fill="#8b949e" font-size="13" font-family="Segoe UI,Ubuntu,sans-serif">•</text>
+  <text x="158" y="151" fill="#d2a8ff" font-size="13" font-weight="600" font-family="Segoe UI,Ubuntu,sans-serif">Agents</text>
+  <text x="221" y="151" fill="#8b949e" font-size="13" font-family="Segoe UI,Ubuntu,sans-serif">•</text>
+  <text x="240" y="151" fill="#3fb950" font-size="13" font-weight="600" font-family="Segoe UI,Ubuntu,sans-serif">Voice AI</text>
+  <text x="312" y="151" fill="#8b949e" font-size="13" font-family="Segoe UI,Ubuntu,sans-serif">•</text>
+  <text x="331" y="151" fill="#ffa657" font-size="13" font-weight="600" font-family="Segoe UI,Ubuntu,sans-serif">Web + Flutter</text>
+  <text x="24" y="174" fill="#8b949e" font-size="10.5" font-family="Segoe UI,Ubuntu,sans-serif">Self-hosted profile card — no third-party stats image dependency</text>
+</svg>

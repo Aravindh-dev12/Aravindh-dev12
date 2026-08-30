@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="190" viewBox="0 0 420 190" role="img" aria-label="Aravindhan core languages">
+  <rect x="0.5" y="0.5" width="419" height="189" rx="12" fill="#0d1117" stroke="#30363d"/>
+  <text x="22" y="34" fill="#39d353" font-size="17" font-weight="700" font-family="Segoe UI,Ubuntu,sans-serif">Most used languages</text>
+  <text x="398" y="34" text-anchor="end" fill="#8b949e" font-size="11" font-family="Segoe UI,Ubuntu,sans-serif">core stack</text>
+  <line x1="22" y1="48" x2="398" y2="48" stroke="#21262d"/>
+  <circle cx="34" cy="76" r="6" fill="#3572A5"/><text x="50" y="81" fill="#f0f6fc" font-size="14" font-weight="600" font-family="Segoe UI,Ubuntu,sans-serif">Python</text>
+  <circle cx="34" cy="105" r="6" fill="#3178c6"/><text x="50" y="110" fill="#f0f6fc" font-size="14" font-weight="600" font-family="Segoe UI,Ubuntu,sans-serif">TypeScript</text>
+  <circle cx="34" cy="134" r="6" fill="#f1e05a"/><text x="50" y="139" fill="#f0f6fc" font-size="14" font-weight="600" font-family="Segoe UI,Ubuntu,sans-serif">JavaScript</text>
+  <circle cx="215" cy="76" r="6" fill="#00B4AB"/><text x="231" y="81" fill="#f0f6fc" font-size="14" font-weight="600" font-family="Segoe UI,Ubuntu,sans-serif">Dart</text>
+  <circle cx="215" cy="105" r="6" fill="#41b883"/><text x="231" y="110" fill="#f0f6fc" font-size="14" font-weight="600" font-family="Segoe UI,Ubuntu,sans-serif">Vue</text>
+  <circle cx="215" cy="134" r="6" fill="#e34c26"/><text x="231" y="139" fill="#f0f6fc" font-size="14" font-weight="600" font-family="Segoe UI,Ubuntu,sans-serif">HTML / CSS</text>
+  <text x="22" y="171" fill="#8b949e" font-size="10.5" font-family="Segoe UI,Ubuntu,sans-serif">Based on the technologies used across your public project portfolio</text>
+</svg>

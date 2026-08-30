@@ -177,33 +177,6 @@ and I solve problems for fun when neither of those is cooperating.
 
 <div align="center">
 
-## GitHub Trophies
-
-<img src="https://raw.githubusercontent.com/vib3withsimran/vib3withsimran/trophy-output/trophy.svg" height="150" alt="trophy graph">
-
-</div>
-
----
-
-<div align="center">
-
-## GSSoC 2026
-
-<div style="display:flex;flex-wrap:nowrap;justify-content:center;align-items:center">
-  <a href="https://gssoc.girlscript.org/profile/6ea84c93-6344-4507-a256-efb36b07b3ed"><img src="https://gssoc.girlscript.org/badges/milestone/gssoc_champion.png" width="140" alt="GSSoC 2026 Champion badge"></a>
-  <a href="https://gssoc.girlscript.org/profile/6ea84c93-6344-4507-a256-efb36b07b3ed"><img src="https://gssoc.girlscript.org/badges/milestone/legend.png" width="140" alt="GSSoC 2026 Legend badge"></a>
-  <a href="https://gssoc.girlscript.org/profile/6ea84c93-6344-4507-a256-efb36b07b3ed"><img src="https://gssoc.girlscript.org/badges/milestone/elite.png" width="140" alt="GSSoC 2026 Elite badge"></a>
-  <a href="https://gssoc.girlscript.org/profile/6ea84c93-6344-4507-a256-efb36b07b3ed"><img src="https://gssoc.girlscript.org/badges/milestone/prolific.png" width="140" alt="GSSoC 2026 Prolific badge"></a>
-  <a href="https://gssoc.girlscript.org/profile/6ea84c93-6344-4507-a256-efb36b07b3ed"><img src="https://gssoc.girlscript.org/badges/milestone/power_contributor.png" width="140" alt="GSSoC 2026 Power Contributor badge"></a>
-  <a href="https://gssoc.girlscript.org/profile/6ea84c93-6344-4507-a256-efb36b07b3ed"><img src="https://gssoc.girlscript.org/badges/milestone/top_100.png" width="140" alt="GSSoC 2026 Top 100 badge"></a>
-</div>
-
-</div>
-
----
-
-<div align="center">
-
 ## Random Dev Quote
 
 <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical" alt="Random Dev Quote">

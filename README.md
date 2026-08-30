@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Aravindh-dev12/Aravindh-dev12/main/assets/batman.jpg" width="300" alt="Batman portrait">
+<img src="https://raw.githubusercontent.com/Aravindh-dev12/Aravindh-dev12/main/assets/batman.svg" width="300" alt="Batman portrait">
 
 <a href="https://github.com/Aravindh-dev12">
 <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=26&duration=2600&pause=900&color=39D353&center=true&vCenter=true&width=700&lines=Aravindhan;AI+Builder+%7C+Full+Stack+Developer;LLM+%7C+RAG+%7C+Agentic+Systems;Voice+AI+%7C+Web+%7C+Flutter;Building+%E2%80%A2+Learning+%E2%80%A2+Shipping" alt="typing banner">

@@ -1,91 +1,109 @@
 <!-- ============================================================ -->
-<!--                     ARAVINDHAN // PROFILE                     -->
+<!--                  ARAVINDHAN // AI COMMAND CORE               -->
 <!-- ============================================================ -->
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:050816,45:111827,100:00F5FF&text=ARAVINDHAN&fontColor=F8FAFC&fontSize=54&fontAlignY=37&desc=AI%20ENGINEER%20%E2%80%A2%20FULL-STACK%20BUILDER%20%E2%80%A2%20SYSTEMS%20THINKER&descAlignY=58&descSize=16&animation=fadeIn" width="100%" alt="Aravindhan futuristic header" />
+<img src="https://capsule-render.vercel.app/api?type=venom&height=260&color=0:020617,35:071A2E,70:0B1026,100:020617&text=ARAVINDHAN&fontColor=E6FBFF&fontSize=58&fontAlignY=39&desc=AI%20ENGINEER%20%E2%80%A2%20FULL-STACK%20BUILDER%20%E2%80%A2%20SYSTEMS%20THINKER&descAlignY=59&descSize=16&animation=fadeIn&stroke=00F5FF&strokeWidth=1" width="100%" alt="Aravindhan — AI Engineer and Full-Stack Builder" />
 
 <a href="https://github.com/Aravindh-dev12">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=23&duration=2400&pause=700&color=00F5FF&center=true&vCenter=true&repeat=true&width=820&lines=%3E+booting+developer.profile;%3E+building+LLM+%2F+RAG+%2F+agentic+systems;%3E+engineering+voice+AI+%2B+full-stack+products;%3E+exploring+neuro-symbolic+reasoning;%3E+build.+iterate.+ship." alt="Animated developer intro" />
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=22&duration=2300&pause=650&color=00F5FF&center=true&vCenter=true&repeat=true&width=900&height=45&lines=%5BSYSTEM%5D+developer.profile+online;%5BNEURAL%5D+LLM+%2F+RAG+%2F+agentic+systems;%5BVOICE%5D+real-time+AI+interfaces;%5BSTACK%5D+full-stack+products+at+production+speed;%5BRESEARCH%5D+neuro-symbolic+reasoning;%5BSHIPPING%5D+build+%E2%86%92+measure+%E2%86%92+iterate+%E2%86%92+release" alt="Animated futuristic developer status" />
 </a>
 
 <br/>
 
-<img src="https://img.shields.io/badge/STATUS-BUILDING-00F5FF?style=for-the-badge&labelColor=050816" alt="Status building" />
-<img src="https://img.shields.io/badge/FOCUS-AGENTIC_AI-A855F7?style=for-the-badge&labelColor=050816" alt="Focus agentic AI" />
-<img src="https://img.shields.io/badge/MODE-SHIP_FAST-22C55E?style=for-the-badge&labelColor=050816" alt="Mode ship fast" />
+<img src="https://img.shields.io/badge/SYSTEM-ONLINE-00F5FF?style=for-the-badge&labelColor=020617" alt="System online" />
+<img src="https://img.shields.io/badge/FOCUS-AGENTIC_AI-A855F7?style=for-the-badge&labelColor=020617" alt="Agentic AI" />
+<img src="https://img.shields.io/badge/BUILD-PRODUCTION_FIRST-22C55E?style=for-the-badge&labelColor=020617" alt="Production first" />
+<img src="https://img.shields.io/badge/STATE-EXPERIMENTING-F59E0B?style=for-the-badge&labelColor=020617" alt="Experimenting" />
 
 <br/><br/>
 
-<a href="mailto:aravindh1653@gmail.com"><img src="https://img.shields.io/badge/EMAIL-111827?style=for-the-badge&logo=gmail&logoColor=00F5FF" alt="Email" /></a>
-<a href="https://aravindh-dev12.github.io"><img src="https://img.shields.io/badge/PORTFOLIO-111827?style=for-the-badge&logo=vercel&logoColor=00F5FF" alt="Portfolio" /></a>
-<a href="https://github.com/Aravindh-dev12"><img src="https://img.shields.io/badge/GITHUB-111827?style=for-the-badge&logo=github&logoColor=00F5FF" alt="GitHub" /></a>
+<a href="mailto:aravindh1653@gmail.com"><img src="https://img.shields.io/badge/EMAIL-071A2E?style=for-the-badge&logo=gmail&logoColor=00F5FF" alt="Email" /></a>
+<a href="https://aravindh-dev12.github.io"><img src="https://img.shields.io/badge/PORTFOLIO-071A2E?style=for-the-badge&logo=vercel&logoColor=00F5FF" alt="Portfolio" /></a>
+<a href="https://github.com/Aravindh-dev12"><img src="https://img.shields.io/badge/GITHUB-071A2E?style=for-the-badge&logo=github&logoColor=00F5FF" alt="GitHub" /></a>
 
 </div>
 
 ---
 
-## `01 // IDENTITY`
+## `00 // BOOT SEQUENCE`
 
-```text
-┌──────────────────────────────────────────────────────────────┐
-│  USER        Aravindhan                                     │
-│  ROLE        AI Builder × Full-Stack Developer              │
-│  DOMAIN      LLMs · RAG · Agents · Voice AI · Web · Mobile  │
-│  CURRENT     Building intelligent, production-ready systems  │
-│  PHILOSOPHY  Build in the shadows. Ship in the light.       │
-└──────────────────────────────────────────────────────────────┘
+```console
+aravindhan@neural-core:~$ whoami
+AI Builder × Full-Stack Developer
+
+aravindhan@neural-core:~$ cat mission.txt
+Engineer intelligent products that survive beyond the demo.
+
+aravindhan@neural-core:~$ ./current_focus
+LLMs :: RAG :: Agents :: Voice AI :: Neuro-Symbolic Systems :: Product Engineering
+
+aravindhan@neural-core:~$ echo $PHILOSOPHY
+"Build in the shadows. Ship in the light."
 ```
 
-I build **AI-native products and full-stack systems** with an emphasis on useful software, strong engineering, and fast iteration.
+I design and ship **AI-native products, intelligent interfaces, and production-ready full-stack systems**. My work sits at the intersection of **LLM engineering, retrieval, agentic workflows, voice AI, and modern application architecture**.
 
-- 🧠 Building **LLM, RAG, agentic and voice-AI systems**
-- ⚡ Shipping across **Next.js, React, Vue, FastAPI, PostgreSQL, Redis and Flutter**
-- 🧬 Exploring **neuro-symbolic reasoning, retrieval, inference and local/open-weight LLMs**
-- 🛠️ Interested in **developer tools, intelligent interfaces and experimental products**
-- 🚀 Optimizing for **real-world utility > demo-only AI**
+> **Objective:** turn emerging AI capabilities into reliable software people can actually use.
 
 ---
 
-## `02 // TECH MATRIX`
+## `01 // NEURAL STACK`
 
 <div align="center">
 
-### `CORE`
+### `LANGUAGE LAYER`
+<img src="https://skillicons.dev/icons?i=python,js,ts,dart,html,css&theme=dark" alt="Languages" />
 
-<img src="https://skillicons.dev/icons?i=python,js,ts,dart,html,css&theme=dark" alt="Core languages" />
+### `INTERFACE LAYER`
+<img src="https://skillicons.dev/icons?i=react,nextjs,vue,nodejs,flutter&theme=dark" alt="Application stack" />
 
-### `INTERFACE + APP LAYER`
+### `SYSTEM LAYER`
+<img src="https://skillicons.dev/icons?i=fastapi,postgres,redis,docker,git,github,vscode&theme=dark" alt="Systems stack" />
 
-<img src="https://skillicons.dev/icons?i=react,nextjs,vue,nodejs,flutter&theme=dark" alt="Frontend and application technologies" />
+<br/><br/>
 
-### `SYSTEMS + DATA`
-
-<img src="https://skillicons.dev/icons?i=fastapi,postgres,redis,docker,git,github,vscode&theme=dark" alt="Backend and systems technologies" />
-
-</div>
-
-<br/>
-
-<div align="center">
-
-![LLM](https://img.shields.io/badge/LLM_SYSTEMS-050816?style=flat-square&logo=openai&logoColor=00F5FF)
-![RAG](https://img.shields.io/badge/RAG_PIPELINES-050816?style=flat-square&logo=databricks&logoColor=A855F7)
-![Agents](https://img.shields.io/badge/AGENTIC_AI-050816?style=flat-square&logo=probot&logoColor=22C55E)
-![Voice AI](https://img.shields.io/badge/VOICE_AI-050816?style=flat-square&logo=amazonsimpleemailservice&logoColor=00F5FF)
-![Vector Search](https://img.shields.io/badge/VECTOR_SEARCH-050816?style=flat-square&logo=semanticweb&logoColor=A855F7)
-![Local LLMs](https://img.shields.io/badge/LOCAL_LLMS-050816?style=flat-square&logo=linux&logoColor=22C55E)
+<img src="https://img.shields.io/badge/LLM_ENGINEERING-020617?style=flat-square&logo=openai&logoColor=00F5FF" alt="LLM Engineering" />
+<img src="https://img.shields.io/badge/RAG_%2B_MEMORY-020617?style=flat-square&logo=databricks&logoColor=A855F7" alt="RAG and Memory" />
+<img src="https://img.shields.io/badge/AGENTIC_SYSTEMS-020617?style=flat-square&logo=probot&logoColor=22C55E" alt="Agentic Systems" />
+<img src="https://img.shields.io/badge/VOICE_AI-020617?style=flat-square&logo=amazonsimpleemailservice&logoColor=00F5FF" alt="Voice AI" />
+<img src="https://img.shields.io/badge/VECTOR_SEARCH-020617?style=flat-square&logo=semanticweb&logoColor=A855F7" alt="Vector Search" />
+<img src="https://img.shields.io/badge/LOCAL_LLMS-020617?style=flat-square&logo=linux&logoColor=22C55E" alt="Local LLMs" />
 
 </div>
 
 ---
 
-## `03 // ACTIVE SIGNALS`
+## `02 // INTELLIGENCE PIPELINE`
+
+```mermaid
+flowchart LR
+    U[User / Signal] --> I[Interface]
+    I --> O[Orchestrator]
+    O --> R[RAG + Memory]
+    O --> T[Tools + APIs]
+    R --> M[LLM / Local Model]
+    T --> M
+    M --> G[Reasoning + Guardrails]
+    G --> A[Action / Response]
+    A --> E[Evaluation + Telemetry]
+    E -. feedback .-> O
+```
+
+```text
+INPUT  →  RETRIEVE  →  REASON  →  ACT  →  EVALUATE  →  ITERATE
+  │           │           │         │          │            │
+ UI/Voice   Context     LLMs     Tools/API   Metrics      Better System
+```
+
+---
+
+## `03 // LIVE TELEMETRY`
 
 <div align="center">
 
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=Aravindh-dev12&bg_color=050816&color=94A3B8&line=00F5FF&point=A855F7&area=true&area_color=00F5FF&hide_border=true&custom_title=Contribution%20Signal" width="96%" alt="GitHub contribution activity graph" />
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=Aravindh-dev12&bg_color=020617&color=94A3B8&line=00F5FF&point=A855F7&area=true&area_color=00F5FF&hide_border=true&custom_title=NEURAL%20ACTIVITY%20%2F%2F%20CONTRIBUTION%20SIGNAL" width="96%" alt="GitHub contribution activity graph" />
 
 <br/>
 
@@ -94,60 +112,60 @@ I build **AI-native products and full-stack systems** with an emphasis on useful
 
 <br/><br/>
 
-<img src="https://streak-stats.demolab.com?user=Aravindh-dev12&theme=transparent&hide_border=true&ring=00F5FF&fire=A855F7&currStreakLabel=00F5FF&sideLabels=94A3B8&dates=64748B" alt="GitHub streak" />
+<img src="https://streak-stats.demolab.com?user=Aravindh-dev12&theme=transparent&hide_border=true&background=02061700&ring=00F5FF&fire=A855F7&currStreakLabel=00F5FF&sideLabels=94A3B8&dates=64748B&currStreakNum=E6FBFF&sideNums=E6FBFF" alt="GitHub streak statistics" />
 
 </div>
 
 ---
 
-## `04 // FEATURED BUILDS`
+## `04 // MISSION MODULES`
 
 <table>
 <tr>
 <td width="50%" valign="top">
 
-### ⚡ [Cieav-web](https://github.com/Aravindh-dev12/Cieav-web)
+### `01` ⚡ [Cieav-web](https://github.com/Aravindh-dev12/Cieav-web)
 
-**AI interface experimentation**
+**High-performance AI interface experimentation**
 
-`Vue 3` `WebGPU` `Vite` `AI Interfaces`
+`Vue 3` · `WebGPU` · `Vite` · `AI Interfaces`
 
-> Exploring high-performance, intelligent web experiences.
+> Exploring fast, intelligent web experiences where the browser becomes part of the compute surface.
 
 </td>
 <td width="50%" valign="top">
 
-### 🎙️ [Looca Voice AI Agent](https://github.com/Aravindh-dev12/Looca-Voice-AI-Agent)
+### `02` 🎙️ [Looca Voice AI Agent](https://github.com/Aravindh-dev12/Looca-Voice-AI-Agent)
 
-**Production-oriented voice intelligence**
+**Production-oriented conversational intelligence**
 
-`Next.js` `TypeScript` `FastAPI` `PostgreSQL` `Qdrant` `Redis`
+`Next.js` · `TypeScript` · `FastAPI` · `PostgreSQL` · `Qdrant` · `Redis`
 
-> Full-stack voice AI architecture with retrieval and persistent data.
+> Full-stack voice AI architecture with retrieval, persistence, and real-time interaction.
 
 </td>
 </tr>
 <tr>
 <td width="50%" valign="top">
 
-### 🧬 [NeuroSymbolic Meta-Reasoning Agent](https://github.com/Aravindh-dev12/NeuroSymbolic-meta-reasoning-agent)
+### `03` 🧬 [NeuroSymbolic Meta-Reasoning Agent](https://github.com/Aravindh-dev12/NeuroSymbolic-meta-reasoning-agent)
 
-**Hybrid reasoning architecture**
+**Hybrid neural + symbolic reasoning**
 
-`Python` `Local LLMs` `Symbolic Reasoning` `Vector Memory` `Docker`
+`Python` · `Local LLMs` · `Symbolic Reasoning` · `Vector Memory` · `Docker`
 
-> Combining neural generation with structured symbolic reasoning.
+> Investigating systems that combine generative intelligence with structured reasoning and memory.
 
 </td>
 <td width="50%" valign="top">
 
-### 🌐 [My Portfolio](https://github.com/Aravindh-dev12/My-Portfolio)
+### `04` 🌐 [My Portfolio](https://github.com/Aravindh-dev12/My-Portfolio)
 
 **Personal developer interface**
 
-`Next.js` `TypeScript`
+`Next.js` · `TypeScript`
 
-> A home for projects, experiments and the systems I ship.
+> A digital command surface for projects, experiments, and the systems I ship.
 
 </td>
 </tr>
@@ -155,54 +173,79 @@ I build **AI-native products and full-stack systems** with an emphasis on useful
 
 ---
 
-## `05 // CURRENT TRAJECTORY`
+## `05 // CURRENT VECTOR`
 
-```mermaid
-flowchart LR
-    A[LLM Systems] --> B[RAG + Memory]
-    B --> C[Agentic Workflows]
-    C --> D[Voice + Multimodal AI]
-    D --> E[Neuro-Symbolic Systems]
-    E --> F[Useful Intelligent Products]
+```text
+┌──────────────────────────────────────────────────────────────────┐
+│  VECTOR_01  →  Agentic systems with useful tool execution       │
+│  VECTOR_02  →  RAG, memory, retrieval quality & evaluation      │
+│  VECTOR_03  →  Real-time voice + multimodal AI interfaces       │
+│  VECTOR_04  →  Neuro-symbolic / structured reasoning systems    │
+│  VECTOR_05  →  Fast, resilient full-stack product engineering   │
+└──────────────────────────────────────────────────────────────────┘
 ```
-
----
-
-## `06 // OPERATING PRINCIPLES`
-
-```yaml
-engineering:
-  - solve_real_problems
-  - keep_systems_composable
-  - measure_before_optimizing
-  - automate_repetition
-
-ai:
-  - ground_generation
-  - design_for_observability
-  - evaluate_outputs
-  - keep_humans_in_control
-
-shipping:
-  - prototype_fast
-  - iterate_with_feedback
-  - polish_what_matters
-  - release
-```
-
----
 
 <div align="center">
 
-### `// END TRANSMISSION`
+`LLM SYSTEMS` → `RAG + MEMORY` → `AGENTS` → `VOICE / MULTIMODAL` → `REASONING` → `USEFUL PRODUCTS`
 
-<img src="https://komarev.com/ghpvc/?username=Aravindh-dev12&label=PROFILE%20SIGNALS&color=00F5FF&style=flat-square" alt="Profile views" />
-<img src="https://img.shields.io/github/followers/Aravindh-dev12?label=NETWORK&style=flat-square&color=A855F7&labelColor=050816" alt="GitHub followers" />
+</div>
+
+---
+
+## `06 // OPERATING PROTOCOL`
+
+```yaml
+identity:
+  role: "AI Builder × Full-Stack Developer"
+  mode: "continuous_iteration"
+
+engineering:
+  principles:
+    - solve_real_problems
+    - keep_systems_composable
+    - instrument_everything
+    - automate_repetition
+    - optimize_after_measurement
+
+ai_systems:
+  principles:
+    - ground_generation
+    - evaluate_outputs
+    - design_for_observability
+    - make_memory_intentional
+    - keep_humans_in_control
+
+shipping:
+  loop: "prototype → test → measure → refine → release"
+  priority: "real_world_utility > demo_theatre"
+```
+
+---
+
+## `07 // OPEN CHANNEL`
+
+<div align="center">
+
+### `TRANSMISSION AVAILABLE`
+
+I’m interested in **AI systems, developer tools, experimental interfaces, open-source collaboration, and ambitious product engineering**.
+
+<a href="mailto:aravindh1653@gmail.com"><img src="https://img.shields.io/badge/INITIATE_EMAIL-00F5FF?style=for-the-badge&logo=gmail&logoColor=020617" alt="Send email" /></a>
+<a href="https://aravindh-dev12.github.io"><img src="https://img.shields.io/badge/ENTER_PORTFOLIO-A855F7?style=for-the-badge&logo=vercel&logoColor=white" alt="Open portfolio" /></a>
 
 <br/><br/>
 
-> **“Build in the shadows. Ship in the light.”**
+<img src="https://komarev.com/ghpvc/?username=Aravindh-dev12&label=PROFILE%20SIGNALS&color=00F5FF&style=flat-square" alt="Profile views" />
+<img src="https://img.shields.io/github/followers/Aravindh-dev12?label=NETWORK&style=flat-square&color=A855F7&labelColor=020617" alt="GitHub followers" />
 
-<img src="https://capsule-render.vercel.app/api?type=waving&height=120&section=footer&color=0:00F5FF,55:111827,100:050816" width="100%" alt="Footer" />
+<br/><br/>
+
+```text
+> SYSTEM MESSAGE:
+> Curiosity compounds. Systems evolve. Shipping wins.
+```
+
+<img src="https://capsule-render.vercel.app/api?type=venom&height=150&section=footer&color=0:020617,45:0B1026,75:071A2E,100:020617" width="100%" alt="Futuristic footer" />
 
 </div>

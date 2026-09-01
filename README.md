@@ -15,9 +15,11 @@ $$
 \text{idea} \xrightarrow{\;reasoning\;} \text{system} \xrightarrow{\;iteration\;} \text{reality}
 $$
 
-<img src="./assets/eridian-walk.svg" width="880" alt="Rocky-inspired 3D stone creature walking" />
+<a href="https://raw.githack.com/Aravindh-dev12/Aravindh-dev12/main/rocky-3d/index.html" target="_blank">
+  <img src="./assets/eridian-walk.svg" width="880" alt="Rocky — open the live articulated 3D Eridian scene" />
+</a>
 
-<sub><code>gait(t + 2πk/5)</code></sub>
+<sub><a href="https://raw.githack.com/Aravindh-dev12/Aravindh-dev12/main/rocky-3d/index.html"><code>open live 3D Rocky → walk · work · orbit</code></a></sub>
 
 </div>
 

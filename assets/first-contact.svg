@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-label="Mathematical first-contact interface">
+<defs>
+  <radialGradient id="bg" cx="50%" cy="48%" r="72%"><stop offset="0" stop-color="#0a1320"/><stop offset=".55" stop-color="#03070c"/><stop offset="1" stop-color="#010204"/></radialGradient>
+  <linearGradient id="cyan" x1="0" x2="1"><stop stop-color="#6ff7ff"/><stop offset="1" stop-color="#6d7dff"/></linearGradient>
+  <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <style>
+    .orbit{transform-origin:600px 305px;animation:spin 18s linear infinite}.orbit2{transform-origin:600px 305px;animation:spinr 31s linear infinite}.entity{transform-origin:600px 305px;animation:breathe 5s ease-in-out infinite}.pulse{animation:pulse 2.8s ease-in-out infinite}.p2{animation-delay:.7s}.p3{animation-delay:1.4s}.dash{stroke-dasharray:8 12;animation:flow 7s linear infinite}.fade{animation:fade 8s ease-in-out infinite}.fade2{animation:fade2 8s ease-in-out infinite}.blink{animation:blink 1.1s steps(1) infinite}
+    @keyframes spin{to{transform:rotate(360deg)}} @keyframes spinr{to{transform:rotate(-360deg)}} @keyframes breathe{0%,100%{transform:scale(.985)}50%{transform:scale(1.025)}} @keyframes pulse{0%,100%{opacity:.25}50%{opacity:1}} @keyframes flow{to{stroke-dashoffset:-160}} @keyframes fade{0%,18%{opacity:.15}30%,70%{opacity:.9}82%,100%{opacity:.15}} @keyframes fade2{0%,35%{opacity:.12}47%,78%{opacity:.92}90%,100%{opacity:.12}} @keyframes blink{0%,48%{opacity:1}49%,100%{opacity:0}}
+    text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  </style>
+</defs>
+<rect width="1200" height="620" rx="26" fill="url(#bg)"/>
+<g opacity=".12" stroke="#8be8ff" stroke-width="1"><path d="M70 100H1130M70 520H1130"/><path d="M140 65V555M1060 65V555"/></g>
+
+<!-- orbital mathematics -->
+<g fill="none" stroke="#65dfff" opacity=".34" class="orbit"><ellipse cx="600" cy="305" rx="240" ry="92"/><ellipse cx="600" cy="305" rx="168" ry="242" transform="rotate(34 600 305)"/><ellipse cx="600" cy="305" rx="168" ry="242" transform="rotate(-34 600 305)"/></g>
+<g fill="none" stroke="#8d7cff" opacity=".22" class="orbit2"><ellipse cx="600" cy="305" rx="300" ry="122" transform="rotate(18 600 305)"/><ellipse cx="600" cy="305" rx="300" ry="122" transform="rotate(-18 600 305)"/></g>
+
+<!-- original alien-like mathematical entity -->
+<g class="entity" filter="url(#glow)">
+  <polygon points="600,228 640,250 654,296 635,345 600,374 565,345 546,296 560,250" fill="#07131c" stroke="url(#cyan)" stroke-width="2"/>
+  <circle cx="600" cy="301" r="34" fill="#02070a" stroke="#7af6ff" stroke-width="1.5"/>
+  <circle cx="600" cy="301" r="8" fill="#8cf8ff" class="pulse"/>
+  <g stroke="url(#cyan)" stroke-width="4" stroke-linecap="round" fill="none">
+    <path d="M560 264 L507 220 L462 207"/><path d="M548 295 L488 282 L438 300"/><path d="M558 340 L510 389 L469 421"/>
+    <path d="M640 264 L693 220 L738 207"/><path d="M652 295 L712 282 L762 300"/><path d="M642 340 L690 389 L731 421"/>
+  </g>
+  <g fill="#8cf8ff"><circle cx="462" cy="207" r="5"/><circle cx="438" cy="300" r="5"/><circle cx="469" cy="421" r="5"/><circle cx="738" cy="207" r="5"/><circle cx="762" cy="300" r="5"/><circle cx="731" cy="421" r="5"/></g>
+</g>
+
+<!-- communication paths -->
+<g stroke="#67eaff" stroke-width="1.4" fill="none" opacity=".45" class="dash"><path d="M195 170 C320 125 410 170 505 242"/><path d="M1005 170 C880 125 790 170 695 242"/><path d="M188 438 C320 474 410 435 505 366"/><path d="M1012 438 C880 474 790 435 695 366"/></g>
+
+<!-- universal language -->
+<g fill="#92eaff" opacity=".8" font-size="16">
+ <text x="86" y="150">2, 3, 5, 7, 11, 13, 17, 19 …</text>
+ <text x="86" y="183">f(x) = Σ wᵢ φᵢ(x)</text>
+ <text x="86" y="216">∇·F = 0</text>
+ <text x="86" y="249">Δx Δp ≥ ħ/2</text>
+ <text x="86" y="406">π : e : φ</text>
+ <text x="86" y="439">A v = λ v</text>
+ <text x="86" y="472">P(data|model) ∝ P(model|data)P(data)</text>
+</g>
+<g fill="#a497ff" opacity=".78" font-size="16" text-anchor="end">
+ <text x="1114" y="150">E = mc²</text>
+ <text x="1114" y="183">σ(z) = 1 / (1 + e⁻ᶻ)</text>
+ <text x="1114" y="216">∫ e⁻ˣ² dx = √π</text>
+ <text x="1114" y="249">ẋ = f(x,t)</text>
+ <text x="1114" y="406">H(X) = −Σ p(x) log p(x)</text>
+ <text x="1114" y="439">arg minθ 𝓛(θ)</text>
+ <text x="1114" y="472">I → S → O → A</text>
+</g>
+
+<!-- ratio / frequency exchange -->
+<g class="fade" opacity=".9">
+ <text x="600" y="92" text-anchor="middle" fill="#d9fbff" font-size="14" letter-spacing="4">1 : 1.5 : 2 : 3 : 5 : 8 : 13</text>
+ <text x="600" y="117" text-anchor="middle" fill="#6edcff" font-size="11" letter-spacing="3">PATTERN RECOGNIZED</text>
+</g>
+<g class="fade2">
+ <text x="600" y="527" text-anchor="middle" fill="#eefcff" font-size="18" letter-spacing="5">UNKNOWN → PATTERN → MEANING</text>
+ <text x="600" y="553" text-anchor="middle" fill="#7befff" font-size="11" letter-spacing="3">MATHEMATICS IS THE HANDSHAKE</text>
+</g>
+
+<!-- tiny system labels -->
+<text x="72" y="579" fill="#42525d" font-size="10" letter-spacing="2">CHANNEL 01 // PRIME SEQUENCE LOCKED</text>
+<text x="1128" y="579" text-anchor="end" fill="#42525d" font-size="10" letter-spacing="2">STATE // LEARNING<tspan class="blink">_</tspan></text>
+</svg>

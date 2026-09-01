@@ -13,14 +13,13 @@
 <body>
 <canvas id="stage"></canvas>
 <div id="loading" class="loading">loading articulated Rocky…</div>
-<div class="hud"><b>ROCKY / WORKING ACTION RIG</b><span id="state" class="state">state / loading</span><span id="gesture" class="gesture">gesture / —</span><span id="meshInfo">mesh / official action-figure STL parts</span><span>drag = orbit · wheel = zoom</span></div>
+<div class="hud"><b>ROCKY / OFFICIAL ARTICULATED RIG</b><span id="state" class="state">state / loading</span><span id="gesture" class="gesture">gesture / —</span><span id="meshInfo">mesh / official action-figure STL parts</span><span>drag = orbit · wheel = zoom</span></div>
 <div class="controls"><button id="auto" class="active">auto</button><button id="walk">walk</button><button id="hi">hi</button><button id="signal">signals</button><button id="work">work</button><button id="bye">bye</button></div>
-<div class="note">official Project Hail Mary action-figure STL geometry · articulated in Three.js · sandstone + turquoise mineral treatment</div>
+<div class="note">official action-figure assembly · real 1C open hand for gestures · dark flexible joints · sandstone + turquoise minerals</div>
 <script type="module">
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { STLLoader } from 'three/addons/loaders/STLLoader.js';
-
 const canvas=document.getElementById('stage'),loading=document.getElementById('loading'),stateEl=document.getElementById('state'),gestureEl=document.getElementById('gesture'),meshInfo=document.getElementById('meshInfo');
 const renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight,false);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.03;
 const scene=new THREE.Scene();scene.background=new THREE.Color(0xefeeec);scene.fog=new THREE.FogExp2(0xefeeec,.008);
@@ -28,41 +27,90 @@ const camera=new THREE.PerspectiveCamera(39,innerWidth/innerHeight,.05,80);camer
 const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.055;controls.enablePan=false;controls.target.set(0,1.8,0);controls.minDistance=4;controls.maxDistance=14;controls.maxPolarAngle=Math.PI*.495;
 scene.add(new THREE.HemisphereLight(0xffffff,0x8e7867,1.8));const key=new THREE.DirectionalLight(0xfff7ed,3.6);key.position.set(5.5,8,5.2);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.camera.left=-7;key.shadow.camera.right=7;key.shadow.camera.top=7;key.shadow.camera.bottom=-7;scene.add(key);const fill=new THREE.DirectionalLight(0xe5e1dc,1.25);fill.position.set(-5,4,3);scene.add(fill);const rim=new THREE.DirectionalLight(0xffffff,.85);rim.position.set(-4,5,-5);scene.add(rim);
 const floor=new THREE.Mesh(new THREE.PlaneGeometry(30,30),new THREE.MeshStandardMaterial({color:0xe7e4e0,roughness:.97}));floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;scene.add(floor);
-
 function rockTexture(){const c=document.createElement('canvas');c.width=c.height=512;const x=c.getContext('2d');x.fillStyle='#b59374';x.fillRect(0,0,512,512);const im=x.getImageData(0,0,512,512);for(let i=0;i<im.data.length;i+=4){const n=(Math.random()-.5)*31;im.data[i]=Math.max(0,Math.min(255,im.data[i]+n));im.data[i+1]=Math.max(0,Math.min(255,im.data[i+1]+n*.73));im.data[i+2]=Math.max(0,Math.min(255,im.data[i+2]+n*.48))}x.putImageData(im,0,0);x.globalAlpha=.18;x.strokeStyle='#584535';x.lineWidth=1.4;for(let i=0;i<60;i++){let px=Math.random()*512,py=Math.random()*512;x.beginPath();x.moveTo(px,py);for(let j=0;j<3;j++){px+=(Math.random()-.5)*44;py+=(Math.random()-.5)*44;x.lineTo(px,py)}x.stroke()}const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(2.1,2.1);return t}
 const tex=rockTexture();
 const stoneMat=new THREE.MeshStandardMaterial({map:tex,color:0xb99778,roughness:.96,metalness:.01,bumpMap:tex,bumpScale:.04});
-const jointMat=new THREE.MeshStandardMaterial({color:0x75624f,roughness:.9,metalness:.02});
-const mineralMat=new THREE.MeshStandardMaterial({color:0x56c89b,emissive:0x328f6b,emissiveIntensity:.78,roughness:.48,metalness:.025});
+const jointMat=new THREE.MeshStandardMaterial({color:0x3f3934,roughness:.94,metalness:.01});
+const mineralMat=new THREE.MeshStandardMaterial({color:0x4fc99a,emissive:0x2f8f69,emissiveIntensity:.62,roughness:.55,metalness:.015});
 const mineralSoft=new THREE.MeshBasicMaterial({color:0x76d9b3,transparent:true,opacity:.12,depthWrite:false,blending:THREE.AdditiveBlending});
-
 const rocky=new THREE.Group();scene.add(rocky);const bodyHolder=new THREE.Group();rocky.add(bodyHolder);const loader=new STLLoader();let manifest,scale=.055,torsoMesh=null,ready=false,mode='auto';const limbs=[];const UPZ=new THREE.Vector3(0,0,1),YUP=new THREE.Vector3(0,1,0);const TAU=Math.PI*2;
-
 async function gunzip(url){if(!('DecompressionStream' in window))throw new Error('This browser needs DecompressionStream support');const r=await fetch(url);if(!r.ok)throw new Error(`${url}: ${r.status}`);const stream=r.body.pipeThrough(new DecompressionStream('gzip'));return new Response(stream).arrayBuffer()}
 async function partGeometry(name){const meta=manifest.parts[name];const buf=await gunzip(`./assets/action/${meta.gzip}`);const g=loader.parse(buf);g.computeBoundingBox();g.translate(-meta.center[0],-meta.center[1],-meta.min[2]);return g}
 function meshFrom(g,mat=stoneMat){const m=new THREE.Mesh(g,mat);m.scale.setScalar(scale);m.castShadow=m.receiveShadow=true;return m}
 function align(group,dir){group.quaternion.setFromUnitVectors(UPZ,dir.clone().normalize())}
 function sphere(r,mat=mineralMat){const m=new THREE.Mesh(new THREE.IcosahedronGeometry(r,2),mat);m.castShadow=true;return m}
 function addBodyMineral(pos,r=.11,stretch=1.3){const p=sphere(r);p.position.set(...pos);p.scale.set(stretch,.65,1);bodyHolder.add(p);const g=new THREE.Mesh(new THREE.SphereGeometry(r*1.5,14,10),mineralSoft);g.position.copy(p.position);g.scale.copy(p.scale);bodyHolder.add(g)}
-
+function addLimbMineral(group,z,side=.12,r=.07){const p=new THREE.Mesh(new THREE.IcosahedronGeometry(r,2),mineralMat);p.position.set(side,0,z);p.scale.set(1.35,.42,.75);group.add(p);const g=new THREE.Mesh(new THREE.SphereGeometry(r*1.45,12,8),mineralSoft);g.position.copy(p.position);g.scale.copy(p.scale);group.add(g)}
 function solve2(L,target,bodyShift){const radial=L.radial;const S=L.shoulderBase.clone().add(bodyShift);const d=target.clone().sub(S);const distRaw=d.length();const minD=Math.abs(L.l1-L.l2)+.025,maxD=L.l1+L.l2-.025;const dist=THREE.MathUtils.clamp(distRaw,minD,maxD);const dir=d.normalize();const a=(L.l1*L.l1-L.l2*L.l2+dist*dist)/(2*dist);const h=Math.sqrt(Math.max(0,L.l1*L.l1-a*a));const hint=YUP.clone().multiplyScalar(.85).add(radial.clone().multiplyScalar(.35));let perp=hint.sub(dir.clone().multiplyScalar(hint.dot(dir)));if(perp.lengthSq()<1e-5)perp=new THREE.Vector3(-radial.z,.2,radial.x);perp.normalize();const E=S.clone().add(dir.clone().multiplyScalar(a)).add(perp.multiplyScalar(h));L.upper.position.copy(S);align(L.upper,E.clone().sub(S));L.lower.position.copy(E);align(L.lower,target.clone().sub(E));L.shoulder.position.copy(S);L.elbow.position.copy(E);L.end.position.copy(target)}
 function baseFoot(L){return L.radial.clone().multiplyScalar(L.radius).setY(.08)}
 function walkFoot(L,t){const p=(t*.55+L.phase)%1,base=baseFoot(L),walkDir=new THREE.Vector3(.55,0,.84).normalize();if(p<.7){const q=p/.7;return base.add(walkDir.multiplyScalar(THREE.MathUtils.lerp(.28,-.28,q)))}const q=(p-.7)/.3;return base.add(walkDir.multiplyScalar(THREE.MathUtils.lerp(-.28,.3,q))).add(new THREE.Vector3(0,Math.sin(Math.PI*q)*.38,0))}
 function supportFoot(L,t){const f=baseFoot(L);f.y+=Math.sin(t*.9+L.i)*.012;return f}
 function expressiveTarget(state,t){const wave=Math.sin(t*5.2),soft=Math.sin(t*2.2);if(state==='hi')return new THREE.Vector3(.72+wave*.28,3.62+Math.abs(Math.sin(t*3.1))*.12,2.9+soft*.12);if(state==='bye')return new THREE.Vector3(.88+wave*.36,3.42+Math.sin(t*3.2)*.1,2.82);if(state==='signal'){const phase=Math.floor((t*1.15)%3);gestureEl.textContent=`gesture / ${['point','wait','yes'][phase]}`;if(phase===0)return new THREE.Vector3(.2,2.9,3.85);if(phase===1)return new THREE.Vector3(1.0+Math.sin(t*4)*.12,3.15,2.7);return new THREE.Vector3(.55,3.0+Math.sin(t*6)*.28,3.05)}if(state==='work')return new THREE.Vector3(.42,1.58,2.72+Math.sin(t*3.3)*.08);return null}
 function autoState(t){const p=t%27;if(p<8)return'walk';if(p<11.5)return'hi';if(p<17)return'signal';if(p<22)return'work';if(p<25)return'bye';return'walk'}
-
 function addConsole(){const g=new THREE.Group();g.position.set(.45,0,2.75);const dark=new THREE.MeshStandardMaterial({color:0x2f3436,roughness:.42,metalness:.3});const base=new THREE.Mesh(new THREE.CylinderGeometry(.42,.58,.25,24),dark);base.position.y=.125;base.castShadow=true;g.add(base);const stem=new THREE.Mesh(new THREE.CylinderGeometry(.11,.18,1.1,18),dark);stem.position.y=.78;stem.rotation.z=-.08;g.add(stem);const panel=new THREE.Mesh(new THREE.BoxGeometry(.92,.58,.11),dark);panel.position.set(0,1.45,0);panel.rotation.x=-.14;g.add(panel);const screen=new THREE.Mesh(new THREE.PlaneGeometry(.72,.39),new THREE.MeshBasicMaterial({color:0x65d4ae,transparent:true,opacity:.55}));screen.position.set(0,1.45,-.061);screen.rotation.y=Math.PI;screen.rotation.x=.14;g.add(screen);scene.add(g)}
-
-async function build(){manifest=await fetch('./assets/action/manifest.json').then(r=>{if(!r.ok)throw new Error('manifest');return r.json()});scale=2.45/manifest.parts['torso.stl'].size[2];const names=['torso.stl',...Array.from({length:5},(_,i)=>[`${i+1}-A.stl`,`${i+1}-B.stl`]).flat()];const geos={};for(let i=0;i<names.length;i++){loading.textContent=`loading Rocky part ${i+1}/${names.length}…`;geos[names[i]]=await partGeometry(names[i])}
- const torso=meshFrom(geos['torso.stl']);torso.rotation.x=-Math.PI/2;bodyHolder.add(torso);torsoMesh=torso;const bodyBaseY=1.18;bodyHolder.position.y=bodyBaseY;addBodyMineral([-.48,1.85,.72],.12,1.4);addBodyMineral([.55,1.25,.8],.095,1.25);addBodyMineral([.3,.7,-.82],.08,1.15);addBodyMineral([-.22,2.15,-.55],.09,1.25);
- const angle0=Math.PI/2;for(let i=0;i<5;i++){const angle=angle0+i*TAU/5,radial=new THREE.Vector3(Math.cos(angle),0,Math.sin(angle));const upper=new THREE.Group(),lower=new THREE.Group();rocky.add(upper,lower);const ma=meshFrom(geos[`${i+1}-A.stl`]),mb=meshFrom(geos[`${i+1}-B.stl`]);upper.add(ma);lower.add(mb);const shoulder=sphere(.115),elbow=sphere(.105),end=sphere(.075,jointMat);rocky.add(shoulder,elbow,end);const l1=manifest.parts[`${i+1}-A.stl`].size[2]*scale,l2=manifest.parts[`${i+1}-B.stl`].size[2]*scale;limbs.push({i,upper,lower,shoulder,elbow,end,l1,l2,radial,phase:i/5,radius:2.35+(i%2)*.12,shoulderBase:new THREE.Vector3(radial.x*1.03,2.62,radial.z*1.03)})}
- addConsole();ready=true;loading.classList.add('hidden');stateEl.textContent='state / walk';meshInfo.textContent='mesh / official torso + 10 articulated limb parts'}
-
-function update(t){if(!ready)return;const state=mode==='auto'?autoState(t):mode;stateEl.textContent=`state / ${state}`;if(state!=='signal')gestureEl.textContent=`gesture / ${state==='hi'?'hello':state==='bye'?'goodbye':state==='work'?'working':'—'}`;const expressive=0;let shift=new THREE.Vector3();if(state==='walk')shift.set(Math.sin(t*1.1)*.055,Math.sin(t*2.2)*.025,Math.cos(t*.9)*.04);else if(state==='hi'||state==='signal'||state==='bye')shift.copy(limbs[expressive].radial).multiplyScalar(-.1).setY(Math.sin(t*2)*.02);else if(state==='work')shift.set(.02,-.03,.08);bodyHolder.position.set(shift.x,1.18+shift.y,shift.z);bodyHolder.rotation.z=state==='walk'?Math.sin(t*.85)*.025:(state==='hi'||state==='bye')?-.045:state==='work'?.035:0;bodyHolder.rotation.y=state==='work'?.08:Math.sin(t*.33)*.012;
- for(const L of limbs){let target;if(L.i===expressive&&state!=='walk')target=expressiveTarget(state,t);else target=state==='walk'?walkFoot(L,t):supportFoot(L,t);solve2(L,target,shift)}
+async function build(){
+ manifest=await fetch('./assets/action/manifest.json').then(r=>{if(!r.ok)throw new Error('manifest');return r.json()});
+ scale=2.45/manifest.parts['torso.stl'].size[2];
+ const names=['torso.stl','1-A.stl','1-B.stl','1-C.stl','2-A.stl','2-B.stl','3-A.stl','3-B.stl','4-A.stl','4-B.stl','5-A.stl','5-B.stl'];
+ const geos={};
+ for(let i=0;i<names.length;i++){
+   loading.textContent=`loading official Rocky part ${i+1}/${names.length}…`;
+   geos[names[i]]=await partGeometry(names[i]);
+ }
+ const torso=meshFrom(geos['torso.stl']);torso.rotation.x=-Math.PI/2;bodyHolder.add(torso);torsoMesh=torso;
+ const bodyBaseY=1.18;bodyHolder.position.y=bodyBaseY;
+ addBodyMineral([-.48,1.85,.72],.12,1.4);addBodyMineral([.55,1.25,.8],.095,1.25);addBodyMineral([.3,.7,-.82],.08,1.15);addBodyMineral([-.22,2.15,-.55],.09,1.25);
+ // Official assembly diagram numbers the five sockets clockwise around the torso.
+ // Limb 1 is special: 1B = fist option, 1C = open-hand option.
+ const angle0=Math.PI/2;
+ for(let i=0;i<5;i++){
+   const n=i+1,angle=angle0+i*TAU/5,radial=new THREE.Vector3(Math.cos(angle),0,Math.sin(angle));
+   const upper=new THREE.Group(),lower=new THREE.Group();rocky.add(upper,lower);
+   const ma=meshFrom(geos[`${n}-A.stl`]);upper.add(ma);
+   let mb=null,mc=null;
+   if(n===1){
+     mb=meshFrom(geos['1-B.stl']);mc=meshFrom(geos['1-C.stl']);lower.add(mb,mc);mc.visible=false;
+   }else{mb=meshFrom(geos[`${n}-B.stl`]);lower.add(mb)}
+   const shoulder=sphere(.12,jointMat),elbow=sphere(.108,jointMat),end=sphere(.07,jointMat);rocky.add(shoulder,elbow,end);
+   const l1=manifest.parts[`${n}-A.stl`].size[2]*scale;
+   const l2Fist=manifest.parts[`${n}-B.stl`].size[2]*scale;
+   const l2Open=n===1?manifest.parts['1-C.stl'].size[2]*scale:l2Fist;
+   const L={i,n,upper,lower,shoulder,elbow,end,l1,l2:l2Fist,l2Fist,l2Open,radial,phase:i/5,radius:2.38+(i%2)*.1,shoulderBase:new THREE.Vector3(radial.x*1.04,2.62,radial.z*1.04),fist:mb,open:mc};
+   limbs.push(L);
+   addLimbMineral(upper,l1*.38,(i%2?.1:-.1),.066);
+   addLimbMineral(lower,l2Fist*.42,(i%2?-.09:.09),.06);
+ }
+ addConsole();ready=true;loading.classList.add('hidden');stateEl.textContent='state / walk';
+ meshInfo.textContent='mesh / official torso + 11 articulated limb/hand parts';
 }
-
+function update(t){
+ if(!ready)return;
+ const state=mode==='auto'?autoState(t):mode;
+ stateEl.textContent=`state / ${state}`;
+ if(state!=='signal')gestureEl.textContent=`gesture / ${state==='hi'?'hello':state==='bye'?'goodbye':state==='work'?'working':'—'}`;
+ const expressive=0;
+ const handOpen=(state==='hi'||state==='signal'||state==='work'||state==='bye');
+ const hand=limbs[expressive];
+ if(hand){
+   hand.fist.visible=!handOpen;
+   if(hand.open)hand.open.visible=handOpen;
+   hand.l2=handOpen?hand.l2Open:hand.l2Fist;
+ }
+ let shift=new THREE.Vector3();
+ if(state==='walk')shift.set(Math.sin(t*1.1)*.055,Math.sin(t*2.2)*.025,Math.cos(t*.9)*.04);
+ else if(state==='hi'||state==='signal'||state==='bye')shift.copy(limbs[expressive].radial).multiplyScalar(-.11).setY(Math.sin(t*2)*.02);
+ else if(state==='work')shift.set(.02,-.03,.08);
+ bodyHolder.position.set(shift.x,1.18+shift.y,shift.z);
+ bodyHolder.rotation.z=state==='walk'?Math.sin(t*.85)*.025:(state==='hi'||state==='bye')?-.045:state==='work'?.035:0;
+ bodyHolder.rotation.y=state==='work'?.08:Math.sin(t*.33)*.012;
+ for(const L of limbs){
+   let target;
+   if(L.i===expressive&&state!=='walk')target=expressiveTarget(state,t);
+   else target=state==='walk'?walkFoot(L,t):supportFoot(L,t);
+   solve2(L,target,shift);
+   if(L.i===expressive&&handOpen)L.lower.rotation.z+=Math.sin(t*4.7)*.035;
+ }
+}
 for(const id of ['auto','walk','hi','signal','work','bye'])document.getElementById(id).onclick=()=>{mode=id;for(const x of ['auto','walk','hi','signal','work','bye'])document.getElementById(x).classList.toggle('active',x===id)};
 const clock=new THREE.Clock();function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();update(t);controls.update();renderer.render(scene,camera)}animate();
 build().catch(err=>{console.error(err);loading.textContent='could not load articulated Rocky';stateEl.textContent='state / load failed'});

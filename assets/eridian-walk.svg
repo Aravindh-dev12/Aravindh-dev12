@@ -1,144 +1,152 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="225" viewBox="0 0 1000 225" role="img" aria-label="Rocky-inspired cracked stone alien walking across the profile">
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="220" viewBox="0 0 1000 220" role="img" aria-label="Living five-limbed cracked-stone creature walking across the profile">
   <defs>
-    <linearGradient id="rock" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#b98a64"/>
-      <stop offset="0.22" stop-color="#9b7154"/>
-      <stop offset="0.58" stop-color="#76533f"/>
-      <stop offset="0.82" stop-color="#5a3e31"/>
-      <stop offset="1" stop-color="#3e2c24"/>
+    <radialGradient id="torso" cx="33%" cy="24%" r="78%">
+      <stop offset="0" stop-color="#d0a37b"/>
+      <stop offset=".22" stop-color="#b18462"/>
+      <stop offset=".52" stop-color="#876247"/>
+      <stop offset=".78" stop-color="#634536"/>
+      <stop offset="1" stop-color="#3c2a23"/>
+    </radialGradient>
+    <linearGradient id="upper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c39570"/>
+      <stop offset=".28" stop-color="#9c7254"/>
+      <stop offset=".68" stop-color="#6c4b3b"/>
+      <stop offset="1" stop-color="#422f28"/>
     </linearGradient>
-    <linearGradient id="rockDark" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#91674d"/>
-      <stop offset="0.55" stop-color="#694936"/>
-      <stop offset="1" stop-color="#422f27"/>
+    <linearGradient id="lower" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8f674d"/>
+      <stop offset=".62" stop-color="#654638"/>
+      <stop offset="1" stop-color="#392922"/>
     </linearGradient>
-    <linearGradient id="rockHi" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#d0a47e" stop-opacity=".72"/>
-      <stop offset="1" stop-color="#8d6248" stop-opacity="0"/>
+    <linearGradient id="highlight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#efd0aa" stop-opacity=".65"/>
+      <stop offset="1" stop-color="#efd0aa" stop-opacity="0"/>
     </linearGradient>
-    <linearGradient id="mineral" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#62c3a5"/>
-      <stop offset="0.45" stop-color="#379f87"/>
-      <stop offset="1" stop-color="#1e7366"/>
-    </linearGradient>
-    <filter id="stoneTexture" x="-30%" y="-30%" width="160%" height="160%">
-      <feTurbulence type="fractalNoise" baseFrequency=".045" numOctaves="3" seed="9" result="noise"/>
-      <feColorMatrix in="noise" type="saturate" values="0" result="gray"/>
-      <feBlend in="SourceGraphic" in2="gray" mode="multiply"/>
-    </filter>
-    <filter id="shadow" x="-80%" y="-250%" width="260%" height="600%">
-      <feGaussianBlur stdDeviation="5"/>
+    <radialGradient id="teal" cx="35%" cy="28%" r="80%">
+      <stop offset="0" stop-color="#75d1ba"/>
+      <stop offset=".42" stop-color="#3ca58c"/>
+      <stop offset="1" stop-color="#1e6c60"/>
+    </radialGradient>
+
+    <filter id="rockTex" x="-35%" y="-35%" width="170%" height="180%">
+      <feTurbulence type="fractalNoise" baseFrequency=".032" numOctaves="4" seed="14" result="n"/>
+      <feColorMatrix in="n" type="matrix" values=".42 0 0 0 .32  0 .34 0 0 .23  0 0 .26 0 .18  0 0 0 .28 0" result="stoneNoise"/>
+      <feBlend in="SourceGraphic" in2="stoneNoise" mode="multiply" result="t"/>
+      <feSpecularLighting in="n" surfaceScale="2" specularConstant=".35" specularExponent="18" lighting-color="#f0d2ac" result="spec">
+        <feDistantLight azimuth="225" elevation="55"/>
+      </feSpecularLighting>
+      <feComposite in="spec" in2="SourceGraphic" operator="in" result="specClip"/>
+      <feBlend in="t" in2="specClip" mode="screen"/>
     </filter>
 
-    <!-- thick two-segment Rocky-like limb, hinge at 0,0 -->
-    <g id="limb">
-      <path d="M-10 0 C5 -8 24 -4 34 8 C42 18 41 35 35 49 L24 75 C20 87 8 93 -4 88 C-16 83 -21 72 -17 59 L-8 31 C-5 19 -17 8 -10 0 Z"
-            fill="url(#rock)" stroke="#3f2d24" stroke-width="2"/>
-      <path d="M-7 5 C5 -1 20 2 28 11" fill="none" stroke="url(#rockHi)" stroke-width="4" stroke-linecap="round"/>
-      <path d="M-12 30 L-3 35 L5 29 L16 34 L27 27" fill="none" stroke="#3f2d24" stroke-opacity=".75" stroke-width="2"/>
-      <path d="M-2 54 L8 60 L17 53 L28 58" fill="none" stroke="#4d352a" stroke-opacity=".75" stroke-width="2"/>
+    <filter id="bodyShadow" x="-50%" y="-80%" width="210%" height="230%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#000" flood-opacity=".42"/>
+    </filter>
+    <filter id="ground" x="-120%" y="-400%" width="340%" height="900%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
 
-      <g transform="translate(20 70)">
-        <path d="M-5 0 C8 -5 23 1 29 13 C35 25 29 42 18 58 L7 75 C0 86 -14 90 -24 83 C-33 76 -34 65 -27 54 L-13 31 C-7 21 -16 7 -5 0 Z"
-              fill="url(#rockDark)" stroke="#3b2922" stroke-width="2"/>
-        <path d="M-3 7 C8 3 19 7 24 14" fill="none" stroke="#c89a74" stroke-opacity=".44" stroke-width="3" stroke-linecap="round"/>
-        <path d="M-21 56 L-10 61 L0 55 L10 60 L20 53" fill="none" stroke="#3d2b23" stroke-width="2" opacity=".8"/>
-        <path d="M-27 73 C-15 69 4 70 16 75 C9 86 -8 92 -20 86 C-26 83 -29 79 -27 73 Z" fill="#352720"/>
+    <g id="rock-leg">
+      <!-- shoulder / upper limb -->
+      <path d="M-15 0 C-4 -10 14 -12 28 -4 C40 3 47 15 46 29 C45 42 39 57 31 70 C25 81 10 86 -3 80 C-16 73 -21 61 -16 48 L-8 28 C-4 18 -23 8 -15 0 Z" fill="url(#upper)" stroke="#3c2922" stroke-width="2.1"/>
+      <path d="M-7 3 C4 -3 20 -1 31 7" fill="none" stroke="url(#highlight)" stroke-width="4" stroke-linecap="round"/>
+      <path d="M-12 23 L0 29 L10 21 L23 29 L35 20" fill="none" stroke="#4a3329" stroke-width="2" opacity=".88"/>
+      <path d="M-10 50 L3 56 L15 48 L29 55" fill="none" stroke="#493229" stroke-width="2" opacity=".78"/>
+      <path d="M14 9 C23 7 31 10 35 15 C32 22 24 25 16 22 C11 19 10 13 14 9 Z" fill="url(#teal)" opacity=".88"/>
+
+      <!-- elbow -->
+      <ellipse cx="18" cy="74" rx="17" ry="13" fill="#7e5945" stroke="#3c2922" stroke-width="2"/>
+      <path d="M8 70 C14 65 23 65 29 69" fill="none" stroke="#c08f6b" stroke-opacity=".42" stroke-width="2.5"/>
+
+      <!-- lower limb -->
+      <g transform="translate(18 75)">
+        <path d="M-13 0 C-2 -8 14 -5 22 6 C29 16 27 30 21 44 L10 68 C5 80 -9 87 -21 82 C-32 77 -37 66 -31 54 L-20 32 C-15 22 -23 8 -13 0 Z" fill="url(#lower)" stroke="#35261f" stroke-width="2.1"/>
+        <path d="M-8 5 C0 1 12 3 18 9" fill="none" stroke="#c99a76" stroke-opacity=".42" stroke-width="3" stroke-linecap="round"/>
+        <path d="M-24 34 L-12 39 L-2 33 L10 39 L20 32" fill="none" stroke="#3d2a23" stroke-width="2" opacity=".9"/>
+        <path d="M-16 61 C-8 57 2 59 7 64 C4 70 -4 74 -12 71 C-17 69 -19 65 -16 61 Z" fill="url(#teal)" opacity=".7"/>
+
+        <!-- broad stony foot -->
+        <path d="M-31 70 C-18 65 2 66 13 73 C12 84 2 92 -12 94 C-24 95 -34 89 -37 81 C-39 77 -36 73 -31 70 Z" fill="#463229" stroke="#2d211c" stroke-width="2"/>
+        <path d="M-27 75 C-17 72 -4 73 5 77" fill="none" stroke="#9b6c50" stroke-opacity=".5" stroke-width="2.4"/>
       </g>
-
-      <path d="M17 16 C25 13 31 15 34 20 C30 27 24 30 16 27 C13 23 13 19 17 16 Z" fill="url(#mineral)" opacity=".9"/>
-      <path d="M3 72 C10 68 17 69 21 74 C19 81 12 84 4 81 C1 78 1 75 3 72 Z" fill="url(#mineral)" opacity=".78"/>
     </g>
   </defs>
 
-  <!-- transparent walking field -->
-  <path d="M48 201 H952" stroke="#8f8a82" stroke-opacity=".13" stroke-width="1" stroke-dasharray="1 18"/>
+  <!-- only a soft contact shadow; the SVG itself has no background -->
+  <g transform="translate(115 0)">
+    <animateTransform attributeName="transform" type="translate" values="115 0;885 0;885 0;115 0" keyTimes="0;.44;.54;1" dur="18s" repeatCount="indefinite"/>
 
-  <!-- travelling ground shadow -->
-  <g>
-    <animateTransform attributeName="transform" type="translate" values="80 0;840 0;840 0;80 0;80 0" keyTimes="0;.43;.50;.93;1" dur="18s" repeatCount="indefinite"/>
-    <ellipse cx="0" cy="194" rx="67" ry="9" fill="#000" opacity=".24" filter="url(#shadow)">
-      <animate attributeName="rx" values="67;55;64;54;67" dur="1.28s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values=".24;.13;.23;.14;.24" dur="1.28s" repeatCount="indefinite"/>
+    <ellipse cx="0" cy="193" rx="75" ry="9" fill="#000" opacity=".24" filter="url(#ground)">
+      <animate attributeName="rx" values="75;61;73;60;75" dur="1.12s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values=".24;.14;.23;.13;.24" dur="1.12s" repeatCount="indefinite"/>
     </ellipse>
-  </g>
 
-  <!-- whole living creature -->
-  <g>
-    <animateTransform attributeName="transform" type="translate" values="80 0;840 0;840 0;80 0;80 0" keyTimes="0;.43;.50;.93;1" dur="18s" repeatCount="indefinite"/>
+    <g filter="url(#bodyShadow)">
+      <!-- turn around naturally at each edge -->
+      <animateTransform attributeName="transform" type="scale" values="1 1;1 1;-1 1;-1 1" keyTimes="0;.44;.54;1" dur="18s" repeatCount="indefinite"/>
 
-    <g filter="url(#stoneTexture)">
-      <animateTransform attributeName="transform" type="translate" values="0 2;0 -5;0 0;0 -4;0 2" dur="1.28s" repeatCount="indefinite"/>
-
-      <!-- rear legs -->
-      <g transform="translate(-44 108) rotate(26)">
-        <g>
-          <animateTransform attributeName="transform" type="rotate" values="16 0 0;-13 0 0;16 0 0" dur="1.28s" repeatCount="indefinite"/>
-          <g transform="scale(.82)"><use href="#limb"/></g>
-        </g>
-      </g>
-      <g transform="translate(45 108) rotate(-24)">
-        <g>
-          <animateTransform attributeName="transform" type="rotate" values="-13 0 0;17 0 0;-13 0 0" dur="1.28s" repeatCount="indefinite"/>
-          <g transform="scale(.82)"><use href="#limb"/></g>
-        </g>
-      </g>
-
-      <!-- forward weight-bearing legs -->
-      <g transform="translate(-31 105) rotate(7)">
-        <g>
-          <animateTransform attributeName="transform" type="rotate" values="-19 0 0;15 0 0;-19 0 0" dur="1.28s" begin="-.32s" repeatCount="indefinite"/>
-          <g transform="scale(.92)"><use href="#limb"/></g>
-        </g>
-      </g>
-      <g transform="translate(32 104) rotate(-8)">
-        <g>
-          <animateTransform attributeName="transform" type="rotate" values="18 0 0;-16 0 0;18 0 0" dur="1.28s" begin="-.32s" repeatCount="indefinite"/>
-          <g transform="scale(.92)"><use href="#limb"/></g>
-        </g>
-      </g>
-
-      <!-- fifth balancing limb underneath, visible between the fronts -->
-      <g transform="translate(4 119) rotate(3)">
-        <g>
-          <animateTransform attributeName="transform" type="rotate" values="8 0 0;-10 0 0;8 0 0" dur="1.28s" begin="-.64s" repeatCount="indefinite"/>
-          <g transform="scale(.67)"><use href="#limb"/></g>
-        </g>
-      </g>
-
-      <!-- squat rocky torso -->
+      <!-- body rise/fall follows the stepping rhythm -->
       <g>
-        <animateTransform attributeName="transform" type="rotate" values="-1.4 0 105;1.4 0 105;-1.4 0 105" dur="2.56s" repeatCount="indefinite"/>
-        <path d="M-55 73 C-42 56 -19 48 7 49 C34 50 54 60 62 78 C69 95 65 118 52 135 C39 151 15 158 -10 154 C-34 150 -52 138 -60 119 C-68 101 -66 86 -55 73 Z"
-              fill="url(#rock)" stroke="#3e2c24" stroke-width="2.5"/>
+        <animateTransform attributeName="transform" type="translate" values="0 2;0 -5;0 0;0 -4;0 2" dur="1.12s" repeatCount="indefinite"/>
 
-        <!-- heavy top shell seen in the references -->
-        <path d="M-49 71 C-28 51 13 48 43 62 C55 68 61 78 59 87 C38 78 12 75 -14 78 C-30 80 -43 83 -58 89 C-59 82 -56 77 -49 71 Z"
-              fill="#a97a59" stroke="#493329" stroke-width="2"/>
-        <path d="M-40 65 C-20 57 9 57 31 64" fill="none" stroke="#d1a37c" stroke-opacity=".52" stroke-width="4" stroke-linecap="round"/>
+        <!-- far rear limb -->
+        <g transform="translate(-50 92) rotate(72) scale(.72)">
+          <animateTransform attributeName="transform" additive="sum" type="rotate" values="14 0 0;-12 0 0;14 0 0" dur="1.12s" begin="-.56s" repeatCount="indefinite"/>
+          <use href="#rock-leg" opacity=".74"/>
+        </g>
 
-        <!-- broad front plate -->
-        <path d="M-34 82 C-16 76 16 76 35 83 C42 96 39 113 30 126 C11 133 -14 133 -33 124 C-42 110 -42 95 -34 82 Z"
-              fill="url(#rockDark)" stroke="#3d2a23" stroke-width="2"/>
+        <!-- far front limb -->
+        <g transform="translate(48 91) rotate(-72) scale(.75)">
+          <animateTransform attributeName="transform" additive="sum" type="rotate" values="-12 0 0;15 0 0;-12 0 0" dur="1.12s" begin="-.28s" repeatCount="indefinite"/>
+          <use href="#rock-leg" opacity=".8"/>
+        </g>
 
-        <!-- cracked rock seams -->
-        <path d="M-47 92 L-30 97 L-18 89 L-4 96 L10 87 L25 94 L42 88" fill="none" stroke="#493329" stroke-width="2.1" opacity=".9"/>
-        <path d="M-28 124 L-18 113 L-7 119 L4 108 L16 117 L30 105" fill="none" stroke="#3e2b23" stroke-width="2" opacity=".86"/>
-        <path d="M-7 52 L-2 70 L9 78" fill="none" stroke="#493329" stroke-width="2" opacity=".72"/>
-        <path d="M29 58 L23 72 L31 82" fill="none" stroke="#493329" stroke-width="1.8" opacity=".72"/>
-        <path d="M-39 71 L-31 84" fill="none" stroke="#493329" stroke-width="1.8" opacity=".7"/>
+        <!-- lower center fifth limb, visible under the torso -->
+        <g transform="translate(2 114) rotate(3) scale(.64)">
+          <animateTransform attributeName="transform" additive="sum" type="rotate" values="9 0 0;-10 0 0;9 0 0" dur="1.12s" begin="-.84s" repeatCount="indefinite"/>
+          <use href="#rock-leg"/>
+        </g>
 
-        <!-- mineral patches, same teal-green language as reference -->
-        <path d="M-38 68 C-31 63 -23 64 -19 69 C-21 76 -28 79 -36 76 C-40 74 -41 71 -38 68 Z" fill="url(#mineral)" opacity=".88"/>
-        <path d="M39 76 C46 72 53 74 56 80 C53 87 47 89 40 86 C36 83 36 79 39 76 Z" fill="url(#mineral)" opacity=".82"/>
-        <path d="M-6 146 C0 142 7 143 10 147 C8 152 3 154 -4 152 C-7 150 -8 148 -6 146 Z" fill="url(#mineral)" opacity=".62"/>
+        <!-- torso / shell -->
+        <g filter="url(#rockTex)">
+          <animateTransform attributeName="transform" type="rotate" values="-1.5 0 92;1.5 0 92;-1.5 0 92" dur="2.24s" repeatCount="indefinite"/>
+
+          <!-- round upper shell -->
+          <path d="M-63 62 C-48 43 -24 34 4 35 C34 36 57 47 67 65 C77 83 76 107 64 126 C51 147 27 158 -1 158 C-29 158 -52 147 -64 128 C-77 108 -78 82 -63 62 Z" fill="url(#torso)" stroke="#3a2922" stroke-width="2.6"/>
+
+          <!-- thick cap like the reference model -->
+          <path d="M-55 59 C-35 40 0 34 29 42 C48 47 62 57 66 69 C42 62 17 59 -9 62 C-28 64 -45 69 -65 78 C-64 69 -61 64 -55 59 Z" fill="#aa7c59" stroke="#4a3329" stroke-width="2.2"/>
+          <path d="M-45 54 C-23 45 8 44 34 52" fill="none" stroke="#e1b68f" stroke-opacity=".5" stroke-width="4.5" stroke-linecap="round"/>
+
+          <!-- front face plate -->
+          <path d="M-39 74 C-17 68 19 69 42 77 C50 92 48 112 37 128 C17 137 -14 137 -37 127 C-48 111 -49 91 -39 74 Z" fill="#775440" stroke="#392821" stroke-width="2.2"/>
+
+          <!-- stone cracks -->
+          <path d="M-55 82 L-40 88 L-28 78 L-15 87 L0 76 L15 87 L31 78 L48 86" fill="none" stroke="#3e2b24" stroke-width="2.2" opacity=".95"/>
+          <path d="M-32 125 L-20 114 L-8 121 L4 108 L17 119 L32 106" fill="none" stroke="#3c2a23" stroke-width="2.1" opacity=".9"/>
+          <path d="M-11 39 L-7 58 L4 69" fill="none" stroke="#433027" stroke-width="2"/>
+          <path d="M29 45 L22 61 L32 72" fill="none" stroke="#433027" stroke-width="2"/>
+          <path d="M-44 55 L-34 69" fill="none" stroke="#433027" stroke-width="2"/>
+          <path d="M48 58 L39 73" fill="none" stroke="#433027" stroke-width="2"/>
+
+          <!-- turquoise mineral marks -->
+          <path d="M-47 61 C-38 55 -28 57 -23 63 C-25 71 -35 75 -44 72 C-50 69 -51 65 -47 61 Z" fill="url(#teal)" opacity=".92"/>
+          <path d="M42 67 C49 62 59 64 63 71 C60 79 52 82 44 79 C39 76 38 71 42 67 Z" fill="url(#teal)" opacity=".85"/>
+          <path d="M-7 144 C0 140 9 141 13 146 C10 152 4 154 -4 152 C-9 150 -10 147 -7 144 Z" fill="url(#teal)" opacity=".6"/>
+        </g>
+
+        <!-- near left weight-bearing limb -->
+        <g transform="translate(-44 91) rotate(18) scale(.94)">
+          <animateTransform attributeName="transform" additive="sum" type="rotate" values="-18 0 0;17 0 0;-18 0 0" dur="1.12s" repeatCount="indefinite"/>
+          <use href="#rock-leg"/>
+        </g>
+
+        <!-- near right weight-bearing limb, opposite phase -->
+        <g transform="translate(44 91) rotate(-18) scale(.94)">
+          <animateTransform attributeName="transform" additive="sum" type="rotate" values="18 0 0;-17 0 0;18 0 0" dur="1.12s" begin="-.56s" repeatCount="indefinite"/>
+          <use href="#rock-leg"/>
+        </g>
       </g>
     </g>
-  </g>
-
-  <g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="8" fill="#8b8d89" opacity=".22" letter-spacing="1.2">
-    <text x="50" y="218">0</text>
-    <text x="500" y="218" text-anchor="middle">x(t) · gait(t + 2πk/5)</text>
-    <text x="950" y="218" text-anchor="end">1</text>
   </g>
 </svg>

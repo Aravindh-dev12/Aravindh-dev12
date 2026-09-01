@@ -15,11 +15,11 @@ $$
 \text{idea} \xrightarrow{\;reasoning\;} \text{system} \xrightarrow{\;iteration\;} \text{reality}
 $$
 
-<a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/e0b6fb89135ddc48880bf1fad45609f662745750/rocky-3d/index.html" target="_blank" rel="noreferrer">
-  <img src="./assets/eridian-walk.svg" width="880" alt="Rocky — open the live animated 3D Eridian scene" />
+<a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/9b932c272f7f0fcee98d9abcc1c87e6ddf552aab/rocky-3d/index.html" target="_blank" rel="noreferrer">
+  <img src="./assets/eridian-walk.svg" width="880" alt="Rocky — open the reference-matched sandstone and turquoise live 3D character" />
 </a>
 
-<sub><a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/e0b6fb89135ddc48880bf1fad45609f662745750/rocky-3d/index.html"><code>open live 3D Rocky → walk · hi · signals · work · bye · orbit</code></a></sub>
+<sub><a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/9b932c272f7f0fcee98d9abcc1c87e6ddf552aab/rocky-3d/index.html"><code>open live 3D Rocky → exact sandstone palette · turquoise minerals · walk · hi · signals · work · bye · orbit</code></a></sub>
 
 </div>
 

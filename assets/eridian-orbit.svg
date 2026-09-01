@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="230" viewBox="0 0 280 230" role="img" aria-label="Animated five-limbed stone alien orbiting in place">
+  <defs>
+    <radialGradient id="body" cx="38%" cy="30%" r="76%">
+      <stop offset="0" stop-color="#a79d90"/>
+      <stop offset="0.34" stop-color="#716b63"/>
+      <stop offset="0.72" stop-color="#45433f"/>
+      <stop offset="1" stop-color="#252624"/>
+    </radialGradient>
+    <linearGradient id="limb" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9d9386"/>
+      <stop offset="0.28" stop-color="#69645d"/>
+      <stop offset="0.72" stop-color="#3d3c39"/>
+      <stop offset="1" stop-color="#20211f"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0" x2="1">
+      <stop offset="0" stop-color="#d0c5b6" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#d0c5b6" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#d0c5b6" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="shadow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"/>
+      <feOffset dy="4" result="off"/>
+      <feColorMatrix in="off" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .55 0" result="shade"/>
+      <feMerge><feMergeNode in="shade"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="2.2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <g id="arm">
+      <path d="M127 92 C122 82 116 72 116 61 C116 51 121 44 129 40 C138 36 147 40 151 48 C155 57 151 66 145 73 L138 94 Z" fill="url(#limb)" stroke="#aaa093" stroke-opacity="0.35" stroke-width="1"/>
+      <path d="M129 42 C124 34 124 26 129 20 C134 14 143 12 151 16 C158 20 161 27 158 34 C155 41 147 45 140 49 Z" fill="url(#limb)" stroke="#aaa093" stroke-opacity="0.32" stroke-width="1"/>
+      <path d="M133 24 C138 19 146 18 151 21" fill="none" stroke="#d7cec2" stroke-opacity="0.35" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M122 61 C130 58 139 58 148 61" fill="none" stroke="#222321" stroke-opacity="0.7" stroke-width="2"/>
+      <path d="M124 48 C133 45 141 45 150 48" fill="none" stroke="#d1c6b7" stroke-opacity="0.13" stroke-width="1"/>
+    </g>
+  </defs>
+
+  <!-- transparent field / orbit only -->
+  <ellipse cx="140" cy="115" rx="104" ry="47" fill="none" stroke="#8e938f" stroke-opacity="0.12" stroke-width="1" stroke-dasharray="2 8">
+    <animateTransform attributeName="transform" type="rotate" from="0 140 115" to="360 140 115" dur="24s" repeatCount="indefinite"/>
+  </ellipse>
+  <ellipse cx="140" cy="115" rx="86" ry="72" fill="none" stroke="#8e938f" stroke-opacity="0.07" stroke-width="1" transform="rotate(-24 140 115)"/>
+
+  <circle r="2.3" fill="#aaa093" opacity="0.7" filter="url(#softGlow)">
+    <animateMotion dur="8s" repeatCount="indefinite" path="M36,115 C52,62 228,54 244,115 C226,176 52,170 36,115"/>
+  </circle>
+
+  <g filter="url(#shadow)">
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -3; 0 0; 0 2; 0 0" dur="5.8s" repeatCount="indefinite"/>
+      <g>
+        <animateTransform attributeName="transform" type="rotate" from="0 140 115" to="360 140 115" dur="20s" repeatCount="indefinite"/>
+
+        <g transform="translate(10 5)">
+          <g transform="rotate(0 130 110)"><g><animateTransform attributeName="transform" type="rotate" values="-2 130 110;3 130 110;-2 130 110" dur="4.8s" repeatCount="indefinite"/><use href="#arm"/></g></g>
+          <g transform="rotate(72 130 110)"><g><animateTransform attributeName="transform" type="rotate" values="1 130 110;-3 130 110;1 130 110" dur="5.4s" repeatCount="indefinite"/><use href="#arm"/></g></g>
+          <g transform="rotate(144 130 110)"><g><animateTransform attributeName="transform" type="rotate" values="-1 130 110;3.5 130 110;-1 130 110" dur="5.1s" repeatCount="indefinite"/><use href="#arm"/></g></g>
+          <g transform="rotate(216 130 110)"><g><animateTransform attributeName="transform" type="rotate" values="2 130 110;-2.5 130 110;2 130 110" dur="4.6s" repeatCount="indefinite"/><use href="#arm"/></g></g>
+          <g transform="rotate(288 130 110)"><g><animateTransform attributeName="transform" type="rotate" values="-2.5 130 110;2 130 110;-2.5 130 110" dur="5.7s" repeatCount="indefinite"/><use href="#arm"/></g></g>
+
+          <g>
+            <animateTransform attributeName="transform" type="scale" values="1;1.025;1" dur="3.6s" additive="sum" repeatCount="indefinite"/>
+            <path d="M130 72 C149 72 165 84 169 102 C173 121 164 139 147 147 C130 155 111 150 100 135 C89 120 89 100 100 85 C108 76 118 72 130 72 Z" fill="url(#body)" stroke="#b5aa9b" stroke-opacity="0.38" stroke-width="1.3"/>
+            <path d="M108 86 C119 79 138 78 151 86" fill="none" stroke="url(#edge)" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+            <path d="M101 104 C113 99 146 98 166 106" fill="none" stroke="#242522" stroke-opacity="0.65" stroke-width="2"/>
+            <path d="M104 124 C119 129 146 129 160 121" fill="none" stroke="#d1c6b7" stroke-opacity="0.13" stroke-width="1.2"/>
+            <ellipse cx="121" cy="94" rx="6.5" ry="3" fill="#d7cec2" opacity="0.16" transform="rotate(-18 121 94)"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" fill="#8e938f">
+    <text x="140" y="222" text-anchor="middle" font-size="8" letter-spacing="2" opacity="0.36">5 // 2·π/5 // 72°</text>
+  </g>
+</svg>

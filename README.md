@@ -1,17 +1,5 @@
 <!-- FIRST CONTACT PROFILE -->
 
-<div align="center">
-
-<img src="./assets/first-contact.svg" width="100%" alt="Mathematical first-contact interface" />
-
-<br/>
-
-<sub><code>communication begins before language.</code></sub>
-
-<br/><br/>
-
-</div>
-
 ```text
 [01] detect pattern
 [02] establish common structure

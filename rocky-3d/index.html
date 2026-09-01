@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>First Contact — Live 3D</title>
+<style>
+  html,body{margin:0;background:#07090d;color:#d7dde5;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;overflow:hidden}
+  #stage{width:100vw;height:100vh;display:block}
+  .hud{position:fixed;left:18px;bottom:16px;font-size:12px;line-height:1.6;letter-spacing:.08em;color:#8d98a6;pointer-events:none}
+  .hud b{color:#c7d1dc;font-weight:600}
+</style>
+</head>
+<body>
+<canvas id="stage"></canvas>
+<div class="hud"><b>LIVE 3D / FIRST CONTACT</b><br>drag = orbit · wheel = zoom</div>
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js';
+import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/controls/OrbitControls.js';
+
+const canvas=document.getElementById('stage');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.shadowMap.enabled=true;
+renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+renderer.outputColorSpace=THREE.SRGBColorSpace;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure=1.05;
+
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0x07090d);
+scene.fog=new THREE.FogExp2(0x07090d,.035);
+
+const camera=new THREE.PerspectiveCamera(42,1,.1,100);
+camera.position.set(7,4.6,9.5);
+const controls=new OrbitControls(camera,renderer.domElement);
+controls.enableDamping=true;
+controls.target.set(0,1.2,0);
+controls.minDistance=5;
+controls.maxDistance=16;
+controls.maxPolarAngle=Math.PI*.49;
+
+scene.add(new THREE.HemisphereLight(0x7087a1,0x231b18,1.15));
+const key=new THREE.DirectionalLight(0xffe0bd,4.2); key.position.set(5,8,4); key.castShadow=true; key.shadow.mapSize.set(2048,2048); scene.add(key);
+const rim=new THREE.DirectionalLight(0x58d7d0,2.5); rim.position.set(-5,4,-4); scene.add(rim);
+const fill=new THREE.PointLight(0x4fa7ff,25,16,2); fill.position.set(0,2.7,-3); scene.add(fill);
+
+const floor=new THREE.Mesh(new THREE.PlaneGeometry(40,40),new THREE.MeshStandardMaterial({color:0x0b0f14,roughness:.74,metalness:.06}));
+floor.rotation.x=-Math.PI/2; floor.receiveShadow=true; scene.add(floor);
+
+function stoneMat(base=0x76533b){return new THREE.MeshStandardMaterial({color:base,roughness:.88,metalness:.10});}
+const jointMat=new THREE.MeshStandardMaterial({color:0x4d382d,roughness:.55,metalness:.35});
+const tealMat=new THREE.MeshStandardMaterial({color:0x2a9e8b,emissive:0x0f665d,emissiveIntensity:2.1,roughness:.35,metalness:.18});
+
+function bevelSphere(rx,ry,rz,mat,detail=3){const g=new THREE.IcosahedronGeometry(1,detail); g.scale(rx,ry,rz); const m=new THREE.Mesh(g,mat); m.castShadow=m.receiveShadow=true; return m;}
+function capsule(radius,length,mat){const g=new THREE.CapsuleGeometry(radius,length,7,14); const m=new THREE.Mesh(g,mat); m.castShadow=m.receiveShadow=true; return m;}
+function addPatch(parent,p,r=.12){const s=bevelSphere(r,r*.55,r*.9,tealMat,2); s.position.copy(p); parent.add(s); return s;}
+
+const creature=new THREE.Group(); scene.add(creature);
+creature.position.y=.15;
+
+const shell=bevelSphere(1.65,1.05,1.42,stoneMat(0x805c42),4); shell.position.y=1.55; creature.add(shell);
+const face=bevelSphere(1.18,.68,1.18,stoneMat(0x5f4434),3); face.position.set(0,1.48,.42); creature.add(face);
+const cap=bevelSphere(1.48,.35,1.2,stoneMat(0x9b704e),3); cap.position.set(0,2.19,-.04); creature.add(cap);
+
+addPatch(shell,new THREE.Vector3(-.62,.54,.95),.18);
+addPatch(shell,new THREE.Vector3(.78,.32,.84),.15);
+addPatch(shell,new THREE.Vector3(.26,-.55,1.12),.12);
+
+// crack lines as thin dark cylinders on shell front
+const crackMat=new THREE.MeshStandardMaterial({color:0x2c211b,roughness:1});
+function crack(a,b,r=.018){const d=b.clone().sub(a); const len=d.length(); const c=new THREE.Mesh(new THREE.CylinderGeometry(r,r,len,6),crackMat); c.position.copy(a).add(b).multiplyScalar(.5); c.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.clone().normalize()); creature.add(c);}
+crack(new THREE.Vector3(-.8,1.55,1.29),new THREE.Vector3(-.3,1.38,1.48));
+crack(new THREE.Vector3(-.3,1.38,1.48),new THREE.Vector3(.05,1.61,1.45));
+crack(new THREE.Vector3(.05,1.61,1.45),new THREE.Vector3(.45,1.34,1.4));
+crack(new THREE.Vector3(.45,1.34,1.4),new THREE.Vector3(.83,1.55,1.22));
+
+const legs=[];
+function makeLeg(angle,index){
+  const root=new THREE.Group(); root.position.y=1.42; root.rotation.y=angle; creature.add(root);
+  const shoulder=new THREE.Mesh(new THREE.SphereGeometry(.34,20,16),jointMat); shoulder.position.set(1.42,0,0); shoulder.castShadow=true; root.add(shoulder);
+  const upperPivot=new THREE.Group(); upperPivot.position.set(1.42,0,0); root.add(upperPivot);
+  const upper=capsule(.28,1.12,stoneMat(0x79533c)); upper.position.y=-.63; upper.rotation.z=.18; upperPivot.add(upper); addPatch(upper,new THREE.Vector3(.12,-.15,.18),.10);
+  const knee=new THREE.Mesh(new THREE.SphereGeometry(.30,20,16),jointMat); knee.position.set(.12,-1.22,0); upperPivot.add(knee);
+  const lowerPivot=new THREE.Group(); lowerPivot.position.set(.12,-1.22,0); upperPivot.add(lowerPivot);
+  const lower=capsule(.30,1.02,stoneMat(0x684735)); lower.position.y=-.56; lower.rotation.z=-.12; lowerPivot.add(lower); addPatch(lower,new THREE.Vector3(-.10,-.22,.18),.09);
+  const foot=bevelSphere(.50,.22,.42,stoneMat(0x4b3529),2); foot.position.set(-.05,-1.14,.08); lowerPivot.add(foot);
+  legs.push({root,upperPivot,lowerPivot,phase:index/5*Math.PI*2});
+}
+for(let i=0;i<5;i++) makeLeg(i/5*Math.PI*2,i);
+
+// under-body glowing node
+const core=new THREE.Mesh(new THREE.SphereGeometry(.16,20,20),tealMat); core.position.set(0,.76,0); creature.add(core);
+const ring=new THREE.Mesh(new THREE.TorusGeometry(.28,.045,10,30),tealMat); ring.position.set(0,.78,0); ring.rotation.x=Math.PI/2; creature.add(ring);
+
+const clock=new THREE.Clock();
+function animate(){
+  requestAnimationFrame(animate);
+  const t=clock.getElapsedTime();
+  const speed=2.25;
+  // true articulated gait: staggered five-limb phases
+  legs.forEach((L,i)=>{
+    const p=t*speed+L.phase;
+    const stride=Math.sin(p);
+    const lift=Math.max(0,Math.sin(p));
+    L.upperPivot.rotation.z=-.42*stride + .06;
+    L.upperPivot.rotation.x=.12*Math.cos(p*.5);
+    L.lowerPivot.rotation.z=.62*stride-.18;
+    L.lowerPivot.position.y=-1.22 + lift*.13;
+  });
+  creature.position.y=.17 + Math.sin(t*speed*2)*.045;
+  creature.rotation.z=Math.sin(t*speed)*.018;
+  shell.rotation.y=Math.sin(t*.55)*.03;
+  face.rotation.y=-shell.rotation.y*.7;
+  core.scale.setScalar(1+Math.sin(t*3.5)*.08);
+  controls.update();
+  renderer.render(scene,camera);
+}
+
+function resize(){const w=innerWidth,h=innerHeight; renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix();}
+addEventListener('resize',resize); resize(); animate();
+</script>
+</body>
+</html>

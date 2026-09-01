@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-label="Aravindhan cognitive profile interface">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="72%">
+      <stop offset="0" stop-color="#0B1220"/>
+      <stop offset="0.48" stop-color="#05080F"/>
+      <stop offset="1" stop-color="#010203"/>
+    </radialGradient>
+    <linearGradient id="cyan" x1="0" x2="1">
+      <stop offset="0" stop-color="#00E5FF" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#84F7FF"/>
+      <stop offset="1" stop-color="#00E5FF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="violet" x1="0" x2="1">
+      <stop offset="0" stop-color="#A855F7" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#D8B4FE"/>
+      <stop offset="1" stop-color="#A855F7" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="16"/>
+    </filter>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#7DF9FF" stroke-opacity=".035" stroke-width="1"/>
+    </pattern>
+    <style>
+      text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+      .path{stroke-dasharray:8 16;animation:flow 5s linear infinite}
+      .path2{stroke-dasharray:4 18;animation:flow2 6s linear infinite}
+      .orbitA{transform-origin:600px 252px;animation:spin 18s linear infinite}
+      .orbitB{transform-origin:600px 252px;animation:spinR 13s linear infinite}
+      .core{animation:pulse 2.8s ease-in-out infinite}
+      .scan{animation:scan 5.2s ease-in-out infinite}
+      .blink{animation:blink 1s steps(1) infinite}
+      .s1{animation:state1 8s ease-in-out infinite}.s2{animation:state2 8s ease-in-out infinite}.s3{animation:state3 8s ease-in-out infinite}.s4{animation:state4 8s ease-in-out infinite}
+      .q1{animation:q1 12s ease-in-out infinite}.q2{animation:q2 12s ease-in-out infinite}.q3{animation:q3 12s ease-in-out infinite}
+      @keyframes flow{to{stroke-dashoffset:-240}}
+      @keyframes flow2{to{stroke-dashoffset:220}}
+      @keyframes spin{to{transform:rotate(360deg)}}
+      @keyframes spinR{to{transform:rotate(-360deg)}}
+      @keyframes pulse{0%,100%{opacity:.7;transform:scale(.94);transform-origin:600px 252px}50%{opacity:1;transform:scale(1.06);transform-origin:600px 252px}}
+      @keyframes scan{0%,100%{transform:translateY(-120px);opacity:0}15%,80%{opacity:.45}90%{transform:translateY(120px);opacity:0}}
+      @keyframes blink{0%,48%{opacity:1}49%,100%{opacity:0}}
+      @keyframes state1{0%,18%{opacity:1}25%,100%{opacity:.18}}
+      @keyframes state2{0%,20%{opacity:.18}25%,43%{opacity:1}50%,100%{opacity:.18}}
+      @keyframes state3{0%,45%{opacity:.18}50%,68%{opacity:1}75%,100%{opacity:.18}}
+      @keyframes state4{0%,70%{opacity:.18}75%,93%{opacity:1}100%{opacity:.18}}
+      @keyframes q1{0%,27%{opacity:1}33%,100%{opacity:0}}
+      @keyframes q2{0%,30%{opacity:0}36%,61%{opacity:1}67%,100%{opacity:0}}
+      @keyframes q3{0%,64%{opacity:0}70%,94%{opacity:1}100%{opacity:0}}
+    </style>
+  </defs>
+
+  <rect width="1200" height="560" rx="28" fill="url(#bg)"/>
+  <rect width="1200" height="560" rx="28" fill="url(#grid)"/>
+  <ellipse cx="600" cy="252" rx="250" ry="165" fill="#00E5FF" opacity=".035" filter="url(#soft)"/>
+
+  <g opacity=".45" stroke="#7DF9FF" stroke-width="1.2" fill="none">
+    <path d="M192 152 C330 152 385 218 480 238" class="path"/>
+    <path d="M192 350 C330 350 385 286 480 266" class="path2"/>
+    <path d="M720 238 C815 218 870 152 1008 152" class="path2"/>
+    <path d="M720 266 C815 286 870 350 1008 350" class="path"/>
+  </g>
+
+  <g fill="#071019" stroke="#1B4D59">
+    <rect x="86" y="118" width="212" height="68" rx="14"/>
+    <rect x="86" y="316" width="212" height="68" rx="14"/>
+    <rect x="902" y="118" width="212" height="68" rx="14"/>
+    <rect x="902" y="316" width="212" height="68" rx="14"/>
+  </g>
+  <g fill="#D9FBFF" font-size="13" letter-spacing="2">
+    <text x="112" y="145" class="s1">01 // OBSERVE</text><text x="112" y="166" fill="#6D8590" font-size="10">signal + context</text>
+    <text x="112" y="343" class="s2">02 // REASON</text><text x="112" y="364" fill="#6D8590" font-size="10">models + memory</text>
+    <text x="928" y="145" class="s3">03 // BUILD</text><text x="928" y="166" fill="#6D8590" font-size="10">systems + interface</text>
+    <text x="928" y="343" class="s4">04 // SHIP</text><text x="928" y="364" fill="#6D8590" font-size="10">measure + evolve</text>
+  </g>
+
+  <g fill="none" stroke="#00E5FF" opacity=".5">
+    <ellipse cx="600" cy="252" rx="118" ry="118" stroke-dasharray="38 14" class="orbitA"/>
+    <ellipse cx="600" cy="252" rx="92" ry="92" stroke="#A855F7" stroke-dasharray="10 20" class="orbitB"/>
+  </g>
+  <circle cx="600" cy="252" r="65" fill="#071018" stroke="#6EE7F2" stroke-opacity=".6"/>
+  <circle cx="600" cy="252" r="42" fill="#00E5FF" opacity=".07" class="core" filter="url(#glow)"/>
+  <circle cx="600" cy="252" r="7" fill="#9AFBFF" class="core" filter="url(#glow)"/>
+  <g fill="#CFFBFF" font-size="11" letter-spacing="2" text-anchor="middle">
+    <text x="600" y="232">COGNITIVE</text>
+    <text x="600" y="282" fill="#6D8590">CORE</text>
+  </g>
+
+  <g opacity=".85">
+    <rect x="418" y="206" width="364" height="1" fill="url(#cyan)" class="scan"/>
+    <rect x="418" y="296" width="364" height="1" fill="url(#violet)" class="scan"/>
+  </g>
+
+  <g>
+    <rect x="318" y="426" width="564" height="54" rx="14" fill="#050A10" stroke="#1A3942"/>
+    <circle cx="343" cy="453" r="4" fill="#5EEAD4" filter="url(#glow)"/>
+    <text x="360" y="457" fill="#5F7882" font-size="11">QUERY //</text>
+    <text x="427" y="457" fill="#DDFDFF" font-size="12" class="q1">what should exist next?</text>
+    <text x="427" y="457" fill="#DDFDFF" font-size="12" opacity="0" class="q2">can this become a real system?</text>
+    <text x="427" y="457" fill="#DDFDFF" font-size="12" opacity="0" class="q3">what happens after the prototype?</text>
+    <text x="850" y="457" fill="#8CF7FF" font-size="12" class="blink">▮</text>
+  </g>
+
+  <text x="600" y="72" text-anchor="middle" fill="#F2FDFF" font-size="28" font-weight="700" letter-spacing="8">ARAVINDHAN</text>
+  <text x="600" y="98" text-anchor="middle" fill="#607681" font-size="10" letter-spacing="4">AI SYSTEMS / PRODUCT ENGINEERING / EXPERIMENTAL INTERFACES</text>
+
+  <g fill="#49606A" font-size="9" letter-spacing="1.5">
+    <text x="62" y="522">MODE // BUILDING</text>
+    <text x="600" y="522" text-anchor="middle">INTELLIGENCE SHOULD BECOME SOFTWARE</text>
+    <text x="1138" y="522" text-anchor="end">STATE // ITERATING</text>
+  </g>
+</svg>

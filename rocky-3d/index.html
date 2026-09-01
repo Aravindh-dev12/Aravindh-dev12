@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#efeeec">
-<title>Rocky — Uploaded STL 3D</title>
+<title>Rocky — Exact STL 3D Viewer</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#efeeec;color:#4e4035;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}#stage{display:block;width:100vw;height:100vh}.hud{position:fixed;z-index:5;left:18px;top:16px;pointer-events:none;text-transform:uppercase;letter-spacing:.08em}.hud b{display:block;font-size:12px;font-weight:700}.hud span{display:block;margin-top:5px;font-size:10px;color:#786b60}.hud .state{color:#3e8263}.controls{position:fixed;z-index:6;left:18px;bottom:16px;display:flex;gap:7px}.controls button{border:1px solid #b8ada3;background:#faf9f7;color:#695442;border-radius:999px;padding:8px 11px;font:10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.075em;text-transform:uppercase;cursor:pointer}.controls button:hover,.controls button.active{border-color:#4dab86;color:#3e8263;background:#eef7f2}.note{position:fixed;right:16px;bottom:16px;max-width:420px;text-align:right;font-size:9px;line-height:1.5;color:#8a7c70;letter-spacing:.035em;pointer-events:none}.loading{position:fixed;inset:0;display:grid;place-items:center;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#7b6d61;transition:opacity .35s;pointer-events:none}.loading.hidden{opacity:0}@media(max-width:680px){.note{display:none}.hud{left:12px;top:12px}.controls{left:12px;bottom:12px}}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#efeeec;color:#4e4035;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}#stage{display:block;width:100vw;height:100vh}.hud{position:fixed;z-index:5;left:18px;top:16px;pointer-events:none;text-transform:uppercase;letter-spacing:.08em}.hud b{display:block;font-size:12px;font-weight:700}.hud span{display:block;margin-top:5px;font-size:10px;color:#786b60}.hud .state{color:#3e8263}.controls{position:fixed;z-index:6;left:18px;bottom:16px;display:flex;gap:7px}.controls button{border:1px solid #b8ada3;background:#faf9f7;color:#695442;border-radius:999px;padding:8px 11px;font:10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.075em;text-transform:uppercase;cursor:pointer}.controls button:hover,.controls button.active{border-color:#4dab86;color:#3e8263;background:#eef7f2}.note{position:fixed;right:16px;bottom:16px;max-width:430px;text-align:right;font-size:9px;line-height:1.5;color:#8a7c70;letter-spacing:.035em;pointer-events:none}.loading{position:fixed;inset:0;display:grid;place-items:center;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#7b6d61;transition:opacity .35s;pointer-events:none}.loading.hidden{opacity:0}@media(max-width:680px){.note{display:none}.hud{left:12px;top:12px}.controls{left:12px;bottom:12px}}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
 </head>
 <body>
 <canvas id="stage"></canvas>
-<div id="loading" class="loading">loading your Rocky STL…</div>
-<div class="hud"><b>ROCKY / YOUR STL SOURCE</b><span id="state" class="state">state / inspect</span><span>drag = orbit · wheel = zoom</span></div>
+<div id="loading" class="loading">loading exact Rocky STL…</div>
+<div class="hud"><b>ROCKY / EXACT STL</b><span id="state" class="state">state / inspect</span><span id="meshInfo">mesh / loading</span><span>drag = orbit · wheel = zoom</span></div>
 <div class="controls"><button id="inspect" class="active">inspect</button><button id="turn">slow turn</button></div>
-<div class="note">geometry derived directly from your uploaded STL · web-optimized for GitHub · sandstone material + turquoise mineral accents</div>
+<div class="note">full-resolution 12.9 MB Rocky STL · sandstone material · turquoise mineral accents · no procedural body geometry</div>
 <script type="module">
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
@@ -24,6 +24,7 @@ import { STLLoader } from 'three/addons/loaders/STLLoader.js';
 const canvas=document.getElementById('stage');
 const loading=document.getElementById('loading');
 const stateEl=document.getElementById('state');
+const meshInfo=document.getElementById('meshInfo');
 const renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});
 renderer.setPixelRatio(Math.min(devicePixelRatio,2));
 renderer.setSize(innerWidth,innerHeight,false);
@@ -36,115 +37,118 @@ renderer.toneMappingExposure=1.02;
 const scene=new THREE.Scene();
 scene.background=new THREE.Color(0xefeeec);
 scene.fog=new THREE.FogExp2(0xefeeec,.0105);
-const camera=new THREE.PerspectiveCamera(38,innerWidth/innerHeight,.05,60);
-camera.position.set(6.6,3.7,7.7);
+
+const camera=new THREE.PerspectiveCamera(38,innerWidth/innerHeight,.05,80);
+camera.position.set(6.7,3.8,7.9);
 const controls=new OrbitControls(camera,renderer.domElement);
 controls.enableDamping=true;
 controls.dampingFactor=.06;
 controls.enablePan=false;
-controls.target.set(0,1.7,0);
-controls.minDistance=4.1;
-controls.maxDistance=13;
+controls.target.set(0,1.75,0);
+controls.minDistance=4.0;
+controls.maxDistance=14;
 controls.maxPolarAngle=Math.PI*.495;
 
-scene.add(new THREE.HemisphereLight(0xffffff,0x8f7967,1.75));
-const key=new THREE.DirectionalLight(0xfff7ec,3.4);
-key.position.set(5.7,8.3,5.1);
-key.castShadow=true;
-key.shadow.mapSize.set(2048,2048);
-key.shadow.camera.left=-6;key.shadow.camera.right=6;key.shadow.camera.top=6;key.shadow.camera.bottom=-6;
-scene.add(key);
-const fill=new THREE.DirectionalLight(0xe1ded8,1.25);fill.position.set(-4.8,3.6,4.1);scene.add(fill);
-const rim=new THREE.DirectionalLight(0xffffff,.8);rim.position.set(-4.5,5.2,-5.2);scene.add(rim);
-const floor=new THREE.Mesh(new THREE.PlaneGeometry(26,26),new THREE.MeshStandardMaterial({color:0xe8e6e3,roughness:.96,metalness:0}));
+scene.add(new THREE.HemisphereLight(0xffffff,0x8f7967,1.78));
+const key=new THREE.DirectionalLight(0xfff7ec,3.45);key.position.set(5.8,8.4,5.2);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.camera.left=-7;key.shadow.camera.right=7;key.shadow.camera.top=7;key.shadow.camera.bottom=-7;scene.add(key);
+const fill=new THREE.DirectionalLight(0xe1ded8,1.28);fill.position.set(-4.8,3.6,4.1);scene.add(fill);
+const rim=new THREE.DirectionalLight(0xffffff,.82);rim.position.set(-4.5,5.2,-5.2);scene.add(rim);
+
+const floor=new THREE.Mesh(new THREE.PlaneGeometry(28,28),new THREE.MeshStandardMaterial({color:0xe8e6e3,roughness:.96,metalness:0}));
 floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;scene.add(floor);
 
 function makeRockTexture(){
   const c=document.createElement('canvas');c.width=c.height=512;const x=c.getContext('2d');
   x.fillStyle='#b69779';x.fillRect(0,0,512,512);
   const im=x.getImageData(0,0,512,512);
-  for(let i=0;i<im.data.length;i+=4){const n=(Math.random()-.5)*34;im.data[i]+=n;im.data[i+1]+=n*.72;im.data[i+2]+=n*.47}
+  for(let i=0;i<im.data.length;i+=4){const n=(Math.random()-.5)*34;im.data[i]=Math.max(0,Math.min(255,im.data[i]+n));im.data[i+1]=Math.max(0,Math.min(255,im.data[i+1]+n*.72));im.data[i+2]=Math.max(0,Math.min(255,im.data[i+2]+n*.47))}
   x.putImageData(im,0,0);
   x.globalAlpha=.22;x.strokeStyle='#59483a';x.lineWidth=1.5;
   for(let i=0;i<55;i++){let px=Math.random()*512,py=Math.random()*512;x.beginPath();x.moveTo(px,py);for(let j=0;j<4;j++){px+=(Math.random()-.5)*42;py+=(Math.random()-.5)*42;x.lineTo(px,py)}x.stroke()}
   const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(2.2,2.2);return t;
 }
+
 const rockTexture=makeRockTexture();
 const stoneMat=new THREE.MeshStandardMaterial({map:rockTexture,color:0xb8997b,roughness:.96,metalness:.012,bumpMap:rockTexture,bumpScale:.055});
-const mineralMat=new THREE.MeshStandardMaterial({color:0x58c59b,emissive:0x3f9f78,emissiveIntensity:.72,roughness:.48,metalness:.03,transparent:true,opacity:.94});
-const glowMat=new THREE.MeshBasicMaterial({color:0x70d5ae,transparent:true,opacity:.18,blending:THREE.AdditiveBlending,depthWrite:false});
+const mineralMat=new THREE.MeshStandardMaterial({color:0x56c89b,emissive:0x32926e,emissiveIntensity:.72,roughness:.48,metalness:.03,transparent:true,opacity:.95});
+const glowMat=new THREE.MeshBasicMaterial({color:0x72dcb1,transparent:true,opacity:.15,blending:THREE.AdditiveBlending,depthWrite:false});
 
 const rockyRoot=new THREE.Group();scene.add(rockyRoot);
 let rockyMesh=null,turning=false;
 
-async function gunzipBuffer(buffer){
-  if(!('DecompressionStream' in window)) throw new Error('This browser does not support gzip decompression');
-  const stream=new Blob([buffer]).stream().pipeThrough(new DecompressionStream('gzip'));
-  return await new Response(stream).arrayBuffer();
-}
-function decodeBase64(text){
-  const clean=text.replace(/\s/g,'');
-  const raw=atob(clean);
-  const bytes=new Uint8Array(raw.length);
-  for(let i=0;i<raw.length;i++)bytes[i]=raw.charCodeAt(i);
-  return bytes.buffer;
-}
-async function loadSourceMesh(){
-  // part0 lost its final 12 chars during transport; part2 already contains the original parts 2+3.
-  // Reinsert the verified boundary and ignore the duplicated part3 file so the gzip bytes match the STL-derived payload.
-  const urls=[0,1,2].map(i=>`../assets/rocky-model-source.part${i}`);
-  const parts=await Promise.all(urls.map(async url=>{
-    const r=await fetch(url);
-    if(!r.ok)throw new Error(`${url} ${r.status}`);
-    return r.text();
-  }));
-  const encoded=parts[0]+'nenHnxg3SYDc'+parts[1]+parts[2];
-  return gunzipBuffer(decodeBase64(encoded));
-}
-function orientPatch(obj,normal){obj.quaternion.setFromUnitVectors(new THREE.Vector3(0,0,1),normal.clone().normalize())}
 function addMineralPatch(mesh,origin,target,size=.17,stretch=1.35){
-  const ray=new THREE.Raycaster(origin,target.clone().sub(origin).normalize(),0,20);
-  const hit=ray.intersectObject(mesh,false)[0];if(!hit)return;
+  const ray=new THREE.Raycaster(origin,target.clone().sub(origin).normalize(),0,30);
+  const hit=ray.intersectObject(mesh,false)[0];
+  if(!hit)return;
   const normal=hit.face.normal.clone().transformDirection(mesh.matrixWorld).normalize();
-  const p=new THREE.Mesh(new THREE.IcosahedronGeometry(size,2),mineralMat);
-  p.position.copy(hit.point).addScaledVector(normal,.018);p.scale.set(stretch,.48,1.0);orientPatch(p,normal);scene.add(p);
-  const glow=new THREE.Mesh(new THREE.SphereGeometry(size*1.35,16,10),glowMat);
-  glow.position.copy(hit.point).addScaledVector(normal,.025);glow.scale.set(stretch,1,.42);scene.add(glow);
+  const patch=new THREE.Mesh(new THREE.IcosahedronGeometry(size,2),mineralMat);
+  patch.position.copy(hit.point).addScaledVector(normal,.018);
+  patch.scale.set(stretch,.48,1.0);
+  patch.quaternion.setFromUnitVectors(new THREE.Vector3(0,0,1),normal);
+  scene.add(patch);rockyRoot.attach(patch);
+  const glow=new THREE.Mesh(new THREE.SphereGeometry(size*1.4,16,10),glowMat);
+  glow.position.copy(hit.point).addScaledVector(normal,.025);
+  glow.scale.set(stretch,1,.42);
+  scene.add(glow);rockyRoot.attach(glow);
 }
+
+function loadGeometry(url){
+  const loader=new STLLoader();
+  return new Promise((resolve,reject)=>loader.load(url,resolve,event=>{
+    if(event.total){const pct=Math.min(99,Math.round(event.loaded/event.total*100));loading.textContent=`loading exact Rocky STL… ${pct}%`}
+  },reject));
+}
+
 async function loadRocky(){
-  const stl=await loadSourceMesh();
-  const geometry=new STLLoader().parse(stl);
-  geometry.computeVertexNormals();geometry.computeBoundingBox();
-  const b=geometry.boundingBox;
-  const cx=(b.min.x+b.max.x)/2,cy=(b.min.y+b.max.y)/2,minZ=b.min.z;
+  const geometry=await loadGeometry('./assets/rocky-official.stl');
+  geometry.computeVertexNormals();
+  geometry.computeBoundingBox();
+  const box=geometry.boundingBox;
+  const rawWidth=box.max.x-box.min.x;
+  const cx=(box.min.x+box.max.x)/2;
+  const cy=(box.min.y+box.max.y)/2;
+  const minZ=box.min.z;
   geometry.translate(-cx,-cy,-minZ);
+
   const mesh=new THREE.Mesh(geometry,stoneMat);
   mesh.rotation.x=-Math.PI/2;
-  const scale=4.7/(b.max.x-b.min.x);
-  mesh.scale.setScalar(scale);
-  mesh.castShadow=mesh.receiveShadow=true;
+  mesh.scale.setScalar(5.15/rawWidth);
+  mesh.castShadow=true;mesh.receiveShadow=true;
   rockyRoot.add(mesh);rockyMesh=mesh;
+
   rockyRoot.updateMatrixWorld(true);
-  const wb=new THREE.Box3().setFromObject(mesh);const c=wb.getCenter(new THREE.Vector3());
-  rockyRoot.position.x-=c.x;rockyRoot.position.z-=c.z;rockyRoot.position.y-=wb.min.y;
+  const wb=new THREE.Box3().setFromObject(mesh);
+  const center=wb.getCenter(new THREE.Vector3());
+  rockyRoot.position.x-=center.x;
+  rockyRoot.position.z-=center.z;
+  rockyRoot.position.y-=wb.min.y;
   rockyRoot.updateMatrixWorld(true);
+
   const finalBox=new THREE.Box3().setFromObject(mesh);
-  controls.target.copy(finalBox.getCenter(new THREE.Vector3()));controls.target.y*=.83;
-  camera.position.set(6.2,3.45,7.2);controls.update();
-  const patches=[
-    [new THREE.Vector3(-.65,6,.35),new THREE.Vector3(-.65,2.7,.35),.18,1.35],
-    [new THREE.Vector3(.9,5.6,.5),new THREE.Vector3(.9,2.4,.5),.16,1.25],
-    [new THREE.Vector3(-1.1,2.6,6),new THREE.Vector3(-1.1,2.2,0),.14,1.45],
-    [new THREE.Vector3(.9,2.8,6),new THREE.Vector3(.9,2.1,0),.13,1.35],
-    [new THREE.Vector3(-2.8,1.5,4.5),new THREE.Vector3(-1.6,1.35,0),.13,1.4],
-    [new THREE.Vector3(2.8,1.4,4.5),new THREE.Vector3(1.6,1.25,0),.14,1.45],
-    [new THREE.Vector3(-2.3,.8,-4.5),new THREE.Vector3(-1.5,.9,0),.11,1.2],
-    [new THREE.Vector3(2.3,.9,-4.5),new THREE.Vector3(1.5,1,0),.11,1.2]
+  const finalCenter=finalBox.getCenter(new THREE.Vector3());
+  controls.target.copy(finalCenter);controls.target.y*=.84;
+  camera.position.set(finalCenter.x+6.1,finalCenter.y+2.0,finalCenter.z+7.0);
+  controls.update();
+
+  const triangles=Math.round(geometry.attributes.position.count/3);
+  meshInfo.textContent=`mesh / ${triangles.toLocaleString()} triangles`;
+
+  const p=[
+    [new THREE.Vector3(-.7,6,.35),new THREE.Vector3(-.7,2.7,.35),.18,1.35],
+    [new THREE.Vector3(.95,5.7,.45),new THREE.Vector3(.95,2.5,.45),.16,1.25],
+    [new THREE.Vector3(-1.15,2.8,6),new THREE.Vector3(-1.15,2.2,0),.14,1.45],
+    [new THREE.Vector3(.95,2.9,6),new THREE.Vector3(.95,2.1,0),.13,1.35],
+    [new THREE.Vector3(-3.2,1.55,4.7),new THREE.Vector3(-1.6,1.35,0),.13,1.4],
+    [new THREE.Vector3(3.2,1.5,4.7),new THREE.Vector3(1.6,1.3,0),.14,1.45],
+    [new THREE.Vector3(-2.6,.9,-4.8),new THREE.Vector3(-1.5,.9,0),.11,1.2],
+    [new THREE.Vector3(2.6,1,-4.8),new THREE.Vector3(1.5,1,0),.11,1.2]
   ];
-  for(const [o,t,s,st] of patches)addMineralPatch(mesh,o,t,s,st);
+  for(const args of p)addMineralPatch(mesh,...args);
+
   loading.classList.add('hidden');
 }
-loadRocky().catch(err=>{console.error(err);loading.textContent='could not load your Rocky STL';});
+
+loadRocky().catch(err=>{console.error(err);loading.textContent='could not load exact Rocky STL';});
 
 for(const id of ['inspect','turn'])document.getElementById(id).onclick=()=>{
   turning=id==='turn';
@@ -152,9 +156,11 @@ for(const id of ['inspect','turn'])document.getElementById(id).onclick=()=>{
   document.getElementById('turn').classList.toggle('active',turning);
   stateEl.textContent=`state / ${turning?'slow turn':'inspect'}`;
 };
+
 const clock=new THREE.Clock();
-function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();if(rockyMesh){rockyRoot.rotation.y=turning?t*.16:Math.sin(t*.32)*.025;rockyRoot.position.y=Math.sin(t*.75)*.008}controls.update();renderer.render(scene,camera)}
+function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();if(rockyMesh){rockyRoot.rotation.y=turning?t*.16:Math.sin(t*.32)*.018;rockyRoot.position.y=Math.sin(t*.75)*.006}controls.update();renderer.render(scene,camera)}
 animate();
+
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight,false)});
 </script>
 </body>

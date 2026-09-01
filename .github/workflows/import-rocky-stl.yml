@@ -18,48 +18,85 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Download and validate exact Rocky STL
+      - name: Download exact Rocky source package
         shell: bash
         run: |
           set -euo pipefail
           SOURCE_URL='https://d95a3luo0amge.cloudfront.net/826ddd7c-aa66-4d0e-86ec-2dc212430cdd/projecthailmary/images/project_hail_mary_self_print_rocky.zip'
           curl -L --fail --retry 3 "$SOURCE_URL" -o /tmp/rocky.zip
           rm -rf /tmp/rocky
-          mkdir -p /tmp/rocky rocky-3d/assets
+          mkdir -p /tmp/rocky rocky-3d/assets/action
           unzip -q -o /tmp/rocky.zip -d /tmp/rocky
 
-          STL_FILE='/tmp/rocky/rocky-statue-figure-files/statue_unsupported/statue_unsupported.stl'
-          test -f "$STL_FILE"
+          STATUE='/tmp/rocky/rocky-statue-figure-files/statue_unsupported/statue_unsupported.stl'
+          PARTS='/tmp/rocky/rocky-statue-figure-files/Action_figure_Unsupported_STLS'
+          test -f "$STATUE"
+          test -d "$PARTS"
 
-          python3 - "$STL_FILE" <<'PY'
-          import os, struct, sys
-          path = sys.argv[1]
-          size = os.path.getsize(path)
-          if size < 10_000_000:
-              raise SystemExit(f'STL unexpectedly small: {size} bytes')
-          with open(path, 'rb') as f:
-              f.seek(80)
-              triangles = struct.unpack('<I', f.read(4))[0]
-          expected_size = 84 + triangles * 50
-          if size != expected_size:
-              raise SystemExit(f'Not a valid binary STL: size={size}, expected={expected_size}')
-          if triangles != 258_432:
-              raise SystemExit(f'Unexpected triangle count: {triangles} (expected 258432)')
-          print(f'Validated exact Rocky mesh: {triangles:,} triangles, {size:,} bytes')
+          python3 - "$STATUE" "$PARTS" <<'PY'
+          import json, math, os, shutil, struct, sys
+          statue, parts_dir = sys.argv[1:]
+          out_dir = 'rocky-3d/assets/action'
+          os.makedirs(out_dir, exist_ok=True)
+
+          def inspect_binary_stl(path):
+              size = os.path.getsize(path)
+              with open(path, 'rb') as f:
+                  header = f.read(80)
+                  tri_count = struct.unpack('<I', f.read(4))[0]
+                  expected = 84 + tri_count * 50
+                  if expected != size:
+                      raise SystemExit(f'Not binary STL: {path} size={size} expected={expected}')
+                  lo = [math.inf, math.inf, math.inf]
+                  hi = [-math.inf, -math.inf, -math.inf]
+                  for _ in range(tri_count):
+                      block = f.read(50)
+                      vals = struct.unpack('<12fH', block)
+                      for j in range(3):
+                          x, y, z = vals[3+j*3:6+j*3]
+                          lo[0] = min(lo[0], x); lo[1] = min(lo[1], y); lo[2] = min(lo[2], z)
+                          hi[0] = max(hi[0], x); hi[1] = max(hi[1], y); hi[2] = max(hi[2], z)
+              return {
+                  'bytes': size,
+                  'triangles': tri_count,
+                  'min': [round(v, 6) for v in lo],
+                  'max': [round(v, 6) for v in hi],
+                  'size': [round(hi[i]-lo[i], 6) for i in range(3)],
+                  'center': [round((hi[i]+lo[i])/2, 6) for i in range(3)],
+              }
+
+          statue_info = inspect_binary_stl(statue)
+          if statue_info['triangles'] != 258_432 or statue_info['bytes'] != 12_921_684:
+              raise SystemExit(f'Unexpected statue mesh: {statue_info}')
+          shutil.copy2(statue, 'rocky-3d/assets/rocky-official.stl')
+
+          wanted = ['torso.stl'] + [f'{i}-{suffix}.stl' for i in range(1, 6) for suffix in ('A','B')] + ['1-C.stl']
+          manifest = {'source':'official Project Hail Mary action-figure STL set','statue':statue_info,'parts':{}}
+          for name in wanted:
+              src = os.path.join(parts_dir, name)
+              if not os.path.isfile(src):
+                  raise SystemExit(f'Missing action-figure part: {name}')
+              dst = os.path.join(out_dir, name)
+              shutil.copy2(src, dst)
+              manifest['parts'][name] = inspect_binary_stl(src)
+
+          with open(os.path.join(out_dir, 'manifest.json'), 'w') as f:
+              json.dump(manifest, f, indent=2)
+          print('Validated statue:', statue_info)
+          for name, info in manifest['parts'].items():
+              print(name, info)
           PY
 
-          cp "$STL_FILE" rocky-3d/assets/rocky-official.stl
-
-      - name: Commit exact STL
+      - name: Commit exact Rocky assets
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add rocky-3d/assets/rocky-official.stl
+          git add rocky-3d/assets/rocky-official.stl rocky-3d/assets/action
           if git diff --cached --quiet; then
-            echo 'STL already up to date.'
+            echo 'Rocky assets already up to date.'
             exit 0
           fi
-          git commit -m 'Replace stub with exact Rocky STL model'
+          git commit -m 'Add articulated Rocky action-figure parts'
           git push

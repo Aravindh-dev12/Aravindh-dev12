@@ -15,11 +15,11 @@ $$
 \text{idea} \xrightarrow{\;reasoning\;} \text{system} \xrightarrow{\;iteration\;} \text{reality}
 $$
 
-<a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/2e2d0565b454116ef80e5044adafdc900d254b90/rocky-3d/index.html" target="_blank" rel="noreferrer">
+<a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/2b6ab52ca42610ec8c73b99547a1dff84fdcd661/rocky-3d/index.html" target="_blank" rel="noreferrer">
   <img src="./assets/rocky-stl-preview.webp" width="880" alt="Rocky — working articulated 3D model built from the official action-figure STL parts" />
 </a>
 
-<sub><a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/2e2d0565b454116ef80e5044adafdc900d254b90/rocky-3d/index.html"><code>open live 3D Rocky → walk · wave hi · signals · work · bye · orbit</code></a></sub>
+<sub><a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/2b6ab52ca42610ec8c73b99547a1dff84fdcd661/rocky-3d/index.html"><code>open live 3D Rocky → real open-hand wave · signals · work · walk · bye · orbit</code></a></sub>
 
 </div>
 

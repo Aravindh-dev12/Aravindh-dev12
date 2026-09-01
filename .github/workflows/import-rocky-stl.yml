@@ -1,0 +1,48 @@
+name: Import exact Rocky STL
+
+on:
+  push:
+    paths:
+      - '.github/workflows/import-rocky-stl.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download exact Rocky STL source
+        shell: bash
+        run: |
+          set -euo pipefail
+          SOURCE_URL='https://d95a3luo0amge.cloudfront.net/826ddd7c-aa66-4d0e-86ec-2dc212430cdd/projecthailmary/images/project_hail_mary_self_print_rocky.zip'
+          curl -L --fail --retry 3 "$SOURCE_URL" -o /tmp/rocky.zip
+          rm -rf /tmp/rocky
+          mkdir -p /tmp/rocky rocky-3d/assets
+          unzip -o /tmp/rocky.zip -d /tmp/rocky
+          STL_FILE="$(find /tmp/rocky -type f -iname '*.stl' -print -quit)"
+          test -n "$STL_FILE"
+          cp "$STL_FILE" rocky-3d/assets/rocky-official.stl
+          test -s rocky-3d/assets/rocky-official.stl
+          echo "Imported $(du -h rocky-3d/assets/rocky-official.stl | cut -f1) STL"
+
+      - name: Commit exact STL
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add rocky-3d/assets/rocky-official.stl
+          if git diff --cached --quiet; then
+            echo 'STL already up to date.'
+            exit 0
+          fi
+          git commit -m 'Add exact Rocky STL model'
+          git push

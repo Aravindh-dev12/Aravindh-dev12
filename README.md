@@ -15,7 +15,9 @@ $$
 \text{idea} \xrightarrow{\;reasoning\;} \text{system} \xrightarrow{\;iteration\;} \text{reality}
 $$
 
-<img src="./assets/eridian-walk.svg" width="880" alt="Rocky-inspired living stone creature walking through the profile" />
+<img src="./assets/rocky-walk.webp" width="230" alt="Rocky-inspired 3D stone creature walking" />
+
+<sub><code>gait(t + 2πk/5)</code></sub>
 
 </div>
 

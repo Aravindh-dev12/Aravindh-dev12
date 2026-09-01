@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#efeeec">
-<title>Rocky — Exact STL 3D</title>
+<title>Rocky — Uploaded STL 3D</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#efeeec;color:#4e4035;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}#stage{display:block;width:100vw;height:100vh}.hud{position:fixed;z-index:5;left:18px;top:16px;pointer-events:none;text-transform:uppercase;letter-spacing:.08em}.hud b{display:block;font-size:12px;font-weight:700}.hud span{display:block;margin-top:5px;font-size:10px;color:#786b60}.hud .state{color:#3e8263}.controls{position:fixed;z-index:6;left:18px;bottom:16px;display:flex;gap:7px}.controls button{border:1px solid #b8ada3;background:#faf9f7;color:#695442;border-radius:999px;padding:8px 11px;font:10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.075em;text-transform:uppercase;cursor:pointer}.controls button:hover,.controls button.active{border-color:#4dab86;color:#3e8263;background:#eef7f2}.note{position:fixed;right:16px;bottom:16px;max-width:390px;text-align:right;font-size:9px;line-height:1.5;color:#8a7c70;letter-spacing:.035em;pointer-events:none}.loading{position:fixed;inset:0;display:grid;place-items:center;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#7b6d61;transition:opacity .35s;pointer-events:none}.loading.hidden{opacity:0}@media(max-width:680px){.note{display:none}.hud{left:12px;top:12px}.controls{left:12px;bottom:12px}}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#efeeec;color:#4e4035;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}#stage{display:block;width:100vw;height:100vh}.hud{position:fixed;z-index:5;left:18px;top:16px;pointer-events:none;text-transform:uppercase;letter-spacing:.08em}.hud b{display:block;font-size:12px;font-weight:700}.hud span{display:block;margin-top:5px;font-size:10px;color:#786b60}.hud .state{color:#3e8263}.controls{position:fixed;z-index:6;left:18px;bottom:16px;display:flex;gap:7px}.controls button{border:1px solid #b8ada3;background:#faf9f7;color:#695442;border-radius:999px;padding:8px 11px;font:10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.075em;text-transform:uppercase;cursor:pointer}.controls button:hover,.controls button.active{border-color:#4dab86;color:#3e8263;background:#eef7f2}.note{position:fixed;right:16px;bottom:16px;max-width:420px;text-align:right;font-size:9px;line-height:1.5;color:#8a7c70;letter-spacing:.035em;pointer-events:none}.loading{position:fixed;inset:0;display:grid;place-items:center;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#7b6d61;transition:opacity .35s;pointer-events:none}.loading.hidden{opacity:0}@media(max-width:680px){.note{display:none}.hud{left:12px;top:12px}.controls{left:12px;bottom:12px}}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
 </head>
 <body>
 <canvas id="stage"></canvas>
-<div id="loading" class="loading">loading uploaded Rocky STL…</div>
-<div class="hud"><b>ROCKY / UPLOADED STL</b><span id="state" class="state">state / inspect</span><span>drag = orbit · wheel = zoom</span></div>
+<div id="loading" class="loading">loading your Rocky STL…</div>
+<div class="hud"><b>ROCKY / YOUR STL SOURCE</b><span id="state" class="state">state / inspect</span><span>drag = orbit · wheel = zoom</span></div>
 <div class="controls"><button id="inspect" class="active">inspect</button><button id="turn">slow turn</button></div>
-<div class="note">exact uploaded STL geometry · browser-optimized copy · sandstone material + turquoise mineral accents</div>
+<div class="note">geometry derived directly from your uploaded STL · web-optimized for GitHub · sandstone material + turquoise mineral accents</div>
 <script type="module">
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
@@ -25,20 +25,48 @@ const canvas=document.getElementById('stage');
 const loading=document.getElementById('loading');
 const stateEl=document.getElementById('state');
 const renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});
-renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight,false);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.02;
-const scene=new THREE.Scene();scene.background=new THREE.Color(0xefeeec);scene.fog=new THREE.FogExp2(0xefeeec,.0105);
-const camera=new THREE.PerspectiveCamera(38,innerWidth/innerHeight,.05,60);camera.position.set(6.6,3.7,7.7);
-const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.06;controls.enablePan=false;controls.target.set(0,1.7,0);controls.minDistance=4.1;controls.maxDistance=13;controls.maxPolarAngle=Math.PI*.495;
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(innerWidth,innerHeight,false);
+renderer.shadowMap.enabled=true;
+renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+renderer.outputColorSpace=THREE.SRGBColorSpace;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure=1.02;
+
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0xefeeec);
+scene.fog=new THREE.FogExp2(0xefeeec,.0105);
+const camera=new THREE.PerspectiveCamera(38,innerWidth/innerHeight,.05,60);
+camera.position.set(6.6,3.7,7.7);
+const controls=new OrbitControls(camera,renderer.domElement);
+controls.enableDamping=true;
+controls.dampingFactor=.06;
+controls.enablePan=false;
+controls.target.set(0,1.7,0);
+controls.minDistance=4.1;
+controls.maxDistance=13;
+controls.maxPolarAngle=Math.PI*.495;
+
 scene.add(new THREE.HemisphereLight(0xffffff,0x8f7967,1.75));
-const key=new THREE.DirectionalLight(0xfff7ec,3.4);key.position.set(5.7,8.3,5.1);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.camera.left=-6;key.shadow.camera.right=6;key.shadow.camera.top=6;key.shadow.camera.bottom=-6;scene.add(key);
+const key=new THREE.DirectionalLight(0xfff7ec,3.4);
+key.position.set(5.7,8.3,5.1);
+key.castShadow=true;
+key.shadow.mapSize.set(2048,2048);
+key.shadow.camera.left=-6;key.shadow.camera.right=6;key.shadow.camera.top=6;key.shadow.camera.bottom=-6;
+scene.add(key);
 const fill=new THREE.DirectionalLight(0xe1ded8,1.25);fill.position.set(-4.8,3.6,4.1);scene.add(fill);
 const rim=new THREE.DirectionalLight(0xffffff,.8);rim.position.set(-4.5,5.2,-5.2);scene.add(rim);
-const floor=new THREE.Mesh(new THREE.PlaneGeometry(26,26),new THREE.MeshStandardMaterial({color:0xe8e6e3,roughness:.96,metalness:0}));floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;scene.add(floor);
+const floor=new THREE.Mesh(new THREE.PlaneGeometry(26,26),new THREE.MeshStandardMaterial({color:0xe8e6e3,roughness:.96,metalness:0}));
+floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;scene.add(floor);
 
 function makeRockTexture(){
-  const c=document.createElement('canvas');c.width=c.height=512;const x=c.getContext('2d');x.fillStyle='#b69779';x.fillRect(0,0,512,512);const im=x.getImageData(0,0,512,512);
-  for(let i=0;i<im.data.length;i+=4){const n=(Math.random()-.5)*34;im.data[i]+=n;im.data[i+1]+=n*.72;im.data[i+2]+=n*.47}x.putImageData(im,0,0);
-  x.globalAlpha=.22;x.strokeStyle='#59483a';x.lineWidth=1.5;for(let i=0;i<55;i++){let px=Math.random()*512,py=Math.random()*512;x.beginPath();x.moveTo(px,py);for(let j=0;j<4;j++){px+=(Math.random()-.5)*42;py+=(Math.random()-.5)*42;x.lineTo(px,py)}x.stroke()}
+  const c=document.createElement('canvas');c.width=c.height=512;const x=c.getContext('2d');
+  x.fillStyle='#b69779';x.fillRect(0,0,512,512);
+  const im=x.getImageData(0,0,512,512);
+  for(let i=0;i<im.data.length;i+=4){const n=(Math.random()-.5)*34;im.data[i]+=n;im.data[i+1]+=n*.72;im.data[i+2]+=n*.47}
+  x.putImageData(im,0,0);
+  x.globalAlpha=.22;x.strokeStyle='#59483a';x.lineWidth=1.5;
+  for(let i=0;i<55;i++){let px=Math.random()*512,py=Math.random()*512;x.beginPath();x.moveTo(px,py);for(let j=0;j<4;j++){px+=(Math.random()-.5)*42;py+=(Math.random()-.5)*42;x.lineTo(px,py)}x.stroke()}
   const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(2.2,2.2);return t;
 }
 const rockTexture=makeRockTexture();
@@ -46,26 +74,56 @@ const stoneMat=new THREE.MeshStandardMaterial({map:rockTexture,color:0xb8997b,ro
 const mineralMat=new THREE.MeshStandardMaterial({color:0x58c59b,emissive:0x3f9f78,emissiveIntensity:.72,roughness:.48,metalness:.03,transparent:true,opacity:.94});
 const glowMat=new THREE.MeshBasicMaterial({color:0x70d5ae,transparent:true,opacity:.18,blending:THREE.AdditiveBlending,depthWrite:false});
 
-const rockyRoot=new THREE.Group();scene.add(rockyRoot);let rockyMesh=null,turning=false;
+const rockyRoot=new THREE.Group();scene.add(rockyRoot);
+let rockyMesh=null,turning=false;
+
 async function gunzipBuffer(buffer){
   if(!('DecompressionStream' in window)) throw new Error('This browser does not support gzip decompression');
   const stream=new Blob([buffer]).stream().pipeThrough(new DecompressionStream('gzip'));
   return await new Response(stream).arrayBuffer();
 }
+function decodeBase64(text){
+  const clean=text.replace(/\s/g,'');
+  const raw=atob(clean);
+  const bytes=new Uint8Array(raw.length);
+  for(let i=0;i<raw.length;i++)bytes[i]=raw.charCodeAt(i);
+  return bytes.buffer;
+}
+async function loadSourceMesh(){
+  const urls=[0,1,2,3].map(i=>`../assets/rocky-model-source.part${i}`);
+  const parts=await Promise.all(urls.map(async url=>{const r=await fetch(url);if(!r.ok)throw new Error(`${url} ${r.status}`);return r.text()}));
+  return gunzipBuffer(decodeBase64(parts.join('')));
+}
 function orientPatch(obj,normal){obj.quaternion.setFromUnitVectors(new THREE.Vector3(0,0,1),normal.clone().normalize())}
 function addMineralPatch(mesh,origin,target,size=.17,stretch=1.35){
-  const ray=new THREE.Raycaster(origin,target.clone().sub(origin).normalize(),0,20);const hit=ray.intersectObject(mesh,false)[0];if(!hit)return;
+  const ray=new THREE.Raycaster(origin,target.clone().sub(origin).normalize(),0,20);
+  const hit=ray.intersectObject(mesh,false)[0];if(!hit)return;
   const normal=hit.face.normal.clone().transformDirection(mesh.matrixWorld).normalize();
-  const p=new THREE.Mesh(new THREE.IcosahedronGeometry(size,2),mineralMat);p.position.copy(hit.point).addScaledVector(normal,.018);p.scale.set(stretch,.48,1.0);orientPatch(p,normal);scene.add(p);
-  const glow=new THREE.Mesh(new THREE.SphereGeometry(size*1.35,16,10),glowMat);glow.position.copy(hit.point).addScaledVector(normal,.025);glow.scale.set(stretch,1,.42);scene.add(glow);
+  const p=new THREE.Mesh(new THREE.IcosahedronGeometry(size,2),mineralMat);
+  p.position.copy(hit.point).addScaledVector(normal,.018);p.scale.set(stretch,.48,1.0);orientPatch(p,normal);scene.add(p);
+  const glow=new THREE.Mesh(new THREE.SphereGeometry(size*1.35,16,10),glowMat);
+  glow.position.copy(hit.point).addScaledVector(normal,.025);glow.scale.set(stretch,1,.42);scene.add(glow);
 }
 async function loadRocky(){
-  const compressed=await fetch('../assets/rocky-model.stl.gz').then(r=>{if(!r.ok)throw new Error(`model ${r.status}`);return r.arrayBuffer()});
-  const stl=await gunzipBuffer(compressed);const geometry=new STLLoader().parse(stl);geometry.computeVertexNormals();geometry.computeBoundingBox();
-  const b=geometry.boundingBox;const cx=(b.min.x+b.max.x)/2,cy=(b.min.y+b.max.y)/2,minZ=b.min.z;geometry.translate(-cx,-cy,-minZ);
-  const mesh=new THREE.Mesh(geometry,stoneMat);mesh.rotation.x=-Math.PI/2;const scale=4.7/(b.max.x-b.min.x);mesh.scale.setScalar(scale);mesh.castShadow=mesh.receiveShadow=true;rockyRoot.add(mesh);rockyMesh=mesh;
-  rockyRoot.updateMatrixWorld(true);const wb=new THREE.Box3().setFromObject(mesh);const c=wb.getCenter(new THREE.Vector3());rockyRoot.position.x-=c.x;rockyRoot.position.z-=c.z;rockyRoot.position.y-=wb.min.y;rockyRoot.updateMatrixWorld(true);
-  const finalBox=new THREE.Box3().setFromObject(mesh);controls.target.copy(finalBox.getCenter(new THREE.Vector3()));controls.target.y*=.83;camera.position.set(6.2,3.45,7.2);controls.update();
+  const stl=await loadSourceMesh();
+  const geometry=new STLLoader().parse(stl);
+  geometry.computeVertexNormals();geometry.computeBoundingBox();
+  const b=geometry.boundingBox;
+  const cx=(b.min.x+b.max.x)/2,cy=(b.min.y+b.max.y)/2,minZ=b.min.z;
+  geometry.translate(-cx,-cy,-minZ);
+  const mesh=new THREE.Mesh(geometry,stoneMat);
+  mesh.rotation.x=-Math.PI/2;
+  const scale=4.7/(b.max.x-b.min.x);
+  mesh.scale.setScalar(scale);
+  mesh.castShadow=mesh.receiveShadow=true;
+  rockyRoot.add(mesh);rockyMesh=mesh;
+  rockyRoot.updateMatrixWorld(true);
+  const wb=new THREE.Box3().setFromObject(mesh);const c=wb.getCenter(new THREE.Vector3());
+  rockyRoot.position.x-=c.x;rockyRoot.position.z-=c.z;rockyRoot.position.y-=wb.min.y;
+  rockyRoot.updateMatrixWorld(true);
+  const finalBox=new THREE.Box3().setFromObject(mesh);
+  controls.target.copy(finalBox.getCenter(new THREE.Vector3()));controls.target.y*=.83;
+  camera.position.set(6.2,3.45,7.2);controls.update();
   const patches=[
     [new THREE.Vector3(-.65,6,.35),new THREE.Vector3(-.65,2.7,.35),.18,1.35],
     [new THREE.Vector3(.9,5.6,.5),new THREE.Vector3(.9,2.4,.5),.16,1.25],
@@ -79,9 +137,14 @@ async function loadRocky(){
   for(const [o,t,s,st] of patches)addMineralPatch(mesh,o,t,s,st);
   loading.classList.add('hidden');
 }
-loadRocky().catch(err=>{console.error(err);loading.textContent='could not load Rocky STL';});
+loadRocky().catch(err=>{console.error(err);loading.textContent='could not load your Rocky STL';});
 
-for(const id of ['inspect','turn'])document.getElementById(id).onclick=()=>{turning=id==='turn';document.getElementById('inspect').classList.toggle('active',!turning);document.getElementById('turn').classList.toggle('active',turning);stateEl.textContent=`state / ${turning?'slow turn':'inspect'}`};
+for(const id of ['inspect','turn'])document.getElementById(id).onclick=()=>{
+  turning=id==='turn';
+  document.getElementById('inspect').classList.toggle('active',!turning);
+  document.getElementById('turn').classList.toggle('active',turning);
+  stateEl.textContent=`state / ${turning?'slow turn':'inspect'}`;
+};
 const clock=new THREE.Clock();
 function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();if(rockyMesh){rockyRoot.rotation.y=turning?t*.16:Math.sin(t*.32)*.025;rockyRoot.position.y=Math.sin(t*.75)*.008}controls.update();renderer.render(scene,camera)}
 animate();

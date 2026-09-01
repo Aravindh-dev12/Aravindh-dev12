@@ -1,42 +1,54 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="210" viewBox="0 0 1000 210" role="img" aria-label="Photorealistic 3D stone creature walking across the profile">
-  <defs>
-    <filter id="blur" x="-120%" y="-400%" width="340%" height="900%">
-      <feGaussianBlur stdDeviation="4"/>
-    </filter>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="220" viewBox="0 0 1000 220" role="img" aria-label="3D-style stone creature walking across the profile">
+<defs>
+  <radialGradient id="shell" cx="30%" cy="22%" r="85%"><stop offset="0" stop-color="#d0a47c"/><stop offset=".25" stop-color="#a97c59"/><stop offset=".58" stop-color="#74513d"/><stop offset=".82" stop-color="#50372c"/><stop offset="1" stop-color="#2d211c"/></radialGradient>
+  <linearGradient id="limb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#bc8c68"/><stop offset=".35" stop-color="#8b6349"/><stop offset=".7" stop-color="#5e4234"/><stop offset="1" stop-color="#33251f"/></linearGradient>
+  <radialGradient id="joint" cx="35%" cy="25%" r="75%"><stop offset="0" stop-color="#9e7458"/><stop offset=".6" stop-color="#604538"/><stop offset="1" stop-color="#30231e"/></radialGradient>
+  <radialGradient id="teal" cx="30%" cy="25%" r="75%"><stop offset="0" stop-color="#b6fff0"/><stop offset=".2" stop-color="#6edac4"/><stop offset=".55" stop-color="#2ca58f"/><stop offset="1" stop-color="#14584f"/></radialGradient>
+  <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe1bf" stop-opacity=".55"/><stop offset="1" stop-color="#ffe1bf" stop-opacity="0"/></linearGradient>
+  <filter id="rough" x="-30%" y="-30%" width="160%" height="170%"><feTurbulence type="fractalNoise" baseFrequency=".045" numOctaves="3" seed="17" result="n"/><feColorMatrix in="n" values=".45 0 0 0 .25 0 .36 0 0 .18 0 0 .28 0 .14 0 0 0 .24 0" result="c"/><feBlend in="SourceGraphic" in2="c" mode="multiply"/></filter>
+  <filter id="shadow" x="-120%" y="-400%" width="340%" height="900%"><feGaussianBlur stdDeviation="5"/></filter>
+  <g id="leg">
+    <ellipse cx="0" cy="8" rx="17" ry="15" fill="url(#joint)" stroke="#2c201b" stroke-width="2"/>
+    <path d="M-12 15 C-20 27 -20 45 -12 58 C-5 69 8 72 16 64 C25 55 27 38 20 24 C14 12 -4 6 -12 15Z" fill="url(#limb)" stroke="#30221c" stroke-width="2"/>
+    <path d="M-8 18 C-1 13 9 14 15 20" fill="none" stroke="url(#shine)" stroke-width="3" stroke-linecap="round"/>
+    <path d="M-13 37 L-3 41 L6 34 L16 40" fill="none" stroke="#3d2b24" stroke-width="1.8"/>
+    <ellipse cx="4" cy="66" rx="14" ry="11" fill="url(#joint)" stroke="#2b1f1a" stroke-width="2"/>
+    <path d="M-5 72 C-13 84 -14 101 -5 112 C2 121 14 120 21 110 C28 100 28 84 20 74 C13 65 1 64 -5 72Z" fill="url(#limb)" stroke="#2f211b" stroke-width="2"/>
+    <path d="M-4 88 L5 92 L14 86" fill="none" stroke="#392820" stroke-width="1.7"/>
+    <path d="M-12 108 C-2 103 14 103 24 109 C24 119 14 126 3 126 C-8 126 -17 120 -18 114 C-18 111 -16 109 -12 108Z" fill="#392921" stroke="#241a16" stroke-width="2"/>
+    <path d="M-6 47 C0 43 8 44 12 49 C10 55 4 57 -2 55 C-7 53 -9 50 -6 47Z" fill="url(#teal)" opacity=".88"/>
+    <path d="M3 100 C8 97 14 98 17 102 C15 107 10 109 5 107 C1 106 0 103 3 100Z" fill="url(#teal)" opacity=".7"/>
+  </g>
+</defs>
 
+<g>
+  <animateTransform attributeName="transform" type="translate" values="120 0;880 0;880 0;120 0;120 0" keyTimes="0;.43;.50;.93;1" dur="17s" repeatCount="indefinite"/>
+  <ellipse cx="0" cy="197" rx="76" ry="8" fill="#000" opacity=".22" filter="url(#shadow)"><animate attributeName="rx" values="76;62;74;61;76" dur="1.15s" repeatCount="indefinite"/><animate attributeName="opacity" values=".22;.12;.2;.11;.22" dur="1.15s" repeatCount="indefinite"/></ellipse>
   <g>
-    <animateTransform attributeName="transform" type="translate"
-      values="130 0;870 0;870 0;130 0;130 0"
-      keyTimes="0;.43;.50;.93;1"
-      dur="16s" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" type="scale" values="1 1;1 1;-1 1;-1 1;1 1" keyTimes="0;.43;.50;.93;1" dur="17s" repeatCount="indefinite"/>
+    <g><animateTransform attributeName="transform" type="translate" values="0 2;0 -5;0 1;0 -4;0 2" dur="1.15s" repeatCount="indefinite"/>
 
-    <ellipse cx="0" cy="184" rx="72" ry="7" fill="#000" opacity=".18" filter="url(#blur)">
-      <animate attributeName="rx" values="72;61;69;60;72" dur=".92s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values=".18;.10;.17;.10;.18" dur=".92s" repeatCount="indefinite"/>
-    </ellipse>
+      <g transform="translate(-53 92) rotate(62) scale(.72)"><animateTransform attributeName="transform" additive="sum" type="rotate" values="15 0 0;-12 0 0;15 0 0" dur="1.15s" begin="-.57s" repeatCount="indefinite"/><use href="#leg" opacity=".72"/></g>
+      <g transform="translate(53 92) rotate(-62) scale(.72)"><animateTransform attributeName="transform" additive="sum" type="rotate" values="-12 0 0;15 0 0;-12 0 0" dur="1.15s" begin="-.28s" repeatCount="indefinite"/><use href="#leg" opacity=".78"/></g>
+      <g transform="translate(0 116) rotate(2) scale(.62)"><animateTransform attributeName="transform" additive="sum" type="rotate" values="8 0 0;-9 0 0;8 0 0" dur="1.15s" begin="-.84s" repeatCount="indefinite"/><use href="#leg"/></g>
 
-    <g>
-      <animateTransform attributeName="transform" type="scale"
-        values="1 1;1 1;-1 1;-1 1;1 1"
-        keyTimes="0;.43;.50;.93;1"
-        dur="16s" repeatCount="indefinite"/>
-
-      <g>
-        <animateTransform attributeName="transform" type="translate"
-          values="0 1;0 -5;0 0;0 -4;0 1"
-          dur=".92s" repeatCount="indefinite"/>
-
-        <g>
-          <animateTransform attributeName="transform" type="rotate"
-            values="-1.8 0 112;1.6 0 112;-1.8 0 112"
-            dur="1.84s" repeatCount="indefinite"/>
-
-          <image x="-180" y="0" width="360" height="203"
-            preserveAspectRatio="xMidYMid meet"
-            href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAADLCAYAAAAb5P5CAAAAA..."/>
-        </g>
+      <g filter="url(#rough)">
+        <animateTransform attributeName="transform" type="rotate" values="-1.4 0 98;1.4 0 98;-1.4 0 98" dur="2.3s" repeatCount="indefinite"/>
+        <path d="M-66 61 C-49 40 -23 31 6 32 C37 33 61 45 72 66 C82 85 81 111 67 132 C52 153 27 164 -1 164 C-30 164 -54 152 -67 132 C-81 110 -82 82 -66 61Z" fill="url(#shell)" stroke="#2f211b" stroke-width="2.8"/>
+        <path d="M-58 58 C-35 40 2 34 32 43 C52 49 66 59 70 72 C45 65 18 62 -9 65 C-31 67 -48 72 -68 82 C-67 72 -64 64 -58 58Z" fill="#a87a58" stroke="#3f2c24" stroke-width="2.3"/>
+        <path d="M-47 78 C-21 70 20 72 46 81 C53 98 50 118 38 135 C15 145 -17 145 -41 133 C-51 117 -53 96 -47 78Z" fill="#76533f" stroke="#35261f" stroke-width="2.1"/>
+        <path d="M-55 87 L-39 93 L-27 82 L-13 91 L2 79 L18 91 L34 80 L51 88" fill="none" stroke="#35251f" stroke-width="2.2"/>
+        <path d="M-34 129 L-22 116 L-8 123 L5 109 L19 121 L34 108" fill="none" stroke="#33241e" stroke-width="2"/>
+        <path d="M-12 35 L-8 56 L4 70 M31 44 L24 61 L34 73" fill="none" stroke="#3e2c24" stroke-width="2"/>
+        <path d="M-42 59 C-32 53 -21 55 -17 62 C-20 70 -30 74 -40 71 C-46 68 -47 63 -42 59Z" fill="url(#teal)" opacity=".93"/>
+        <path d="M43 67 C51 62 61 65 65 72 C62 80 53 83 45 80 C40 77 39 71 43 67Z" fill="url(#teal)" opacity=".86"/>
+        <path d="M-8 148 C-2 144 7 145 11 150 C8 156 2 158 -5 156 C-10 154 -11 151 -8 148Z" fill="url(#teal)" opacity=".66"/>
+        <path d="M-38 52 C-14 43 14 44 37 52" fill="none" stroke="#f4d3b0" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/>
       </g>
+
+      <g transform="translate(-46 93) rotate(16) scale(.95)"><animateTransform attributeName="transform" additive="sum" type="rotate" values="-19 0 0;18 0 0;-19 0 0" dur="1.15s" repeatCount="indefinite"/><use href="#leg"/></g>
+      <g transform="translate(46 93) rotate(-16) scale(.95)"><animateTransform attributeName="transform" additive="sum" type="rotate" values="19 0 0;-18 0 0;19 0 0" dur="1.15s" begin="-.57s" repeatCount="indefinite"/><use href="#leg"/></g>
     </g>
   </g>
+</g>
 </svg>

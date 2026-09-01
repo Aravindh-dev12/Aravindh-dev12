@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-label="Aravindhan profile signal reveal">
+  <defs>
+    <linearGradient id="line" x1="0" x2="1">
+      <stop offset="0" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#7df9ff"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .signal { animation: signal 6s ease-in-out infinite; }
+      .name { animation: reveal 6s ease-in-out infinite; }
+      .role { animation: reveal2 6s ease-in-out infinite; }
+      .cursor { animation: blink 1s steps(1) infinite; }
+      @keyframes signal {
+        0%,10% { opacity:0; transform:scaleX(.02); transform-origin:center; }
+        20%,78% { opacity:1; transform:scaleX(1); transform-origin:center; }
+        92%,100% { opacity:0; transform:scaleX(.02); transform-origin:center; }
+      }
+      @keyframes reveal {
+        0%,22% { opacity:0; letter-spacing:22px; }
+        36%,78% { opacity:1; letter-spacing:9px; }
+        92%,100% { opacity:0; letter-spacing:18px; }
+      }
+      @keyframes reveal2 {
+        0%,38% { opacity:0; transform:translateY(8px); }
+        50%,78% { opacity:.78; transform:translateY(0); }
+        92%,100% { opacity:0; transform:translateY(-5px); }
+      }
+      @keyframes blink { 0%,48%{opacity:1} 49%,100%{opacity:0} }
+    </style>
+  </defs>
+
+  <rect width="1200" height="360" rx="24" fill="#020305"/>
+  <g opacity=".13" stroke="#7df9ff" stroke-width="1">
+    <path d="M80 80H1120M80 280H1120"/>
+    <path d="M160 48V312M1040 48V312"/>
+  </g>
+
+  <circle cx="600" cy="180" r="3" fill="#7df9ff" filter="url(#glow)" class="signal"/>
+  <rect x="260" y="178" width="680" height="2" rx="1" fill="url(#line)" filter="url(#glow)" class="signal"/>
+
+  <text x="600" y="160" text-anchor="middle" fill="#f3fbff" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="46" font-weight="700" class="name">ARAVINDHAN</text>
+  <text x="600" y="215" text-anchor="middle" fill="#7df9ff" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" letter-spacing="4" class="role">BUILDING WHAT ISN'T VISIBLE YET<tspan class="cursor">_</tspan></text>
+
+  <text x="70" y="322" fill="#52606b" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" letter-spacing="2">SIGNAL // 104446384</text>
+  <text x="1130" y="322" text-anchor="end" fill="#52606b" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" letter-spacing="2">STATUS // BUILDING</text>
+</svg>

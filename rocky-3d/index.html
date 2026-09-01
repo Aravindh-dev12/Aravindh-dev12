@@ -3,188 +3,89 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#ecebea">
-<title>Rocky — Reference-Matched Live 3D</title>
+<meta name="theme-color" content="#efeeec">
+<title>Rocky — Exact STL 3D</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#ecebea;color:#342a23;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}#stage{display:block;width:100vw;height:100vh}.hud{position:fixed;z-index:3;left:18px;top:16px;pointer-events:none;text-transform:uppercase;letter-spacing:.08em}.hud b{display:block;font-size:12px;font-weight:700}.hud span{display:block;margin-top:5px;font-size:10px;color:#75685e}.hud .state{color:#3e8263}.hud .signal{color:#695442}.controls{position:fixed;z-index:4;left:18px;bottom:16px;display:flex;flex-wrap:wrap;gap:7px;max-width:min(760px,calc(100vw - 36px))}.controls button{border:1px solid #b8ada3;background:#f4f2ef;color:#695442;border-radius:999px;padding:8px 11px;font:10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.075em;text-transform:uppercase;cursor:pointer}.controls button:hover,.controls button.active{border-color:#4dab86;color:#3e8263;background:#eef7f2}.note{position:fixed;right:16px;bottom:16px;max-width:390px;text-align:right;font-size:9px;line-height:1.5;color:#8a7c70;letter-spacing:.035em;pointer-events:none}@media(max-width:760px){.note{display:none}.hud{left:12px;top:12px}.controls{left:12px;bottom:12px;max-width:calc(100vw - 24px)}.controls button{padding:7px 9px}}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#efeeec;color:#4e4035;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}#stage{display:block;width:100vw;height:100vh}.hud{position:fixed;z-index:5;left:18px;top:16px;pointer-events:none;text-transform:uppercase;letter-spacing:.08em}.hud b{display:block;font-size:12px;font-weight:700}.hud span{display:block;margin-top:5px;font-size:10px;color:#786b60}.hud .state{color:#3e8263}.controls{position:fixed;z-index:6;left:18px;bottom:16px;display:flex;gap:7px}.controls button{border:1px solid #b8ada3;background:#faf9f7;color:#695442;border-radius:999px;padding:8px 11px;font:10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.075em;text-transform:uppercase;cursor:pointer}.controls button:hover,.controls button.active{border-color:#4dab86;color:#3e8263;background:#eef7f2}.note{position:fixed;right:16px;bottom:16px;max-width:390px;text-align:right;font-size:9px;line-height:1.5;color:#8a7c70;letter-spacing:.035em;pointer-events:none}.loading{position:fixed;inset:0;display:grid;place-items:center;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#7b6d61;transition:opacity .35s;pointer-events:none}.loading.hidden{opacity:0}@media(max-width:680px){.note{display:none}.hud{left:12px;top:12px}.controls{left:12px;bottom:12px}}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
 </head>
 <body>
 <canvas id="stage"></canvas>
-<div class="hud"><b>ROCKY / REFERENCE-MATCHED 3D</b><span id="state" class="state">state / walking</span><span id="signal" class="signal">gesture / —</span><span>drag = orbit · wheel = zoom</span></div>
-<div class="controls"><button id="auto" class="active">auto</button><button id="walk">walk</button><button id="hi">hi</button><button id="signalMode">signals</button><button id="work">work</button><button id="bye">bye</button></div>
-<div class="note">reference-matched sandstone/turquoise Rocky study · live five-limb animation</div>
+<div id="loading" class="loading">loading uploaded Rocky STL…</div>
+<div class="hud"><b>ROCKY / UPLOADED STL</b><span id="state" class="state">state / inspect</span><span>drag = orbit · wheel = zoom</span></div>
+<div class="controls"><button id="inspect" class="active">inspect</button><button id="turn">slow turn</button></div>
+<div class="note">exact uploaded STL geometry · browser-optimized copy · sandstone material + turquoise mineral accents</div>
 <script type="module">
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { STLLoader } from 'three/addons/loaders/STLLoader.js';
 
 const canvas=document.getElementById('stage');
+const loading=document.getElementById('loading');
 const stateEl=document.getElementById('state');
-const signalEl=document.getElementById('signal');
 const renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});
-renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-renderer.setSize(innerWidth,innerHeight,false);
-renderer.shadowMap.enabled=true;
-renderer.shadowMap.type=THREE.PCFSoftShadowMap;
-renderer.outputColorSpace=THREE.SRGBColorSpace;
-renderer.toneMapping=THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure=1.06;
-
-const scene=new THREE.Scene();
-scene.background=new THREE.Color(0xecebea);
-scene.fog=new THREE.FogExp2(0xecebea,.012);
-const camera=new THREE.PerspectiveCamera(39,innerWidth/innerHeight,.05,80);
-camera.position.set(6.9,3.7,8.0);
-const controls=new OrbitControls(camera,renderer.domElement);
-controls.enableDamping=true;controls.dampingFactor=.06;controls.enablePan=false;controls.target.set(0,1.70,0);controls.minDistance=4.3;controls.maxDistance=14;controls.maxPolarAngle=Math.PI*.495;
-
-scene.add(new THREE.HemisphereLight(0xffffff,0x8b7564,1.8));
-const key=new THREE.DirectionalLight(0xfff7ec,3.2);key.position.set(5.8,8.4,5.1);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.camera.left=-6;key.shadow.camera.right=6;key.shadow.camera.top=6;key.shadow.camera.bottom=-6;scene.add(key);
-const rim=new THREE.DirectionalLight(0xdad6d0,1.2);rim.position.set(-5.3,4.8,-5.4);scene.add(rim);
-const fill=new THREE.PointLight(0xffffff,8,13,2);fill.position.set(-1,2.8,-4.2);scene.add(fill);
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight,false);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.02;
+const scene=new THREE.Scene();scene.background=new THREE.Color(0xefeeec);scene.fog=new THREE.FogExp2(0xefeeec,.0105);
+const camera=new THREE.PerspectiveCamera(38,innerWidth/innerHeight,.05,60);camera.position.set(6.6,3.7,7.7);
+const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.06;controls.enablePan=false;controls.target.set(0,1.7,0);controls.minDistance=4.1;controls.maxDistance=13;controls.maxPolarAngle=Math.PI*.495;
+scene.add(new THREE.HemisphereLight(0xffffff,0x8f7967,1.75));
+const key=new THREE.DirectionalLight(0xfff7ec,3.4);key.position.set(5.7,8.3,5.1);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.camera.left=-6;key.shadow.camera.right=6;key.shadow.camera.top=6;key.shadow.camera.bottom=-6;scene.add(key);
+const fill=new THREE.DirectionalLight(0xe1ded8,1.25);fill.position.set(-4.8,3.6,4.1);scene.add(fill);
+const rim=new THREE.DirectionalLight(0xffffff,.8);rim.position.set(-4.5,5.2,-5.2);scene.add(rim);
+const floor=new THREE.Mesh(new THREE.PlaneGeometry(26,26),new THREE.MeshStandardMaterial({color:0xe8e6e3,roughness:.96,metalness:0}));floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;scene.add(floor);
 
 function makeRockTexture(){
-  const c=document.createElement('canvas');c.width=c.height=256;const x=c.getContext('2d');
-  x.fillStyle='#a28468';x.fillRect(0,0,256,256);const img=x.getImageData(0,0,256,256);
-  for(let i=0;i<img.data.length;i+=4){const n=(Math.random()-.5)*52;img.data[i]=Math.max(0,Math.min(255,img.data[i]+n));img.data[i+1]=Math.max(0,Math.min(255,img.data[i+1]+n*.68));img.data[i+2]=Math.max(0,Math.min(255,img.data[i+2]+n*.42))}x.putImageData(img,0,0);
-  x.globalAlpha=.18;x.strokeStyle='#48392d';x.lineWidth=2;for(let i=0;i<24;i++){let px=Math.random()*256,py=Math.random()*256;x.beginPath();x.moveTo(px,py);for(let j=0;j<4;j++){px+=(Math.random()-.5)*28;py+=(Math.random()-.5)*28;x.lineTo(px,py)}x.stroke()}
-  const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(1.8,1.8);return t;
+  const c=document.createElement('canvas');c.width=c.height=512;const x=c.getContext('2d');x.fillStyle='#b69779';x.fillRect(0,0,512,512);const im=x.getImageData(0,0,512,512);
+  for(let i=0;i<im.data.length;i+=4){const n=(Math.random()-.5)*34;im.data[i]+=n;im.data[i+1]+=n*.72;im.data[i+2]+=n*.47}x.putImageData(im,0,0);
+  x.globalAlpha=.22;x.strokeStyle='#59483a';x.lineWidth=1.5;for(let i=0;i<55;i++){let px=Math.random()*512,py=Math.random()*512;x.beginPath();x.moveTo(px,py);for(let j=0;j<4;j++){px+=(Math.random()-.5)*42;py+=(Math.random()-.5)*42;x.lineTo(px,py)}x.stroke()}
+  const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(2.2,2.2);return t;
 }
-const rockTex=makeRockTexture();
-const shellMat=new THREE.MeshStandardMaterial({map:rockTex,color:0xc2a080,roughness:.94,metalness:.015,bumpMap:rockTex,bumpScale:.045});
-const slabMat=new THREE.MeshStandardMaterial({map:rockTex,color:0xa28468,roughness:.96,metalness:.01,bumpMap:rockTex,bumpScale:.038});
-const edgeMat=new THREE.MeshStandardMaterial({color:0x695442,roughness:.92,metalness:.025});
-const jointMat=new THREE.MeshStandardMaterial({color:0x48392d,roughness:.82,metalness:.06});
-const tendonMat=new THREE.MeshStandardMaterial({color:0x688e6d,emissive:0x3e8263,emissiveIntensity:.18,roughness:.72,metalness:.03});
-const mineralMat=new THREE.MeshStandardMaterial({color:0x60c49c,emissive:0x3e8263,emissiveIntensity:.75,roughness:.46,metalness:.04});
-const consoleMat=new THREE.MeshStandardMaterial({color:0x0d171d,roughness:.35,metalness:.44});
-const holoMat=new THREE.MeshBasicMaterial({color:0x5aead7,transparent:true,opacity:.48,side:THREE.DoubleSide,blending:THREE.AdditiveBlending});
+const rockTexture=makeRockTexture();
+const stoneMat=new THREE.MeshStandardMaterial({map:rockTexture,color:0xb8997b,roughness:.96,metalness:.012,bumpMap:rockTexture,bumpScale:.055});
+const mineralMat=new THREE.MeshStandardMaterial({color:0x58c59b,emissive:0x3f9f78,emissiveIntensity:.72,roughness:.48,metalness:.03,transparent:true,opacity:.94});
+const glowMat=new THREE.MeshBasicMaterial({color:0x70d5ae,transparent:true,opacity:.18,blending:THREE.AdditiveBlending,depthWrite:false});
 
-const floor=new THREE.Mesh(new THREE.PlaneGeometry(30,30),new THREE.MeshStandardMaterial({color:0xe6e4e1,roughness:.92,metalness:0}));floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;scene.add(floor);
-const ring=new THREE.Mesh(new THREE.RingGeometry(2.85,3.02,96),new THREE.MeshBasicMaterial({color:0x9caaa1,transparent:true,opacity:.12,side:THREE.DoubleSide}));ring.rotation.x=-Math.PI/2;ring.position.y=.006;scene.add(ring);
-
-const consoleRig=new THREE.Group();consoleRig.position.set(2.9,0,-.15);scene.add(consoleRig);
-const consoleBase=new THREE.Mesh(new THREE.CylinderGeometry(.55,.76,.28,28),consoleMat);consoleBase.position.y=.14;consoleBase.castShadow=consoleBase.receiveShadow=true;consoleRig.add(consoleBase);
-const consoleStem=new THREE.Mesh(new THREE.CylinderGeometry(.17,.25,1.13,20),consoleMat);consoleStem.position.y=.82;consoleStem.rotation.z=-.08;consoleStem.castShadow=true;consoleRig.add(consoleStem);
-const consolePanel=new THREE.Mesh(new THREE.BoxGeometry(1.08,.7,.12),consoleMat);consolePanel.position.set(-.1,1.45,0);consolePanel.rotation.z=-.15;consolePanel.castShadow=true;consoleRig.add(consolePanel);
-const holo=new THREE.Mesh(new THREE.PlaneGeometry(.8,.44),holoMat);holo.position.set(-.16,1.46,-.067);holo.rotation.y=Math.PI;holo.rotation.z=-.15;consoleRig.add(holo);
-for(let i=0;i<5;i++){const l=new THREE.Mesh(new THREE.PlaneGeometry(.54,.012),holoMat.clone());l.material.opacity=.18+i*.035;l.position.set(-.17,1.32+i*.075,-.073);l.rotation.y=Math.PI;l.rotation.z=-.15;consoleRig.add(l)}
-
-const rocky=new THREE.Group();rocky.position.set(-.45,0,0);scene.add(rocky);
-const torso=new THREE.Group();rocky.add(torso);
-function faceted(geo,mat,pos,scale){const m=new THREE.Mesh(geo,mat);m.position.set(...pos);m.scale.set(...scale);m.castShadow=m.receiveShadow=true;torso.add(m);return m}
-const core=faceted(new THREE.DodecahedronGeometry(1,2),shellMat,[0,2.12,0],[.98,1.16,.92]);
-const top=faceted(new THREE.SphereGeometry(1,28,16),shellMat,[-.03,2.96,-.02],[1.18,.50,.96]);
-const lower=faceted(new THREE.DodecahedronGeometry(.72,2),slabMat,[.02,1.34,.02],[1.02,.64,.92]);
-const frontPlate=faceted(new THREE.BoxGeometry(1.28,1.08,.22),slabMat,[0,2.25,.84],[1,.92,1]);frontPlate.rotation.x=-.05;
-const backPlate=faceted(new THREE.BoxGeometry(1.18,1.0,.18),slabMat,[.02,2.23,-.79],[1,.95,1]);backPlate.rotation.x=.06;
-const mineralNodes=[[-.56,2.65,.64,.12],[.5,2.35,.72,.105],[-.34,1.65,.68,.09],[.43,1.72,-.63,.075],[-.12,3.25,.48,.07]];
-for(const [x,y,z,r] of mineralNodes){const m=new THREE.Mesh(new THREE.IcosahedronGeometry(r,2),mineralMat);m.position.set(x,y,z);m.scale.set(1.4,.65,.5);m.castShadow=true;torso.add(m)}
-
-function slabSegment(mat=slabMat){const g=new THREE.CylinderGeometry(.68,.88,1,8,3,false);const m=new THREE.Mesh(g,mat.clone());m.castShadow=m.receiveShadow=true;return m}
-function alignBox(mesh,a,b,width=.34,depth=.28){const d=b.clone().sub(a),len=d.length();mesh.position.copy(a).add(b).multiplyScalar(.5);mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.clone().normalize());mesh.scale.set(width,len,depth)}
-function ribJoint(group,count=5){const r=new THREE.Group();group.add(r);for(let i=0;i<count;i++){const ring=new THREE.Mesh(new THREE.TorusGeometry(.16,.028,6,14),jointMat);ring.rotation.x=Math.PI/2;ring.position.y=(i-(count-1)/2)*.07;r.add(ring)}return r}
-function makeHand(group,expressive=false){
-  const hand=new THREE.Group();group.add(hand);const palm=new THREE.Mesh(new THREE.DodecahedronGeometry(expressive?.22:.24,1),slabMat);palm.scale.set(expressive?1.0:1.08,.62,.9);palm.castShadow=true;hand.add(palm);
-  const fingers=[];for(let j=-1;j<=1;j++){const root=new THREE.Group();root.position.set(.19,0,j*.115);hand.add(root);const f1=new THREE.Mesh(new THREE.CylinderGeometry(.055,.072,expressive?.34:.29,7),slabMat);f1.rotation.z=-Math.PI/2;f1.position.x=.15;f1.castShadow=true;root.add(f1);const tipPivot=new THREE.Group();tipPivot.position.x=.29;root.add(tipPivot);const f2=new THREE.Mesh(new THREE.CylinderGeometry(.035,.055,expressive?.25:.2,7),slabMat);f2.rotation.z=-Math.PI/2;f2.position.x=.11;f2.castShadow=true;tipPivot.add(f2);fingers.push({root,tipPivot,f1,f2,index:j})}return{hand,palm,fingers}
+const rockyRoot=new THREE.Group();scene.add(rockyRoot);let rockyMesh=null,turning=false;
+async function gunzipBuffer(buffer){
+  if(!('DecompressionStream' in window)) throw new Error('This browser does not support gzip decompression');
+  const stream=new Blob([buffer]).stream().pipeThrough(new DecompressionStream('gzip'));
+  return await new Response(stream).arrayBuffer();
 }
-const limbAngles=[0,Math.PI*2/5,Math.PI*4/5,Math.PI*6/5,Math.PI*8/5];
-const limbs=[];
-for(let i=0;i<5;i++){
-  const radial=new THREE.Group();radial.rotation.y=limbAngles[i];rocky.add(radial);
-  const shoulder=new THREE.Group();radial.add(shoulder);const shoulderStone=new THREE.Mesh(new THREE.DodecahedronGeometry(.27,1),edgeMat);shoulderStone.castShadow=true;shoulder.add(shoulderStone);const shoulderGlow=new THREE.Mesh(new THREE.IcosahedronGeometry(.17,1),mineralMat);shoulderGlow.scale.set(1.2,.7,1.1);shoulder.add(shoulderGlow);
-  const upper=slabSegment(),fore=slabSegment();radial.add(upper,fore);const elbow=ribJoint(radial,5);const {hand,fingers}=makeHand(radial,i===0);limbs.push({i,radial,shoulder,upper,fore,elbow,hand,fingers,phase:i/5,angle:limbAngles[i]});
+function orientPatch(obj,normal){obj.quaternion.setFromUnitVectors(new THREE.Vector3(0,0,1),normal.clone().normalize())}
+function addMineralPatch(mesh,origin,target,size=.17,stretch=1.35){
+  const ray=new THREE.Raycaster(origin,target.clone().sub(origin).normalize(),0,20);const hit=ray.intersectObject(mesh,false)[0];if(!hit)return;
+  const normal=hit.face.normal.clone().transformDirection(mesh.matrixWorld).normalize();
+  const p=new THREE.Mesh(new THREE.IcosahedronGeometry(size,2),mineralMat);p.position.copy(hit.point).addScaledVector(normal,.018);p.scale.set(stretch,.48,1.0);orientPatch(p,normal);scene.add(p);
+  const glow=new THREE.Mesh(new THREE.SphereGeometry(size*1.35,16,10),glowMat);glow.position.copy(hit.point).addScaledVector(normal,.025);glow.scale.set(stretch,1,.42);scene.add(glow);
 }
-
-const V=(x,y,z=0)=>new THREE.Vector3(x,y,z);
-function clamp01(x){return Math.max(0,Math.min(1,x))}
-function smooth(x){x=clamp01(x);return x*x*(3-2*x)}
-function smoother(x){x=clamp01(x);return x*x*x*(x*(x*6-15)+10)}
-function easeOutBack(x){const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)}
-function damp(current,target,lambda,dt){return THREE.MathUtils.lerp(current,target,1-Math.exp(-lambda*dt))}
-
-function solveArm(L,target,bend=1){
-  const S=V(.67,2.2,0),l1=1.03,l2=1.05,T=target.clone();
-  const d=T.clone().sub(S),dist=Math.min(l1+l2-.02,Math.max(.3,d.length()));const dir=d.clone().normalize();
-  const planeNormal=V(0,0,bend).normalize();let perp=new THREE.Vector3().crossVectors(planeNormal,dir).normalize();if(!Number.isFinite(perp.x))perp=V(0,1,0);
-  const a=(l1*l1-l2*l2+dist*dist)/(2*dist),h=Math.sqrt(Math.max(0,l1*l1-a*a));const K=S.clone().add(dir.clone().multiplyScalar(a)).add(perp.multiplyScalar(h));
-  L.shoulder.position.copy(S);alignBox(L.upper,S,K,.46,.40);L.elbow.position.copy(K);L.elbow.quaternion.copy(L.upper.quaternion);alignBox(L.fore,K,T,.42,.36);L.hand.position.copy(T);return{S,K,T};
+async function loadRocky(){
+  const compressed=await fetch('../assets/rocky-model.stl.gz').then(r=>{if(!r.ok)throw new Error(`model ${r.status}`);return r.arrayBuffer()});
+  const stl=await gunzipBuffer(compressed);const geometry=new STLLoader().parse(stl);geometry.computeVertexNormals();geometry.computeBoundingBox();
+  const b=geometry.boundingBox;const cx=(b.min.x+b.max.x)/2,cy=(b.min.y+b.max.y)/2,minZ=b.min.z;geometry.translate(-cx,-cy,-minZ);
+  const mesh=new THREE.Mesh(geometry,stoneMat);mesh.rotation.x=-Math.PI/2;const scale=4.7/(b.max.x-b.min.x);mesh.scale.setScalar(scale);mesh.castShadow=mesh.receiveShadow=true;rockyRoot.add(mesh);rockyMesh=mesh;
+  rockyRoot.updateMatrixWorld(true);const wb=new THREE.Box3().setFromObject(mesh);const c=wb.getCenter(new THREE.Vector3());rockyRoot.position.x-=c.x;rockyRoot.position.z-=c.z;rockyRoot.position.y-=wb.min.y;rockyRoot.updateMatrixWorld(true);
+  const finalBox=new THREE.Box3().setFromObject(mesh);controls.target.copy(finalBox.getCenter(new THREE.Vector3()));controls.target.y*=.83;camera.position.set(6.2,3.45,7.2);controls.update();
+  const patches=[
+    [new THREE.Vector3(-.65,6,.35),new THREE.Vector3(-.65,2.7,.35),.18,1.35],
+    [new THREE.Vector3(.9,5.6,.5),new THREE.Vector3(.9,2.4,.5),.16,1.25],
+    [new THREE.Vector3(-1.1,2.6,6),new THREE.Vector3(-1.1,2.2,0),.14,1.45],
+    [new THREE.Vector3(.9,2.8,6),new THREE.Vector3(.9,2.1,0),.13,1.35],
+    [new THREE.Vector3(-2.8,1.5,4.5),new THREE.Vector3(-1.6,1.35,0),.13,1.4],
+    [new THREE.Vector3(2.8,1.4,4.5),new THREE.Vector3(1.6,1.25,0),.14,1.45],
+    [new THREE.Vector3(-2.3,.8,-4.5),new THREE.Vector3(-1.5,.9,0),.11,1.2],
+    [new THREE.Vector3(2.3,.9,-4.5),new THREE.Vector3(1.5,1,0),.11,1.2]
+  ];
+  for(const [o,t,s,st] of patches)addMineralPatch(mesh,o,t,s,st);
+  loading.classList.add('hidden');
 }
-function setFingers(L,spread=0,curl=0,fan=0){
-  for(const f of L.fingers){const side=f.index;f.root.rotation.y=side*(.26+spread*.42)+fan*.08;f.root.rotation.z=-(curl*.42);f.tipPivot.rotation.z=-(curl*.62);f.tipPivot.rotation.y=side*spread*.08}
-}
-function wristPose(L,rx=0,ry=0,rz=0){L.hand.rotation.set(rx,ry,rz)}
+loadRocky().catch(err=>{console.error(err);loading.textContent='could not load Rocky STL';});
 
-function walkTarget(L,t){const p=(t*.69+L.phase)%1,stance=.66;let x,y;if(p<stance){const q=p/stance;x=1.86+THREE.MathUtils.lerp(.34,-.34,q);y=.2}else{const q=(p-stance)/(1-stance);x=1.86+THREE.MathUtils.lerp(-.34,.34,smoother(q));y=.2+Math.sin(Math.PI*q)*.36}return V(x,y,0)}
-function supportTarget(L,t){return V(1.82+Math.sin(t*.55+L.i)*.025,.2,0)}
-function expressiveRest(){return V(1.45,1.18,.18)}
-
-const POSES={
- hi:{target:V(1.33,2.55,.28),wrist:[0,.28,.15]},
- bye:{target:V(1.38,2.48,.22),wrist:[0,.25,.12]},
- good:{target:V(1.5,2.36,.22),wrist:[0,.12,.06]},
- wait:{target:V(1.46,2.18,.08),wrist:[0,-.05,.02]},
- point:{target:V(1.72,1.78,.18),wrist:[0,.1,-.06]},
- work:{target:V(2.14,1.42,.02),wrist:[0,.04,-.12]}
-};
-
-let manual='auto',characterState='walk',stateTime=0,prevTime=performance.now()/1000,lastAutoState='';
-const buttons=['auto','walk','hi','signalMode','work','bye'];
-function setButton(id){for(const x of buttons)document.getElementById(x).classList.toggle('active',x===id)}
-for(const id of buttons){document.getElementById(id).onclick=()=>{manual=id;stateTime=0;setButton(id)}}
-function autoState(t){const p=t%30;if(p<6.2)return'walk';if(p<7.2)return'notice';if(p<10.4)return'hi';if(p<15.2)return'signal';if(p<20.6)return'work';if(p<23.7)return'bye';return'walk'}
-function signalSubstate(t){const p=t%6;if(p<2)return'good';if(p<4)return'wait';return'point'}
-function resolveState(globalT){if(manual==='auto')return autoState(globalT);if(manual==='signalMode')return'signal';return manual}
-
-let bodyLeanX=0,bodyLeanZ=0,bodyY=0,handBlend=0;
+for(const id of ['inspect','turn'])document.getElementById(id).onclick=()=>{turning=id==='turn';document.getElementById('inspect').classList.toggle('active',!turning);document.getElementById('turn').classList.toggle('active',turning);stateEl.textContent=`state / ${turning?'slow turn':'inspect'}`};
 const clock=new THREE.Clock();
-function animate(){
-  requestAnimationFrame(animate);const t=clock.getElapsedTime();const now=performance.now()/1000,dt=Math.min(.05,now-prevTime);prevTime=now;
-  const nextState=resolveState(t);if(nextState!==characterState){characterState=nextState;stateTime=0}else stateTime+=dt;
-  const gesture=characterState==='signal'?signalSubstate(manual==='auto'?t:stateTime):characterState;
-  stateEl.textContent=`state / ${characterState}`;signalEl.textContent=`gesture / ${['hi','bye','good','wait','point'].includes(gesture)?gesture:'—'}`;
-
-  const expressive=limbs[0];const isGesture=['notice','hi','signal','work','bye'].includes(characterState);handBlend=damp(handBlend,isGesture?1:0,6.5,dt);
-  let supportX=0,supportZ=0,count=0;
-  for(const L of limbs){
-    if(L.i===0&&handBlend>.02){
-      let target=expressiveRest().clone(),w=[0,0,0],spread=.15,curl=.2;
-      const a=clamp01(stateTime/.55),lift=smoother(a);
-      if(characterState==='notice'){target.lerp(V(1.15,1.65,.18),lift);w=[0,.12,.04];spread=.08;curl=.18}
-      if(characterState==='hi'){
-        const enter=smoother(stateTime/.55),wave=Math.sin(Math.max(0,stateTime-.4)*5.8)*Math.min(1,stateTime*1.7);target.lerp(POSES.hi.target,enter);target.y+=wave*.085;target.z+=wave*.13;w=[0,.28+wave*.2,.15+wave*.26];spread=.48;curl=.06+Math.max(0,-wave)*.06
-      }
-      if(characterState==='bye'){
-        const enter=smoother(stateTime/.5),wave=Math.sin(Math.max(0,stateTime-.3)*7.0)*Math.min(1,stateTime*2);target.lerp(POSES.bye.target,enter);target.y+=wave*.065;target.z+=wave*.16;w=[0,.25+wave*.24,.13+wave*.33];spread=.5;curl=.05
-      }
-      if(characterState==='signal'){
-        const pose=POSES[gesture];const enter=smoother(Math.min(1,(stateTime%2)/.32));target.lerp(pose.target,enter);w=pose.wrist.slice();
-        if(gesture==='good'){target.y+=Math.sin(stateTime*3.2)*.035;spread=.72;curl=.03;w[2]+=Math.sin(stateTime*2.7)*.08}
-        if(gesture==='wait'){spread=.22;curl=.08;w[1]=-.05;target.x+=Math.sin(stateTime*4.2)*.025}
-        if(gesture==='point'){spread=.12;curl=.55;expressive.fingers[0].root.rotation.z=0;expressive.fingers[0].tipPivot.rotation.z=0;target.x+=Math.sin(stateTime*2.4)*.04}
-      }
-      if(characterState==='work'){
-        const enter=smoother(stateTime/.6);target.lerp(POSES.work.target,enter);target.y+=Math.sin(stateTime*3.5)*.07;target.x+=Math.sin(stateTime*2.2)*.025;w=POSES.work.wrist;spread=.12;curl=.32+Math.sin(stateTime*5.4)*.12
-      }
-      solveArm(L,target,1);setFingers(L,spread,curl,Math.sin(t*1.7)*.1);wristPose(L,w[0],w[1],w[2]);
-      if(characterState==='point'){const f=expressive.fingers[0];f.root.rotation.z=0;f.tipPivot.rotation.z=0}
-    }else{
-      const target=characterState==='walk'?walkTarget(L,t):supportTarget(L,t);solveArm(L,target,L.i%2?1:-1);setFingers(L,.03,.08,0);wristPose(L,0,0,-.04);
-      const wp=new THREE.Vector3();L.hand.getWorldPosition(wp);if(target.y<.24){supportX+=Math.cos(L.angle);supportZ+=Math.sin(L.angle);count++}
-    }
-  }
-
-  const gestureWeight=isGesture?1:0;const targetLeanX=gestureWeight*(-.08)+(!isGesture&&characterState==='walk'?Math.sin(t*2.1)*.025:0);const targetLeanZ=gestureWeight*(.035)+(!isGesture&&characterState==='walk'?Math.sin(t*1.37)*.022:0);
-  bodyLeanX=damp(bodyLeanX,targetLeanX,4.5,dt);bodyLeanZ=damp(bodyLeanZ,targetLeanZ,4.5,dt);bodyY=damp(bodyY,characterState==='walk'?Math.sin(t*4.33)*.045:.015+Math.sin(t*1.9)*.012,6,dt);
-  torso.position.y=bodyY;torso.rotation.x=bodyLeanX;torso.rotation.z=bodyLeanZ;torso.rotation.y=damp(torso.rotation.y,characterState==='work'?.18:characterState==='notice'?.08:0,4.5,dt);
-  top.rotation.z=Math.sin(t*1.35)*.014+(isGesture?Math.sin(t*2.3)*.01:0);lower.rotation.z=-torso.rotation.z*.35;
-  const breathe=1+Math.sin(t*1.6)*.004;core.scale.set(.98*breathe,1.16/breathe,.92*breathe);
-  ring.material.opacity=.11+Math.sin(t*.8)*.025;holo.material.opacity=.42+Math.sin(t*3.1)*.08;
-
-  controls.update();renderer.render(scene,camera)
-}
-function resize(){renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix()}addEventListener('resize',resize);resize();animate();
+function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();if(rockyMesh){rockyRoot.rotation.y=turning?t*.16:Math.sin(t*.32)*.025;rockyRoot.position.y=Math.sin(t*.75)*.008}controls.update();renderer.render(scene,camera)}
+animate();
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight,false)});
 </script>
 </body>
 </html>

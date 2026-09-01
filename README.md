@@ -1,5 +1,7 @@
 <!-- FIRST CONTACT PROFILE -->
 
+<img align="right" width="220" src="./assets/eridian-orbit.svg" alt="Animated five-limbed first-contact creature" />
+
 ```text
 [01] detect pattern
 [02] establish common structure
@@ -8,18 +10,18 @@
 ```
 
 $$
+\phi = \frac{2\pi}{5}
+\qquad
 \text{idea} \xrightarrow{\;reasoning\;} \text{system} \xrightarrow{\;iteration\;} \text{reality}
 $$
-
-<div align="center">
 
 ### `𝒜 = { AI, systems, interfaces, experiments }`
 
 <sub>where the model is useful only when the system around it is useful.</sub>
 
-</div>
+<br clear="both"/>
 
-<br/>
+---
 
 <details>
 <summary><code>decode(𝒜)</code></summary>

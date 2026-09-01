@@ -1,7 +1,5 @@
 <!-- FIRST CONTACT PROFILE -->
 
-<img align="right" width="220" src="./assets/eridian-orbit.svg" alt="Animated five-limbed first-contact creature" />
-
 ```text
 [01] detect pattern
 [02] establish common structure
@@ -15,11 +13,13 @@ $$
 \text{idea} \xrightarrow{\;reasoning\;} \text{system} \xrightarrow{\;iteration\;} \text{reality}
 $$
 
+<div align="center">
+  <img width="100%" src="./assets/eridian-walk.svg" alt="Animated five-limbed first-contact creature walking through the profile" />
+</div>
+
 ### `𝒜 = { AI, systems, interfaces, experiments }`
 
 <sub>where the model is useful only when the system around it is useful.</sub>
-
-<br clear="both"/>
 
 ---
 

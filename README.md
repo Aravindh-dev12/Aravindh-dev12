@@ -15,11 +15,11 @@ $$
 \text{idea} \xrightarrow{\;reasoning\;} \text{system} \xrightarrow{\;iteration\;} \text{reality}
 $$
 
-<a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/ec96fe52b5d19a6a87b4aa341a080a58f38d4d69/rocky-3d/index.html" target="_blank" rel="noreferrer">
-  <img src="./assets/rocky-stl-preview.webp" width="880" alt="Rocky — uploaded STL model with sandstone color and turquoise mineral accents" />
+<a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/91a497c05bfec8be46ea02273666a2b1b611ee09/rocky-3d/index.html" target="_blank" rel="noreferrer">
+  <img src="./assets/rocky-stl-preview.webp" width="880" alt="Rocky — your uploaded STL model with sandstone color and turquoise mineral accents" />
 </a>
 
-<sub><a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/ec96fe52b5d19a6a87b4aa341a080a58f38d4d69/rocky-3d/index.html"><code>open live 3D Rocky → uploaded STL · sandstone · turquoise minerals · orbit · slow turn</code></a></sub>
+<sub><a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/91a497c05bfec8be46ea02273666a2b1b611ee09/rocky-3d/index.html"><code>open live 3D Rocky → your STL source · sandstone · turquoise minerals · orbit · slow turn</code></a></sub>
 
 </div>
 

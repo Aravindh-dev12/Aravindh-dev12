@@ -82,7 +82,7 @@ jobs:
               info = inspect_binary_stl(src)
               gz_name = name + '.gz'
               gz_path = os.path.join(out_dir, gz_name)
-              with open(src, 'rb') as fin, gzip.open(gz_path, 'wb', compresslevel=9, mtime=0) as fout:
+              with open(src, 'rb') as fin, gzip.open(gz_path, 'wb', compresslevel=9) as fout:
                   shutil.copyfileobj(fin, fout)
               info['gzip'] = gz_name
               info['gzip_bytes'] = os.path.getsize(gz_path)

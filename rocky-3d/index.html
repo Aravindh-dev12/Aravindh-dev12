@@ -3,110 +3,36 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#06080b">
-<title>Rocky — Movie-inspired Live Eridian 3D</title>
+<meta name="theme-color" content="#07090d">
+<title>Rocky — Official Movie Geometry</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#06080b;color:#dbe4ea;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}#stage{display:block;width:100vw;height:100vh}.hud{position:fixed;z-index:3;left:18px;top:16px;pointer-events:none;text-transform:uppercase;letter-spacing:.085em}.hud b{display:block;font-size:12px;font-weight:650}.hud span{display:block;margin-top:5px;font-size:10px;color:#7d8891}.hud .state{color:#6ce0cd}.controls{position:fixed;z-index:4;left:18px;bottom:16px;display:flex;gap:8px}.controls button{border:1px solid #26313a;background:#0a0f14;color:#8d99a4;border-radius:999px;padding:8px 11px;font:10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}.controls button:hover,.controls button.active{border-color:#4d766f;color:#c0f8ec;background:#0c1717}.note{position:fixed;right:16px;bottom:16px;max-width:370px;text-align:right;font-size:9px;line-height:1.5;color:#58636d;letter-spacing:.035em;pointer-events:none}@media(max-width:640px){.note{display:none}.hud{left:12px;top:12px}.controls{left:12px;bottom:12px}}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#07090d;color:#dce5ec;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+#stage{display:block;width:100vw;height:100vh}.hud{position:fixed;z-index:3;left:18px;top:16px;pointer-events:none;text-transform:uppercase;letter-spacing:.08em}.hud b{display:block;font-size:12px;color:#e3e8ea;font-weight:650}.hud span{display:block;margin-top:5px;font-size:10px;color:#7f8b96}.state{color:#74e4d2!important}.controls{position:fixed;z-index:4;left:18px;bottom:16px;display:flex;gap:8px}button{appearance:none;border:1px solid #29333b;background:#0a1015;color:#8997a1;font:10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em;padding:8px 11px;border-radius:999px;cursor:pointer;text-transform:uppercase}button:hover,button.active{border-color:#47746f;color:#c1f7ed;background:#0d1919}.loading{position:fixed;z-index:2;inset:0;display:grid;place-items:center;pointer-events:none;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#87949e;transition:opacity .35s}.loading.hidden{opacity:0}.note{position:fixed;z-index:3;right:16px;bottom:16px;max-width:420px;text-align:right;font-size:9px;line-height:1.5;color:#59646d;letter-spacing:.035em;pointer-events:none}.note a{color:#75848f;pointer-events:auto}@media(max-width:650px){.note{display:none}.hud{left:12px;top:12px}.controls{left:12px;bottom:12px}}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
 </head>
 <body>
-<canvas id="stage"></canvas>
-<div class="hud"><b>ROCKY / ERIDIAN 3D</b><span id="state" class="state">state / walking</span><span>drag = orbit · wheel = zoom</span></div>
-<div class="controls"><button id="auto" class="active">auto</button><button id="walk">walk</button><button id="work">work</button></div>
-<div class="note">fan-made close movie-inspired interpretation · practical-puppet anatomy reference · no official production model used</div>
+<canvas id="stage"></canvas><div id="loading" class="loading">loading official Rocky geometry…</div>
+<div class="hud"><b>ROCKY / MOVIE GEOMETRY</b><span id="state" class="state">state / loading</span><span>drag = orbit · wheel = zoom</span></div>
+<div class="controls"><button id="auto" class="active">auto</button><button id="walk">walk</button><button id="work">work</button><button id="still">still</button></div>
+<div class="note">official Project Hail Mary Rocky self-print geometry loaded at runtime · CC Attribution source mirror: <a href="https://sketchfab.com/3d-models/rocky-project-hail-mary-d2b56242f7e048cfbdd08ca897aec966" target="_blank" rel="noreferrer">William Croft / official campaign model</a></div>
 <script type="module">
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-
-const canvas=document.getElementById('stage');
-const stateEl=document.getElementById('state');
-const renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});
-renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight,false);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;
-const scene=new THREE.Scene();scene.background=new THREE.Color(0x06080b);scene.fog=new THREE.FogExp2(0x06080b,.025);
-const camera=new THREE.PerspectiveCamera(38,innerWidth/innerHeight,.05,80);camera.position.set(6.8,3.7,8.2);
-const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.065;controls.enablePan=false;controls.target.set(0,1.65,0);controls.minDistance=4;controls.maxDistance=13;controls.maxPolarAngle=Math.PI*.495;
-scene.add(new THREE.HemisphereLight(0x8ea6ba,0x201712,1.08));
-const key=new THREE.DirectionalLight(0xffd6ae,4.5);key.position.set(5.5,8.5,4.5);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.camera.left=-6;key.shadow.camera.right=6;key.shadow.camera.top=6;key.shadow.camera.bottom=-6;scene.add(key);
-const rim=new THREE.DirectionalLight(0x54d8cc,2.1);rim.position.set(-5,4,-5);scene.add(rim);
-const fill=new THREE.PointLight(0x5e8edc,16,13,2);fill.position.set(-2,3,-4);scene.add(fill);
-
-function makeRockTexture(){
- const c=document.createElement('canvas');c.width=c.height=384;const x=c.getContext('2d');x.fillStyle='#795237';x.fillRect(0,0,c.width,c.height);
- const im=x.getImageData(0,0,c.width,c.height);for(let i=0;i<im.data.length;i+=4){const n=(Math.random()-.5)*54;im.data[i]=Math.max(0,Math.min(255,im.data[i]+n));im.data[i+1]=Math.max(0,Math.min(255,im.data[i+1]+n*.66));im.data[i+2]=Math.max(0,Math.min(255,im.data[i+2]+n*.38));}x.putImageData(im,0,0);
- x.globalAlpha=.18;x.strokeStyle='#251914';x.lineWidth=2;for(let i=0;i<34;i++){let px=Math.random()*384,py=Math.random()*384;x.beginPath();x.moveTo(px,py);for(let j=0;j<4;j++){px+=(Math.random()-.5)*46;py+=(Math.random()-.5)*46;x.lineTo(px,py)}x.stroke()}
- const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(1.15,1.15);return t;
-}
-const rockTex=makeRockTexture();
-const shellMat=new THREE.MeshStandardMaterial({map:rockTex,color:0xa1704b,roughness:.92,metalness:.015,bumpMap:rockTex,bumpScale:.06});
-const slabMat=new THREE.MeshStandardMaterial({map:rockTex,color:0x865b3d,roughness:.94,metalness:.02,bumpMap:rockTex,bumpScale:.052});
-const edgeMat=new THREE.MeshStandardMaterial({map:rockTex,color:0x4e3528,roughness:.95,metalness:.015,bumpMap:rockTex,bumpScale:.04});
-const membraneMat=new THREE.MeshStandardMaterial({color:0x2b211d,roughness:.68,metalness:.11});
-const tendonMat=new THREE.MeshStandardMaterial({color:0x263a34,roughness:.62,metalness:.02});
-const mineralMat=new THREE.MeshStandardMaterial({color:0x2cb7a4,emissive:0x0f6e64,emissiveIntensity:1.65,roughness:.28,metalness:.06});
-const consoleMat=new THREE.MeshStandardMaterial({color:0x0d151a,roughness:.38,metalness:.44});
-const holoMat=new THREE.MeshBasicMaterial({color:0x5ce7d6,transparent:true,opacity:.42,side:THREE.DoubleSide,blending:THREE.AdditiveBlending});
-
-const floor=new THREE.Mesh(new THREE.PlaneGeometry(28,28),new THREE.MeshStandardMaterial({color:0x090d11,roughness:.86,metalness:.03}));floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;scene.add(floor);
-const floorRing=new THREE.Mesh(new THREE.RingGeometry(2.8,3.0,96),new THREE.MeshBasicMaterial({color:0x173038,transparent:true,opacity:.28,side:THREE.DoubleSide}));floorRing.rotation.x=-Math.PI/2;floorRing.position.y=.008;scene.add(floorRing);
-
-const consoleRig=new THREE.Group();consoleRig.position.set(3.0,0,.05);scene.add(consoleRig);
-const base=new THREE.Mesh(new THREE.CylinderGeometry(.54,.75,.26,28),consoleMat);base.position.y=.13;base.castShadow=base.receiveShadow=true;consoleRig.add(base);
-const stem=new THREE.Mesh(new THREE.CylinderGeometry(.16,.25,1.08,20),consoleMat);stem.position.y=.78;stem.rotation.z=-.07;stem.castShadow=true;consoleRig.add(stem);
-const panel=new THREE.Mesh(new THREE.BoxGeometry(1.02,.72,.12),consoleMat);panel.position.set(-.08,1.42,0);panel.rotation.z=-.15;panel.castShadow=true;consoleRig.add(panel);
-const holo=new THREE.Mesh(new THREE.PlaneGeometry(.78,.46),holoMat);holo.position.set(-.14,1.43,-.067);holo.rotation.y=Math.PI;holo.rotation.z=-.15;consoleRig.add(holo);
-for(let i=0;i<5;i++){const l=new THREE.Mesh(new THREE.PlaneGeometry(.52,.012),holoMat.clone());l.material.opacity=.18+i*.035;l.position.set(-.16,1.29+i*.075,-.071);l.rotation.y=Math.PI;l.rotation.z=-.15;consoleRig.add(l)}
-
-function carapaceGeometry(scale=.0){
- const s=new THREE.Shape();s.moveTo(-.58,-1.0);s.bezierCurveTo(-.88,-.82,-.98,-.28,-.88,.25);s.bezierCurveTo(-.8,.75,-.45,1.02,-.05,1.08);s.bezierCurveTo(.43,1.08,.8,.72,.9,.22);s.bezierCurveTo(1.0,-.32,.79,-.83,.48,-1.03);s.bezierCurveTo(.14,-1.16,-.24,-1.13,-.58,-1.0);
- const g=new THREE.ExtrudeGeometry(s,{depth:.62,bevelEnabled:true,bevelSegments:3,steps:1,bevelSize:.1+scale,bevelThickness:.1+scale,curveSegments:16});g.center();return g;
-}
-const creature=new THREE.Group();creature.position.set(-.35,0,0);scene.add(creature);
-const body=new THREE.Mesh(carapaceGeometry(),shellMat);body.position.set(0,2.18,0);body.scale.set(1.05,1.0,1.05);body.castShadow=body.receiveShadow=true;creature.add(body);
-const frontPlate=new THREE.Mesh(carapaceGeometry(-.025),shellMat.clone());frontPlate.material.color.setHex(0x9b6845);frontPlate.position.set(.02,2.2,.39);frontPlate.scale.set(.92,.91,.22);frontPlate.castShadow=true;creature.add(frontPlate);
-const rearPlate=new THREE.Mesh(carapaceGeometry(-.02),edgeMat);rearPlate.position.set(-.03,2.16,-.39);rearPlate.scale.set(.94,.92,.2);rearPlate.castShadow=true;creature.add(rearPlate);
-
-function addCrack(points){const curve=new THREE.CatmullRomCurve3(points.map(p=>new THREE.Vector3(p[0],p[1],.735+p[2])));const m=new THREE.Mesh(new THREE.TubeGeometry(curve,18,.012,5,false),new THREE.MeshStandardMaterial({color:0x2d2019,roughness:1}));m.castShadow=true;creature.add(m)}
-addCrack([[-.48,2.7,0],[-.28,2.52,.01],[-.08,2.59,0],[.12,2.42,.01]]);addCrack([[.27,2.89,0],[.18,2.68,.01],[.34,2.53,0],[.22,2.3,.01]]);addCrack([[-.42,2.08,0],[-.18,2.03,.01],[-.04,1.82,0]]);addCrack([[.07,1.73,0],[.25,1.9,.01],[.46,1.82,0]]);
-
-const mineralPatches=[[-.64,2.62,.76,.18,.11],[.58,2.33,.75,.13,.08],[-.38,1.75,.74,.11,.065]];
-for(const [x,y,z,rx,ry] of mineralPatches){const m=new THREE.Mesh(new THREE.SphereGeometry(1,20,12),mineralMat);m.position.set(x,y,z);m.scale.set(rx,ry,.055);m.castShadow=true;creature.add(m)}
-
-function slabMesh(top=.28,bottom=.34){const m=new THREE.Mesh(new THREE.CylinderGeometry(top,bottom,1,8,1,false),slabMat.clone());m.scale.z=.62;m.castShadow=m.receiveShadow=true;return m}
-function alignBetween(mesh,a,b){const d=b.clone().sub(a);mesh.position.copy(a).add(b).multiplyScalar(.5);mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.clone().normalize());mesh.scale.y=d.length();}
-function makeRibbedJoint(parent,count=4){const g=new THREE.Group();parent.add(g);const rings=[];for(let i=0;i<count;i++){const r=new THREE.Mesh(new THREE.CylinderGeometry(.29-i*.014,.29-i*.014,.08,12),membraneMat);r.position.y=(i-(count-1)/2)*.085;r.scale.z=.7;r.castShadow=true;g.add(r);rings.push(r)}return{g,rings}}
-function makeHand(parent){const g=new THREE.Group();parent.add(g);const palm=new THREE.Mesh(new THREE.CylinderGeometry(.25,.29,.35,7),edgeMat);palm.rotation.z=Math.PI/2;palm.scale.z=.72;palm.castShadow=true;g.add(palm);const fingers=[];for(let j=-1;j<=1;j++){const f=new THREE.Mesh(new THREE.CylinderGeometry(.07,.095,.44,7),slabMat);f.rotation.z=-Math.PI/2;f.rotation.y=j*.46;f.position.set(.30,0,j*.12);f.castShadow=true;g.add(f);fingers.push(f)}return{g,fingers}}
-
-const limbs=[];const azimuths=[0,Math.PI*2/5,Math.PI*4/5,Math.PI*6/5,Math.PI*8/5];
-for(let i=0;i<5;i++){
- const root=new THREE.Group();root.rotation.y=azimuths[i];creature.add(root);
- const socket=new THREE.Mesh(new THREE.CylinderGeometry(.34,.39,.23,12),tendonMat);socket.rotation.z=Math.PI/2;socket.position.set(.82,2.18,0);socket.scale.z=.75;socket.castShadow=true;root.add(socket);
- const green=new THREE.Mesh(new THREE.CylinderGeometry(.27,.3,.12,12),mineralMat);green.rotation.z=Math.PI/2;green.position.set(.94,2.18,0);green.scale.z=.72;root.add(green);
- const upper=slabMesh(.24,.31),lower=slabMesh(.22,.29);root.add(upper,lower);
- const elbow=makeRibbedJoint(root,5);const wrist=makeRibbedJoint(root,4);const hand=makeHand(root);
- limbs.push({root,socket,green,upper,lower,elbow,wrist,hand,index:i,phase:i/5});
-}
-
-function solveLimb(L,target,bendSign=1){
- const S=new THREE.Vector3(1.02,2.18,0);const len1=1.12,len2=1.18;const T=target.clone();const dx=T.x-S.x,dy=T.y-S.y;const dist=Math.max(.28,Math.min(len1+len2-.035,Math.hypot(dx,dy)));const ux=dx/dist,uy=dy/dist;const a=(len1*len1-len2*len2+dist*dist)/(2*dist);const h=Math.sqrt(Math.max(0,len1*len1-a*a));const E=new THREE.Vector3(S.x+ux*a-uy*h*bendSign,S.y+uy*a+ux*h*bendSign,0);
- const s1=S.clone().lerp(E,.13),e1=S.clone().lerp(E,.88),s2=E.clone().lerp(T,.13),e2=E.clone().lerp(T,.83);alignBetween(L.upper,s1,e1);alignBetween(L.lower,s2,e2);L.elbow.g.position.copy(E);L.wrist.g.position.copy(E.clone().lerp(T,.91));L.hand.g.position.copy(T);L.hand.g.rotation.z=-.08;
-}
-
-function gaitTarget(L,t){
- const p=(t*.62+L.phase)%1,stance=.7;let radial=2.05,height=.16;if(p<stance){const q=p/stance;radial=2.18+THREE.MathUtils.lerp(.28,-.24,q)}else{const q=(p-stance)/(1-stance);radial=2.18+THREE.MathUtils.lerp(-.24,.28,q);height=.16+Math.sin(Math.PI*q)*.38}return new THREE.Vector3(radial,height,0);
-}
-function plantedTarget(L,t){return new THREE.Vector3(2.04+Math.sin(t*.55+L.index*.8)*.025,.16,0)}
-function workTarget(L,t){if(L.index===0)return new THREE.Vector3(2.25,1.36+Math.sin(t*3.1)*.10,0);if(L.index===4)return new THREE.Vector3(1.92,.28+Math.sin(t*1.2)*.035,0);return plantedTarget(L,t)}
-let mode='auto',lastLabel='';const setActive=id=>{for(const x of ['auto','walk','work'])document.getElementById(x).classList.toggle('active',x===id)};for(const id of ['auto','walk','work'])document.getElementById(id).onclick=()=>{mode=id;setActive(id)};
-const clock=new THREE.Clock();function smooth(a,b,x){x=Math.max(0,Math.min(1,(x-a)/(b-a)));return x*x*(3-2*x)}
-function animate(){
- requestAnimationFrame(animate);const t=clock.getElapsedTime(),cycle=t%19;const isWorking=mode==='work'||(mode==='auto'&&cycle>10.5&&cycle<16);const mix=mode==='auto'?(isWorking?Math.min(smooth(10,11,cycle),1-smooth(15.4,16.2,cycle)):0):(isWorking?1:0);const label=isWorking?'working':'walking';if(label!==lastLabel){lastLabel=label;stateEl.textContent=`state / ${label}`}
- let sx=0,sz=0,n=0;
- for(const L of limbs){let target=gaitTarget(L,t);if(isWorking)target.lerp(workTarget(L,t),Math.max(.2,mix));const bend=(L.index===0||L.index===1)?1:-1;solveLimb(L,target,bend);const p=(t*.62+L.phase)%1;if(p<.7||isWorking){const a=L.root.rotation.y;sx+=Math.cos(a)*target.x;sz+=Math.sin(a)*target.x;n++}if(L.index===0&&isWorking){L.hand.fingers[0].rotation.y=-.2+Math.sin(t*4)*.12;L.hand.fingers[1].rotation.y=Math.sin(t*3.4)*.12;L.hand.fingers[2].rotation.y=.2+Math.sin(t*3.8+1)*.12}}
- if(n){sx/=n;sz/=n}creature.position.x=-.35-sx*.018;creature.position.z=-sz*.018;creature.position.y=.025+Math.sin(t*1.24)*.014;creature.rotation.z=Math.sin(t*.62)*.012;creature.rotation.x=Math.sin(t*.43)*.008;
- body.rotation.y=Math.sin(t*.31)*.012;frontPlate.rotation.y=body.rotation.y;rearPlate.rotation.y=body.rotation.y;holo.material.opacity=.36+Math.sin(t*2.2)*.08;consoleRig.rotation.y=Math.sin(t*.18)*.018;controls.update();renderer.render(scene,camera);
-}
-addEventListener('resize',()=>{renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix()});animate();
+import * as THREE from 'three';import {OrbitControls} from 'three/addons/controls/OrbitControls.js';import {STLLoader} from 'three/addons/loaders/STLLoader.js';
+const ZIP_URL='https://d95a3luo0amge.cloudfront.net/826ddd7c-aa66-4d0e-86ec-2dc212430cdd/projecthailmary/images/project_hail_mary_self_print_rocky.zip',STL_PATH='statue_unsupported/statue_unsupported.stl';
+const canvas=document.getElementById('stage'),loadingEl=document.getElementById('loading'),stateEl=document.getElementById('state');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight,false);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.08;
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x07090d);scene.fog=new THREE.FogExp2(0x07090d,.022);const camera=new THREE.PerspectiveCamera(39,innerWidth/innerHeight,.05,80);camera.position.set(6.8,4.2,7.6);const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.06;controls.enablePan=false;controls.target.set(0,1.45,0);controls.minDistance=3.2;controls.maxDistance=14;controls.maxPolarAngle=Math.PI*.495;
+scene.add(new THREE.HemisphereLight(0x889fb4,0x211914,1));const key=new THREE.DirectionalLight(0xffd6b2,4.7);key.position.set(5.5,8,4.7);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.camera.left=-6;key.shadow.camera.right=6;key.shadow.camera.top=6;key.shadow.camera.bottom=-6;scene.add(key);const rim=new THREE.DirectionalLight(0x51d9cd,2.25);rim.position.set(-5,4,-5);scene.add(rim);const cool=new THREE.PointLight(0x4c87ff,18,13,2);cool.position.set(-2.5,3,-3.5);scene.add(cool);
+const floor=new THREE.Mesh(new THREE.PlaneGeometry(28,28),new THREE.MeshStandardMaterial({color:0x090d11,roughness:.86,metalness:.03}));floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;scene.add(floor);const halo=new THREE.Mesh(new THREE.RingGeometry(2.4,2.46,96),new THREE.MeshBasicMaterial({color:0x21434a,transparent:true,opacity:.35,side:THREE.DoubleSide}));halo.rotation.x=-Math.PI/2;halo.position.y=.007;scene.add(halo);
+const consoleRig=new THREE.Group();consoleRig.position.set(2.9,0,0);scene.add(consoleRig);const consoleMat=new THREE.MeshStandardMaterial({color:0x10171d,roughness:.36,metalness:.5});const base=new THREE.Mesh(new THREE.CylinderGeometry(.52,.72,.25,28),consoleMat);base.position.y=.125;base.castShadow=base.receiveShadow=true;consoleRig.add(base);const stem=new THREE.Mesh(new THREE.CylinderGeometry(.15,.24,1.05,20),consoleMat);stem.position.y=.75;stem.rotation.z=-.08;stem.castShadow=true;consoleRig.add(stem);const panel=new THREE.Mesh(new THREE.BoxGeometry(.92,.62,.09),consoleMat);panel.position.set(-.08,1.34,0);panel.rotation.z=-.16;panel.castShadow=true;consoleRig.add(panel);const screenMat=new THREE.MeshBasicMaterial({color:0x54e5d2,transparent:true,opacity:.42,side:THREE.DoubleSide,blending:THREE.AdditiveBlending});const screen=new THREE.Mesh(new THREE.PlaneGeometry(.68,.36),screenMat);screen.position.set(-.12,1.34,-.051);screen.rotation.y=Math.PI;screen.rotation.z=-.16;consoleRig.add(screen);
+const root=new THREE.Group();root.position.set(-.25,0,0);scene.add(root);let rocky=null,shader=null,mode='auto',currentState='loading';const setActive=id=>{for(const k of ['auto','walk','work','still'])document.getElementById(k).classList.toggle('active',k===id)};for(const id of ['auto','walk','work','still'])document.getElementById(id).onclick=()=>{mode=id;setActive(id)};
+function makeRockMaterial(){const mat=new THREE.MeshPhysicalMaterial({color:0x5c4638,roughness:.92,metalness:.015,clearcoat:.025,clearcoatRoughness:.92,sheen:.07,sheenColor:new THREE.Color(0x7a5a45)});mat.onBeforeCompile=s=>{shader=s;s.uniforms.uTime={value:0};s.uniforms.uWalk={value:0};s.uniforms.uWork={value:0};s.uniforms.uScaleHint={value:1};s.vertexShader=s.vertexShader.replace('#include <common>',`#include <common>\nuniform float uTime;uniform float uWalk;uniform float uWork;uniform float uScaleHint;const float TAU=6.28318530718;`).replace('#include <begin_vertex>',`#include <begin_vertex>\nfloat rr=length(transformed.xz);float limbMask=smoothstep(0.82*uScaleHint,1.85*uScaleHint,rr);float ang=atan(transformed.z,transformed.x);float sector=floor((ang+3.14159265)/TAU*5.0+0.5);float phase=sector*(TAU/5.0);float gait=sin(uTime*2.2+phase);float lift=max(gait,0.0);float push=sin(uTime*2.2+phase-1.1);vec2 radial=normalize(transformed.xz+vec2(0.0001));vec2 tangent=vec2(-radial.y,radial.x);transformed.y+=uWalk*limbMask*lift*.16*uScaleHint;transformed.xz+=uWalk*limbMask*tangent*push*.055*uScaleHint;transformed.xz+=uWalk*limbMask*radial*(-lift*.025*uScaleHint);float front=max(0.0,cos(ang));float workMask=limbMask*smoothstep(.55,.95,front);transformed.y+=uWork*workMask*(.34+.045*sin(uTime*3.1))*uScaleHint;transformed.x+=uWork*workMask*.14*uScaleHint;`)};mat.customProgramCacheKey=()=> 'rocky-official-deform-v2';return mat}
+function normalizeGeometry(g){g.computeVertexNormals();g.rotateX(-Math.PI/2);g.computeBoundingBox();let box=g.boundingBox,size=box.getSize(new THREE.Vector3());if(size.y<Math.max(size.x,size.z)*.22){g.rotateX(Math.PI/2);g.rotateZ(Math.PI/2);g.computeBoundingBox();box=g.boundingBox;size=box.getSize(new THREE.Vector3())}const center=box.getCenter(new THREE.Vector3());g.translate(-center.x,-box.min.y,-center.z);g.computeBoundingBox();const finalSize=g.boundingBox.getSize(new THREE.Vector3()),maxSpan=Math.max(finalSize.x,finalSize.y,finalSize.z),scale=4.25/Math.max(maxSpan,.001);g.scale(scale,scale,scale);g.computeBoundingBox();g.computeBoundingSphere();const b=g.boundingBox,c=b.getCenter(new THREE.Vector3());g.translate(-c.x,-b.min.y,-c.z);g.computeBoundingBox()}
+async function loadOfficialRocky(){try{stateEl.textContent='state / downloading official mesh';const response=await fetch(ZIP_URL,{mode:'cors',cache:'force-cache'});if(!response.ok)throw new Error(`official model download failed: ${response.status}`);const bytes=await response.arrayBuffer();stateEl.textContent='state / extracting model';const archive=await window.JSZip.loadAsync(bytes),entry=archive.file(STL_PATH);if(!entry)throw new Error(`missing ${STL_PATH}`);const stlBytes=await entry.async('arraybuffer');stateEl.textContent='state / building geometry';const geometry=new STLLoader().parse(stlBytes);normalizeGeometry(geometry);rocky=new THREE.Mesh(geometry,makeRockMaterial());rocky.castShadow=true;rocky.receiveShadow=true;rocky.rotation.y=-.34;root.add(rocky);const box=new THREE.Box3().setFromObject(rocky),size=box.getSize(new THREE.Vector3()),center=box.getCenter(new THREE.Vector3());controls.target.set(center.x,Math.max(.8,center.y*.92),center.z);camera.position.set(center.x+size.x*1.15,center.y+size.y*.66,center.z+size.z*1.5);controls.update();loadingEl.classList.add('hidden');currentState=''}catch(err){console.error(err);stateEl.textContent='state / official model blocked';loadingEl.textContent='official Rocky model could not load — open console for network/CORS details'}}
+const clock=new THREE.Clock();function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();let targetWalk=0,targetWork=0,label='still';if(mode==='walk'){targetWalk=1;label='walking'}else if(mode==='work'){targetWork=1;label='working'}else if(mode==='still'){label='still'}else{const p=t%18;if(p<9.5){targetWalk=1;label='walking'}else if(p<15){targetWork=1;label='working'}else label='observing'}if(shader){shader.uniforms.uTime.value=t;shader.uniforms.uWalk.value=THREE.MathUtils.lerp(shader.uniforms.uWalk.value,targetWalk,.075);shader.uniforms.uWork.value=THREE.MathUtils.lerp(shader.uniforms.uWork.value,targetWork,.075);const bs=rocky.geometry.boundingSphere?.radius||2;shader.uniforms.uScaleHint.value=Math.max(.45,bs*.56)}if(rocky){const w=shader?.uniforms.uWalk.value||0,k=shader?.uniforms.uWork.value||0;root.position.y=.02+w*(.025+Math.sin(t*4.4)*.018);root.rotation.z=w*Math.sin(t*2.2)*.018-k*.045;root.rotation.x=k*.035;root.position.x=-.25+k*.14;root.rotation.y=-.34+k*.10+Math.sin(t*.5)*.012;if(label!==currentState){currentState=label;stateEl.textContent=`state / ${label}`}}screen.material.opacity=.36+Math.sin(t*2.4)*.08;controls.update();renderer.render(scene,camera)}
+addEventListener('resize',()=>{renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix()});loadOfficialRocky();animate();
 </script>
 </body>
 </html>

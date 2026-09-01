@@ -7,14 +7,16 @@
 [04] build
 ```
 
+<div align="center">
+
 $$
 \phi = \frac{2\pi}{5}
 \qquad
 \text{idea} \xrightarrow{\;reasoning\;} \text{system} \xrightarrow{\;iteration\;} \text{reality}
 $$
 
-<div align="center">
-  <img width="100%" src="./assets/eridian-walk.svg" alt="Animated five-limbed first-contact creature walking through the profile" />
+<img src="./assets/eridian-walk.svg" width="880" alt="Rocky-inspired living stone creature walking through the profile" />
+
 </div>
 
 ### `𝒜 = { AI, systems, interfaces, experiments }`

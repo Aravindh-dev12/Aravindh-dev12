@@ -34,7 +34,7 @@ jobs:
           test -d "$PARTS"
 
           python3 - "$STATUE" "$PARTS" <<'PY'
-          import json, math, os, shutil, struct, sys
+          import gzip, json, math, os, shutil, struct, sys
           statue, parts_dir = sys.argv[1:]
           out_dir = 'rocky-3d/assets/action'
           os.makedirs(out_dir, exist_ok=True)
@@ -42,7 +42,7 @@ jobs:
           def inspect_binary_stl(path):
               size = os.path.getsize(path)
               with open(path, 'rb') as f:
-                  header = f.read(80)
+                  f.read(80)
                   tri_count = struct.unpack('<I', f.read(4))[0]
                   expected = 84 + tri_count * 50
                   if expected != size:
@@ -50,8 +50,7 @@ jobs:
                   lo = [math.inf, math.inf, math.inf]
                   hi = [-math.inf, -math.inf, -math.inf]
                   for _ in range(tri_count):
-                      block = f.read(50)
-                      vals = struct.unpack('<12fH', block)
+                      vals = struct.unpack('<12fH', f.read(50))
                       for j in range(3):
                           x, y, z = vals[3+j*3:6+j*3]
                           lo[0] = min(lo[0], x); lo[1] = min(lo[1], y); lo[2] = min(lo[2], z)
@@ -70,21 +69,30 @@ jobs:
               raise SystemExit(f'Unexpected statue mesh: {statue_info}')
           shutil.copy2(statue, 'rocky-3d/assets/rocky-official.stl')
 
+          for old in os.listdir(out_dir):
+              if old.endswith('.stl') or old.endswith('.stl.gz'):
+                  os.remove(os.path.join(out_dir, old))
+
           wanted = ['torso.stl'] + [f'{i}-{suffix}.stl' for i in range(1, 6) for suffix in ('A','B')] + ['1-C.stl']
           manifest = {'source':'official Project Hail Mary action-figure STL set','statue':statue_info,'parts':{}}
           for name in wanted:
               src = os.path.join(parts_dir, name)
               if not os.path.isfile(src):
                   raise SystemExit(f'Missing action-figure part: {name}')
-              dst = os.path.join(out_dir, name)
-              shutil.copy2(src, dst)
-              manifest['parts'][name] = inspect_binary_stl(src)
+              info = inspect_binary_stl(src)
+              gz_name = name + '.gz'
+              gz_path = os.path.join(out_dir, gz_name)
+              with open(src, 'rb') as fin, gzip.open(gz_path, 'wb', compresslevel=9, mtime=0) as fout:
+                  shutil.copyfileobj(fin, fout)
+              info['gzip'] = gz_name
+              info['gzip_bytes'] = os.path.getsize(gz_path)
+              manifest['parts'][name] = info
 
           with open(os.path.join(out_dir, 'manifest.json'), 'w') as f:
               json.dump(manifest, f, indent=2)
           print('Validated statue:', statue_info)
           for name, info in manifest['parts'].items():
-              print(name, info)
+              print(name, info['triangles'], 'triangles', info['gzip_bytes'], 'gzip bytes')
           PY
 
       - name: Commit exact Rocky assets
@@ -93,10 +101,10 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add rocky-3d/assets/rocky-official.stl rocky-3d/assets/action
+          git add -A rocky-3d/assets/action rocky-3d/assets/rocky-official.stl
           if git diff --cached --quiet; then
             echo 'Rocky assets already up to date.'
             exit 0
           fi
-          git commit -m 'Add articulated Rocky action-figure parts'
+          git commit -m 'Compress articulated Rocky parts for web'
           git push

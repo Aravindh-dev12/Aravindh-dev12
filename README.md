@@ -15,11 +15,11 @@ $$
 \text{idea} \xrightarrow{\;reasoning\;} \text{system} \xrightarrow{\;iteration\;} \text{reality}
 $$
 
-<a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/b35e80d71065e648649b87da6299e68aa44f9779/rocky-3d/index.html" target="_blank" rel="noreferrer">
+<a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/1597f8f4db4f7db49d9317da5f15b743075bbcc3/rocky-3d/index.html" target="_blank" rel="noreferrer">
   <img src="./assets/eridian-walk.svg" width="880" alt="Rocky — open the live articulated 3D Eridian scene" />
 </a>
 
-<sub><a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/b35e80d71065e648649b87da6299e68aa44f9779/rocky-3d/index.html"><code>open live 3D Rocky → walk · work · orbit</code></a></sub>
+<sub><a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/1597f8f4db4f7db49d9317da5f15b743075bbcc3/rocky-3d/index.html"><code>open live 3D Rocky → walk · work · orbit</code></a></sub>
 
 </div>
 

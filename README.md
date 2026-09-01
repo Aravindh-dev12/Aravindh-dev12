@@ -1,63 +1,71 @@
-<!-- ARAVINDHAN // COGNITIVE PROFILE -->
+<!-- FIRST CONTACT PROFILE -->
 
 <div align="center">
 
-<br/>
-
-<img src="./assets/cognitive-profile.svg" width="100%" alt="Aravindhan cognitive AI profile interface" />
+<img src="./assets/first-contact.svg" width="100%" alt="Mathematical first-contact interface" />
 
 <br/>
 
-<sub><code>not a résumé. a running system.</code></sub>
+<sub><code>communication begins before language.</code></sub>
 
 <br/><br/>
 
 </div>
 
 ```text
-> profile.query("ARAVINDHAN")
-> intent: build intelligence into usable software
-> state:  OBSERVE → REASON → BUILD → SHIP → REPEAT
+[01] detect pattern
+[02] establish common structure
+[03] exchange meaning
+[04] build
 ```
 
-<details>
-<summary><code>01 / inspect.identity()</code></summary>
+$$
+\text{idea} \xrightarrow{\;reasoning\;} \text{system} \xrightarrow{\;iteration\;} \text{reality}
+$$
+
+<div align="center">
+
+### `𝒜 = { AI, systems, interfaces, experiments }`
+
+<sub>where the model is useful only when the system around it is useful.</sub>
+
+</div>
 
 <br/>
 
-**Aravindhan** — building at the intersection of **AI systems, product engineering, real-time interaction, and experimental interfaces**.
+<details>
+<summary><code>decode(𝒜)</code></summary>
 
-I care about one transition:
+<br/>
 
-```text
-idea  ────────────────▶  working system
-           ↑
-      intelligence
-```
+**Aravindhan**
+
+I build AI-native systems, realtime interfaces, experimental products, and the infrastructure that makes them work.
+
+$$
+\mathcal{A} = \text{reasoning} + \text{engineering} + \text{curiosity}
+$$
 
 </details>
 
 <details>
-<summary><code>02 / inspect.builds()</code></summary>
+<summary><code>observe(builds)</code></summary>
 
 <br/>
 
-**[Cieav](https://github.com/Aravindh-dev12/Cieav-web)**  
-Experimental browser interface using Vue, WebGPU and realtime graphics.
+**[Cieav](https://github.com/Aravindh-dev12/Cieav-web)** — realtime browser experimentation with Vue + WebGPU  
+**[Cascade](https://github.com/Aravindh-dev12/cascade-interview-assistant)** — multimodal realtime AI practice system
 
-**[Cascade](https://github.com/Aravindh-dev12/cascade-interview-assistant)**  
-Multimodal practice system using realtime speech, vision and AI reasoning.
-
-`[ explore all systems → ](https://github.com/Aravindh-dev12?tab=repositories)`
+[all repositories →](https://github.com/Aravindh-dev12?tab=repositories)
 
 </details>
 
 <details>
-<summary><code>03 / open.channel()</code></summary>
+<summary><code>open(channel)</code></summary>
 
 <br/>
 
-[portfolio](https://aravindh-dev12.github.io) · [email](mailto:aravindh1653@gmail.com) · [repositories](https://github.com/Aravindh-dev12?tab=repositories)
+[portfolio](https://aravindh-dev12.github.io) · [email](mailto:aravindh1653@gmail.com) · [github](https://github.com/Aravindh-dev12)
 
 </details>
 
@@ -65,6 +73,10 @@ Multimodal practice system using realtime speech, vision and AI reasoning.
 
 <div align="center">
 
-<sub><code>the interesting part is usually what has not been built yet.</code></sub>
+$$
+\boxed{\text{unknown} \rightarrow \text{pattern} \rightarrow \text{understanding} \rightarrow \text{creation}}
+$$
+
+<sub><code>the universal layer is structure.</code></sub>
 
 </div>

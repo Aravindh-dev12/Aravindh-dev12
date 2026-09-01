@@ -15,7 +15,7 @@ $$
 \text{idea} \xrightarrow{\;reasoning\;} \text{system} \xrightarrow{\;iteration\;} \text{reality}
 $$
 
-<img src="https://raw.githubusercontent.com/Aravindh-dev12/Aravindh-dev12/96c0ee9eedd9742fbcdc2a04422497ca1d5f483a/assets/eridian-walk.svg" width="880" alt="Rocky-inspired 3D stone creature walking" />
+<img src="./assets/eridian-walk.svg" width="880" alt="Rocky-inspired 3D stone creature walking" />
 
 <sub><code>gait(t + 2πk/5)</code></sub>
 

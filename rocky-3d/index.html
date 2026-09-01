@@ -90,9 +90,16 @@ function decodeBase64(text){
   return bytes.buffer;
 }
 async function loadSourceMesh(){
-  const urls=[0,1,2,3].map(i=>`../assets/rocky-model-source.part${i}`);
-  const parts=await Promise.all(urls.map(async url=>{const r=await fetch(url);if(!r.ok)throw new Error(`${url} ${r.status}`);return r.text()}));
-  return gunzipBuffer(decodeBase64(parts.join('')));
+  // part0 lost its final 12 chars during transport; part2 already contains the original parts 2+3.
+  // Reinsert the verified boundary and ignore the duplicated part3 file so the gzip bytes match the STL-derived payload.
+  const urls=[0,1,2].map(i=>`../assets/rocky-model-source.part${i}`);
+  const parts=await Promise.all(urls.map(async url=>{
+    const r=await fetch(url);
+    if(!r.ok)throw new Error(`${url} ${r.status}`);
+    return r.text();
+  }));
+  const encoded=parts[0]+'nenHnxg3SYDc'+parts[1]+parts[2];
+  return gunzipBuffer(decodeBase64(encoded));
 }
 function orientPatch(obj,normal){obj.quaternion.setFromUnitVectors(new THREE.Vector3(0,0,1),normal.clone().normalize())}
 function addMineralPatch(mesh,origin,target,size=.17,stretch=1.35){

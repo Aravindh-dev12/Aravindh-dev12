@@ -18,7 +18,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Download exact Rocky STL source
+      - name: Download and validate exact Rocky STL
         shell: bash
         run: |
           set -euo pipefail
@@ -26,12 +26,29 @@ jobs:
           curl -L --fail --retry 3 "$SOURCE_URL" -o /tmp/rocky.zip
           rm -rf /tmp/rocky
           mkdir -p /tmp/rocky rocky-3d/assets
-          unzip -o /tmp/rocky.zip -d /tmp/rocky
-          STL_FILE="$(find /tmp/rocky -type f -iname '*.stl' -print -quit)"
-          test -n "$STL_FILE"
+          unzip -q -o /tmp/rocky.zip -d /tmp/rocky
+
+          STL_FILE='/tmp/rocky/rocky-statue-figure-files/statue_unsupported/statue_unsupported.stl'
+          test -f "$STL_FILE"
+
+          python3 - "$STL_FILE" <<'PY'
+          import os, struct, sys
+          path = sys.argv[1]
+          size = os.path.getsize(path)
+          if size < 10_000_000:
+              raise SystemExit(f'STL unexpectedly small: {size} bytes')
+          with open(path, 'rb') as f:
+              f.seek(80)
+              triangles = struct.unpack('<I', f.read(4))[0]
+          expected_size = 84 + triangles * 50
+          if size != expected_size:
+              raise SystemExit(f'Not a valid binary STL: size={size}, expected={expected_size}')
+          if triangles != 258_432:
+              raise SystemExit(f'Unexpected triangle count: {triangles} (expected 258432)')
+          print(f'Validated exact Rocky mesh: {triangles:,} triangles, {size:,} bytes')
+          PY
+
           cp "$STL_FILE" rocky-3d/assets/rocky-official.stl
-          test -s rocky-3d/assets/rocky-official.stl
-          echo "Imported $(du -h rocky-3d/assets/rocky-official.stl | cut -f1) STL"
 
       - name: Commit exact STL
         shell: bash
@@ -44,5 +61,5 @@ jobs:
             echo 'STL already up to date.'
             exit 0
           fi
-          git commit -m 'Add exact Rocky STL model'
+          git commit -m 'Replace stub with exact Rocky STL model'
           git push

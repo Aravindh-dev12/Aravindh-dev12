@@ -17,48 +17,64 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Build transparent full-body PNG
+      - name: Extract best full-body frame
         shell: bash
         run: |
           set -euo pipefail
           python3 -m pip install --quiet pillow
           python3 - <<'PY'
-          from PIL import Image, ImageFilter
+          from PIL import Image, ImageSequence
           from pathlib import Path
-          src = Path('assets/rocky-reference-preview.jpg')
+
+          src = Path('assets/rocky-stl-transparent.gif')
           if not src.exists():
               raise SystemExit(f'missing {src}')
-          im = Image.open(src).convert('RGBA')
-          px = im.load()
-          w, h = im.size
-          for y in range(h):
-              for x in range(w):
-                  r, g, b, a = px[x, y]
-                  lo, hi = min(r, g, b), max(r, g, b)
-                  if lo >= 246 and (hi - lo) <= 10:
-                      alpha = 0
-                  elif lo >= 232 and (hi - lo) <= 16:
-                      alpha = int(max(0, min(255, (246 - lo) / 14 * 255)))
-                  else:
-                      alpha = 255
-                  px[x, y] = (r, g, b, alpha)
-          a = im.getchannel('A').filter(ImageFilter.GaussianBlur(0.45))
-          im.putalpha(a)
-          bbox = im.getbbox()
-          if not bbox:
-              raise SystemExit('background removal produced an empty image')
-          im = im.crop(bbox)
-          max_w, max_h = 780, 500
-          scale = min(max_w / im.width, max_h / im.height, 1.0)
+
+          gif = Image.open(src)
+          best = None
+          best_score = None
+          best_meta = None
+
+          for idx, frame in enumerate(ImageSequence.Iterator(gif)):
+              rgba = frame.convert('RGBA')
+              alpha = rgba.getchannel('A')
+              bbox = alpha.getbbox()
+              if not bbox:
+                  continue
+              x0, y0, x1, y1 = bbox
+              bw, bh = x1-x0, y1-y0
+              w, h = rgba.size
+              edge_hits = int(x0 <= 2) + int(y0 <= 2) + int(x1 >= w-2) + int(y1 >= h-2)
+              cx = (x0+x1)/2
+              cy = (y0+y1)/2
+              center_penalty = abs(cx-w/2)/w + abs(cy-h/2)/h
+              compactness = max(bw/w, bh/h)
+              score = edge_hits*10 + compactness + center_penalty*0.4
+              if best_score is None or score < best_score:
+                  best_score = score
+                  best = rgba
+                  best_meta = (idx, bbox, score)
+
+          if best is None:
+              raise SystemExit('no visible frame found')
+
+          bbox = best.getchannel('A').getbbox()
+          best = best.crop(bbox)
+
+          # Keep the full model within a stable transparent canvas.
+          max_w, max_h = 760, 480
+          scale = min(max_w / best.width, max_h / best.height, 1.0)
           if scale != 1.0:
-              im = im.resize((round(im.width * scale), round(im.height * scale)), Image.Resampling.LANCZOS)
-          canvas = Image.new('RGBA', (900, 600), (0, 0, 0, 0))
-          x = (canvas.width - im.width) // 2
-          y = (canvas.height - im.height) // 2
-          canvas.alpha_composite(im, (x, y))
+              best = best.resize((round(best.width*scale), round(best.height*scale)), Image.Resampling.LANCZOS)
+
+          canvas = Image.new('RGBA', (900, 560), (0,0,0,0))
+          x = (canvas.width-best.width)//2
+          y = (canvas.height-best.height)//2
+          canvas.alpha_composite(best, (x,y))
+
           out = Path('assets/rocky-readme-clean-v4.png')
           canvas.save(out, optimize=True)
-          print('saved', out, canvas.size, 'subject', im.size, 'offset', (x, y))
+          print('selected', best_meta, 'saved', out, canvas.size, 'subject', best.size, 'offset', (x,y))
           PY
           file assets/rocky-readme-clean-v4.png
 

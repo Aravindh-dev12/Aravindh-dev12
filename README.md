@@ -13,9 +13,15 @@ $$
 \text{idea} \xrightarrow{\;reasoning\;} \text{system} \xrightarrow{\;iteration\;} \text{reality}
 $$
 
-[![Rocky — tan sandstone body with green mineral patches](https://res.cloudinary.com/ybmedia/image/upload/c_crop%2Ce_improve%2Ch_676%2Cw_1014%2Cx_93%2Cy_0/c_fill%2Cf_auto%2Ch_1200%2Cq_auto%2Cw_1600/v1/m/0/0/00400ca1aa7ce070481184335715f837c5393925/Project-Hail-Mary-Plushie.jpg)](https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/ebbb4e252704720763d43dff9af740501ca30603/rocky-3d/index.html)
+<div align="center">
 
-[**open live 3D Rocky → walk · hi · signals · work · bye · orbit**](https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/ebbb4e252704720763d43dff9af740501ca30603/rocky-3d/index.html)
+## [OPEN LIVE INTERACTIVE 3D ROCKY](https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/ebbb4e252704720763d43dff9af740501ca30603/rocky-3d/index.html)
+
+**walk · hi · signals · work · bye · orbit · zoom**
+
+<sub>actual Three.js / WebGL articulated STL model</sub>
+
+</div>
 
 ### `𝒜 = { AI, systems, interfaces, experiments }`
 

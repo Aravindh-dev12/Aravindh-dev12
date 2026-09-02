@@ -15,7 +15,7 @@ $$
 
 <div align="center">
 
-<a href="https://raw.githack.com/Aravindh-dev12/Aravindh-dev12/75181f35bae6d8cd3a4b142e6475cc0185a5c93f/rocky-3d/index.html" target="_blank" rel="noreferrer">
+<a href="https://raw.githack.com/Aravindh-dev12/Aravindh-dev12/c2b656d1ea08cc9ba863e9438fbf9ce704eec0ba/rocky-model-viewer/index.html" target="_blank" rel="noreferrer">
 <img src="./assets/rocky-readme-clean-v4.png" width="700" alt="Rocky — realistic articulated 3D model" />
 </a>
 

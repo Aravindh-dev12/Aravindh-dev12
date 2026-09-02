@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d1117">
+<title>Rocky — Animated GLB</title>
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:radial-gradient(circle at 50% 34%,#30352f 0,#171b18 42%,#0d1110 76%,#090b0a 100%);color:#efe5da;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+model-viewer{width:100vw;height:100vh;background:transparent;--poster-color:transparent}
+.hud{position:fixed;z-index:5;top:16px;left:18px;pointer-events:none;text-transform:uppercase;letter-spacing:.09em;text-shadow:0 2px 16px #000}.hud b{display:block;font-size:12px}.hud span{display:block;margin-top:5px;font-size:10px;color:#a99d91}.hud .state{color:#80e5bb}.controls{position:fixed;z-index:7;left:18px;bottom:18px;display:flex;gap:7px;flex-wrap:wrap}.controls button{border:1px solid #5d665f;border-radius:999px;padding:8px 12px;background:rgba(12,17,15,.82);color:#d0c2b5;font:10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;backdrop-filter:blur(8px)}.controls button:hover,.controls button.active{border-color:#58d59d;color:#8ef0c7;background:rgba(24,57,44,.82)}.tip{position:fixed;right:16px;bottom:18px;font-size:9px;line-height:1.5;color:#8d8176;text-align:right;pointer-events:none}.progress{position:absolute;left:18%;right:18%;bottom:48%;height:2px;background:#3d4641}.progress>i{display:block;width:0;height:100%;background:#72d9ad;transition:width .1s}.error{position:fixed;inset:0;display:none;place-items:center;padding:28px;text-align:center;color:#d9c8ba;background:#0d1110;z-index:20}.error.show{display:grid}@media(max-width:720px){.tip{display:none}.hud{left:12px;top:12px}.controls{left:12px;bottom:12px}.controls button{padding:7px 9px}}
+</style>
+</head>
+<body>
+<model-viewer id="rocky"
+  src="./rocky-animated.glb"
+  alt="Rocky articulated animated 3D model"
+  camera-controls
+  autoplay
+  animation-name="Auto"
+  interaction-prompt="none"
+  environment-image="neutral"
+  exposure="1.15"
+  shadow-intensity="1.25"
+  shadow-softness="0.75"
+  camera-orbit="35deg 68deg 8m"
+  min-camera-orbit="auto 25deg 4m"
+  max-camera-orbit="auto 88deg 14m"
+  field-of-view="34deg">
+  <div class="progress" slot="progress-bar"><i id="bar"></i></div>
+</model-viewer>
+<div class="hud"><b>ROCKY / ANIMATED GLB</b><span id="state" class="state">state / loading</span><span>real articulated STL parts · drag / touch to rotate · wheel / pinch to zoom</span></div>
+<div class="controls"><button data-a="Auto" class="active">auto</button><button data-a="Hi">hi</button><button data-a="Work">work</button><button data-a="Bye">bye</button><button data-a="Walk">walk</button></div>
+<div class="tip">AUTO = hi → work → bye → walk<br>GLB animation continues while you orbit the model</div>
+<div id="error" class="error">Rocky could not load. Try refreshing once the 28 MB GLB has finished downloading.</div>
+<script>
+const mv=document.getElementById('rocky'),state=document.getElementById('state'),bar=document.getElementById('bar'),err=document.getElementById('error');
+function play(name){mv.animationName=name;state.textContent='state / '+name.toLowerCase();document.querySelectorAll('button[data-a]').forEach(b=>b.classList.toggle('active',b.dataset.a===name));try{mv.play({repetitions:Infinity})}catch(e){console.warn(e)}}
+mv.addEventListener('load',()=>{console.log('animations',mv.availableAnimations);play('Auto')});
+mv.addEventListener('progress',e=>{const p=Math.round((e.detail.totalProgress||0)*100);bar.style.width=p+'%';if(p>=100)bar.parentElement.style.display='none'});
+mv.addEventListener('error',()=>err.classList.add('show'));
+mv.addEventListener('finished',()=>{if(mv.animationName==='Auto')play('Auto')});
+document.querySelectorAll('button[data-a]').forEach(b=>b.addEventListener('click',()=>play(b.dataset.a)));
+</script>
+</body>
+</html>

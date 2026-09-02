@@ -1,0 +1,1 @@
+Reference preview is the user-provided Rocky render. Binary image is stored separately as assets/rocky-reference-preview.jpg.

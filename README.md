@@ -15,11 +15,11 @@ $$
 \text{idea} \xrightarrow{\;reasoning\;} \text{system} \xrightarrow{\;iteration\;} \text{reality}
 $$
 
-<a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/2b6ab52ca42610ec8c73b99547a1dff84fdcd661/rocky-3d/index.html" target="_blank" rel="noreferrer">
-  <img src="./assets/rocky-stl-preview.webp" width="880" alt="Rocky — working articulated 3D model built from the official action-figure STL parts" />
+<a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/6ac85bf8f557a51c9d100ad9361e6a0066cd2d1f/rocky-3d/index.html" target="_blank" rel="noreferrer">
+  <img src="./assets/rocky-reference-preview.svg" width="880" alt="Rocky — tan sandstone body with green mineral patches matching the shared reference render" />
 </a>
 
-<sub><a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/2b6ab52ca42610ec8c73b99547a1dff84fdcd661/rocky-3d/index.html"><code>open live 3D Rocky → real open-hand wave · signals · work · walk · bye · orbit</code></a></sub>
+<sub><a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/6ac85bf8f557a51c9d100ad9361e6a0066cd2d1f/rocky-3d/index.html"><code>open live 3D Rocky → reference colors · real open-hand wave · signals · work · walk · bye · orbit</code></a></sub>
 
 </div>
 

@@ -83,10 +83,9 @@ jobs:
           '''
           replacement = '\n'.join(line.strip() for line in replacement.strip().splitlines())
 
-          # Replace the first centered intro block only.
           r2, n = re.subn(
               r'<div align="center">\s*\$\$.*?</div>',
-              replacement,
+              lambda _m: replacement,
               r,
               count=1,
               flags=re.S,

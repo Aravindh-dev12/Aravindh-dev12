@@ -1,0 +1,43 @@
+name: Render Rocky README preview
+
+on:
+  push:
+    paths:
+      - '.github/workflows/render-rocky-preview.yml'
+      - 'assets/rocky-reference-preview.svg'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install SVG renderer
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y librsvg2-bin
+
+      - name: Render normal PNG for GitHub README
+        run: |
+          rsvg-convert -w 900 -h 900 assets/rocky-reference-preview.svg -o assets/rocky-reference-preview.png
+          test -s assets/rocky-reference-preview.png
+          file assets/rocky-reference-preview.png
+
+      - name: Commit rendered preview
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/rocky-reference-preview.png
+          if git diff --cached --quiet; then
+            echo 'Preview already up to date.'
+            exit 0
+          fi
+          git commit -m 'Render Rocky README preview as PNG'
+          git push

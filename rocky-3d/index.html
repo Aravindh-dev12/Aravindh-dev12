@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#efeeec">
+<meta name="theme-color" content="#e4e3e3">
 <title>Rocky — Working Articulated 3D</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#efeeec;color:#4e4035;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}#stage{display:block;width:100vw;height:100vh}.hud{position:fixed;z-index:5;left:18px;top:16px;pointer-events:none;text-transform:uppercase;letter-spacing:.08em}.hud b{display:block;font-size:12px}.hud span{display:block;margin-top:5px;font-size:10px;color:#786b60}.hud .state{color:#3e8263}.hud .gesture{color:#557766}.controls{position:fixed;z-index:6;left:18px;bottom:16px;display:flex;flex-wrap:wrap;gap:7px;max-width:calc(100vw - 36px)}.controls button{border:1px solid #b8ada3;background:#faf9f7;color:#695442;border-radius:999px;padding:8px 11px;font:10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.075em;text-transform:uppercase;cursor:pointer}.controls button:hover,.controls button.active{border-color:#4dab86;color:#3e8263;background:#eef7f2}.note{position:fixed;right:16px;bottom:16px;max-width:440px;text-align:right;font-size:9px;line-height:1.5;color:#8a7c70;pointer-events:none}.loading{position:fixed;inset:0;z-index:10;display:grid;place-items:center;background:rgba(239,238,236,.94);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#7b6d61;transition:opacity .4s}.loading.hidden{opacity:0;pointer-events:none}@media(max-width:760px){.note{display:none}.hud{left:12px;top:12px}.controls{left:12px;bottom:12px;max-width:calc(100vw - 24px)}.controls button{padding:7px 9px}}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#e4e3e3;color:#4e4035;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}#stage{display:block;width:100vw;height:100vh}.hud{position:fixed;z-index:5;left:18px;top:16px;pointer-events:none;text-transform:uppercase;letter-spacing:.08em}.hud b{display:block;font-size:12px}.hud span{display:block;margin-top:5px;font-size:10px;color:#786b60}.hud .state{color:#3e8263}.hud .gesture{color:#557766}.controls{position:fixed;z-index:6;left:18px;bottom:16px;display:flex;flex-wrap:wrap;gap:7px;max-width:calc(100vw - 36px)}.controls button{border:1px solid #b8ada3;background:#faf9f7;color:#695442;border-radius:999px;padding:8px 11px;font:10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.075em;text-transform:uppercase;cursor:pointer}.controls button:hover,.controls button.active{border-color:#4dab86;color:#3e8263;background:#eef7f2}.note{position:fixed;right:16px;bottom:16px;max-width:440px;text-align:right;font-size:9px;line-height:1.5;color:#8a7c70;pointer-events:none}.loading{position:fixed;inset:0;z-index:10;display:grid;place-items:center;background:rgba(239,238,236,.94);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#7b6d61;transition:opacity .4s}.loading.hidden{opacity:0;pointer-events:none}@media(max-width:760px){.note{display:none}.hud{left:12px;top:12px}.controls{left:12px;bottom:12px;max-width:calc(100vw - 24px)}.controls button{padding:7px 9px}}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
 </head>
@@ -15,24 +15,24 @@
 <div id="loading" class="loading">loading articulated Rocky…</div>
 <div class="hud"><b>ROCKY / OFFICIAL ARTICULATED RIG</b><span id="state" class="state">state / loading</span><span id="gesture" class="gesture">gesture / —</span><span id="meshInfo">mesh / official action-figure STL parts</span><span>drag = orbit · wheel = zoom</span></div>
 <div class="controls"><button id="auto" class="active">auto</button><button id="walk">walk</button><button id="hi">hi</button><button id="signal">signals</button><button id="work">work</button><button id="bye">bye</button></div>
-<div class="note">official action-figure assembly · real 1C open hand for gestures · dark flexible joints · sandstone + turquoise minerals</div>
+<div class="note">official action-figure assembly · real 1C open hand for gestures · dark flexible joints · reference-matched tan sandstone + green mineral patches</div>
 <script type="module">
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { STLLoader } from 'three/addons/loaders/STLLoader.js';
 const canvas=document.getElementById('stage'),loading=document.getElementById('loading'),stateEl=document.getElementById('state'),gestureEl=document.getElementById('gesture'),meshInfo=document.getElementById('meshInfo');
 const renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight,false);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.03;
-const scene=new THREE.Scene();scene.background=new THREE.Color(0xefeeec);scene.fog=new THREE.FogExp2(0xefeeec,.008);
+const scene=new THREE.Scene();scene.background=new THREE.Color(0xe4e3e3);scene.fog=new THREE.FogExp2(0xe4e3e3,.008);
 const camera=new THREE.PerspectiveCamera(39,innerWidth/innerHeight,.05,80);camera.position.set(6.8,4.1,7.8);
 const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.055;controls.enablePan=false;controls.target.set(0,1.8,0);controls.minDistance=4;controls.maxDistance=14;controls.maxPolarAngle=Math.PI*.495;
-scene.add(new THREE.HemisphereLight(0xffffff,0x8e7867,1.8));const key=new THREE.DirectionalLight(0xfff7ed,3.6);key.position.set(5.5,8,5.2);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.camera.left=-7;key.shadow.camera.right=7;key.shadow.camera.top=7;key.shadow.camera.bottom=-7;scene.add(key);const fill=new THREE.DirectionalLight(0xe5e1dc,1.25);fill.position.set(-5,4,3);scene.add(fill);const rim=new THREE.DirectionalLight(0xffffff,.85);rim.position.set(-4,5,-5);scene.add(rim);
-const floor=new THREE.Mesh(new THREE.PlaneGeometry(30,30),new THREE.MeshStandardMaterial({color:0xe7e4e0,roughness:.97}));floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;scene.add(floor);
-function rockTexture(){const c=document.createElement('canvas');c.width=c.height=512;const x=c.getContext('2d');x.fillStyle='#b59374';x.fillRect(0,0,512,512);const im=x.getImageData(0,0,512,512);for(let i=0;i<im.data.length;i+=4){const n=(Math.random()-.5)*31;im.data[i]=Math.max(0,Math.min(255,im.data[i]+n));im.data[i+1]=Math.max(0,Math.min(255,im.data[i+1]+n*.73));im.data[i+2]=Math.max(0,Math.min(255,im.data[i+2]+n*.48))}x.putImageData(im,0,0);x.globalAlpha=.18;x.strokeStyle='#584535';x.lineWidth=1.4;for(let i=0;i<60;i++){let px=Math.random()*512,py=Math.random()*512;x.beginPath();x.moveTo(px,py);for(let j=0;j<3;j++){px+=(Math.random()-.5)*44;py+=(Math.random()-.5)*44;x.lineTo(px,py)}x.stroke()}const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(2.1,2.1);return t}
+scene.add(new THREE.HemisphereLight(0xffffff,0x8e715a,1.8));const key=new THREE.DirectionalLight(0xfff7ed,3.2);key.position.set(5.5,8,5.2);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.camera.left=-7;key.shadow.camera.right=7;key.shadow.camera.top=7;key.shadow.camera.bottom=-7;scene.add(key);const fill=new THREE.DirectionalLight(0xe5e1dc,1.15);fill.position.set(-5,4,3);scene.add(fill);const rim=new THREE.DirectionalLight(0xffffff,.65);rim.position.set(-4,5,-5);scene.add(rim);
+const floor=new THREE.Mesh(new THREE.PlaneGeometry(30,30),new THREE.MeshStandardMaterial({color:0xe4e3e3,roughness:.97}));floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;scene.add(floor);
+function rockTexture(){const c=document.createElement('canvas');c.width=c.height=512;const x=c.getContext('2d');x.fillStyle='#a98a70';x.fillRect(0,0,512,512);const im=x.getImageData(0,0,512,512);for(let i=0;i<im.data.length;i+=4){const n=(Math.random()-.5)*31;im.data[i]=Math.max(0,Math.min(255,im.data[i]+n));im.data[i+1]=Math.max(0,Math.min(255,im.data[i+1]+n*.73));im.data[i+2]=Math.max(0,Math.min(255,im.data[i+2]+n*.48))}x.putImageData(im,0,0);x.globalAlpha=.22;x.strokeStyle='#544436';x.lineWidth=1.5;for(let i=0;i<60;i++){let px=Math.random()*512,py=Math.random()*512;x.beginPath();x.moveTo(px,py);for(let j=0;j<3;j++){px+=(Math.random()-.5)*44;py+=(Math.random()-.5)*44;x.lineTo(px,py)}x.stroke()}const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(2.1,2.1);return t}
 const tex=rockTexture();
-const stoneMat=new THREE.MeshStandardMaterial({map:tex,color:0xb99778,roughness:.96,metalness:.01,bumpMap:tex,bumpScale:.04});
-const jointMat=new THREE.MeshStandardMaterial({color:0x3f3934,roughness:.94,metalness:.01});
-const mineralMat=new THREE.MeshStandardMaterial({color:0x4fc99a,emissive:0x2f8f69,emissiveIntensity:.62,roughness:.55,metalness:.015});
-const mineralSoft=new THREE.MeshBasicMaterial({color:0x76d9b3,transparent:true,opacity:.12,depthWrite:false,blending:THREE.AdditiveBlending});
+const stoneMat=new THREE.MeshStandardMaterial({map:tex,color:0xa98a70,roughness:.96,metalness:.01,bumpMap:tex,bumpScale:.035});
+const jointMat=new THREE.MeshStandardMaterial({color:0x544436,roughness:.94,metalness:.01});
+const mineralMat=new THREE.MeshStandardMaterial({color:0x5b9d74,emissive:0x4f8d68,emissiveIntensity:.7,roughness:.55,metalness:.015});
+const mineralSoft=new THREE.MeshBasicMaterial({color:0x5fb285,transparent:true,opacity:.10,depthWrite:false,blending:THREE.AdditiveBlending});
 const rocky=new THREE.Group();scene.add(rocky);const bodyHolder=new THREE.Group();rocky.add(bodyHolder);const loader=new STLLoader();let manifest,scale=.055,torsoMesh=null,ready=false,mode='auto';const limbs=[];const UPZ=new THREE.Vector3(0,0,1),YUP=new THREE.Vector3(0,1,0);const TAU=Math.PI*2;
 async function gunzip(url){if(!('DecompressionStream' in window))throw new Error('This browser needs DecompressionStream support');const r=await fetch(url);if(!r.ok)throw new Error(`${url}: ${r.status}`);const stream=r.body.pipeThrough(new DecompressionStream('gzip'));return new Response(stream).arrayBuffer()}
 async function partGeometry(name){const meta=manifest.parts[name];const buf=await gunzip(`./assets/action/${meta.gzip}`);const g=loader.parse(buf);g.computeBoundingBox();g.translate(-meta.center[0],-meta.center[1],-meta.min[2]);return g}
@@ -60,61 +60,30 @@ async function build(){
  const torso=meshFrom(geos['torso.stl']);torso.rotation.x=-Math.PI/2;bodyHolder.add(torso);torsoMesh=torso;
  const bodyBaseY=1.18;bodyHolder.position.y=bodyBaseY;
  addBodyMineral([-.48,1.85,.72],.12,1.4);addBodyMineral([.55,1.25,.8],.095,1.25);addBodyMineral([.3,.7,-.82],.08,1.15);addBodyMineral([-.22,2.15,-.55],.09,1.25);
- // Official assembly diagram numbers the five sockets clockwise around the torso.
- // Limb 1 is special: 1B = fist option, 1C = open-hand option.
  const angle0=Math.PI/2;
  for(let i=0;i<5;i++){
    const n=i+1,angle=angle0+i*TAU/5,radial=new THREE.Vector3(Math.cos(angle),0,Math.sin(angle));
    const upper=new THREE.Group(),lower=new THREE.Group();rocky.add(upper,lower);
    const ma=meshFrom(geos[`${n}-A.stl`]);upper.add(ma);
    let mb=null,mc=null;
-   if(n===1){
-     mb=meshFrom(geos['1-B.stl']);mc=meshFrom(geos['1-C.stl']);lower.add(mb,mc);mc.visible=false;
-   }else{mb=meshFrom(geos[`${n}-B.stl`]);lower.add(mb)}
+   if(n===1){mb=meshFrom(geos['1-B.stl']);mc=meshFrom(geos['1-C.stl']);lower.add(mb,mc);mc.visible=false}else{mb=meshFrom(geos[`${n}-B.stl`]);lower.add(mb)}
    const shoulder=sphere(.12,jointMat),elbow=sphere(.108,jointMat),end=sphere(.07,jointMat);rocky.add(shoulder,elbow,end);
    const l1=manifest.parts[`${n}-A.stl`].size[2]*scale;
    const l2Fist=manifest.parts[`${n}-B.stl`].size[2]*scale;
    const l2Open=n===1?manifest.parts['1-C.stl'].size[2]*scale:l2Fist;
-   const L={i,n,upper,lower,shoulder,elbow,end,l1,l2:l2Fist,l2Fist,l2Open,radial,phase:i/5,radius:2.38+(i%2)*.1,shoulderBase:new THREE.Vector3(radial.x*1.04,2.62,radial.z*1.04),fist:mb,open:mc};
-   limbs.push(L);
-   addLimbMineral(upper,l1*.38,(i%2?.1:-.1),.066);
-   addLimbMineral(lower,l2Fist*.42,(i%2?-.09:.09),.06);
+   const shoulderBase=radial.clone().multiplyScalar(1.02);shoulderBase.y=2.12;
+   const radius=2.35;
+   const L={i,n,radial,upper,lower,ma,mb,mc,shoulder,elbow,end,l1,l2:l2Fist,l2Fist,l2Open,shoulderBase,radius,phase:i/5};limbs.push(L);
+   ma.position.z=0;mb.position.z=0;if(mc)mc.position.z=0;
+   addLimbMineral(upper,l1*.62,(i%2?-.12:.12),.075);addLimbMineral(lower,l2Fist*.44,(i%2?.11:-.11),.065);
  }
- addConsole();ready=true;loading.classList.add('hidden');stateEl.textContent='state / walk';
- meshInfo.textContent='mesh / official torso + 11 articulated limb/hand parts';
+ addConsole();meshInfo.textContent='mesh / official torso + 11 action STL parts';ready=true;loading.classList.add('hidden');
 }
-function update(t){
- if(!ready)return;
- const state=mode==='auto'?autoState(t):mode;
- stateEl.textContent=`state / ${state}`;
- if(state!=='signal')gestureEl.textContent=`gesture / ${state==='hi'?'hello':state==='bye'?'goodbye':state==='work'?'working':'—'}`;
- const expressive=0;
- const handOpen=(state==='hi'||state==='signal'||state==='work'||state==='bye');
- const hand=limbs[expressive];
- if(hand){
-   hand.fist.visible=!handOpen;
-   if(hand.open)hand.open.visible=handOpen;
-   hand.l2=handOpen?hand.l2Open:hand.l2Fist;
- }
- let shift=new THREE.Vector3();
- if(state==='walk')shift.set(Math.sin(t*1.1)*.055,Math.sin(t*2.2)*.025,Math.cos(t*.9)*.04);
- else if(state==='hi'||state==='signal'||state==='bye')shift.copy(limbs[expressive].radial).multiplyScalar(-.11).setY(Math.sin(t*2)*.02);
- else if(state==='work')shift.set(.02,-.03,.08);
- bodyHolder.position.set(shift.x,1.18+shift.y,shift.z);
- bodyHolder.rotation.z=state==='walk'?Math.sin(t*.85)*.025:(state==='hi'||state==='bye')?-.045:state==='work'?.035:0;
- bodyHolder.rotation.y=state==='work'?.08:Math.sin(t*.33)*.012;
- for(const L of limbs){
-   let target;
-   if(L.i===expressive&&state!=='walk')target=expressiveTarget(state,t);
-   else target=state==='walk'?walkFoot(L,t):supportFoot(L,t);
-   solve2(L,target,shift);
-   if(L.i===expressive&&handOpen)L.lower.rotation.z+=Math.sin(t*4.7)*.035;
- }
-}
-for(const id of ['auto','walk','hi','signal','work','bye'])document.getElementById(id).onclick=()=>{mode=id;for(const x of ['auto','walk','hi','signal','work','bye'])document.getElementById(x).classList.toggle('active',x===id)};
-const clock=new THREE.Clock();function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();update(t);controls.update();renderer.render(scene,camera)}animate();
-build().catch(err=>{console.error(err);loading.textContent='could not load articulated Rocky';stateEl.textContent='state / load failed'});
-addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight,false)});
+build().catch(err=>{console.error(err);loading.textContent='could not load articulated Rocky';});
+for(const id of['auto','walk','hi','signal','work','bye'])document.getElementById(id).onclick=()=>{mode=id;for(const k of['auto','walk','hi','signal','work','bye'])document.getElementById(k).classList.toggle('active',k===id)};
+const clock=new THREE.Clock();
+function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();if(ready){const state=mode==='auto'?autoState(t):mode;stateEl.textContent=`state / ${state}`;if(state!=='signal')gestureEl.textContent=state==='hi'?'gesture / hello':state==='work'?'gesture / working':state==='bye'?'gesture / goodbye':state==='walk'?'gesture / locomotion':'gesture / —';const expressive=state==='hi'||state==='signal'||state==='work'||state==='bye';const bodyShift=new THREE.Vector3();if(expressive)bodyShift.copy(limbs[0].radial).multiplyScalar(-.14);if(state==='walk'){bodyShift.x=Math.sin(t*1.1)*.035;bodyShift.z=Math.cos(t*.9)*.03}bodyHolder.position.set(bodyShift.x,1.18+Math.sin(t*1.7)*.025,bodyShift.z);bodyHolder.rotation.z=expressive?-.045:Math.sin(t*.8)*.018;for(const L of limbs){if(L.n===1&&L.mc){L.mb.visible=!expressive;L.mc.visible=expressive;L.l2=expressive?L.l2Open:L.l2Fist}else L.l2=L.l2Fist;let target;if(L.n===1&&expressive)target=expressiveTarget(state,t);else target=state==='walk'?walkFoot(L,t):supportFoot(L,t);solve2(L,target,bodyShift);if(L.n===1&&expressive)L.lower.rotation.z=Math.sin(t*(state==='work'?3.5:5.2))*.12;else L.lower.rotation.z=0}rocky.rotation.y=Math.sin(t*.23)*.025}controls.update();renderer.render(scene,camera)}
+animate();addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight,false)});
 </script>
 </body>
 </html>

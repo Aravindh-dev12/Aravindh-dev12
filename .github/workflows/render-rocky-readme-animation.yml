@@ -3,8 +3,10 @@ name: Render Rocky README animation
 on:
   push:
     paths:
-      - 'tools/render_rocky_readme_blender.py'
+      - 'tools/render_rocky_readme_browser.mjs'
       - '.github/workflows/render-rocky-readme-animation.yml'
+      - 'rocky-model-viewer/index.html'
+      - 'rocky-model-viewer/rocky-animated.glb'
   workflow_dispatch:
 
 permissions:
@@ -13,55 +15,72 @@ permissions:
 jobs:
   render:
     runs-on: ubuntu-latest
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Install Blender and headless graphics
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install capture dependencies
         run: |
+          npm install --no-save --silent puppeteer-core@24
           sudo apt-get update -qq
-          sudo apt-get install -y blender python3-numpy python3-pil libegl1 libgl1 libglx-mesa0 xvfb
-      - name: Render real animated GLB
-        run: xvfb-run -a blender -b --python tools/render_rocky_readme_blender.py
+          sudo apt-get install -y python3-pil
+      - name: Capture the real movable GLB animation
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          test -n "$CHROME_BIN"
+          python3 -m http.server 8765 >/tmp/rocky-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID 2>/dev/null || true' EXIT
+          sleep 2
+          CHROME_BIN="$CHROME_BIN" node tools/render_rocky_readme_browser.mjs
       - name: Build transparent README GIF
         run: |
           python3 - <<'PY'
           from PIL import Image
           from pathlib import Path
-          import numpy as np
-          src=Path('assets/rocky-readme-frames')
+          src=Path('assets/rocky-readme-browser-frames')
           paths=sorted(src.glob('frame_*.png'))
-          assert paths, 'no rendered frames'
-          out=[]
+          assert len(paths)>=24, f'only {len(paths)} captured frames'
+          frames=[]
           for p in paths:
               im=Image.open(p).convert('RGBA')
-              alpha=np.array(im.getchannel('A'))
-              q=im.convert('RGB').quantize(colors=191,method=Image.Quantize.MEDIANCUT)
-              arr=np.array(q); arr[alpha<14]=255
-              f=Image.fromarray(arr.astype('uint8'),'P')
-              pal=q.getpalette()[:191*3]+[0,0,0]*(256-191)
-              f.putpalette(pal[:768]); f.info['transparency']=255
-              out.append(f)
+              im.thumbnail((440,440),Image.Resampling.LANCZOS)
+              alpha=im.getchannel('A')
+              rgb=Image.new('RGB',im.size,(0,0,0))
+              rgb.paste(im,mask=alpha)
+              q=rgb.quantize(colors=255,method=Image.Quantize.MEDIANCUT)
+              transparent=alpha.point(lambda a:255 if a<12 else 0)
+              q.paste(255,mask=transparent)
+              q.info['transparency']=255
+              frames.append(q)
           dst=Path('assets/rocky-readme-live.gif')
-          out[0].save(dst,save_all=True,append_images=out[1:],duration=105,loop=0,transparency=255,disposal=2,optimize=True)
-          print('GIF bytes',dst.stat().st_size)
+          frames[0].save(dst,save_all=True,append_images=frames[1:],duration=135,loop=0,transparency=255,disposal=2,optimize=True)
+          print('README animation:',dst, dst.stat().st_size,'bytes',len(frames),'frames')
           PY
-          rm -rf assets/rocky-readme-frames
-      - name: Put animated 3D preview in README
+          rm -rf assets/rocky-readme-browser-frames
+      - name: Put the moving Rocky inside README
         run: |
+          mv assets/rocky-readme-live.gif /tmp/rocky-readme-live.gif
+          git pull --rebase origin main
+          mv /tmp/rocky-readme-live.gif assets/rocky-readme-live.gif
           python3 - <<'PY'
           from pathlib import Path
+          import re
           p=Path('README.md')
           s=p.read_text()
-          s=s.replace('src="./assets/rocky-readme-clean-v4.png"','src="./assets/rocky-readme-live.gif"')
-          s=s.replace('alt="Rocky — realistic articulated 3D model"','alt="Rocky — animated 3D hi, work, bye and walk preview"')
+          s=re.sub(r'src="\./assets/rocky-readme-[^"]+\.(?:png|gif|webp)"', 'src="./assets/rocky-readme-live.gif"', s, count=1)
+          s=re.sub(r'alt="Rocky[^\"]*"','alt="Rocky — moving hi, work, bye and walk 3D preview"',s,count=1)
           p.write_text(s)
           PY
-      - name: Commit animated README preview
+      - name: Commit moving README preview
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add assets/rocky-readme-live.gif README.md
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Show animated Rocky 3D performance in README'
+          git commit -m 'Show moving Rocky 3D animation inside README'
           git push

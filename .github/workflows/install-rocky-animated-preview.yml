@@ -25,18 +25,10 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
           import re
-          p=Path('README.md')
-          s=p.read_text()
-          new='''<div align="center">
-
-![Rocky — animated 3D STL turntable](./assets/rocky-3d-preview.gif)
-
-**Rocky · real STL geometry · animated 3D preview**
-
-<sub>GitHub README blocks WebGL; the full articulated walk/hi/signals/work/bye scene remains in the repo.</sub>
-
-</div>'''
-          s2,n=re.subn(r'<div align="center">\s*\n## \[OPEN LIVE INTERACTIVE 3D ROCKY\].*?</div>',new,s,count=1,flags=re.S)
+          p = Path('README.md')
+          s = p.read_text()
+          new = '<div align="center">\n\n![Rocky — animated 3D STL turntable](./assets/rocky-3d-preview.gif)\n\n**Rocky · real STL geometry · animated 3D preview**\n\n<sub>GitHub README blocks WebGL; the full articulated walk/hi/signals/work/bye scene remains in the repo.</sub>\n\n</div>'
+          s2, n = re.subn(r'<div align="center">\s*\n## \[OPEN LIVE INTERACTIVE 3D ROCKY\].*?</div>', new, s, count=1, flags=re.S)
           if n != 1:
               raise SystemExit('live 3D README block not found')
           p.write_text(s2)

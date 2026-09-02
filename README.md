@@ -15,7 +15,9 @@ $$
 
 <div align="center">
 
-<img src="./assets/rocky-walk-small.gif" width="330" alt="Rocky walking" />
+<a href="https://raw.githack.com/Aravindh-dev12/Aravindh-dev12/main/rocky-3d/index.html" target="_blank" rel="noreferrer">
+<img src="./assets/rocky-walk-small.gif" width="300" alt="Rocky walking — open movable 3D" />
+</a>
 
 </div>
 

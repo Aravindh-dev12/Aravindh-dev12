@@ -1,4 +1,4 @@
-name: Render Rocky README animation
+name: Render Rocky README model
 
 on:
   push:
@@ -15,7 +15,7 @@ permissions:
 jobs:
   render:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
         with:
@@ -23,12 +23,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Install capture dependencies
-        run: |
-          npm install --no-save --silent puppeteer-core@24
-          sudo apt-get update -qq
-          sudo apt-get install -y python3-pil
-      - name: Capture the original Rocky GLB animation
+      - name: Install capture dependency
+        run: npm install --no-save --silent puppeteer-core@24
+      - name: Capture original Rocky GLB
         run: |
           CHROME_BIN="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
           test -n "$CHROME_BIN"
@@ -37,50 +34,25 @@ jobs:
           trap 'kill $SERVER_PID 2>/dev/null || true' EXIT
           sleep 2
           CHROME_BIN="$CHROME_BIN" node tools/render_rocky_readme_browser.mjs
-      - name: Build transparent README GIF from original GLB
+      - name: Put original Rocky inside README
         run: |
-          python3 - <<'PY'
-          from PIL import Image
-          from pathlib import Path
-          src=Path('assets/rocky-readme-browser-frames')
-          paths=sorted(src.glob('frame_*.png'))
-          assert len(paths)>=8, f'only {len(paths)} captured frames'
-          frames=[]
-          for p in paths:
-              im=Image.open(p).convert('RGBA')
-              im.thumbnail((440,440),Image.Resampling.LANCZOS)
-              alpha=im.getchannel('A')
-              rgb=Image.new('RGB',im.size,(0,0,0))
-              rgb.paste(im,mask=alpha)
-              q=rgb.quantize(colors=255,method=Image.Quantize.MEDIANCUT)
-              transparent=alpha.point(lambda a:255 if a<12 else 0)
-              q.paste(255,mask=transparent)
-              q.info['transparency']=255
-              frames.append(q)
-          dst=Path('assets/rocky-readme-live.gif')
-          frames[0].save(dst,save_all=True,append_images=frames[1:],duration=260,loop=0,transparency=255,disposal=2,optimize=True)
-          print('Original Rocky README animation:',dst,dst.stat().st_size,'bytes',len(frames),'frames')
-          PY
-          rm -rf assets/rocky-readme-browser-frames
-      - name: Show original Rocky inside README
-        run: |
-          mv assets/rocky-readme-live.gif /tmp/rocky-readme-live.gif
+          mv assets/rocky-readme-original.png /tmp/rocky-readme-original.png
           git pull --rebase origin main
-          mv /tmp/rocky-readme-live.gif assets/rocky-readme-live.gif
+          mv /tmp/rocky-readme-original.png assets/rocky-readme-original.png
           python3 - <<'PY'
           from pathlib import Path
           import re
           p=Path('README.md')
           s=p.read_text()
-          s=re.sub(r'src="\./assets/rocky-readme-[^"]+\.(?:png|gif|webp)"','src="./assets/rocky-readme-live.gif"',s,count=1)
+          s=re.sub(r'src="\./assets/rocky-readme-[^"]+\.(?:png|gif|webp)"','src="./assets/rocky-readme-original.png"',s,count=1)
           s=re.sub(r'alt="Rocky[^\"]*"','alt="Rocky — original articulated 3D model"',s,count=1)
           p.write_text(s)
           PY
-      - name: Commit original Rocky README preview
+      - name: Commit original Rocky README model
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add assets/rocky-readme-live.gif README.md
+          git add assets/rocky-readme-original.png README.md
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'Show original Rocky 3D model inside README'
           git push

@@ -15,7 +15,7 @@ $$
 
 <div align="center">
 
-<img src="./assets/rocky-transparent.png" width="560" alt="Rocky — transparent 3D model" />
+<img src="./assets/rocky-stl-transparent.gif" width="560" alt="Rocky — transparent rotating STL model" />
 
 </div>
 

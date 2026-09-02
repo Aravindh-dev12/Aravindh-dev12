@@ -1,0 +1,108 @@
+name: Rebuild clean Rocky README preview
+
+on:
+  push:
+    paths:
+      - '.github/workflows/rebuild-rocky-readme-clean.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build transparent full-body PNG
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from PIL import Image, ImageFilter
+          from pathlib import Path
+
+          src = Path('assets/rocky-reference-preview.jpg')
+          if not src.exists():
+              raise SystemExit(f'missing {src}')
+
+          im = Image.open(src).convert('RGBA')
+          px = im.load()
+          w, h = im.size
+
+          # Remove only the near-white studio background; keep stone highlights intact.
+          for y in range(h):
+              for x in range(w):
+                  r, g, b, a = px[x, y]
+                  lo, hi = min(r, g, b), max(r, g, b)
+                  if lo >= 246 and (hi - lo) <= 10:
+                      alpha = 0
+                  elif lo >= 232 and (hi - lo) <= 16:
+                      alpha = int(max(0, min(255, (246 - lo) / 14 * 255)))
+                  else:
+                      alpha = 255
+                  px[x, y] = (r, g, b, alpha)
+
+          # Light alpha cleanup to remove a white fringe.
+          a = im.getchannel('A').filter(ImageFilter.GaussianBlur(0.45))
+          im.putalpha(a)
+          bbox = im.getbbox()
+          if not bbox:
+              raise SystemExit('background removal produced an empty image')
+          im = im.crop(bbox)
+
+          # Fit the complete creature inside a stable transparent canvas with generous padding.
+          max_w, max_h = 780, 500
+          scale = min(max_w / im.width, max_h / im.height, 1.0)
+          if scale != 1.0:
+              im = im.resize((round(im.width * scale), round(im.height * scale)), Image.Resampling.LANCZOS)
+
+          canvas = Image.new('RGBA', (900, 600), (0, 0, 0, 0))
+          x = (canvas.width - im.width) // 2
+          y = (canvas.height - im.height) // 2
+          canvas.alpha_composite(im, (x, y))
+
+          out = Path('assets/rocky-readme-clean-v4.png')
+          canvas.save(out, optimize=True)
+          print('saved', out, canvas.size, 'subject', im.size, 'offset', (x, y))
+          PY
+          file assets/rocky-readme-clean-v4.png
+
+      - name: Update README
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          p = Path('README.md')
+          s = p.read_text()
+          block = '''<div align="center">
+
+<img src="./assets/rocky-readme-clean-v4.png" width="700" alt="Rocky — transparent full 3D model" />
+
+</div>'''
+          s2, n = re.subn(r'<div align="center">\s*<img src="\./assets/rocky-[^"]+"[^>]*>\s*</div>', block, s, count=1, flags=re.S)
+          if n != 1:
+              raise SystemExit('Rocky README image block not found')
+          p.write_text(s2)
+          PY
+
+      - name: Commit fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/rocky-readme-clean-v4.png README.md
+          if git diff --cached --quiet; then
+            echo 'No changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Fix Rocky README image rendering and framing'
+          git push

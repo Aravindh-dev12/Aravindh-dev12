@@ -1,1 +1,0 @@
-This file is unrelated to rendering.

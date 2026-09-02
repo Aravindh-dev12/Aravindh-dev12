@@ -7,23 +7,15 @@
 [04] build
 ```
 
-<div align="center">
-
 $$
 \phi = \frac{2\pi}{5}
 \qquad
 \text{idea} \xrightarrow{\;reasoning\;} \text{system} \xrightarrow{\;iteration\;} \text{reality}
 $$
 
-<p align="center">
-  <a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/2347adc340b9394faa65bbc0452eae2df0e6ce3d/rocky-3d/index.html" target="_blank" rel="noreferrer">
-    <img src="https://raw.githubusercontent.com/Aravindh-dev12/Aravindh-dev12/main/assets/rocky-reference-preview.jpg" width="880" alt="Rocky — tan sandstone body with green mineral patches matching the shared reference render" />
-  </a>
-  <br/>
-  <sub><a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/2347adc340b9394faa65bbc0452eae2df0e6ce3d/rocky-3d/index.html"><code>open live 3D Rocky → reference colors · real open-hand wave · signals · work · walk · bye · orbit</code></a></sub>
-</p>
+[![Rocky — tan sandstone body with green mineral patches](./assets/rocky-reference-preview.jpg)](https://raw.githack.com/Aravindh-dev12/Aravindh-dev12/main/rocky-3d/index.html)
 
-</div>
+[**open live 3D Rocky → walk · hi · signals · work · bye · orbit**](https://raw.githack.com/Aravindh-dev12/Aravindh-dev12/main/rocky-3d/index.html)
 
 ### `𝒜 = { AI, systems, interfaces, experiments }`
 

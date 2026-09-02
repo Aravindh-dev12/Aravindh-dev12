@@ -1,0 +1,131 @@
+name: Fix Rocky colors and README rendering
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-rocky-rendering.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fix STL material and README preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          # --- Fix live 3D STL material ---
+          p = Path('rocky-3d/index.html')
+          s = p.read_text()
+
+          # STL has no UVs. Remove the UV-dependent generated texture block.
+          s = re.sub(
+              r"function rockTexture\(\)\{.*?\}\nconst tex=rockTexture\(\);\n",
+              "",
+              s,
+              count=1,
+              flags=re.S,
+          )
+
+          old = "const stoneMat=new THREE.MeshStandardMaterial({map:tex,color:0xa98a70,roughness:.96,metalness:.01,bumpMap:tex,bumpScale:.035});"
+          new = "const stoneMat=new THREE.MeshStandardMaterial({color:0xa98a70,roughness:.90,metalness:0,side:THREE.DoubleSide});"
+          if old in s:
+              s = s.replace(old, new, 1)
+          else:
+              s = re.sub(
+                  r"const stoneMat=new THREE\.MeshStandardMaterial\(\{.*?\}\);",
+                  new,
+                  s,
+                  count=1,
+              )
+
+          # Brighter neutral lighting so sandstone cannot appear black.
+          s = s.replace(
+              "renderer.toneMappingExposure=1.03;",
+              "renderer.toneMappingExposure=1.20;",
+              1,
+          )
+          if "new THREE.AmbientLight(0xffffff,.72)" not in s:
+              anchor = "const floor=new THREE.Mesh"
+              s = s.replace(
+                  anchor,
+                  "scene.add(new THREE.AmbientLight(0xffffff,.72));\n" + anchor,
+                  1,
+              )
+
+          p.write_text(s)
+
+          # --- Make README preview use plain GitHub Markdown ---
+          p = Path('README.md')
+          r = p.read_text()
+          live = 'https://raw.githack.com/Aravindh-dev12/Aravindh-dev12/main/rocky-3d/index.html'
+          replacement = f'''$$
+          \\phi = \\frac{{2\\pi}}{{5}}
+          \\qquad
+          \\text{{idea}} \\xrightarrow{{\\;reasoning\\;}} \\text{{system}} \\xrightarrow{{\\;iteration\\;}} \\text{{reality}}
+          $$
+
+          [![Rocky — tan sandstone body with green mineral patches](./assets/rocky-reference-preview.jpg)]({live})
+
+          [**open live 3D Rocky → walk · hi · signals · work · bye · orbit**]({live})
+          '''
+          replacement = '\n'.join(line.strip() for line in replacement.strip().splitlines())
+
+          # Replace the first centered intro block only.
+          r2, n = re.subn(
+              r'<div align="center">\s*\$\$.*?</div>',
+              replacement,
+              r,
+              count=1,
+              flags=re.S,
+          )
+          if n != 1:
+              raise SystemExit('README intro block not found')
+          p.write_text(r2)
+          PY
+
+          # Remove temporary/debug preview repair files from earlier attempts.
+          rm -f \
+            assets/rocky-reference-preview-source-note.txt \
+            assets/rocky-reference-preview-fixed.txt \
+            assets/rocky-reference-preview-binary-note.txt \
+            assets/.preview-debug-note \
+            assets/README-preview-repair.md \
+            assets/repair-status.txt \
+            assets/repair-temp-final.txt \
+            assets/ignore-this-marker.txt \
+            assets/last-marker.txt \
+            assets/tool-selection-test.txt
+
+          # Basic validations.
+          grep -q 'color:0xa98a70' rocky-3d/index.html
+          ! grep -q 'map:tex' rocky-3d/index.html
+          grep -q './assets/rocky-reference-preview.jpg' README.md
+          test -s assets/rocky-reference-preview.jpg
+          file assets/rocky-reference-preview.jpg
+
+      - name: Commit fixes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'Nothing to commit.'
+            exit 0
+          fi
+          git commit -m 'Fix Rocky sandstone color and README preview'
+          git push

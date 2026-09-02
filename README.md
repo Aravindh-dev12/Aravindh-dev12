@@ -15,11 +15,7 @@ $$
 
 <div align="center">
 
-![Rocky — moving 3D STL turntable](./assets/rocky-3d-preview.gif)
-
-**ROCKY · real STL geometry · moving 3D preview**
-
-<sub>rotating directly in the README · full articulated model lives in <code>rocky-3d/</code></sub>
+<img src="./assets/rocky-transparent.png" width="560" alt="Rocky — transparent 3D model" />
 
 </div>
 

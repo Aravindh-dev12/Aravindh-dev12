@@ -21,21 +21,21 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { STLLoader } from 'three/addons/loaders/STLLoader.js';
 const canvas=document.getElementById('stage'),loading=document.getElementById('loading'),stateEl=document.getElementById('state'),gestureEl=document.getElementById('gesture'),meshInfo=document.getElementById('meshInfo');
-const renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight,false);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.20;
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight,false);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.NoToneMapping;renderer.toneMappingExposure=1;
 const scene=new THREE.Scene();scene.background=new THREE.Color(0xe4e3e3);scene.fog=new THREE.FogExp2(0xe4e3e3,.008);
 const camera=new THREE.PerspectiveCamera(39,innerWidth/innerHeight,.05,80);camera.position.set(6.8,4.1,7.8);
 const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.055;controls.enablePan=false;controls.target.set(0,1.8,0);controls.minDistance=4;controls.maxDistance=14;controls.maxPolarAngle=Math.PI*.495;
 scene.add(new THREE.HemisphereLight(0xffffff,0x8e715a,1.8));const key=new THREE.DirectionalLight(0xfff7ed,3.2);key.position.set(5.5,8,5.2);key.castShadow=true;key.shadow.mapSize.set(2048,2048);key.shadow.camera.left=-7;key.shadow.camera.right=7;key.shadow.camera.top=7;key.shadow.camera.bottom=-7;scene.add(key);const fill=new THREE.DirectionalLight(0xe5e1dc,1.15);fill.position.set(-5,4,3);scene.add(fill);const rim=new THREE.DirectionalLight(0xffffff,.65);rim.position.set(-4,5,-5);scene.add(rim);
-scene.add(new THREE.AmbientLight(0xffffff,.72));
+scene.add(new THREE.AmbientLight(0xffffff,1.15));
 const floor=new THREE.Mesh(new THREE.PlaneGeometry(30,30),new THREE.MeshStandardMaterial({color:0xe4e3e3,roughness:.97}));floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;scene.add(floor);
-const stoneMat=new THREE.MeshStandardMaterial({color:0xa98a70,roughness:.90,metalness:0,side:THREE.DoubleSide});
+const stoneMat=new THREE.MeshPhongMaterial({color:0xa98a70,emissive:0x2a1f18,emissiveIntensity:.18,shininess:4,specular:0x3a2c22,side:THREE.DoubleSide});
 const jointMat=new THREE.MeshStandardMaterial({color:0x544436,roughness:.94,metalness:.01});
 const mineralMat=new THREE.MeshStandardMaterial({color:0x5b9d74,emissive:0x4f8d68,emissiveIntensity:.7,roughness:.55,metalness:.015});
 const mineralSoft=new THREE.MeshBasicMaterial({color:0x5fb285,transparent:true,opacity:.10,depthWrite:false,blending:THREE.AdditiveBlending});
 const rocky=new THREE.Group();scene.add(rocky);const bodyHolder=new THREE.Group();rocky.add(bodyHolder);const loader=new STLLoader();let manifest,scale=.055,torsoMesh=null,ready=false,mode='auto';const limbs=[];const UPZ=new THREE.Vector3(0,0,1),YUP=new THREE.Vector3(0,1,0);const TAU=Math.PI*2;
 async function gunzip(url){if(!('DecompressionStream' in window))throw new Error('This browser needs DecompressionStream support');const r=await fetch(url);if(!r.ok)throw new Error(`${url}: ${r.status}`);const stream=r.body.pipeThrough(new DecompressionStream('gzip'));return new Response(stream).arrayBuffer()}
-async function partGeometry(name){const meta=manifest.parts[name];const buf=await gunzip(`./assets/action/${meta.gzip}`);const g=loader.parse(buf);g.computeBoundingBox();g.translate(-meta.center[0],-meta.center[1],-meta.min[2]);return g}
-function meshFrom(g,mat=stoneMat){const m=new THREE.Mesh(g,mat);m.scale.setScalar(scale);m.castShadow=m.receiveShadow=true;return m}
+async function partGeometry(name){const meta=manifest.parts[name];const buf=await gunzip(`./assets/action/${meta.gzip}`);const g=loader.parse(buf);if(g.hasAttribute('color'))g.deleteAttribute('color');if(g.hasAttribute('normal'))g.deleteAttribute('normal');g.computeVertexNormals();g.normalizeNormals();g.computeBoundingBox();g.translate(-meta.center[0],-meta.center[1],-meta.min[2]);return g}
+function meshFrom(g,mat=stoneMat){const useMat=mat===stoneMat?stoneMat.clone():mat;const m=new THREE.Mesh(g,useMat);if(useMat===m.material&&m.material.color&&mat===stoneMat){m.material.color.setHex(0xa98a70);m.material.emissive.setHex(0x2a1f18);m.material.needsUpdate=true}m.scale.setScalar(scale);m.castShadow=m.receiveShadow=true;return m}
 function align(group,dir){group.quaternion.setFromUnitVectors(UPZ,dir.clone().normalize())}
 function sphere(r,mat=mineralMat){const m=new THREE.Mesh(new THREE.IcosahedronGeometry(r,2),mat);m.castShadow=true;return m}
 function addBodyMineral(pos,r=.11,stretch=1.3){const p=sphere(r);p.position.set(...pos);p.scale.set(stretch,.65,1);bodyHolder.add(p);const g=new THREE.Mesh(new THREE.SphereGeometry(r*1.5,14,10),mineralSoft);g.position.copy(p.position);g.scale.copy(p.scale);bodyHolder.add(g)}

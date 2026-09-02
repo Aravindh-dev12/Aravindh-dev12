@@ -15,7 +15,9 @@ $$
 
 <div align="center">
 
-<img src="./assets/rocky-readme-clean-v4.png" width="700" alt="Rocky — transparent full 3D model" />
+<a href="https://raw.githack.com/Aravindh-dev12/Aravindh-dev12/75181f35bae6d8cd3a4b142e6475cc0185a5c93f/rocky-3d/index.html" target="_blank" rel="noreferrer">
+<img src="./assets/rocky-readme-clean-v4.png" width="700" alt="Rocky — realistic articulated 3D model" />
+</a>
 
 </div>
 

@@ -1,0 +1,55 @@
+name: Install animated Rocky preview
+
+on:
+  push:
+    paths:
+      - '.github/workflows/install-rocky-animated-preview.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Decode animated preview and update README
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 -d assets/rocky-3d-preview.b64 > assets/rocky-3d-preview.gif
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('README.md')
+          s=p.read_text()
+          new='''<div align="center">
+
+![Rocky — animated 3D STL turntable](./assets/rocky-3d-preview.gif)
+
+**Rocky · real STL geometry · animated 3D preview**
+
+<sub>GitHub README blocks WebGL; the full articulated walk/hi/signals/work/bye scene remains in the repo.</sub>
+
+</div>'''
+          s2,n=re.subn(r'<div align="center">\s*\n## \[OPEN LIVE INTERACTIVE 3D ROCKY\].*?</div>',new,s,count=1,flags=re.S)
+          if n != 1:
+              raise SystemExit('live 3D README block not found')
+          p.write_text(s2)
+          PY
+          rm assets/rocky-3d-preview.b64
+          file assets/rocky-3d-preview.gif
+          test -s assets/rocky-3d-preview.gif
+
+      - name: Commit animated preview
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Show animated Rocky 3D preview in README'
+          git push

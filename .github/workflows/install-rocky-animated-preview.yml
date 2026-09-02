@@ -17,31 +17,62 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Decode animated preview and update README
+      - name: Build exact animated STL preview
         shell: bash
         run: |
           set -euo pipefail
-          base64 -d assets/rocky-3d-preview.b64 > assets/rocky-3d-preview.gif
+          cat \
+            assets/rocky-preview-chunk0.txt \
+            assets/rocky-preview-chunk1.txt \
+            assets/rocky-preview-chunk2.txt \
+            assets/rocky-preview-chunk3.txt \
+            assets/rocky-preview-chunk4.txt \
+            > /tmp/rocky-preview.b64
+          base64 -d /tmp/rocky-preview.b64 > assets/rocky-3d-preview.gif
+          echo '3dabf2b08e9b37eb757d56aee9479be5adec63a8fffe2b00b022689e02893727  assets/rocky-3d-preview.gif' | sha256sum -c -
+          file assets/rocky-3d-preview.gif
+
           python3 - <<'PY'
           from pathlib import Path
           import re
           p = Path('README.md')
           s = p.read_text()
-          new = '<div align="center">\n\n![Rocky — animated 3D STL turntable](./assets/rocky-3d-preview.gif)\n\n**Rocky · real STL geometry · animated 3D preview**\n\n<sub>GitHub README blocks WebGL; the full articulated walk/hi/signals/work/bye scene remains in the repo.</sub>\n\n</div>'
-          s2, n = re.subn(r'<div align="center">\s*\n## \[OPEN LIVE INTERACTIVE 3D ROCKY\].*?</div>', new, s, count=1, flags=re.S)
+          replacement = '''<div align="center">
+
+![Rocky — moving 3D STL turntable](./assets/rocky-3d-preview.gif)
+
+**ROCKY · real STL geometry · moving 3D preview**
+
+<sub>rotating directly in the README · full articulated model lives in <code>rocky-3d/</code></sub>
+
+</div>'''
+          s2, n = re.subn(
+              r'<div align="center">\s*\n## \[OPEN LIVE INTERACTIVE 3D ROCKY\].*?</div>',
+              lambda _m: replacement,
+              s,
+              count=1,
+              flags=re.S,
+          )
           if n != 1:
-              raise SystemExit('live 3D README block not found')
+              raise SystemExit('README live-3D block not found')
           p.write_text(s2)
           PY
-          rm assets/rocky-3d-preview.b64
-          file assets/rocky-3d-preview.gif
-          test -s assets/rocky-3d-preview.gif
 
-      - name: Commit animated preview
+          rm -f \
+            assets/rocky-3d-preview.b64 \
+            assets/rocky-3d-preview2.b64 \
+            assets/rocky-preview-chunk0.txt \
+            assets/rocky-preview-chunk1.txt \
+            assets/rocky-preview-chunk2.txt \
+            assets/rocky-preview-chunk3.txt \
+            assets/rocky-preview-chunk4.txt
+
+      - name: Commit moving 3D README preview
         shell: bash
         run: |
+          set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
-          git commit -m 'Show animated Rocky 3D preview in README'
+          git commit -m 'Replace Rocky link with moving 3D README preview'
           git push

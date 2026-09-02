@@ -15,7 +15,7 @@ $$
 
 <div align="center">
 
-<img src="./assets/rocky-readme-fixed.webp" width="700" alt="Rocky — transparent 3D model" />
+<img src="./assets/rocky-readme-clean-v4.png" width="700" alt="Rocky — transparent full 3D model" />
 
 </div>
 

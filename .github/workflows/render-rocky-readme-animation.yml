@@ -28,7 +28,7 @@ jobs:
           npm install --no-save --silent puppeteer-core@24
           sudo apt-get update -qq
           sudo apt-get install -y python3-pil
-      - name: Capture the real movable GLB animation
+      - name: Capture the original Rocky GLB animation
         run: |
           CHROME_BIN="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
           test -n "$CHROME_BIN"
@@ -37,14 +37,14 @@ jobs:
           trap 'kill $SERVER_PID 2>/dev/null || true' EXIT
           sleep 2
           CHROME_BIN="$CHROME_BIN" node tools/render_rocky_readme_browser.mjs
-      - name: Build transparent README GIF
+      - name: Build transparent README GIF from original GLB
         run: |
           python3 - <<'PY'
           from PIL import Image
           from pathlib import Path
           src=Path('assets/rocky-readme-browser-frames')
           paths=sorted(src.glob('frame_*.png'))
-          assert len(paths)>=24, f'only {len(paths)} captured frames'
+          assert len(paths)>=8, f'only {len(paths)} captured frames'
           frames=[]
           for p in paths:
               im=Image.open(p).convert('RGBA')
@@ -58,11 +58,11 @@ jobs:
               q.info['transparency']=255
               frames.append(q)
           dst=Path('assets/rocky-readme-live.gif')
-          frames[0].save(dst,save_all=True,append_images=frames[1:],duration=135,loop=0,transparency=255,disposal=2,optimize=True)
-          print('README animation:',dst, dst.stat().st_size,'bytes',len(frames),'frames')
+          frames[0].save(dst,save_all=True,append_images=frames[1:],duration=260,loop=0,transparency=255,disposal=2,optimize=True)
+          print('Original Rocky README animation:',dst,dst.stat().st_size,'bytes',len(frames),'frames')
           PY
           rm -rf assets/rocky-readme-browser-frames
-      - name: Put the moving Rocky inside README
+      - name: Show original Rocky inside README
         run: |
           mv assets/rocky-readme-live.gif /tmp/rocky-readme-live.gif
           git pull --rebase origin main
@@ -72,15 +72,15 @@ jobs:
           import re
           p=Path('README.md')
           s=p.read_text()
-          s=re.sub(r'src="\./assets/rocky-readme-[^"]+\.(?:png|gif|webp)"', 'src="./assets/rocky-readme-live.gif"', s, count=1)
-          s=re.sub(r'alt="Rocky[^\"]*"','alt="Rocky — moving hi, work, bye and walk 3D preview"',s,count=1)
+          s=re.sub(r'src="\./assets/rocky-readme-[^"]+\.(?:png|gif|webp)"','src="./assets/rocky-readme-live.gif"',s,count=1)
+          s=re.sub(r'alt="Rocky[^\"]*"','alt="Rocky — original articulated 3D model"',s,count=1)
           p.write_text(s)
           PY
-      - name: Commit moving README preview
+      - name: Commit original Rocky README preview
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add assets/rocky-readme-live.gif README.md
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Show moving Rocky 3D animation inside README'
+          git commit -m 'Show original Rocky 3D model inside README'
           git push

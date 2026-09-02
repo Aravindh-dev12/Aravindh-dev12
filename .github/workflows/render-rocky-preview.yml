@@ -29,7 +29,9 @@ jobs:
           m = re.search(r'data:image/jpeg;base64,([^"\']+)', src)
           if not m:
               raise SystemExit('embedded JPEG not found')
-          raw = base64.b64decode(m.group(1))
+          data = ''.join(m.group(1).split())
+          data += '=' * (-len(data) % 4)
+          raw = base64.b64decode(data)
           if not raw.startswith(b'\xff\xd8\xff'):
               raise SystemExit('decoded data is not a JPEG')
           out = pathlib.Path('assets/rocky-reference-preview.jpg')

@@ -9,32 +9,52 @@ fs.mkdirSync(out,{recursive:true});
 const browser=await puppeteer.launch({
   headless:true,
   executablePath:chrome,
-  args:['--no-sandbox','--disable-dev-shm-usage','--enable-webgl','--ignore-gpu-blocklist','--use-angle=swiftshader','--window-size=540,540']
+  args:[
+    '--no-sandbox',
+    '--disable-dev-shm-usage',
+    '--enable-webgl',
+    '--ignore-gpu-blocklist',
+    '--use-angle=swiftshader',
+    '--enable-unsafe-swiftshader',
+    '--window-size=560,560'
+  ]
 });
+
 const page=await browser.newPage();
-await page.setViewport({width:540,height:540,deviceScaleFactor:1});
+await page.setViewport({width:560,height:560,deviceScaleFactor:1});
 page.on('console',m=>console.log('[browser]',m.text()));
 page.on('pageerror',e=>console.error('[pageerror]',e.message));
 
-await page.goto('http://127.0.0.1:8765/rocky-model-viewer/index.html',{waitUntil:'domcontentloaded',timeout:120000});
-await page.waitForFunction(()=>document.querySelector('#poster')?.classList.contains('hidden'),{timeout:120000});
+await page.goto('http://127.0.0.1:8765/rocky-model-viewer/index.html',{
+  waitUntil:'domcontentloaded',
+  timeout:120000
+});
 
+// The poster disappears only after the real GLB has loaded into Three.js.
+await page.waitForFunction(
+  ()=>document.querySelector('#poster')?.classList.contains('hidden'),
+  {timeout:120000}
+);
+
+// Start the real baked Auto animation BEFORE hiding the viewer controls.
+await page.waitForSelector('button[data-a="Auto"]',{visible:true,timeout:30000});
+await page.click('button[data-a="Auto"]');
+await new Promise(r=>setTimeout(r,300));
+
+// README capture: model only, transparent background, no UI chrome.
 await page.addStyleTag({content:`
-html,body{background:transparent!important}
+html,body{background:transparent!important;margin:0!important;overflow:hidden!important}
 .hud,.controls,.tip,.loadbox,.poster,.error{display:none!important}
 #stage{background:transparent!important}
+canvas{display:block!important}
 `});
 await page.evaluate(()=>{
   document.documentElement.style.background='transparent';
   document.body.style.background='transparent';
 });
 
-// Restart the real baked Auto clip at t=0.
-await page.click('button[data-a="Auto"]');
-await new Promise(r=>setTimeout(r,250));
-
 const frames=32;
-const interval=625; // 31 intervals ~= the complete 20 s Auto clip.
+const interval=625; // samples the ~20 s Auto performance
 const start=Date.now();
 for(let i=0;i<frames;i++){
   const target=start+i*interval;
@@ -44,5 +64,6 @@ for(let i=0;i<frames;i++){
   await page.screenshot({path:filename,type:'png',omitBackground:true});
   console.log('captured',i+1,'/',frames);
 }
+
 await browser.close();
-console.log('captured real GLB Auto animation to',out);
+console.log('captured original Rocky GLB Auto animation to',out);

@@ -15,11 +15,11 @@ $$
 
 <div align="center">
 
-## [OPEN LIVE INTERACTIVE 3D ROCKY](https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/ebbb4e252704720763d43dff9af740501ca30603/rocky-3d/index.html)
+![Rocky — moving 3D STL turntable](./assets/rocky-3d-preview.gif)
 
-**walk · hi · signals · work · bye · orbit · zoom**
+**ROCKY · real STL geometry · moving 3D preview**
 
-<sub>actual Three.js / WebGL articulated STL model</sub>
+<sub>rotating directly in the README · full articulated model lives in <code>rocky-3d/</code></sub>
 
 </div>
 

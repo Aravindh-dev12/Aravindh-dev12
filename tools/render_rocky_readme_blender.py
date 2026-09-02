@@ -1,4 +1,4 @@
-import bpy, math, os
+import bpy, os
 from mathutils import Vector
 
 ROOT=os.path.abspath('.')
@@ -10,39 +10,35 @@ bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.gltf(filepath=GLB)
 scene=bpy.context.scene
 
-# Transparent, fast, realistic-enough Eevee render.
-scene.render.engine='BLENDER_EEVEE'
-scene.render.resolution_x=520
-scene.render.resolution_y=520
+# GitHub README preview: render the real animated GLB quickly with Blender Workbench.
+scene.render.engine='BLENDER_WORKBENCH'
+scene.render.resolution_x=460
+scene.render.resolution_y=460
 scene.render.resolution_percentage=100
 scene.render.image_settings.file_format='PNG'
 scene.render.image_settings.color_mode='RGBA'
 scene.render.film_transparent=True
 scene.render.fps=24
-try:
-    scene.eevee.taa_render_samples=32
-    scene.eevee.use_gtao=True
-    scene.eevee.gtao_distance=3
-    scene.eevee.gtao_factor=1.2
-except Exception:
-    pass
+scene.display.shading.light='STUDIO'
+scene.display.shading.color_type='MATERIAL'
+scene.display.shading.show_shadows=True
+scene.display.shading.show_cavity=True
+scene.display.shading.cavity_type='BOTH'
+scene.display.shading.curvature_ridge_factor=1.6
+scene.display.shading.curvature_valley_factor=1.2
+scene.display.shading.show_specular_highlight=True
 
 meshes=[o for o in scene.objects if o.type=='MESH']
 if not meshes:
     raise RuntimeError('No meshes imported from Rocky GLB')
 
-# Warm studio lights.
-world=scene.world or bpy.data.worlds.new('World')
-scene.world=world
-world.use_nodes=True
-world.node_tree.nodes['Background'].inputs['Color'].default_value=(0.025,0.03,0.027,1)
-world.node_tree.nodes['Background'].inputs['Strength'].default_value=.25
+# Ensure the imported sandstone material reads clearly in the README renderer.
+for mat in bpy.data.materials:
+    if mat.name and 'Rocky sandstone' in mat.name:
+        mat.diffuse_color=(0.42,0.29,0.20,1.0)
+        mat.roughness=.86
 
-def area(name, loc, energy, size, color):
-    data=bpy.data.lights.new(name,'AREA'); data.energy=energy; data.size=size; data.color=color
-    obj=bpy.data.objects.new(name,data); scene.collection.objects.link(obj); obj.location=loc; return obj
-
-# Determine initial bounds after import/conversion.
+# Determine stable framing from the real imported mesh bounds.
 def bounds():
     mn=Vector((1e9,1e9,1e9)); mx=Vector((-1e9,-1e9,-1e9))
     for o in meshes:
@@ -53,35 +49,33 @@ def bounds():
     return mn,mx
 mn,mx=bounds(); center=(mn+mx)*.5; span=mx-mn; size=max(span)
 
-area('Key',center+Vector((size*1.4,-size*1.5,size*1.8)),1300,size*1.4,(1.0,.83,.68))
-area('Fill',center+Vector((-size*1.5,-size*.6,size*.8)),650,size*1.7,(.55,.75,1.0))
-area('Rim',center+Vector((0,size*1.5,size*1.4)),900,size*1.2,(.45,1.0,.75))
+cam_data=bpy.data.cameras.new('Camera')
+cam=bpy.data.objects.new('Camera',cam_data)
+scene.collection.objects.link(cam)
+scene.camera=cam
+cam_data.lens=50
+cam.location=center+Vector((size*1.55,-size*2.05,size*1.12))
+cam.rotation_euler=(center-cam.location).to_track_quat('-Z','Y').to_euler()
 
-cam_data=bpy.data.cameras.new('Camera'); cam=bpy.data.objects.new('Camera',cam_data); scene.collection.objects.link(cam); scene.camera=cam
-cam_data.lens=52
-cam.location=center+Vector((size*1.55,-size*2.0,size*1.05))
-def aim():
-    cam.rotation_euler=(center-cam.location).to_track_quat('-Z','Y').to_euler()
-aim()
-
-# Imported GLB contains Auto as the first animation; glTF importer activates it.
-# Find the actual scene animation range from imported actions/NLA.
+# glTF importer activates the first clip; the GLB intentionally stores Auto first.
+# Determine its imported frame range and sample it for a compact looping README preview.
 end=1.0
 for a in bpy.data.actions:
     end=max(end,float(a.frame_range[1]))
 for o in scene.objects:
     ad=o.animation_data
     if ad:
-        if ad.action: end=max(end,float(ad.action.frame_range[1]))
+        if ad.action:
+            end=max(end,float(ad.action.frame_range[1]))
         for track in ad.nla_tracks:
-            for strip in track.strips: end=max(end,float(strip.frame_end))
+            for strip in track.strips:
+                end=max(end,float(strip.frame_end))
 print('Imported actions:',[a.name for a in bpy.data.actions], 'end frame',end)
 
-# Sample 48 frames through the Auto performance, keeping camera fixed for stable README framing.
-count=48
+count=32
 for i in range(count):
-    f=1 + (max(end,2)-1)*(i/(count-1))
+    f=1+(max(end,2)-1)*(i/(count-1))
     scene.frame_set(int(round(f)))
     scene.render.filepath=os.path.join(OUT,f'frame_{i:03d}.png')
     bpy.ops.render.render(write_still=True)
-print('Rendered',count,'frames to',OUT)
+print('Rendered',count,'real GLB frames to',OUT)

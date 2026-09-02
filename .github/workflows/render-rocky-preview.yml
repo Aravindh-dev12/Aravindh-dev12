@@ -19,25 +19,36 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install SVG renderer
+      - name: Extract original JPEG from reference SVG
+        shell: bash
         run: |
-          sudo apt-get update
-          sudo apt-get install -y librsvg2-bin
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64, pathlib, re
+          src = pathlib.Path('assets/rocky-reference-preview.svg').read_text()
+          m = re.search(r'data:image/jpeg;base64,([^"\']+)', src)
+          if not m:
+              raise SystemExit('embedded JPEG not found')
+          raw = base64.b64decode(m.group(1))
+          if not raw.startswith(b'\xff\xd8\xff'):
+              raise SystemExit('decoded data is not a JPEG')
+          out = pathlib.Path('assets/rocky-reference-preview.jpg')
+          out.write_bytes(raw)
+          print('wrote', out, len(raw), 'bytes')
+          PY
+          test -s assets/rocky-reference-preview.jpg
+          file assets/rocky-reference-preview.jpg
 
-      - name: Render normal PNG for GitHub README
+      - name: Commit real README preview
+        shell: bash
         run: |
-          rsvg-convert -w 900 -h 900 assets/rocky-reference-preview.svg -o assets/rocky-reference-preview.png
-          test -s assets/rocky-reference-preview.png
-          file assets/rocky-reference-preview.png
-
-      - name: Commit rendered preview
-        run: |
+          set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add assets/rocky-reference-preview.png
+          git add assets/rocky-reference-preview.jpg
           if git diff --cached --quiet; then
             echo 'Preview already up to date.'
             exit 0
           fi
-          git commit -m 'Render Rocky README preview as PNG'
+          git commit -m 'Add real Rocky README preview image'
           git push

@@ -17,12 +17,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Install Blender and image dependencies
+      - name: Install Blender and headless graphics
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y blender python3-numpy python3-pil
+          sudo apt-get install -y blender python3-numpy python3-pil libegl1 libgl1 libglx-mesa0 xvfb
       - name: Render real animated GLB
-        run: blender -b --python tools/render_rocky_readme_blender.py
+        run: xvfb-run -a blender -b --python tools/render_rocky_readme_blender.py
       - name: Build transparent README GIF
         run: |
           python3 - <<'PY'

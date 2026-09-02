@@ -1,0 +1,68 @@
+name: Render Rocky README animation
+
+on:
+  push:
+    paths:
+      - 'tools/render_rocky_readme_blender.py'
+      - '.github/workflows/render-rocky-readme-animation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install Blender and Pillow
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y blender
+          python3 -m pip install --quiet pillow
+      - name: Render real animated GLB
+        run: blender -b --python tools/render_rocky_readme_blender.py
+      - name: Build transparent README GIF
+        run: |
+          python3 - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          import numpy as np
+          src=Path('assets/rocky-readme-frames')
+          paths=sorted(src.glob('frame_*.png'))
+          assert paths, 'no rendered frames'
+          out=[]
+          for p in paths:
+              im=Image.open(p).convert('RGBA')
+              alpha=np.array(im.getchannel('A'))
+              q=im.convert('RGB').quantize(colors=191,method=Image.Quantize.MEDIANCUT)
+              arr=np.array(q); arr[alpha<14]=255
+              f=Image.fromarray(arr.astype('uint8'),'P')
+              pal=q.getpalette()[:191*3]+[0,0,0]*(256-191)
+              f.putpalette(pal[:768]); f.info['transparency']=255
+              out.append(f)
+          dst=Path('assets/rocky-readme-live.gif')
+          out[0].save(dst,save_all=True,append_images=out[1:],duration=105,loop=0,transparency=255,disposal=2,optimize=True)
+          print('GIF bytes',dst.stat().st_size)
+          PY
+          rm -rf assets/rocky-readme-frames
+      - name: Put animated 3D preview in README
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('README.md')
+          s=p.read_text()
+          s=s.replace('src="./assets/rocky-readme-clean-v4.png"','src="./assets/rocky-readme-live.gif"')
+          s=s.replace('alt="Rocky — realistic articulated 3D model"','alt="Rocky — animated 3D hi, work, bye and walk preview"')
+          p.write_text(s)
+          PY
+      - name: Commit animated README preview
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/rocky-readme-live.gif README.md
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Show animated Rocky 3D performance in README'
+          git push

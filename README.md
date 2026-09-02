@@ -15,11 +15,13 @@ $$
 \text{idea} \xrightarrow{\;reasoning\;} \text{system} \xrightarrow{\;iteration\;} \text{reality}
 $$
 
-<a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/6ac85bf8f557a51c9d100ad9361e6a0066cd2d1f/rocky-3d/index.html" target="_blank" rel="noreferrer">
-  <img src="./assets/rocky-reference-preview.svg" width="880" alt="Rocky — tan sandstone body with green mineral patches matching the shared reference render" />
-</a>
-
-<sub><a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/6ac85bf8f557a51c9d100ad9361e6a0066cd2d1f/rocky-3d/index.html"><code>open live 3D Rocky → reference colors · real open-hand wave · signals · work · walk · bye · orbit</code></a></sub>
+<p align="center">
+  <a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/2347adc340b9394faa65bbc0452eae2df0e6ce3d/rocky-3d/index.html" target="_blank" rel="noreferrer">
+    <img src="https://raw.githubusercontent.com/Aravindh-dev12/Aravindh-dev12/main/assets/rocky-reference-preview.jpg" width="880" alt="Rocky — tan sandstone body with green mineral patches matching the shared reference render" />
+  </a>
+  <br/>
+  <sub><a href="https://rawcdn.githack.com/Aravindh-dev12/Aravindh-dev12/2347adc340b9394faa65bbc0452eae2df0e6ce3d/rocky-3d/index.html"><code>open live 3D Rocky → reference colors · real open-hand wave · signals · work · walk · bye · orbit</code></a></sub>
+</p>
 
 </div>
 

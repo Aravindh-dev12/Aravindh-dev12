@@ -4,44 +4,134 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0d1117">
-<title>Rocky — Animated GLB</title>
-<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<title>Rocky — Movable Animated 3D</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:radial-gradient(circle at 50% 34%,#30352f 0,#171b18 42%,#0d1110 76%,#090b0a 100%);color:#efe5da;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-model-viewer{width:100vw;height:100vh;background:transparent;--poster-color:transparent}
-.hud{position:fixed;z-index:5;top:16px;left:18px;pointer-events:none;text-transform:uppercase;letter-spacing:.09em;text-shadow:0 2px 16px #000}.hud b{display:block;font-size:12px}.hud span{display:block;margin-top:5px;font-size:10px;color:#a99d91}.hud .state{color:#80e5bb}.controls{position:fixed;z-index:7;left:18px;bottom:18px;display:flex;gap:7px;flex-wrap:wrap}.controls button{border:1px solid #5d665f;border-radius:999px;padding:8px 12px;background:rgba(12,17,15,.82);color:#d0c2b5;font:10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;backdrop-filter:blur(8px)}.controls button:hover,.controls button.active{border-color:#58d59d;color:#8ef0c7;background:rgba(24,57,44,.82)}.tip{position:fixed;right:16px;bottom:18px;font-size:9px;line-height:1.5;color:#8d8176;text-align:right;pointer-events:none}.progress{position:absolute;left:18%;right:18%;bottom:48%;height:2px;background:#3d4641}.progress>i{display:block;width:0;height:100%;background:#72d9ad;transition:width .1s}.error{position:fixed;inset:0;display:none;place-items:center;padding:28px;text-align:center;color:#d9c8ba;background:#0d1110;z-index:20}.error.show{display:grid}@media(max-width:720px){.tip{display:none}.hud{left:12px;top:12px}.controls{left:12px;bottom:12px}.controls button{padding:7px 9px}}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:radial-gradient(circle at 50% 34%,#30352f 0,#171b18 42%,#0d1110 76%,#090b0a 100%);color:#efe5da;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}#stage{position:fixed;inset:0;width:100vw;height:100vh;display:block}.poster{position:fixed;inset:0;z-index:2;display:grid;place-items:center;pointer-events:none;transition:opacity .6s;background:radial-gradient(circle at 50% 42%,rgba(70,65,55,.25),transparent 48%)}.poster.hidden{opacity:0}.poster img{width:min(64vw,620px);max-height:72vh;object-fit:contain;filter:drop-shadow(0 24px 30px rgba(0,0,0,.36))}.loadbox{position:fixed;z-index:8;left:18px;bottom:66px;width:min(360px,calc(100vw - 36px));height:3px;background:#36403b;border-radius:99px;overflow:hidden}.loadbar{height:100%;width:0;background:#72d9ad;transition:width .12s}.hud{position:fixed;z-index:6;left:18px;top:16px;pointer-events:none;text-transform:uppercase;letter-spacing:.08em;text-shadow:0 2px 16px #000}.hud b{display:block;font-size:12px;color:#f1e6db}.hud span{display:block;margin-top:5px;font-size:10px;color:#aa9b8e}.hud .state{color:#82e8bd}.controls{position:fixed;z-index:7;left:18px;bottom:18px;display:flex;gap:7px;flex-wrap:wrap;max-width:calc(100vw - 36px)}.controls button{border:1px solid #5d665f;border-radius:999px;padding:8px 12px;background:rgba(12,17,15,.84);color:#d0c2b5;font:10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;backdrop-filter:blur(8px)}.controls button:hover,.controls button.active{border-color:#58d59d;color:#8ef0c7;background:rgba(24,57,44,.82)}.tip{position:fixed;right:16px;bottom:18px;z-index:6;font-size:9px;line-height:1.5;color:#8d8176;text-align:right;pointer-events:none}.error{position:fixed;z-index:10;left:50%;top:50%;transform:translate(-50%,-50%);display:none;max-width:520px;padding:18px 22px;border:1px solid #6a5748;border-radius:14px;background:rgba(20,16,13,.94);text-align:center;color:#e4d5c7;font-size:11px;line-height:1.6}.error.show{display:block}@media(max-width:720px){.tip{display:none}.hud{left:12px;top:12px}.controls{left:12px;bottom:12px}.controls button{padding:7px 9px}.loadbox{left:12px;bottom:58px;width:calc(100vw - 24px)}.poster img{width:82vw}}
 </style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
 </head>
 <body>
-<model-viewer id="rocky"
-  src="./rocky-animated.glb"
-  alt="Rocky articulated animated 3D model"
-  camera-controls
-  autoplay
-  animation-name="Auto"
-  interaction-prompt="none"
-  environment-image="neutral"
-  exposure="1.15"
-  shadow-intensity="1.25"
-  shadow-softness="0.75"
-  camera-orbit="35deg 68deg 8m"
-  min-camera-orbit="auto 25deg 4m"
-  max-camera-orbit="auto 88deg 14m"
-  field-of-view="34deg">
-  <div class="progress" slot="progress-bar"><i id="bar"></i></div>
-</model-viewer>
-<div class="hud"><b>ROCKY / ANIMATED GLB</b><span id="state" class="state">state / loading</span><span>real articulated STL parts · drag / touch to rotate · wheel / pinch to zoom</span></div>
+<canvas id="stage"></canvas>
+<div id="poster" class="poster"><img src="../assets/rocky-readme-clean-v4.png" alt="Rocky loading preview"></div>
+<div class="hud"><b>ROCKY / MOVABLE ANIMATED GLB</b><span id="state" class="state">state / loading 0%</span><span id="info">real articulated STL geometry · calculating bounds…</span><span>drag / touch = orbit · wheel / pinch = zoom</span></div>
+<div id="loadbox" class="loadbox"><div id="loadbar" class="loadbar"></div></div>
 <div class="controls"><button data-a="Auto" class="active">auto</button><button data-a="Hi">hi</button><button data-a="Work">work</button><button data-a="Bye">bye</button><button data-a="Walk">walk</button></div>
-<div class="tip">AUTO = hi → work → bye → walk<br>GLB animation continues while you orbit the model</div>
-<div id="error" class="error">Rocky could not load. Try refreshing once the 28 MB GLB has finished downloading.</div>
-<script>
-const mv=document.getElementById('rocky'),state=document.getElementById('state'),bar=document.getElementById('bar'),err=document.getElementById('error');
-function play(name){mv.animationName=name;state.textContent='state / '+name.toLowerCase();document.querySelectorAll('button[data-a]').forEach(b=>b.classList.toggle('active',b.dataset.a===name));try{mv.play({repetitions:Infinity})}catch(e){console.warn(e)}}
-mv.addEventListener('load',()=>{console.log('animations',mv.availableAnimations);play('Auto')});
-mv.addEventListener('progress',e=>{const p=Math.round((e.detail.totalProgress||0)*100);bar.style.width=p+'%';if(p>=100)bar.parentElement.style.display='none'});
-mv.addEventListener('error',()=>err.classList.add('show'));
-mv.addEventListener('finished',()=>{if(mv.animationName==='Auto')play('Auto')});
+<div class="tip">AUTO = hi → work → bye → walk<br>animation continues while you rotate Rocky</div>
+<div id="error" class="error">The animated GLB could not load. The loading preview is intentionally kept visible instead of showing a blank page.</div>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const canvas=document.getElementById('stage');
+const poster=document.getElementById('poster');
+const stateEl=document.getElementById('state');
+const infoEl=document.getElementById('info');
+const loadbox=document.getElementById('loadbox');
+const loadbar=document.getElementById('loadbar');
+const errorEl=document.getElementById('error');
+
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:'high-performance'});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(innerWidth,innerHeight,false);
+renderer.outputColorSpace=THREE.SRGBColorSpace;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure=1.15;
+renderer.shadowMap.enabled=true;
+renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0x0d1110);
+scene.fog=new THREE.FogExp2(0x0d1110,.015);
+const pmrem=new THREE.PMREMGenerator(renderer);
+scene.environment=pmrem.fromScene(new RoomEnvironment(),.04).texture;
+pmrem.dispose();
+
+scene.add(new THREE.HemisphereLight(0xfff6ec,0x2f2924,1.6));
+const key=new THREE.DirectionalLight(0xffe5ca,3.6);key.position.set(5,8,6);key.castShadow=true;key.shadow.mapSize.set(2048,2048);scene.add(key);
+const fill=new THREE.DirectionalLight(0x9ccbb8,1.15);fill.position.set(-5,3,4);scene.add(fill);
+const rim=new THREE.DirectionalLight(0x72d9ad,1.35);rim.position.set(-3,5,-5);scene.add(rim);
+
+const camera=new THREE.PerspectiveCamera(38,innerWidth/innerHeight,.01,200);
+camera.position.set(6,4,8);
+const controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.dampingFactor=.06;controls.enablePan=false;controls.target.set(0,1.5,0);controls.minPolarAngle=.15;controls.maxPolarAngle=Math.PI*.82;
+
+let mixer=null,currentAction=null,currentName='Auto',model=null,modelRadius=4;
+const clock=new THREE.Clock();
+const clips=new Map();
+
+function fitCamera(object){
+  object.updateMatrixWorld(true);
+  const box=new THREE.Box3().setFromObject(object);
+  if(box.isEmpty())return;
+  const center=box.getCenter(new THREE.Vector3());
+  const size=box.getSize(new THREE.Vector3());
+  const maxDim=Math.max(size.x,size.y,size.z);
+  modelRadius=Math.max(maxDim*.6,1.5);
+  const fov=THREE.MathUtils.degToRad(camera.fov);
+  const distance=(maxDim*.62)/Math.tan(fov*.5);
+  controls.target.copy(center);
+  camera.position.copy(center).add(new THREE.Vector3(distance*.72,distance*.42,distance));
+  camera.near=Math.max(distance/150,.01);camera.far=distance*25;camera.updateProjectionMatrix();
+  controls.minDistance=Math.max(maxDim*.45,.8);controls.maxDistance=Math.max(maxDim*4,12);controls.update();
+  infoEl.textContent=`real animated GLB · ${maxDim.toFixed(1)} unit span · ${clips.size} animation clips`;
+}
+
+function realisticMaterial(mesh){
+  const old=mesh.material;
+  const mat=new THREE.MeshStandardMaterial({color:0xa98a70,roughness:.86,metalness:.015,envMapIntensity:.85});
+  if(old && old.map)mat.map=old.map;
+  mesh.material=mat;mesh.castShadow=true;mesh.receiveShadow=true;
+}
+
+function addMineralGlow(){
+  if(!model)return;
+  const mat=new THREE.MeshStandardMaterial({color:0x66c89c,emissive:0x42ba83,emissiveIntensity:2.2,roughness:.32,metalness:.04});
+  const glow=new THREE.MeshBasicMaterial({color:0x79e5b8,transparent:true,opacity:.14,depthWrite:false,blending:THREE.AdditiveBlending});
+  const specs=[['Torso',[-.32,.1,.35],.10],['Torso',[.38,-.2,.22],.08],['L1_Upper',[0,0,.75],.075],['L2_Upper',[0,0,.58],.065],['L4_Lower',[0,0,.5],.065]];
+  for(const [name,pos,r] of specs){const node=model.getObjectByName(name);if(!node)continue;const a=new THREE.Mesh(new THREE.IcosahedronGeometry(r,2),mat);a.position.set(...pos);a.scale.set(1.5,.65,1);node.add(a);const b=new THREE.Mesh(new THREE.SphereGeometry(r*1.7,14,10),glow);b.position.copy(a.position);b.scale.copy(a.scale);node.add(b)}
+}
+
+function play(name){
+  if(!mixer||!clips.has(name))return;
+  const next=mixer.clipAction(clips.get(name));
+  next.reset();next.enabled=true;next.setEffectiveTimeScale(1);next.setEffectiveWeight(1);next.setLoop(THREE.LoopRepeat,Infinity);next.play();
+  if(currentAction&&currentAction!==next)currentAction.crossFadeTo(next,.35,false);
+  currentAction=next;currentName=name;
+  document.querySelectorAll('button[data-a]').forEach(b=>b.classList.toggle('active',b.dataset.a===name));
+}
+
+function autoLabel(){
+  if(currentName!=='Auto'||!currentAction){stateEl.textContent='state / '+currentName.toLowerCase();return}
+  const t=currentAction.time%20;
+  stateEl.textContent='state / '+(t<4?'hi':t<9?'work':t<12.5?'bye':'walk');
+}
+
+const loader=new GLTFLoader();
+loader.load('./rocky-animated.glb',gltf=>{
+  model=gltf.scene;
+  scene.add(model);
+  gltf.animations.forEach(c=>clips.set(c.name,c));
+  model.traverse(o=>{if(o.isMesh)realisticMaterial(o)});
+  mixer=new THREE.AnimationMixer(model);
+  fitCamera(model);
+  addMineralGlow();
+  play(clips.has('Auto')?'Auto':gltf.animations[0]?.name);
+  poster.classList.add('hidden');
+  setTimeout(()=>poster.remove(),700);
+  loadbox.style.display='none';
+},xhr=>{
+  if(xhr.lengthComputable){const p=Math.min(100,Math.round(xhr.loaded/xhr.total*100));loadbar.style.width=p+'%';stateEl.textContent=`state / loading ${p}%`}
+  else stateEl.textContent='state / loading model…';
+},err=>{
+  console.error('Rocky GLB load failed',err);errorEl.classList.add('show');stateEl.textContent='state / load error';loadbox.style.display='none';
+});
+
 document.querySelectorAll('button[data-a]').forEach(b=>b.addEventListener('click',()=>play(b.dataset.a)));
+function animate(){requestAnimationFrame(animate);const dt=Math.min(clock.getDelta(),.05);if(mixer)mixer.update(dt);autoLabel();controls.update();renderer.render(scene,camera)}
+animate();
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight,false)});
 </script>
 </body>
 </html>

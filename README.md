@@ -16,6 +16,48 @@ $$
 
 </div>
 
+<details>
+<summary><code>decode(the graph)</code></summary>
+
+<br/>
+
+Think of the blue surface as my GitHub year turned into terrain.
+
+- **left → right** = time moving across ~53 weeks
+- **across the surface** = weekday
+- **height** = how many contributions I made that day
+- **green points** = actual active days
+- **higher peaks** = heavier contribution days
+- **flat regions** = quieter periods
+
+The surface is generated from
+
+$$
+c(w,d)=\text{contributions on week }w\text{, day }d
+$$
+
+and displayed using
+
+$$
+h(w,d)=\ln(1+c(w,d))
+$$
+
+The logarithm compresses very large days so the whole year stays readable.
+
+`Σc` = total contributions · `active` = days with activity · `streak_max` = longest streak · `repos` = public repositories
+
+The purple butterfly is a **Lorenz attractor** — a chaotic dynamical system whose parameters are slightly influenced by my GitHub state. It acts like a mathematical signature rather than a decorative icon.
+
+`H(lang)` is **Shannon entropy** of my repository languages: higher values mean my work is spread across a more diverse set of programming languages.
+
+In short:
+
+$$
+\boxed{\text{GitHub activity}\rightarrow\text{numbers}\rightarrow\text{mathematics}\rightarrow\text{visual identity}}
+$$
+
+</details>
+
 ---
 
 ### `01 / identity`

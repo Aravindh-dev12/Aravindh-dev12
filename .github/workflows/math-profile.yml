@@ -1,0 +1,41 @@
+name: Generate mathematical profile
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 0 * * *"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/generate_math_profile.py"
+      - ".github/workflows/math-profile.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate contribution manifold
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USER: Aravindh-dev12
+        run: python scripts/generate_math_profile.py
+
+      - name: Commit changed visualization
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/math-profile.svg
+          git diff --cached --quiet && exit 0
+          git commit -m "chore: refresh mathematical profile"
+          git push

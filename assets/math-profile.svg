@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+<title id="title">Aravindh-dev12 — mathematical GitHub state</title>
+<desc id="desc">Mathematical profile surface. GitHub Actions replaces this bootstrap image with a live contribution manifold.</desc>
+<style>
+:root{--fg:#c9d1d9;--muted:#8b949e;--faint:#30363d;--blue:#58a6ff;--purple:#bc8cff;--green:#3fb950;--bg:#0d1117}.bg{fill:var(--bg)}.fg{fill:var(--fg)}.muted{fill:var(--muted)}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.label{font-size:14px;font-weight:700;letter-spacing:.08em}.small{font-size:12px}.eq{font:16px 'Times New Roman',serif;fill:var(--fg)}.grid{fill:none;stroke:var(--blue);stroke-width:1.2;opacity:.52;stroke-dasharray:7 7;animation:flow 7s linear infinite}.cross{fill:none;stroke:var(--blue);stroke-width:1;opacity:.16}.lorenz{fill:none;stroke:var(--purple);stroke-width:1.4;stroke-dasharray:5 5;animation:flow 15s linear infinite}.dot{fill:var(--green);animation:pulse 3s ease-in-out infinite}.line{stroke:var(--faint)}@keyframes flow{to{stroke-dashoffset:-84}}@keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}@media(prefers-color-scheme:light){:root{--fg:#24292f;--muted:#57606a;--faint:#d0d7de;--blue:#0969da;--purple:#8250df;--green:#1a7f37;--bg:#fff}}
+</style>
+<rect class="bg" width="1200" height="700" rx="18"/>
+<text x="48" y="48" class="fg mono label">ARAVINDHAN / MATHEMATICAL STATE</text>
+<text x="48" y="76" class="muted mono small">profile(t) = data × structure × iteration</text>
+<line x1="48" y1="96" x2="1152" y2="96" class="line"/>
+<text x="48" y="130" class="muted mono label">01 / CONTRIBUTION FIELD</text>
+<text x="48" y="158" class="eq">c(w,d) ∈ ℕ,   h(w,d) = ln(1 + c(w,d))</text>
+<text x="48" y="184" class="muted mono small">53 weeks × 7 days → discrete scalar field → isometric surface</text>
+<g transform="translate(0 18)">
+<path class="grid" d="M80 390 L110 370 L145 382 L180 340 L215 365 L250 335 L285 350 L320 315 L355 348 L390 330 L425 360 L460 322 L495 340 L530 305 L565 338 L600 318 L635 350 L670 310 L705 336 L740 298 L775 325 L810 315 L845 340 L880 304"/>
+<path class="grid" d="M86 410 L116 390 L151 402 L186 360 L221 385 L256 355 L291 370 L326 335 L361 368 L396 350 L431 380 L466 342 L501 360 L536 325 L571 358 L606 338 L641 370 L676 330 L711 356 L746 318 L781 345 L816 335 L851 360 L886 324" style="animation-delay:-1s"/>
+<path class="grid" d="M92 430 L122 410 L157 422 L192 380 L227 405 L262 375 L297 390 L332 355 L367 388 L402 370 L437 400 L472 362 L507 380 L542 345 L577 378 L612 358 L647 390 L682 350 L717 376 L752 338 L787 365 L822 355 L857 380 L892 344" style="animation-delay:-2s"/>
+<path class="grid" d="M98 450 L128 430 L163 442 L198 400 L233 425 L268 395 L303 410 L338 375 L373 408 L408 390 L443 420 L478 382 L513 400 L548 365 L583 398 L618 378 L653 410 L688 370 L723 396 L758 358 L793 385 L828 375 L863 400 L898 364" style="animation-delay:-3s"/>
+<path class="cross" d="M80 390 L98 450 M180 340 L198 400 M285 350 L303 410 M390 330 L408 390 M495 340 L513 400 M600 318 L618 378 M705 336 L723 396 M810 315 L828 375 M880 304 L898 364"/>
+<circle class="dot" cx="180" cy="340" r="5"/><circle class="dot" cx="320" cy="315" r="4" style="animation-delay:-1s"/><circle class="dot" cx="530" cy="305" r="6" style="animation-delay:-2s"/><circle class="dot" cx="740" cy="298" r="5" style="animation-delay:-.5s"/>
+</g>
+<text x="48" y="610" class="muted mono small">w → time</text><text x="110" y="636" class="muted mono small">d → weekday</text><text x="48" y="674" class="muted mono small">live field refreshes automatically from GitHub contributions</text>
+<line x1="918" y1="118" x2="918" y2="640" class="line"/>
+<text x="950" y="130" class="muted mono label">02 / CHAOTIC SIGNATURE</text>
+<text x="950" y="158" class="eq">ẋ=σ(y−x)</text><text x="950" y="181" class="eq">ẏ=x(ρ−z)−y</text><text x="950" y="204" class="eq">ż=xy−βz</text>
+<path class="lorenz" d="M1044 248 C996 238 966 275 985 314 C1004 352 1063 350 1080 312 C1097 274 1066 246 1034 257 C1008 266 1004 300 1026 318 C1052 338 1091 323 1092 288 C1093 250 1056 230 1021 243 C978 258 971 311 1003 343 C1040 381 1101 355 1110 304 C1119 255 1078 220 1034 229"/>
+<text x="950" y="408" class="muted mono small">σ ← repositories</text><text x="950" y="430" class="muted mono small">ρ ← contributions</text><text x="950" y="452" class="muted mono small">β ← language entropy</text>
+<rect x="942" y="486" width="210" height="128" rx="12" fill="none" stroke="var(--faint)"/>
+<text x="960" y="516" class="muted mono label">STATE VECTOR</text><text x="960" y="550" class="fg mono small">Σ contributions</text><text x="960" y="576" class="fg mono small">active days</text><text x="960" y="602" class="fg mono small">H(language)</text>
+</svg>

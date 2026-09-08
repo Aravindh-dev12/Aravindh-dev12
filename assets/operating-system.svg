@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-label="ARAVINDHAN / OPERATING.SYSTEM">
+
+<style>
+  :root { --fg:#c9d1d9; --muted:#8b949e; --faint:#30363d; --accent:#58a6ff; --accent2:#bc8cff; --hot:#3fb950; --panel:#0d1117; }
+  .bg { fill:var(--panel); } .fg { fill:var(--fg); } .muted { fill:var(--muted); }
+  .label { font:600 14px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; letter-spacing:.08em; }
+  .small { font:12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+  .metric { font:700 23px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; fill:var(--fg); }
+  .eq { font:15px "Times New Roman",serif; fill:var(--fg); }
+  .divider,.axis { stroke:var(--faint); stroke-width:1; }
+  .flow { fill:none; stroke:var(--accent); stroke-width:1.4; stroke-dasharray:7 7; animation:flow 8s linear infinite; vector-effect:non-scaling-stroke; }
+  .flow2 { fill:none; stroke:var(--accent2); stroke-width:1.25; stroke-dasharray:5 6; animation:flow 13s linear infinite reverse; vector-effect:non-scaling-stroke; }
+  .hot { fill:var(--hot); animation:pulse 3.2s ease-in-out infinite; }
+  .node { fill:var(--accent); animation:pulse 3.8s ease-in-out infinite; }
+  .panelbox { fill:none; stroke:var(--faint); rx:12; }
+  @keyframes flow { to { stroke-dashoffset:-84; } }
+  @keyframes pulse { 0%,100%{opacity:.35} 50%{opacity:1} }
+  @media (prefers-color-scheme: light) {
+    :root { --fg:#24292f; --muted:#57606a; --faint:#d0d7de; --accent:#0969da; --accent2:#8250df; --hot:#1a7f37; --panel:#ffffff; }
+  }
+</style>
+<rect class="bg" width="1200" height="360" rx="18"/>
+<text x="48" y="48" class="fg label">ARAVINDHAN / OPERATING.SYSTEM</text>
+<text x="48" y="74" class="muted small">activity behaves like a sampled signal</text>
+<line x1="48" y1="94" x2="1152" y2="94" class="divider"/>
+
+<text x="48" y="126" class="muted label">04 / ACTIVITY SIGNAL</text>
+<text x="48" y="151" class="eq">s(w)=Σ₍d₎ c(w,d)</text>
+<text x="48" y="174" class="muted small">weekly contribution signal · smoothed trend · discrete spectrum</text>
+<line x1="70" y1="235" x2="860" y2="235" class="axis"/>
+<path d="M 70.0,233.6 L 85.0,234.2 L 100.0,232.6 L 115.0,232.6 L 130.0,234.1 L 145.0,234.6 L 160.0,233.8 L 175.0,234.8 L 190.0,235.0 L 205.0,235.0 L 220.0,234.8 L 235.0,234.3 L 250.0,235.0 L 265.0,234.1 L 280.0,234.9 L 295.0,234.1 L 310.0,232.5 L 325.0,234.8 L 340.0,234.4 L 355.0,233.4 L 370.0,234.3 L 385.0,234.7 L 400.0,234.7 L 415.0,234.2 L 430.0,234.0 L 445.0,234.4 L 460.0,233.7 L 475.0,232.9 L 490.0,233.2 L 505.0,232.6 L 520.0,233.0 L 535.0,233.2 L 550.0,233.5 L 565.0,233.6 L 580.0,234.3 L 595.0,234.1 L 610.0,233.8 L 625.0,226.5 L 640.0,229.9 L 655.0,230.5 L 670.0,233.9 L 685.0,233.4 L 700.0,232.2 L 715.0,232.9 L 730.0,229.0 L 745.0,226.6 L 760.0,229.9 L 775.0,167.7 L 790.0,171.7 L 805.0,115.0 L 820.0,150.4 L 835.0,187.5 L 850.0,197.5" class="flow" opacity=".72"/>
+<path d="M 70.0,233.5 L 85.0,233.3 L 100.0,233.4 L 115.0,233.6 L 130.0,233.5 L 145.0,234.0 L 160.0,234.4 L 175.0,234.6 L 190.0,234.7 L 205.0,234.8 L 220.0,234.8 L 235.0,234.6 L 250.0,234.6 L 265.0,234.5 L 280.0,234.1 L 295.0,234.1 L 310.0,234.1 L 325.0,233.8 L 340.0,233.9 L 355.0,234.3 L 370.0,234.3 L 385.0,234.2 L 400.0,234.4 L 415.0,234.4 L 430.0,234.2 L 445.0,233.8 L 460.0,233.6 L 475.0,233.4 L 490.0,233.1 L 505.0,233.0 L 520.0,233.1 L 535.0,233.2 L 550.0,233.5 L 565.0,233.8 L 580.0,233.9 L 595.0,232.5 L 610.0,231.7 L 625.0,231.0 L 640.0,230.9 L 655.0,230.8 L 670.0,232.0 L 685.0,232.6 L 700.0,232.3 L 715.0,230.8 L 730.0,230.1 L 745.0,217.2 L 760.0,205.0 L 775.0,182.2 L 790.0,166.9 L 805.0,158.5 L 820.0,164.4 L 835.0,162.6 L 850.0,178.5" class="flow2" style="stroke-width:2" opacity=".9"/>
+<circle class="hot" cx="850" cy="197.5" r="4.5"/>
+<line x1="890" y1="116" x2="890" y2="324" class="divider"/>
+<text x="920" y="128" class="muted label">FREQUENCY CONTENT</text>
+<rect x="920" y="170.0" width="7" height="110.0" fill="var(--accent2)" opacity="0.85"/><rect x="933" y="180.4" width="7" height="99.6" fill="var(--accent2)" opacity="0.80"/><rect x="946" y="189.5" width="7" height="90.5" fill="var(--accent2)" opacity="0.76"/><rect x="959" y="200.6" width="7" height="79.4" fill="var(--accent2)" opacity="0.71"/><rect x="972" y="208.9" width="7" height="71.1" fill="var(--accent2)" opacity="0.67"/><rect x="985" y="225.9" width="7" height="54.1" fill="var(--accent2)" opacity="0.60"/><rect x="998" y="239.5" width="7" height="40.5" fill="var(--accent2)" opacity="0.53"/><rect x="1011" y="246.9" width="7" height="33.1" fill="var(--accent2)" opacity="0.50"/><rect x="1024" y="254.2" width="7" height="25.8" fill="var(--accent2)" opacity="0.47"/><rect x="1037" y="262.9" width="7" height="17.1" fill="var(--accent2)" opacity="0.43"/><rect x="1050" y="271.0" width="7" height="9.0" fill="var(--accent2)" opacity="0.39"/><rect x="1063" y="276.3" width="7" height="3.7" fill="var(--accent2)" opacity="0.37"/><rect x="1076" y="274.6" width="7" height="5.4" fill="var(--accent2)" opacity="0.37"/><rect x="1089" y="274.6" width="7" height="5.4" fill="var(--accent2)" opacity="0.37"/><rect x="1102" y="275.9" width="7" height="4.1" fill="var(--accent2)" opacity="0.37"/><rect x="1115" y="274.9" width="7" height="5.1" fill="var(--accent2)" opacity="0.37"/>
+<text x="920" y="306" class="muted small">dominant rhythms / last 53 weeks</text>
+
+</svg>

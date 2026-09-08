@@ -37,16 +37,9 @@ The visual is regenerated from live contribution data, so the profile evolves as
 
 ### `01 / identity.state`
 
-```text
-MODE        building
-BIAS        systems > isolated features
-INTEREST    AI · realtime · graphics · infrastructure
-METHOD      reason → prototype → break → rebuild → ship
-```
+<img src="./assets/identity-state.svg" width="100%" alt="Live mathematical identity state generated from GitHub statistics" />
 
-I build products where **models, interfaces, graphics, and infrastructure** operate as one coherent system.
-
-The interesting part is usually not a single component — it is the behavior that appears when all of them start interacting.
+A live state-space orbit whose parameters are seeded by repository count, activity, streaks, and language entropy.
 
 ---
 
@@ -66,6 +59,10 @@ The interesting part is usually not a single component — it is the behavior th
 
 ### `03 / systems.in.motion`
 
+<img src="./assets/systems-in-motion.svg" width="100%" alt="Live coupled oscillator visualization generated from repository language distribution" />
+
+Repository languages become coupled mathematical modes; the waveform changes as the underlying repository distribution changes.
+
 #### [`Cieav`](https://github.com/Aravindh-dev12/Cieav-web)
 
 `browser / GPU / realtime experimentation`
@@ -84,37 +81,17 @@ A multimodal AI interview-practice system combining realtime conversation, visua
 
 ### `04 / operating.system`
 
-```text
-INPUT
-├─ interesting problems
-├─ hard systems
-├─ new interfaces
-└─ ideas worth testing
+<img src="./assets/operating-system.svg" width="100%" alt="Live contribution signal and frequency spectrum" />
 
-PROCESS
-├─ reason
-├─ prototype
-├─ measure
-├─ iterate
-└─ simplify
-
-OUTPUT
-├─ code
-├─ experiments
-└─ products
-```
+The last 53 weeks of contribution activity are treated as a sampled signal, with a smoothed trajectory and frequency spectrum generated from the same live data.
 
 ---
 
 ### `05 / design.constraints`
 
-I tend to prefer:
+<img src="./assets/design-constraints.svg" width="100%" alt="Live mathematical vector field generated from GitHub profile statistics" />
 
-- **structure over decoration**
-- **working systems over isolated demos**
-- **fast feedback over long speculation**
-- **experiments that teach something**
-- **interfaces that expose the underlying system clearly**
+Activity density, streak length, and language entropy seed a changing vector field and constraint basin.
 
 `constraint: complexity is allowed; confusion is not.`
 

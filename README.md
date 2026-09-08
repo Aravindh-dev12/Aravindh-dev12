@@ -2,13 +2,9 @@
 
 <div align="center">
 
-# `Aravindhan ≡ f(reasoning, engineering, curiosity)`
+# `Aravindhan ≡ reasoning · engineering · curiosity`
 
-$$
-\mathcal{A}(t)=\text{AI}+\text{systems}+\text{interfaces}+\text{experiments}
-$$
-
-<sub>My profile is generated as a mathematical state, not a badge collection.</sub>
+<sub>systems thinker · experimental builder · AI-native engineer</sub>
 
 <br/>
 
@@ -21,132 +17,118 @@ $$
 
 <br/>
 
-Think of the blue surface as my GitHub year turned into terrain.
+The blue surface is my GitHub year translated into terrain.
 
-- **left → right** = time moving across ~53 weeks
-- **across the surface** = weekday
-- **height** = how many contributions I made that day
-- **green points** = actual active days
-- **higher peaks** = heavier contribution days
-- **flat regions** = quieter periods
+- **left → right** — time across roughly 53 weeks
+- **surface depth** — weekday
+- **height** — contribution intensity
+- **green points** — active days
+- **higher peaks** — heavier build days
+- **flat regions** — quieter periods
+- **purple attractor** — a mathematical signature influenced by my GitHub state
 
-The surface is generated from
+The visual is regenerated from live contribution data, so the profile evolves as the underlying activity changes.
 
-$$
-c(w,d)=\text{contributions on week }w\text{, day }d
-$$
-
-and displayed using
-
-$$
-h(w,d)=\ln(1+c(w,d))
-$$
-
-The logarithm compresses very large days so the whole year stays readable.
-
-`Σc` = total contributions · `active` = days with activity · `streak_max` = longest streak · `repos` = public repositories
-
-The purple butterfly is a **Lorenz attractor** — a chaotic dynamical system whose parameters are slightly influenced by my GitHub state. It acts like a mathematical signature rather than a decorative icon.
-
-`H(lang)` is **Shannon entropy** of my repository languages: higher values mean my work is spread across a more diverse set of programming languages.
-
-In short:
-
-$$
-\boxed{\text{GitHub activity}\rightarrow\text{numbers}\rightarrow\text{mathematics}\rightarrow\text{visual identity}}
-$$
+`activity → structure → signal → visual identity`
 
 </details>
 
 ---
 
-### `01 / identity`
+### `01 / identity.state`
 
-$$
-\mathbf{x}_{\text{me}}
-=
-\begin{bmatrix}
-\text{AI-native systems}\\
-\text{realtime interfaces}\\
-\text{experimental products}\\
-\text{infrastructure}
-\end{bmatrix}
-$$
+```text
+MODE        building
+BIAS        systems > isolated features
+INTEREST    AI · realtime · graphics · infrastructure
+METHOD      reason → prototype → break → rebuild → ship
+```
 
-I build systems where models, interfaces, and infrastructure behave as one coherent machine.
+I build products where **models, interfaces, graphics, and infrastructure** operate as one coherent system.
 
-$$
-\text{idea}\xrightarrow{\;reasoning\;}\text{system}
-\xrightarrow{\;iteration\;}\text{reality}
-$$
+The interesting part is usually not a single component — it is the behavior that appears when all of them start interacting.
 
 ---
 
-### `02 / contribution manifold`
+### `02 / active.coordinates`
 
-Every day on GitHub is treated as a sample of a discrete scalar field:
+| axis | current direction |
+| :--- | :--- |
+| `AI` | agentic products, multimodal systems, reasoning workflows |
+| `INTERFACE` | realtime interaction, low-friction feedback loops |
+| `GPU` | WebGPU, browser graphics, computational experiments |
+| `SYSTEMS` | infrastructure, tooling, orchestration, reliability |
+| `PRODUCT` | turning unusual ideas into usable software quickly |
 
-$$
-c(w,d)\in\mathbb{N}
-$$
-
-$$
-h(w,d)=\ln\left(1+c(w,d)\right)
-$$
-
-where $w$ is the week, $d$ is the weekday, and $h$ becomes the height of the surface above. The SVG is regenerated from my live contribution calendar by GitHub Actions.
-
-The profile also computes a Lorenz-system signature from repository and activity statistics:
-
-$$
-\dot{x}=\sigma(y-x),\qquad
-\dot{y}=x(\rho-z)-y,\qquad
-\dot{z}=xy-\beta z
-$$
-
-So the picture changes when the underlying GitHub state changes.
+`current_vector = AI-native systems · realtime interfaces · GPU experiments · product infrastructure`
 
 ---
 
-### `03 / functions currently under evaluation`
+### `03 / systems.in.motion`
 
-$$
-\operatorname{Cieav}(\text{browser},\text{GPU})
-\rightarrow \text{realtime experimentation}
-$$
+#### [`Cieav`](https://github.com/Aravindh-dev12/Cieav-web)
 
-**[Cieav](https://github.com/Aravindh-dev12/Cieav-web)** — Vue + WebGPU experiments in the browser.
+`browser / GPU / realtime experimentation`
 
-$$
-\operatorname{Cascade}(\text{voice},\text{vision},\text{reasoning})
-\rightarrow \text{realtime practice}
-$$
+Vue + WebGPU experiments exploring GPU-native interaction, realtime graphics, and interfaces that behave less like static pages and more like living systems.
 
-**[Cascade](https://github.com/Aravindh-dev12/cascade-interview-assistant)** — multimodal realtime AI interview practice.
+#### [`Cascade`](https://github.com/Aravindh-dev12/cascade-interview-assistant)
 
-[all repositories →](https://github.com/Aravindh-dev12?tab=repositories)
+`voice / vision / reasoning / realtime feedback`
+
+A multimodal AI interview-practice system combining realtime conversation, visual context, reasoning, and interactive feedback.
+
+<p align="right"><a href="https://github.com/Aravindh-dev12?tab=repositories"><code>open(all_repositories) →</code></a></p>
 
 ---
 
-### `04 / boundary conditions`
+### `04 / operating.system`
 
-$$
-\text{input}=\{\text{interesting problems},\text{hard systems},\text{new ideas}\}
-$$
+```text
+INPUT
+├─ interesting problems
+├─ hard systems
+├─ new interfaces
+└─ ideas worth testing
 
-$$
-\text{output}=\{\text{code},\text{experiments},\text{products}\}
-$$
+PROCESS
+├─ reason
+├─ prototype
+├─ measure
+├─ iterate
+└─ simplify
 
-[portfolio](https://aravindh-dev12.github.io) · [email](mailto:aravindh1653@gmail.com) · [github](https://github.com/Aravindh-dev12)
+OUTPUT
+├─ code
+├─ experiments
+└─ products
+```
 
 ---
+
+### `05 / design.constraints`
+
+I tend to prefer:
+
+- **structure over decoration**
+- **working systems over isolated demos**
+- **fast feedback over long speculation**
+- **experiments that teach something**
+- **interfaces that expose the underlying system clearly**
+
+`constraint: complexity is allowed; confusion is not.`
+
+---
+
+### `06 / endpoints`
 
 <div align="center">
 
-$$
-\boxed{\text{unknown}\rightarrow\text{pattern}\rightarrow\text{understanding}\rightarrow\text{creation}}
-$$
+[`portfolio`](https://aravindh-dev12.github.io) · [`repositories`](https://github.com/Aravindh-dev12?tab=repositories) · [`email`](mailto:aravindh1653@gmail.com) · [`github`](https://github.com/Aravindh-dev12)
+
+<br/>
+
+`unknown → pattern → understanding → creation`
 
 <sub><code>the universal layer is structure.</code></sub>
 

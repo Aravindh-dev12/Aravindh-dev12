@@ -1,153 +1,88 @@
-<!-- MATHEMATICAL PROFILE -->
+<!-- ANIMATED PROFILE -->
 
 <div align="center">
 
-# `Aravindhan ≡ f(reasoning, engineering, curiosity)`
-
-$$
-\mathcal{A}(t)=\text{AI}+\text{systems}+\text{interfaces}+\text{experiments}
-$$
-
-<sub>My profile is generated as a mathematical state, not a badge collection.</sub>
+<img src="./assets/animated-header.svg" width="100%" alt="Animated Aravindhan developer profile header" />
 
 <br/>
 
-<img src="./assets/math-profile.svg" width="100%" alt="Live mathematical portrait generated from Aravindhan's GitHub contributions" />
+**AI-native systems · realtime interfaces · WebGPU · infrastructure · experimental products**
+
+<br/>
+
+[Portfolio](https://aravindh-dev12.github.io) · [Repositories](https://github.com/Aravindh-dev12?tab=repositories) · [Email](mailto:aravindh1653@gmail.com)
 
 </div>
 
-<details>
-<summary><code>decode(the graph)</code></summary>
+---
+
+## What I build
+
+I like projects where **models, interfaces, graphics, and infrastructure** have to behave as one system — not as separate layers glued together at the end.
+
+- 🤖 AI-native products and agentic workflows
+- ⚡ Realtime, multimodal interfaces
+- 🎮 GPU and WebGPU experiments in the browser
+- 🧩 Product infrastructure and developer tooling
+- 🧪 Fast prototypes that turn strange ideas into working software
 
 <br/>
 
-Think of the blue surface as my GitHub year turned into terrain.
-
-- **left → right** = time moving across ~53 weeks
-- **across the surface** = weekday
-- **height** = how many contributions I made that day
-- **green points** = actual active days
-- **higher peaks** = heavier contribution days
-- **flat regions** = quieter periods
-
-The surface is generated from
-
-$$
-c(w,d)=\text{contributions on week }w\text{, day }d
-$$
-
-and displayed using
-
-$$
-h(w,d)=\ln(1+c(w,d))
-$$
-
-The logarithm compresses very large days so the whole year stays readable.
-
-`Σc` = total contributions · `active` = days with activity · `streak_max` = longest streak · `repos` = public repositories
-
-The purple butterfly is a **Lorenz attractor** — a chaotic dynamical system whose parameters are slightly influenced by my GitHub state. It acts like a mathematical signature rather than a decorative icon.
-
-`H(lang)` is **Shannon entropy** of my repository languages: higher values mean my work is spread across a more diverse set of programming languages.
-
-In short:
-
-$$
-\boxed{\text{GitHub activity}\rightarrow\text{numbers}\rightarrow\text{mathematics}\rightarrow\text{visual identity}}
-$$
-
-</details>
+<img src="./assets/system-orbit.svg" width="100%" alt="Animated orbit showing Aravindhan's engineering focus areas" />
 
 ---
 
-### `01 / identity`
+## Featured builds
 
-$$
-\mathbf{x}_{\text{me}}
-=
-\begin{bmatrix}
-\text{AI-native systems}\\
-\text{realtime interfaces}\\
-\text{experimental products}\\
-\text{infrastructure}
-\end{bmatrix}
-$$
+### ⚡ [Cieav](https://github.com/Aravindh-dev12/Cieav-web)
 
-I build systems where models, interfaces, and infrastructure behave as one coherent machine.
+Browser experiments built around **Vue + WebGPU**, exploring realtime graphics, GPU-native interaction, and interfaces that feel more like living systems than static pages.
 
-$$
-\text{idea}\xrightarrow{\;reasoning\;}\text{system}
-\xrightarrow{\;iteration\;}\text{reality}
-$$
+### 🎙️ [Cascade](https://github.com/Aravindh-dev12/cascade-interview-assistant)
+
+A **multimodal realtime AI interview practice** experience combining voice, vision, reasoning, and interactive feedback.
+
+<p align="center">
+  <a href="https://github.com/Aravindh-dev12?tab=repositories"><strong>Explore all repositories →</strong></a>
+</p>
 
 ---
 
-### `02 / contribution manifold`
+## Contribution motion
 
-Every day on GitHub is treated as a sample of a discrete scalar field:
+<div align="center">
 
-$$
-c(w,d)\in\mathbb{N}
-$$
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Aravindh-dev12/Aravindh-dev12/output/github-contribution-grid-snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Aravindh-dev12/Aravindh-dev12/output/github-contribution-grid-snake.svg" />
+  <img alt="Animated contribution snake" src="https://raw.githubusercontent.com/Aravindh-dev12/Aravindh-dev12/output/github-contribution-grid-snake.svg" />
+</picture>
 
-$$
-h(w,d)=\ln\left(1+c(w,d)\right)
-$$
+<sub>Generated automatically from my GitHub contribution grid.</sub>
 
-where $w$ is the week, $d$ is the weekday, and $h$ becomes the height of the surface above. The SVG is regenerated from my live contribution calendar by GitHub Actions.
-
-The profile also computes a Lorenz-system signature from repository and activity statistics:
-
-$$
-\dot{x}=\sigma(y-x),\qquad
-\dot{y}=x(\rho-z)-y,\qquad
-\dot{z}=xy-\beta z
-$$
-
-So the picture changes when the underlying GitHub state changes.
+</div>
 
 ---
 
-### `03 / functions currently under evaluation`
+## Toolbox
 
-$$
-\operatorname{Cieav}(\text{browser},\text{GPU})
-\rightarrow \text{realtime experimentation}
-$$
+<div align="center">
 
-**[Cieav](https://github.com/Aravindh-dev12/Cieav-web)** — Vue + WebGPU experiments in the browser.
+![Python](https://img.shields.io/badge/Python-111827?style=for-the-badge&logo=python&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-111827?style=for-the-badge&logo=typescript&logoColor=white)
+![Vue.js](https://img.shields.io/badge/Vue.js-111827?style=for-the-badge&logo=vuedotjs&logoColor=white)
+![WebGPU](https://img.shields.io/badge/WebGPU-111827?style=for-the-badge&logo=googlechrome&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-111827?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-111827?style=for-the-badge&logo=githubactions&logoColor=white)
 
-$$
-\operatorname{Cascade}(\text{voice},\text{vision},\text{reasoning})
-\rightarrow \text{realtime practice}
-$$
-
-**[Cascade](https://github.com/Aravindh-dev12/cascade-interview-assistant)** — multimodal realtime AI interview practice.
-
-[all repositories →](https://github.com/Aravindh-dev12?tab=repositories)
-
----
-
-### `04 / boundary conditions`
-
-$$
-\text{input}=\{\text{interesting problems},\text{hard systems},\text{new ideas}\}
-$$
-
-$$
-\text{output}=\{\text{code},\text{experiments},\text{products}\}
-$$
-
-[portfolio](https://aravindh-dev12.github.io) · [email](mailto:aravindh1653@gmail.com) · [github](https://github.com/Aravindh-dev12)
+</div>
 
 ---
 
 <div align="center">
 
-$$
-\boxed{\text{unknown}\rightarrow\text{pattern}\rightarrow\text{understanding}\rightarrow\text{creation}}
-$$
+### Build → break → learn → rebuild → ship.
 
-<sub><code>the universal layer is structure.</code></sub>
+<sub>Always experimenting. Usually somewhere between an idea and a working system.</sub>
 
 </div>

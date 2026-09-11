@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 240" role="img" aria-label="ARAVINDHAN / CURRENT.VECTOR">
+<style>
+  :root{--fg:#c9d1d9;--muted:#8b949e;--faint:#30363d;--blue:#58a6ff;--purple:#bc8cff;--green:#3fb950;--panel:#0d1117}
+  .bg{fill:var(--panel)}.fg{fill:var(--fg)}.muted{fill:var(--muted)}
+  .label{font:600 14px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em}
+  .small{font:12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  .divider,.axis{stroke:var(--faint);stroke-width:1}
+  .flow{fill:none;stroke:var(--blue);stroke-width:1.5;stroke-dasharray:8 8;animation:flow 7s linear infinite;vector-effect:non-scaling-stroke}
+  .flow2{fill:none;stroke:var(--purple);stroke-width:1.35;stroke-dasharray:5 7;animation:flow2 10s linear infinite;vector-effect:non-scaling-stroke}
+  .node{fill:var(--blue);animation:pulse 3s ease-in-out infinite}.node2{fill:var(--purple);animation:pulse 3.8s ease-in-out infinite}.hot{fill:var(--green);animation:pulse 2.4s ease-in-out infinite}
+  @keyframes flow{to{stroke-dashoffset:-128}}@keyframes flow2{to{stroke-dashoffset:144}}@keyframes pulse{0%,100%{opacity:.28}50%{opacity:1}}
+  @media(prefers-color-scheme:light){:root{--fg:#24292f;--muted:#57606a;--faint:#d0d7de;--blue:#0969da;--purple:#8250df;--green:#1a7f37;--panel:#fff}}
+</style>
+<rect class="bg" width="1200" height="240" rx="18"/>
+<text x="48" y="46" class="fg label">ARAVINDHAN / CURRENT.VECTOR</text>
+<text x="48" y="70" class="muted small">direction = AI systems · multimodal agents · realtime interfaces · WebGPU · infrastructure</text>
+<line x1="48" y1="88" x2="1152" y2="88" class="divider"/>
+
+<line x1="86" y1="166" x2="1114" y2="166" class="axis"/>
+<path class="flow" d="M86 166 C190 92 286 218 392 146 S596 108 700 162 S904 216 1114 126"/>
+<path class="flow2" d="M86 166 C204 224 298 104 414 160 S626 212 734 144 S948 92 1114 166"/>
+
+<circle cx="190" cy="132" r="5" class="node"/><circle cx="392" cy="146" r="5" class="node2"/><circle cx="596" cy="137" r="5" class="hot"/><circle cx="798" cy="174" r="5" class="node"/><circle cx="1002" cy="143" r="5" class="node2"/>
+
+<text x="152" y="208" class="muted small">AI</text>
+<text x="344" y="208" class="muted small">MULTIMODAL</text>
+<text x="555" y="208" class="muted small">REALTIME</text>
+<text x="774" y="208" class="muted small">WEBGPU</text>
+<text x="966" y="208" class="muted small">SYSTEMS</text>
+</svg>

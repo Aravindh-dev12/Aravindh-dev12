@@ -37,21 +37,13 @@ My GitHub activity translated into mathematical terrain: time, contribution inte
 
 ### `02 / current.vector`
 
-`AI systems · multimodal agents · realtime interfaces · WebGPU · infrastructure`
+<div align="center">
+<img src="./assets/current-vector.svg" width="92%" alt="Animated current direction across AI systems, multimodal agents, realtime interfaces, WebGPU, and infrastructure" />
+</div>
 
 ---
 
-### `03 / selected.work`
-
-[`Cieav`](https://github.com/Aravindh-dev12/Cieav-web) — Vue + WebGPU experiments for GPU-native, realtime interaction.
-
-[`Cascade`](https://github.com/Aravindh-dev12/cascade-interview-assistant) — multimodal AI interview practice with voice, vision, reasoning, and feedback.
-
-<p align="right"><a href="https://github.com/Aravindh-dev12?tab=repositories"><code>open(all_repositories) →</code></a></p>
-
----
-
-### `04 / endpoints`
+### `03 / endpoints`
 
 <div align="center">
 

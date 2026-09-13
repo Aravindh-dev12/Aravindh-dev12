@@ -28,10 +28,10 @@ My GitHub activity translated into mathematical terrain: time, contribution inte
 ### `01 / identity.state`
 
 <div align="center">
-<img src="./assets/identity-state.svg" width="92%" alt="Animated identity phase field seeded by live GitHub activity" />
+<img src="./assets/identity-state.svg" width="92%" alt="Animated identity phase fingerprint seeded by live GitHub activity" />
 </div>
 
-`identity · phase coherence · motion · systems`
+`identity = reasoning ↔ engineering ↔ curiosity ↔ systems`
 
 <sub>live GitHub data changes the geometry — the counters stay in the portrait above.</sub>
 
@@ -41,13 +41,13 @@ My GitHub activity translated into mathematical terrain: time, contribution inte
 
 <div align="center">
 
-<img src="./assets/phase-field-v1.svg" width="92%" alt="Animated mathematical phase field with orbiting particles, interference waves, vector flow, and attractor motion" />
+<img src="./assets/phase-field-v2.svg" width="92%" alt="Animated mathematical phase field presented in the same visual frame as identity state" />
 
 <br/>
 
 `motion · interference · attractors · vector flow`
 
-<sub>a continuous mathematical system — no controls, no game state, just evolving geometry.</sub>
+<sub>a continuous mathematical system — shown with the same visual structure as identity.state.</sub>
 
 </div>
 

@@ -46,7 +46,7 @@ My GitHub activity translated into mathematical terrain: time, contribution inte
 
 **🔷 YOU** · **🟢 TARGET** · **🔻 HAZARD**
 
-`SCORE 0000   ·   ENERGY 5/5   ·   TURN 001   ·   LAST MOVE`
+`SCORE 0000   ·   ENERGY 5/5   ·   TURN 000   ·   LAST RESET`
 
 `🟩🟩🟩🟩🟩`
 
@@ -55,20 +55,20 @@ My GitHub activity translated into mathematical terrain: time, contribution inte
 |   | A | B | C | D | E | F | G | H | I |
 |---|---|---|---|---|---|---|---|---|---|
 | **1** | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ |
-| **2** | ▪️ | ▪️ | 🔻 | ▪️ | ▪️ | 🔻 | ▪️ | ▪️ | ▪️ |
-| **3** | ▪️ | ▪️ | 🔷 | ▪️ | ▪️ | ▪️ | ▪️ | 🟢 | ▪️ |
-| **4** | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | 🔻 | ▪️ | ▪️ |
+| **2** | ▪️ | ▪️ | ▪️ | 🔻 | ▪️ | ▪️ | 🔻 | ▪️ | ▪️ |
+| **3** | ▪️ | 🔷 | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | 🟢 | ▪️ |
+| **4** | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | 🔻 | ▪️ | ▪️ | ▪️ |
 | **5** | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ |
 
 <div align="center">
 
 |  |  |  |
 |---|---|---|
-|  | [⬆️ **UP**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20up&body=VECTOR%2F%2FSTORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.) |  |
-| [⬅️ **LEFT**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20left&body=VECTOR%2F%2FSTORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.) | [⚡ **BOOST**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20boost&body=VECTOR%2F%2FSTORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.) | [➡️ **RIGHT**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20right&body=VECTOR%2F%2FSTORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.) |
-|  | [⬇️ **DOWN**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20down&body=VECTOR%2F%2FSTORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.) |  |
+|  | [⬆️ **UP**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20up&body=VECTOR//STORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.) |  |
+| [⬅️ **LEFT**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20left&body=VECTOR//STORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.) | [⚡ **BOOST**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20boost&body=VECTOR//STORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.) | [➡️ **RIGHT**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20right&body=VECTOR//STORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.) |
+|  | [⬇️ **DOWN**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20down&body=VECTOR//STORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.) |  |
 
-[♻️ **RESET RUN**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20reset&body=VECTOR%2F%2FSTORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.)
+[♻️ **RESET RUN**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20reset&body=VECTOR//STORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.)
 
 <sub>Click a move, submit the pre-filled issue, and GitHub Actions updates this board in README.md. No game SVG is used.</sub>
 

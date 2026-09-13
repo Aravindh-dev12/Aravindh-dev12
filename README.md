@@ -28,7 +28,7 @@ My GitHub activity translated into mathematical terrain: time, contribution inte
 ### `01 / identity.state`
 
 <div align="center">
-<img src="./assets/identity-state.svg" width="92%" alt="Animated identity phase fingerprint seeded by live GitHub activity" />
+<img src="./assets/identity-state.svg" width="98%" alt="Animated identity phase fingerprint seeded by live GitHub activity" />
 </div>
 
 `identity = reasoning ↔ engineering ↔ curiosity ↔ systems`

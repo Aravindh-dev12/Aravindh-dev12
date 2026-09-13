@@ -28,18 +28,22 @@ My GitHub activity translated into mathematical terrain: time, contribution inte
 ### `01 / identity.state`
 
 <div align="center">
-<img src="./assets/identity-state.svg" width="92%" alt="Live mathematical identity state generated from GitHub statistics" />
+<img src="./assets/identity-state.svg" width="92%" alt="Animated identity phase fingerprint seeded by live GitHub activity" />
 </div>
 
-`state = repositories × activity × streaks × language entropy`
+`identity = reasoning ↔ engineering ↔ curiosity ↔ systems`
+
+<sub>live GitHub data changes the geometry — the counters stay in the portrait above.</sub>
 
 ---
 
 ### `02 / current.vector`
 
 <div align="center">
-<img src="./assets/current-vector.svg" width="92%" alt="Animated current direction across AI systems, multimodal agents, realtime interfaces, WebGPU, and infrastructure" />
+<img src="./assets/current-vector.svg" width="92%" alt="Animated direction map across AI systems, multimodal agents, realtime interfaces, WebGPU, and infrastructure" />
 </div>
+
+`explore → prototype → integrate → ship`
 
 ---
 

@@ -40,10 +40,10 @@ My GitHub activity translated into mathematical terrain: time, contribution inte
 ### `02 / current.vector`
 
 <div align="center">
-<img src="./assets/current-vector.svg" width="92%" alt="Animated direction map across AI systems, multimodal agents, realtime interfaces, WebGPU, and infrastructure" />
+<img src="./assets/current-vector-gamefield.svg" width="92%" alt="Animated system quest gamefield showing research, agents, multimodal, WebGPU, infrastructure, and deployment checkpoints" />
 </div>
 
-`explore → prototype → integrate → ship`
+`spawn → research → agents → multimodal → WebGPU → infra → deploy`
 
 ---
 

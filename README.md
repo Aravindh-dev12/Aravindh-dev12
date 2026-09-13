@@ -37,23 +37,7 @@ My GitHub activity translated into mathematical terrain: time, contribution inte
 
 ---
 
-### `02 / phase.field`
-
-<div align="center">
-
-<img src="./assets/phase-field-v2.svg" width="92%" alt="Animated mathematical phase field presented in the same visual frame as identity state" />
-
-<br/>
-
-`motion · interference · attractors · vector flow`
-
-<sub>a continuous mathematical system — shown with the same visual structure as identity.state.</sub>
-
-</div>
-
----
-
-### `03 / endpoints`
+### `02 / endpoints`
 
 <div align="center">
 

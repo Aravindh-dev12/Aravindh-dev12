@@ -37,17 +37,17 @@ My GitHub activity translated into mathematical terrain: time, contribution inte
 
 ---
 
-### `02 / möbius.runner`
+### `02 / vector.storm`
 
 <div align="center">
 
-<img src="./assets/mobius-runner-v1.svg" width="92%" alt="Animated Möbius Runner topology game field with a glowing runner, twist gates, phase locks, energy HUD, and endless one-sided track" />
+<img src="./assets/vector-storm-arena-v2.svg" width="92%" alt="Animated mathematical arcade arena with a player ship, chaotic attractor boss, orbiting enemies, projectiles, vector flow, rotating hazards, and energy HUD" />
 
 <br/>
 
-`run → twist → flip orientation → phase-lock → repeat ∞`
+`dodge → orbit → phase-shift → survive the attractor`
 
-<sub>the mathematics is the game world: one surface, one edge, endless motion.</sub>
+<sub>an arcade-style mathematical battlefield: vector flow, chaotic motion, rotating hazards, projectiles, and a looping boss phase.</sub>
 
 </div>
 

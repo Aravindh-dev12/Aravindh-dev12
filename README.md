@@ -37,25 +37,45 @@ My GitHub activity translated into mathematical terrain: time, contribution inte
 
 ---
 
-### `02 / vector.storm.live`
+<!-- VECTOR_STORM_GAME_START -->
+### `02 / vector.storm.play`
 
 <div align="center">
 
-<img src="./assets/vector-storm-live.svg" width="92%" alt="Live stateful Vector Storm game board updated by GitHub Actions after each player move" />
+## `VECTOR//STORM`
 
-<br/>
+**🔷 YOU** · **🟢 TARGET** · **🔻 HAZARD**
 
-## [`🎮 PLAY / SEND A MOVE`](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/3)
+`SCORE 0000   ·   ENERGY 5/5   ·   TURN 001   ·   LAST MOVE`
 
-`up · down · left · right · boost · reset`
-
-<sub>comment one command in the controller issue. GitHub Actions advances the game state, moves hazards, updates score/energy, and redraws this board in the README.</sub>
-
-<br/>
-
-`capture the green core · avoid red hazards · survive the vector field`
+`🟩🟩🟩🟩🟩`
 
 </div>
+
+|   | A | B | C | D | E | F | G | H | I |
+|---|---|---|---|---|---|---|---|---|---|
+| **1** | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ |
+| **2** | ▪️ | ▪️ | 🔻 | ▪️ | ▪️ | 🔻 | ▪️ | ▪️ | ▪️ |
+| **3** | ▪️ | ▪️ | 🔷 | ▪️ | ▪️ | ▪️ | ▪️ | 🟢 | ▪️ |
+| **4** | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | 🔻 | ▪️ | ▪️ |
+| **5** | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ |
+
+<div align="center">
+
+|  |  |  |
+|---|---|---|
+|  | [⬆️ **UP**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20up&body=VECTOR%2F%2FSTORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.) |  |
+| [⬅️ **LEFT**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20left&body=VECTOR%2F%2FSTORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.) | [⚡ **BOOST**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20boost&body=VECTOR%2F%2FSTORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.) | [➡️ **RIGHT**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20right&body=VECTOR%2F%2FSTORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.) |
+|  | [⬇️ **DOWN**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20down&body=VECTOR%2F%2FSTORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.) |  |
+
+[♻️ **RESET RUN**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20reset&body=VECTOR%2F%2FSTORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.)
+
+<sub>Click a move, submit the pre-filled issue, and GitHub Actions updates this board in README.md. No game SVG is used.</sub>
+
+`capture 🟢 · dodge 🔻 · preserve energy · chase the moving field`
+
+</div>
+<!-- VECTOR_STORM_GAME_END -->
 
 ---
 

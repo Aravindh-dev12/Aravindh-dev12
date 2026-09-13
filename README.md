@@ -37,17 +37,23 @@ My GitHub activity translated into mathematical terrain: time, contribution inte
 
 ---
 
-### `02 / vector.storm`
+### `02 / vector.storm.live`
 
 <div align="center">
 
-<img src="./assets/vector-storm-arena-v2.svg" width="92%" alt="Animated mathematical arcade arena with a player ship, chaotic attractor boss, orbiting enemies, projectiles, vector flow, rotating hazards, and energy HUD" />
+<img src="./assets/vector-storm-live.svg" width="92%" alt="Live stateful Vector Storm game board updated by GitHub Actions after each player move" />
 
 <br/>
 
-`dodge → orbit → phase-shift → survive the attractor`
+## [`🎮 PLAY / SEND A MOVE`](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/3)
 
-<sub>an arcade-style mathematical battlefield: vector flow, chaotic motion, rotating hazards, projectiles, and a looping boss phase.</sub>
+`up · down · left · right · boost · reset`
+
+<sub>comment one command in the controller issue. GitHub Actions advances the game state, moves hazards, updates score/energy, and redraws this board in the README.</sub>
+
+<br/>
+
+`capture the green core · avoid red hazards · survive the vector field`
 
 </div>
 

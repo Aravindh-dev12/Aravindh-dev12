@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-label="Animated mathematical phase field with orbiting particles, interference waves, vector flow and attractor motion">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <radialGradient id="core" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#e6edf3"/>
+      <stop offset="0.35" stop-color="#58a6ff"/>
+      <stop offset="1" stop-color="#7c3aed" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5"/>
+    </filter>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#30363d" stroke-width="1" opacity="0.28"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#58a6ff" opacity="0.7"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="360" rx="20" fill="url(#bg)"/>
+  <rect x="18" y="18" width="1164" height="324" rx="18" fill="url(#grid)" stroke="#30363d" stroke-width="1"/>
+
+  <text x="48" y="56" fill="#e6edf3" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="18" font-weight="700" letter-spacing="2">ARAVINDHAN / PHASE.FIELD</text>
+  <text x="48" y="82" fill="#8b949e" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13">motion · interference · attractors · vector flow</text>
+  <line x1="48" y1="98" x2="1152" y2="98" stroke="#30363d"/>
+
+  <!-- Interference waves -->
+  <g fill="none" stroke="#58a6ff" stroke-width="1.4" opacity="0.45">
+    <path d="M70 236 C160 164 250 308 340 236 S520 164 610 236 S790 308 880 236 S1060 164 1140 236">
+      <animate attributeName="d" dur="7s" repeatCount="indefinite"
+        values="M70 236 C160 164 250 308 340 236 S520 164 610 236 S790 308 880 236 S1060 164 1140 236;M70 236 C160 308 250 164 340 236 S520 308 610 236 S790 164 880 236 S1060 308 1140 236;M70 236 C160 164 250 308 340 236 S520 164 610 236 S790 308 880 236 S1060 164 1140 236"/>
+    </path>
+    <path d="M70 246 C160 300 250 188 340 246 S520 300 610 246 S790 188 880 246 S1060 300 1140 246" stroke="#bc8cff" opacity="0.65">
+      <animate attributeName="d" dur="5.5s" repeatCount="indefinite"
+        values="M70 246 C160 300 250 188 340 246 S520 300 610 246 S790 188 880 246 S1060 300 1140 246;M70 246 C160 188 250 300 340 246 S520 188 610 246 S790 300 880 246 S1060 188 1140 246;M70 246 C160 300 250 188 340 246 S520 300 610 246 S790 188 880 246 S1060 300 1140 246"/>
+    </path>
+  </g>
+
+  <!-- Vector field -->
+  <g stroke="#58a6ff" stroke-width="1.1" opacity="0.35" marker-end="url(#arrow)">
+    <path d="M95 132l28 6"><animateTransform attributeName="transform" type="rotate" values="-8 95 132;8 95 132;-8 95 132" dur="4s" repeatCount="indefinite"/></path>
+    <path d="M170 160l28 -4"><animateTransform attributeName="transform" type="rotate" values="10 170 160;-12 170 160;10 170 160" dur="4.8s" repeatCount="indefinite"/></path>
+    <path d="M250 126l28 10"><animateTransform attributeName="transform" type="rotate" values="-12 250 126;10 250 126;-12 250 126" dur="5.2s" repeatCount="indefinite"/></path>
+    <path d="M930 132l28 -8"><animateTransform attributeName="transform" type="rotate" values="12 930 132;-9 930 132;12 930 132" dur="4.6s" repeatCount="indefinite"/></path>
+    <path d="M1010 162l28 5"><animateTransform attributeName="transform" type="rotate" values="-8 1010 162;12 1010 162;-8 1010 162" dur="5.4s" repeatCount="indefinite"/></path>
+    <path d="M1085 128l28 7"><animateTransform attributeName="transform" type="rotate" values="9 1085 128;-11 1085 128;9 1085 128" dur="4.2s" repeatCount="indefinite"/></path>
+  </g>
+
+  <!-- Phase portrait / attractor -->
+  <g transform="translate(600 188)">
+    <ellipse rx="190" ry="66" fill="none" stroke="#30363d" stroke-width="1.5" stroke-dasharray="5 10">
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="26s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse rx="142" ry="96" fill="none" stroke="#bc8cff" stroke-width="1.3" stroke-dasharray="8 12" opacity="0.5">
+      <animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="18s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse rx="92" ry="126" fill="none" stroke="#58a6ff" stroke-width="1.2" stroke-dasharray="4 9" opacity="0.55">
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="15s" repeatCount="indefinite"/>
+    </ellipse>
+
+    <path d="M-168 4 C-125 -92 -45 -118 0 -18 C45 -118 125 -92 168 4 C120 86 48 104 0 18 C-48 104 -120 86 -168 4Z" fill="none" stroke="#58a6ff" stroke-width="2" opacity="0.65" filter="url(#soft)" stroke-dasharray="10 8">
+      <animate attributeName="stroke-dashoffset" from="0" to="-72" dur="5s" repeatCount="indefinite"/>
+    </path>
+
+    <circle r="28" fill="url(#core)" filter="url(#glow)">
+      <animate attributeName="r" values="24;34;24" dur="2.8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="2.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="10" fill="#e6edf3"/>
+    <circle r="42" fill="none" stroke="#58a6ff" opacity="0.35">
+      <animate attributeName="r" values="34;62;34" dur="3.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.55;0.05;0.55" dur="3.4s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Moving particles -->
+  <g filter="url(#glow)">
+    <circle r="5" fill="#3fb950">
+      <animateMotion dur="8s" repeatCount="indefinite" path="M110 188 C260 72 450 310 600 188 S940 66 1090 188"/>
+    </circle>
+    <circle r="4" fill="#58a6ff">
+      <animateMotion dur="8s" begin="-2.7s" repeatCount="indefinite" path="M110 188 C260 72 450 310 600 188 S940 66 1090 188"/>
+    </circle>
+    <circle r="4" fill="#bc8cff">
+      <animateMotion dur="8s" begin="-5.3s" repeatCount="indefinite" path="M110 188 C260 72 450 310 600 188 S940 66 1090 188"/>
+    </circle>
+  </g>
+
+  <!-- Pulsing nodes -->
+  <g>
+    <g transform="translate(322 184)"><circle r="5" fill="#58a6ff"/><circle r="12" fill="none" stroke="#58a6ff"><animate attributeName="r" values="8;20;8" dur="2.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.8;0.05;0.8" dur="2.2s" repeatCount="indefinite"/></circle></g>
+    <g transform="translate(878 188)"><circle r="5" fill="#bc8cff"/><circle r="12" fill="none" stroke="#bc8cff"><animate attributeName="r" values="8;20;8" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.8;0.05;0.8" dur="2.6s" repeatCount="indefinite"/></circle></g>
+  </g>
+
+  <!-- Footer telemetry -->
+  <text x="48" y="326" fill="#8b949e" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12">PHASE  ∿  CONTINUOUS</text>
+  <text x="454" y="326" fill="#8b949e" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12">FIELD  ↗  EVOLVING</text>
+  <text x="842" y="326" fill="#8b949e" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12">ATTRACTOR  ∞  STABLE / CHAOTIC</text>
+</svg>

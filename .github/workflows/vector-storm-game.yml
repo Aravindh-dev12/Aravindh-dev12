@@ -1,0 +1,63 @@
+name: VECTOR STORM README Game
+
+on:
+  issue_comment:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      command:
+        description: Game command
+        required: true
+        default: tick
+        type: choice
+        options:
+          - tick
+          - up
+          - down
+          - left
+          - right
+          - boost
+          - reset
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  play:
+    if: github.event_name == 'workflow_dispatch' || github.event.issue.number == 3
+    runs-on: ubuntu-latest
+    concurrency:
+      group: vector-storm-readme-game
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Advance game
+        env:
+          GAME_COMMAND: ${{ github.event_name == 'workflow_dispatch' && inputs.command || github.event.comment.body }}
+        run: python scripts/vector_storm_game.py
+
+      - name: Commit game state
+        run: |
+          git config user.name "vector-storm-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add game/vector_storm_state.json assets/vector-storm-live.svg
+          if git diff --cached --quiet; then
+            echo "No game changes"
+          else
+            git commit -m "game: advance Vector Storm"
+            git push origin HEAD:main
+          fi
+
+      - name: Reply with result
+        if: github.event_name == 'issue_comment'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue comment 3 --body-file .game_message

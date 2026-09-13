@@ -37,13 +37,23 @@ My GitHub activity translated into mathematical terrain: time, contribution inte
 
 ---
 
-### `02 / current.vector`
+### `02 / math.quest`
 
 <div align="center">
-<img src="./assets/current-vector-gamefield.svg" width="92%" alt="Animated system quest gamefield showing research, agents, multimodal, WebGPU, infrastructure, and deployment checkpoints" />
-</div>
 
-`spawn → research → agents → multimodal → WebGPU → infra → deploy`
+## [`▶ PLAY MATH//VECTOR — EQUATION RIFT`](https://htmlpreview.github.io/?https://github.com/Aravindh-dev12/Aravindh-dev12/blob/main/math-game/index.html)
+
+<sub>an actual playable math game — not an SVG animation</sub>
+
+<br/>
+
+`move ← → · choose the correct solution gate · build combo · survive the rift`
+
+<br/>
+
+`arithmetic → algebra → coordinates → vectors → sequences`
+
+</div>
 
 ---
 

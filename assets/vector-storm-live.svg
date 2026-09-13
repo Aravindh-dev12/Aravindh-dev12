@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" role="img" aria-label="Live VECTOR STORM README game board">
+<style>
+:root{--bg:#0d1117;--panel:#111820;--fg:#e6edf3;--muted:#8b949e;--line:#30363d;--blue:#58a6ff;--purple:#bc8cff;--green:#3fb950;--red:#f85149}.bg{fill:var(--bg)}.panel{fill:var(--panel);stroke:var(--line)}.fg{fill:var(--fg)}.muted{fill:var(--muted)}.t{font:700 15px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em}.s{font:12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.grid{stroke:var(--line);stroke-width:1;opacity:.7}.flow{stroke:var(--blue);stroke-width:1.15;fill:none;opacity:.28}.haz{fill:#2b1618;stroke:var(--red);stroke-width:1.8}@media(prefers-color-scheme:light){:root{--bg:#fff;--panel:#f6f8fa;--fg:#24292f;--muted:#57606a;--line:#d0d7de;--blue:#0969da;--purple:#8250df;--green:#1a7f37;--red:#cf222e}}
+</style>
+<rect class="bg" width="1200" height="430" rx="18"/>
+<text x="44" y="42" class="fg t">VECTOR//STORM · LIVE README GAME</text>
+<text x="44" y="66" class="muted s">state changes when a player submits a move through the controller issue</text>
+<line x1="44" y1="84" x2="1156" y2="84" stroke="var(--line)"/>
+<rect x="44" y="112" width="170" height="198" rx="14" class="panel"/>
+<text x="60" y="139" class="muted t">GAME STATE</text><text x="60" y="170" class="fg s">SCORE  0000</text><text x="60" y="194" class="fg s">ENERGY 5/5</text><text x="60" y="218" class="fg s">TURN   000</text><text x="60" y="242" class="fg s">LAST   READY</text>
+<rect x="60" y="264" width="130" height="9" rx="5" fill="var(--line)"/><rect x="60" y="264" width="130" height="9" rx="5" fill="var(--green)"><animate attributeName="opacity" values=".65;1;.65" dur="1.6s" repeatCount="indefinite"/></rect><text x="60" y="296" class="muted s">goal: capture ◉</text>
+<rect x="236" y="106" width="880" height="286" rx="16" class="panel"/>
+<g class="grid"><path d="M250 120H1105M250 172H1105M250 224H1105M250 276H1105M250 328H1105M250 380H1105"/><path d="M250 120V380M345 120V380M440 120V380M535 120V380M630 120V380M725 120V380M820 120V380M915 120V380M1010 120V380M1105 120V380"/></g>
+<g class="flow"><path d="M275 146h18l-5-4m5 4-5 4M370 198h-18l5-4m-5 4 5 4M465 250h18l-5-4m5 4-5 4M560 302h-18l5-4m-5 4 5 4M655 146h18l-5-4m5 4-5 4M750 198h-18l5-4m-5 4 5 4M845 250h18l-5-4m5 4-5 4M940 302h-18l5-4m-5 4 5 4"/></g>
+<g transform="translate(962.5 250)"><circle r="11" fill="var(--green)"/><circle r="18" fill="none" stroke="var(--green)" opacity=".85"><animate attributeName="r" values="15;28;15" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".9;.08;.9" dur="1.8s" repeatCount="indefinite"/></circle><text y="-25" text-anchor="middle" class="fg s">TARGET</text></g>
+<g transform="translate(582.5 198)"><polygon points="0,-15 15,0 0,15 -15,0" class="haz"/><circle r="22" fill="none" stroke="var(--red)" stroke-dasharray="3 6" opacity=".65"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="4s" repeatCount="indefinite"/></circle></g>
+<g transform="translate(772.5 302)"><polygon points="0,-15 15,0 0,15 -15,0" class="haz"/><circle r="22" fill="none" stroke="var(--red)" stroke-dasharray="3 6" opacity=".65"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="5s" repeatCount="indefinite"/></circle></g>
+<g transform="translate(867.5 198)"><polygon points="0,-15 15,0 0,15 -15,0" class="haz"/><circle r="22" fill="none" stroke="var(--red)" stroke-dasharray="3 6" opacity=".65"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="6s" repeatCount="indefinite"/></circle></g>
+<g transform="translate(392.5 250)"><polygon points="18,0 -12,-11 -7,0 -12,11" fill="var(--blue)" stroke="var(--fg)" stroke-width="1.2"/><circle r="24" fill="none" stroke="var(--blue)" opacity=".25"><animate attributeName="r" values="18;29;18" dur="1.2s" repeatCount="indefinite"/></circle></g>
+<circle r="4" fill="var(--purple)" opacity=".75"><animateMotion dur="4.8s" repeatCount="indefinite" path="M280 350 C430 90 720 390 1080 145"/></circle><circle r="3" fill="var(--green)" opacity=".55"><animateMotion dur="4.8s" begin="-2.4s" repeatCount="indefinite" path="M280 350 C430 90 720 390 1080 145"/></circle>
+<text x="250" y="416" class="muted s">REAL STATE · GitHub Actions updates this board after each move</text>
+</svg>

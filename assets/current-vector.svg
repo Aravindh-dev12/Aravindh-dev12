@@ -1,30 +1,76 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 240" role="img" aria-label="ARAVINDHAN / CURRENT.VECTOR">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-label="ARAVINDHAN / CURRENT.VECTOR">
 <style>
   :root{--fg:#c9d1d9;--muted:#8b949e;--faint:#30363d;--blue:#58a6ff;--purple:#bc8cff;--green:#3fb950;--panel:#0d1117}
   .bg{fill:var(--panel)}.fg{fill:var(--fg)}.muted{fill:var(--muted)}
   .label{font:600 14px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em}
   .small{font:12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-  .divider,.axis{stroke:var(--faint);stroke-width:1}
-  .flow{fill:none;stroke:var(--blue);stroke-width:1.5;stroke-dasharray:8 8;animation:flow 7s linear infinite;vector-effect:non-scaling-stroke}
-  .flow2{fill:none;stroke:var(--purple);stroke-width:1.35;stroke-dasharray:5 7;animation:flow2 10s linear infinite;vector-effect:non-scaling-stroke}
-  .node{fill:var(--blue);animation:pulse 3s ease-in-out infinite}.node2{fill:var(--purple);animation:pulse 3.8s ease-in-out infinite}.hot{fill:var(--green);animation:pulse 2.4s ease-in-out infinite}
-  @keyframes flow{to{stroke-dashoffset:-128}}@keyframes flow2{to{stroke-dashoffset:144}}@keyframes pulse{0%,100%{opacity:.28}50%{opacity:1}}
+  .divider{stroke:var(--faint);stroke-width:1}
+  .route{fill:none;stroke:var(--faint);stroke-width:1.3}
+  .branch{fill:none;stroke:var(--faint);stroke-width:1;opacity:.65}
   @media(prefers-color-scheme:light){:root{--fg:#24292f;--muted:#57606a;--faint:#d0d7de;--blue:#0969da;--purple:#8250df;--green:#1a7f37;--panel:#fff}}
 </style>
-<rect class="bg" width="1200" height="240" rx="18"/>
+
+<rect class="bg" width="1200" height="300" rx="18"/>
 <text x="48" y="46" class="fg label">ARAVINDHAN / CURRENT.VECTOR</text>
-<text x="48" y="70" class="muted small">direction = AI systems · multimodal agents · realtime interfaces · WebGPU · infrastructure</text>
+<text x="48" y="70" class="muted small">ideas move as packets: explore → prototype → integrate → ship</text>
 <line x1="48" y1="88" x2="1152" y2="88" class="divider"/>
 
-<line x1="86" y1="166" x2="1114" y2="166" class="axis"/>
-<path class="flow" d="M86 166 C190 92 286 218 392 146 S596 108 700 162 S904 216 1114 126"/>
-<path class="flow2" d="M86 166 C204 224 298 104 414 160 S626 212 734 144 S948 92 1114 166"/>
+<text x="48" y="122" class="muted label">02 / DIRECTION NETWORK</text>
+<text x="48" y="146" class="small fg">capability(t) → composition → working system</text>
 
-<circle cx="190" cy="132" r="5" class="node"/><circle cx="392" cy="146" r="5" class="node2"/><circle cx="596" cy="137" r="5" class="hot"/><circle cx="798" cy="174" r="5" class="node"/><circle cx="1002" cy="143" r="5" class="node2"/>
+<path class="route" d="M78 216 C180 130 248 248 346 188 S520 118 612 184 S790 254 882 176 S1034 126 1122 188"/>
+<path class="branch" d="M346 188 C312 145 296 128 266 112"/>
+<path class="branch" d="M612 184 C646 142 674 126 708 112"/>
+<path class="branch" d="M882 176 C920 214 950 226 988 238"/>
 
-<text x="152" y="208" class="muted small">AI</text>
-<text x="344" y="208" class="muted small">MULTIMODAL</text>
-<text x="555" y="208" class="muted small">REALTIME</text>
-<text x="774" y="208" class="muted small">WEBGPU</text>
-<text x="966" y="208" class="muted small">SYSTEMS</text>
+<circle cx="176" cy="174" r="6" fill="var(--blue)">
+  <animate attributeName="r" values="4;8;4" dur="3.4s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values=".35;1;.35" dur="3.4s" repeatCount="indefinite"/>
+</circle>
+<circle cx="346" cy="188" r="6" fill="var(--purple)">
+  <animate attributeName="r" values="4;8;4" dur="3.8s" begin="-.7s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values=".35;1;.35" dur="3.8s" begin="-.7s" repeatCount="indefinite"/>
+</circle>
+<circle cx="612" cy="184" r="6" fill="var(--green)">
+  <animate attributeName="r" values="4;9;4" dur="3.1s" begin="-1.2s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values=".35;1;.35" dur="3.1s" begin="-1.2s" repeatCount="indefinite"/>
+</circle>
+<circle cx="882" cy="176" r="6" fill="var(--blue)">
+  <animate attributeName="r" values="4;8;4" dur="3.6s" begin="-1.8s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values=".35;1;.35" dur="3.6s" begin="-1.8s" repeatCount="indefinite"/>
+</circle>
+<circle cx="1060" cy="160" r="6" fill="var(--purple)">
+  <animate attributeName="r" values="4;8;4" dur="4s" begin="-2.3s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values=".35;1;.35" dur="4s" begin="-2.3s" repeatCount="indefinite"/>
+</circle>
+
+<g>
+  <circle r="4.2" fill="var(--green)"/>
+  <animateMotion dur="7.5s" repeatCount="indefinite" path="M78 216 C180 130 248 248 346 188 S520 118 612 184 S790 254 882 176 S1034 126 1122 188"/>
+</g>
+<g>
+  <circle r="3.5" fill="var(--blue)" opacity=".85"/>
+  <animateMotion dur="7.5s" begin="-2.5s" repeatCount="indefinite" path="M78 216 C180 130 248 248 346 188 S520 118 612 184 S790 254 882 176 S1034 126 1122 188"/>
+</g>
+<g>
+  <circle r="3.2" fill="var(--purple)" opacity=".8"/>
+  <animateMotion dur="7.5s" begin="-5s" repeatCount="indefinite" path="M78 216 C180 130 248 248 346 188 S520 118 612 184 S790 254 882 176 S1034 126 1122 188"/>
+</g>
+
+<g opacity=".8">
+  <circle cx="1122" cy="188" r="27" fill="none" stroke="var(--green)" stroke-width="1.2" stroke-dasharray="5 7"/>
+  <circle cx="1122" cy="188" r="16" fill="none" stroke="var(--purple)" stroke-width="1"/>
+  <animateTransform attributeName="transform" type="rotate" from="0 1122 188" to="360 1122 188" dur="10s" repeatCount="indefinite"/>
+</g>
+
+<rect x="72" y="103" width="2" height="134" fill="var(--green)" opacity=".55">
+  <animate attributeName="x" values="72;1118;72" dur="12s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values=".08;.65;.08" dur="12s" repeatCount="indefinite"/>
+</rect>
+
+<text x="135" y="267" class="muted small">AI SYSTEMS</text>
+<text x="304" y="267" class="muted small">MULTIMODAL</text>
+<text x="568" y="267" class="muted small">REALTIME</text>
+<text x="850" y="267" class="muted small">WEBGPU</text>
+<text x="1014" y="267" class="muted small">INFRA</text>
 </svg>

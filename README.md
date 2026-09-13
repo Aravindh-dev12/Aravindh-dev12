@@ -37,45 +37,215 @@ My GitHub activity translated into mathematical terrain: time, contribution inte
 
 ---
 
-<!-- VECTOR_STORM_GAME_START -->
-### `02 / vector.storm.play`
+### `02 / vector.storm.inline`
 
 <div align="center">
 
-## `VECTOR//STORM`
+## `VECTOR//STORM — INLINE MODE`
 
-**🔷 YOU** · **🟢 TARGET** · **🔻 HAZARD**
+<sub>no redirects · no issue creation · every move opens inside this README</sub>
 
-`SCORE 0000   ·   ENERGY 5/5   ·   TURN 000   ·   LAST RESET`
+`PLAYER ◈   ·   CORE ◎   ·   HAZARD ✦   ·   PORTAL ◉`
 
-`🟩🟩🟩🟩🟩`
+`ENERGY █████   ·   PHASE 00   ·   STATUS READY`
 
 </div>
 
-|   | A | B | C | D | E | F | G | H | I |
-|---|---|---|---|---|---|---|---|---|---|
-| **1** | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ |
-| **2** | ▪️ | ▪️ | ▪️ | 🔻 | ▪️ | ▪️ | 🔻 | ▪️ | ▪️ |
-| **3** | ▪️ | 🔷 | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | 🟢 | ▪️ |
-| **4** | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | 🔻 | ▪️ | ▪️ | ▪️ |
-| **5** | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ | ▪️ |
+```text
+╭──────────────────────────────────────────────╮
+│                 VECTOR FIELD                 │
+│                                              │
+│        ✦                 ◎                   │
+│                                              │
+│   ◈ ────────→        ◉        ✦              │
+│                                              │
+│             ╲      ╱                         │
+│              ╲    ╱                          │
+│               ╲  ╱                           │
+│                ∞                             │
+╰──────────────────────────────────────────────╯
+```
+
+<details>
+<summary><b>⬆️ BOOST NORTH</b> · enter the upper vector stream</summary>
+
+<br/>
+
+`PHASE 01 · VELOCITY +++`
+
+```text
+◈ ───────→ ✦
+             ╲
+              ╲
+               ◎
+```
+
+💥 **HAZARD COLLISION**
+
+`ENERGY ███░░ · trajectory rejected`
+
+<sub>close this panel and choose another route.</sub>
+
+</details>
+
+<details>
+<summary><b>⬅️ CUT LEFT</b> · break against the field</summary>
+
+<br/>
+
+`PHASE 01 · FIELD RESISTANCE MAX`
+
+```text
+     ← ← ← ← ←
+        ◈
+     → → → → →
+```
+
+🌀 **VECTOR LOCK**
+
+`the field folds you back to spawn`
+
+<sub>close this panel and try a different move.</sub>
+
+</details>
+
+<details>
+<summary><b>➡️ PHASE SHIFT</b> · cross the first portal</summary>
+
+<br/>
+
+`PHASE 01 · PORTAL LOCKED`
+
+```text
+START                         RIFT
+  ◈  ────────  ◉  ────────→   ◎
+                 \      /
+                  \ ✦  /
+                   \  /
+                    ∞
+```
+
+✅ **PORTAL SYNCED**
+
+`ENERGY █████ · COMBO ×2 · PHASE 01 CLEARED`
+
+<details>
+<summary><b>⚡ SLINGSHOT</b> · orbit the attractor</summary>
+
+<br/>
+
+`PHASE 02 · ORBITAL DRIFT`
+
+```text
+                    ✦
+               ╭────────╮
+          ◈ →  │   ◎    │  →  ◉
+               ╰────────╯
+                    ↻
+```
+
+The core bends your trajectory instead of stopping it.
+
+`SPEED ++++ · ENERGY ████░ · BOSS FIELD OPEN`
+
+<details>
+<summary><b>🌀 ENTER THE CHAOS CORE</b> · final phase</summary>
+
+<br/>
+
+`PHASE 03 · CHAOTIC ATTRACTOR`
+
+```text
+                 ╭──────╮
+             ╭───╯      ╰───╮
+        ◈ ───╯      ∞       ╰───→ ◎
+             ╰───╮      ╭───╯
+                 ╰──────╯
+             ✦      ✦      ✦
+```
+
+🔥 **FIELD COLLAPSE INITIATED**
+
+`hold trajectory · preserve momentum · ignore the false exits`
+
+<details>
+<summary><b>💠 LOCK THE STABLE ORBIT</b></summary>
+
+<br/>
+
+## `RUN COMPLETE // STABLE ATTRACTOR CAPTURED`
+
+`ENERGY ██░░░   ·   COMBO ×4   ·   LOOP ∞`
+
+```text
+             ✦           ✦
+                 ╭───╮
+            ───→ │ ◈ │ ───→ ◎
+                 ╰───╯
+             ✦           ✦
+```
+
+**You survived the vector storm.**
+
+`topology → motion → instability → control`
+
+</details>
+
+</details>
+
+<details>
+<summary><b>⬇️ DROP BELOW THE FIELD</b></summary>
+
+<br/>
+
+`PHASE 02 · GRAVITY WELL`
+
+```text
+◈
+ ╲
+  ╲
+   ╲
+    ●
+```
+
+💥 **CORE LOST**
+
+`ENERGY ██░░░ · respawn required`
+
+</details>
+
+</details>
+
+<details>
+<summary><b>⬇️ DIVE</b> · enter the lower manifold</summary>
+
+<br/>
+
+`PHASE 01 · MANIFOLD EDGE`
+
+```text
+◈
+ ╲
+  ╲_____      ✦
+        ╲_____/\____
+                   ╲ ◎
+```
+
+⚠️ **UNSTABLE SURFACE**
+
+`ENERGY ████░ · route loops back into itself`
+
+<sub>close this panel and search for the stable portal.</sub>
+
+</details>
 
 <div align="center">
 
-|  |  |  |
-|---|---|---|
-|  | [⬆️ **UP**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20up&body=VECTOR//STORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.) |  |
-| [⬅️ **LEFT**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20left&body=VECTOR//STORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.) | [⚡ **BOOST**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20boost&body=VECTOR//STORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.) | [➡️ **RIGHT**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20right&body=VECTOR//STORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.) |
-|  | [⬇️ **DOWN**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20down&body=VECTOR//STORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.) |  |
+`open a move → reveal the field reaction → find the stable path`
 
-[♻️ **RESET RUN**](https://github.com/Aravindh-dev12/Aravindh-dev12/issues/new?title=storm%3A%20reset&body=VECTOR//STORM%20move%20generated%20from%20the%20profile%20README.%0A%0ASubmit%20this%20issue%20to%20play%20the%20move.%20The%20bot%20will%20update%20the%20board%20and%20close%20the%20issue.)
-
-<sub>Click a move, submit the pre-filled issue, and GitHub Actions updates this board in README.md. No game SVG is used.</sub>
-
-`capture 🟢 · dodge 🔻 · preserve energy · chase the moving field`
+<sub>this entire interaction stays inside README.md. GitHub does not execute JavaScript here, so the game is intentionally built from native expandable states.</sub>
 
 </div>
-<!-- VECTOR_STORM_GAME_END -->
 
 ---
 

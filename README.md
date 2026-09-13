@@ -37,164 +37,17 @@ My GitHub activity translated into mathematical terrain: time, contribution inte
 
 ---
 
-### `02 / math.quest`
+### `02 / möbius.runner`
 
 <div align="center">
 
-## `MATH//RIFT`
-
-<sub>README-native puzzle field · choose a gate and reveal the result</sub>
+<img src="./assets/mobius-runner-v1.svg" width="92%" alt="Animated Möbius Runner topology game field with a glowing runner, twist gates, phase locks, energy HUD, and endless one-sided track" />
 
 <br/>
 
-`SHIELD ● ● ●   ·   COMBO ×1   ·   LEVEL 01`
+`run → twist → flip orientation → phase-lock → repeat ∞`
 
-<br/>
-
-### `RIFT 01 / ALGEBRA`
-
-### `x² - 5x + 6 = 0`
-
-<sub>choose the gate containing both roots</sub>
-
-</div>
-
-<details>
-<summary><code>🔵 GATE A · x = 1, 6</code></summary>
-
-<br/>
-
-❌ **RIFT UNSTABLE**
-
-`shield -1 · reset trajectory`
-
-</details>
-
-<details>
-<summary><code>🟢 GATE B · x = 2, 3</code></summary>
-
-<br/>
-
-✅ **RIFT STABILIZED**
-
-`(x - 2)(x - 3) = 0`
-
-`combo ×2 · +100 XP · level unlocked`
-
-</details>
-
-<details>
-<summary><code>🟣 GATE C · x = 3, 4</code></summary>
-
-<br/>
-
-❌ **SHIELD HIT**
-
-`wrong branch · return to equation`
-
-</details>
-
-<br/>
-
-<div align="center">
-
-### `RIFT 02 / VECTOR`
-
-### `v = ⟨6, 8⟩   →   |v| = ?`
-
-<sub>magnitude gate · √(x² + y²)</sub>
-
-</div>
-
-<details>
-<summary><code>🔵 GATE A · 10</code></summary>
-
-<br/>
-
-✅ **VECTOR LOCKED**
-
-`√(6² + 8²) = √100 = 10`
-
-`combo ×3 · +200 XP`
-
-</details>
-
-<details>
-<summary><code>🟢 GATE B · 14</code></summary>
-
-<br/>
-
-❌ **VECTOR DRIFT**
-
-`6 + 8 is not the magnitude`
-
-</details>
-
-<details>
-<summary><code>🟣 GATE C · 48</code></summary>
-
-<br/>
-
-❌ **RIFT MISALIGNED**
-
-`6 × 8 is not the magnitude`
-
-</details>
-
-<br/>
-
-<div align="center">
-
-### `RIFT 03 / SEQUENCE`
-
-### `3, 8, 13, 18, 23, ?`
-
-<sub>detect the invariant · continue the system</sub>
-
-</div>
-
-<details>
-<summary><code>🔵 GATE A · 26</code></summary>
-
-<br/>
-
-❌ **PATTERN BREAK**
-
-`difference ≠ +5`
-
-</details>
-
-<details>
-<summary><code>🟢 GATE B · 28</code></summary>
-
-<br/>
-
-✅ **SYSTEM CLEARED**
-
-`aₙ₊₁ = aₙ + 5`
-
-`combo ×4 · +300 XP · BOSS GATE OPEN`
-
-</details>
-
-<details>
-<summary><code>🟣 GATE C · 30</code></summary>
-
-<br/>
-
-❌ **SEQUENCE DESYNC**
-
-`trajectory rejected`
-
-</details>
-
-<br/>
-
-<div align="center">
-
-`solve → choose → reveal → advance`
-
-<sub>GitHub README does not execute JavaScript, so the game uses native expandable gates directly inside the profile.</sub>
+<sub>the mathematics is the game world: one surface, one edge, endless motion.</sub>
 
 </div>
 

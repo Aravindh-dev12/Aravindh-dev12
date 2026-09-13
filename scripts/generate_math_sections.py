@@ -1,118 +1,120 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import math
 from pathlib import Path
 
-from generate_math_profile import demo_data, graphql, normalize_user, path
+from generate_math_profile import demo_data, graphql, normalize_user
 
 OUT_DIR = Path("assets")
 
 
 def identity_svg(stats: dict) -> str:
-    """Render a high-contrast, readable identity fingerprint."""
-    phase = (stats["entropy"] + (stats["repos"] % 11) / 11.0) * math.pi
-    petals = 5 + stats["longest_streak"] % 4
-    twist = 2 + stats["active_days"] % 5
+    """Render identity.state as a full-width animated phase field."""
+    wave_dur = 6.0 + (stats["active_days"] % 5) * 0.35
+    orbit_a = 20 + (stats["repos"] % 9)
+    orbit_b = 14 + (stats["longest_streak"] % 7)
+    pulse = 2.4 + (stats["repos"] % 5) * 0.18
 
-    # Three-column composition:
-    # copy | animated fingerprint | operating principles.
-    cx, cy = 635, 236
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-label="ARAVINDHAN / IDENTITY.STATE — animated identity phase field">
+  <defs>
+    <linearGradient id="identity-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <radialGradient id="identity-core" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#e6edf3"/>
+      <stop offset="0.30" stop-color="#58a6ff"/>
+      <stop offset="0.62" stop-color="#bc8cff" stop-opacity="0.58"/>
+      <stop offset="1" stop-color="#7c3aed" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="identity-glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="identity-soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.2"/>
+    </filter>
+    <pattern id="identity-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#30363d" stroke-width="1" opacity="0.24"/>
+    </pattern>
+    <marker id="identity-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#58a6ff" opacity="0.72"/>
+    </marker>
+  </defs>
 
-    outer = []
-    inner = []
-    for i in range(720):
-        t = i / 719 * 2 * math.pi
-        r1 = 94 + 21 * math.sin(petals * t + phase) + 7 * math.cos(3 * t + phase / 2)
-        r2 = 61 + 14 * math.cos(twist * t - phase) + 5 * math.sin(5 * t)
-        outer.append((cx + r1 * math.cos(t), cy + 0.64 * r1 * math.sin(t)))
-        inner.append((cx + r2 * math.cos(t), cy + 0.64 * r2 * math.sin(t)))
+  <rect width="1200" height="360" rx="20" fill="url(#identity-bg)"/>
+  <rect x="18" y="18" width="1164" height="324" rx="18" fill="url(#identity-grid)" stroke="#30363d" stroke-width="1"/>
 
-    satellites = []
-    for i in range(14):
-        t = i / 14 * 2 * math.pi + phase / 3
-        radius = 122 + 10 * math.sin((i + petals) * 0.83)
-        x = cx + radius * math.cos(t)
-        y = cy + 0.64 * radius * math.sin(t)
-        fill = (
-            "var(--hot)"
-            if i % 5 == 0
-            else ("var(--accent2)" if i % 2 else "var(--accent)")
-        )
-        duration = 3.2 + (i % 4) * 0.55
-        begin = -i * 0.23
-        satellites.append(
-            f'''<circle cx="{x:.1f}" cy="{y:.1f}" r="3.8" fill="{fill}" opacity=".90">
-  <animate attributeName="r" values="2.6;5.4;2.6" dur="{duration:.2f}s" begin="{begin:.2f}s" repeatCount="indefinite"/>
-  <animate attributeName="opacity" values=".45;1;.45" dur="{duration:.2f}s" begin="{begin:.2f}s" repeatCount="indefinite"/>
-</circle>'''
-        )
+  <text x="48" y="56" fill="#e6edf3" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="18" font-weight="700" letter-spacing="2">ARAVINDHAN / IDENTITY.STATE</text>
+  <text x="48" y="82" fill="#8b949e" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="13">reasoning · engineering · curiosity · systems — expressed as motion</text>
+  <line x1="48" y1="98" x2="1152" y2="98" stroke="#30363d"/>
 
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 410" role="img" aria-label="ARAVINDHAN / IDENTITY.STATE">
-<style>
-  :root{{--fg:#e6edf3;--muted:#a8b3bf;--faint:#3a434d;--accent:#58a6ff;--accent2:#bc8cff;--hot:#3fb950;--panel:#0d1117;--panel2:#111820}}
-  .bg{{fill:var(--panel)}}
-  .fg{{fill:var(--fg)}}
-  .muted{{fill:var(--muted)}}
-  .title{{font:700 17px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.07em}}
-  .label{{font:700 15px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em}}
-  .small{{font:14px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}}
-  .body{{font:13.5px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}}
-  .eq{{font:19px "Times New Roman",serif;fill:var(--fg)}}
-  .divider{{stroke:var(--faint);stroke-width:1.2}}
-  .copy-panel{{fill:var(--panel2);stroke:var(--faint);stroke-width:1.2}}
-  @media(prefers-color-scheme:light){{:root{{--fg:#24292f;--muted:#57606a;--faint:#c9d1d9;--accent:#0969da;--accent2:#8250df;--hot:#1a7f37;--panel:#fff;--panel2:#f6f8fa}}}}
-</style>
+  <!-- Interference field -->
+  <g fill="none" stroke-width="1.4" opacity="0.48">
+    <path d="M70 228 C160 158 250 298 340 228 S520 158 610 228 S790 298 880 228 S1060 158 1140 228" stroke="#58a6ff">
+      <animate attributeName="d" dur="{wave_dur:.2f}s" repeatCount="indefinite"
+        values="M70 228 C160 158 250 298 340 228 S520 158 610 228 S790 298 880 228 S1060 158 1140 228;M70 228 C160 298 250 158 340 228 S520 298 610 228 S790 158 880 228 S1060 298 1140 228;M70 228 C160 158 250 298 340 228 S520 158 610 228 S790 298 880 228 S1060 158 1140 228"/>
+    </path>
+    <path d="M70 246 C160 294 250 190 340 246 S520 294 610 246 S790 190 880 246 S1060 294 1140 246" stroke="#bc8cff" opacity="0.68">
+      <animate attributeName="d" dur="{max(4.8, wave_dur - 1.1):.2f}s" repeatCount="indefinite"
+        values="M70 246 C160 294 250 190 340 246 S520 294 610 246 S790 190 880 246 S1060 294 1140 246;M70 246 C160 190 250 294 340 246 S520 190 610 246 S790 294 880 246 S1060 190 1140 246;M70 246 C160 294 250 190 340 246 S520 294 610 246 S790 190 880 246 S1060 294 1140 246"/>
+    </path>
+  </g>
 
-<rect class="bg" width="1200" height="410" rx="18"/>
-<text x="48" y="50" class="fg title">ARAVINDHAN / IDENTITY.STATE</text>
-<text x="48" y="80" class="muted small">principles stay stable · live data changes the phase portrait</text>
-<line x1="48" y1="104" x2="1152" y2="104" class="divider"/>
+  <!-- Vector flow -->
+  <g stroke="#58a6ff" stroke-width="1.1" opacity="0.34" marker-end="url(#identity-arrow)">
+    <path d="M92 136l28 6"><animateTransform attributeName="transform" type="rotate" values="-9 92 136;9 92 136;-9 92 136" dur="4.0s" repeatCount="indefinite"/></path>
+    <path d="M172 166l28 -5"><animateTransform attributeName="transform" type="rotate" values="10 172 166;-12 172 166;10 172 166" dur="4.8s" repeatCount="indefinite"/></path>
+    <path d="M258 128l28 9"><animateTransform attributeName="transform" type="rotate" values="-12 258 128;10 258 128;-12 258 128" dur="5.3s" repeatCount="indefinite"/></path>
+    <path d="M914 132l28 -8"><animateTransform attributeName="transform" type="rotate" values="12 914 132;-9 914 132;12 914 132" dur="4.7s" repeatCount="indefinite"/></path>
+    <path d="M1002 164l28 5"><animateTransform attributeName="transform" type="rotate" values="-8 1002 164;12 1002 164;-8 1002 164" dur="5.5s" repeatCount="indefinite"/></path>
+    <path d="M1084 130l28 7"><animateTransform attributeName="transform" type="rotate" values="9 1084 130;-11 1084 130;9 1084 130" dur="4.3s" repeatCount="indefinite"/></path>
+  </g>
 
-<text x="48" y="137" class="muted label">01 / PHASE FINGERPRINT</text>
+  <!-- Identity attractor -->
+  <g transform="translate(600 190)">
+    <ellipse rx="190" ry="66" fill="none" stroke="#30363d" stroke-width="1.4" stroke-dasharray="5 10">
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="{orbit_a}s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse rx="142" ry="96" fill="none" stroke="#bc8cff" stroke-width="1.3" stroke-dasharray="8 12" opacity="0.55">
+      <animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="{orbit_b}s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse rx="92" ry="126" fill="none" stroke="#58a6ff" stroke-width="1.2" stroke-dasharray="4 9" opacity="0.58">
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="{max(12, orbit_b - 2)}s" repeatCount="indefinite"/>
+    </ellipse>
 
-<!-- Readability-first copy block -->
-<rect x="42" y="154" width="455" height="126" rx="12" class="copy-panel" opacity=".98"/>
-<text x="62" y="187" class="eq">z(t)=r(t)eⁱᵗ</text>
-<text x="62" y="217" class="eq">r(t)=1+a·sin(kt+φ)+b·cos(mt)</text>
-<text x="62" y="249" class="fg body">live GitHub data seeds the geometry.</text>
-<text x="62" y="272" class="muted body">identity is motion — not repeated counters.</text>
+    <path d="M-168 4 C-126 -92 -48 -118 0 -18 C48 -118 126 -92 168 4 C120 86 48 104 0 18 C-48 104 -120 86 -168 4Z" fill="none" stroke="#58a6ff" stroke-width="2" opacity="0.67" filter="url(#identity-soft)" stroke-dasharray="10 8">
+      <animate attributeName="stroke-dashoffset" from="0" to="-72" dur="5s" repeatCount="indefinite"/>
+    </path>
 
-<!-- Animated fingerprint -->
-<g opacity=".95">
-  <animateTransform attributeName="transform" type="rotate" from="0 {cx} {cy}" to="360 {cx} {cy}" dur="31s" repeatCount="indefinite"/>
-  <path d="{path(outer)}" fill="none" stroke="var(--accent)" stroke-width="2.2"/>
-  {''.join(satellites)}
-</g>
-<g opacity=".78">
-  <animateTransform attributeName="transform" type="rotate" from="360 {cx} {cy}" to="0 {cx} {cy}" dur="19s" repeatCount="indefinite"/>
-  <path d="{path(inner)}" fill="none" stroke="var(--accent2)" stroke-width="1.8"/>
-</g>
-<ellipse cx="{cx}" cy="{cy}" rx="145" ry="96" fill="none" stroke="var(--faint)" stroke-width="1.2" opacity=".92"/>
-<circle cx="{cx}" cy="{cy}" r="5.8" fill="var(--hot)">
-  <animate attributeName="r" values="3.8;7.8;3.8" dur="3.4s" repeatCount="indefinite"/>
-  <animate attributeName="opacity" values=".55;1;.55" dur="3.4s" repeatCount="indefinite"/>
-</circle>
+    <circle r="29" fill="url(#identity-core)" filter="url(#identity-glow)">
+      <animate attributeName="r" values="23;35;23" dur="{pulse:.2f}s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.76;1;0.76" dur="{pulse:.2f}s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="9" fill="#e6edf3"/>
+    <circle r="40" fill="none" stroke="#58a6ff" opacity="0.38">
+      <animate attributeName="r" values="34;63;34" dur="3.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.55;0.04;0.55" dur="3.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
 
-<!-- Operating principles -->
-<line x1="835" y1="130" x2="835" y2="340" class="divider"/>
-<text x="867" y="143" class="muted label">OPERATING PRINCIPLES</text>
+  <!-- Principle particles moving through the field -->
+  <g filter="url(#identity-glow)">
+    <circle r="5" fill="#58a6ff"><animateMotion dur="8.4s" repeatCount="indefinite" path="M108 188 C260 72 448 310 600 190 S942 68 1092 188"/></circle>
+    <circle r="4.5" fill="#bc8cff"><animateMotion dur="8.4s" begin="-2.1s" repeatCount="indefinite" path="M108 188 C260 72 448 310 600 190 S942 68 1092 188"/></circle>
+    <circle r="4.5" fill="#3fb950"><animateMotion dur="8.4s" begin="-4.2s" repeatCount="indefinite" path="M108 188 C260 72 448 310 600 190 S942 68 1092 188"/></circle>
+    <circle r="4" fill="#e6edf3"><animateMotion dur="8.4s" begin="-6.3s" repeatCount="indefinite" path="M108 188 C260 72 448 310 600 190 S942 68 1092 188"/></circle>
+  </g>
 
-<circle cx="878" cy="184" r="4.8" fill="var(--accent)"><animate attributeName="opacity" values=".45;1;.45" dur="2.7s" repeatCount="indefinite"/></circle>
-<text x="900" y="190" class="fg label">REASONING</text>
-<text x="900" y="212" class="muted body">model the unknown</text>
+  <!-- Principle anchors -->
+  <g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12">
+    <g transform="translate(160 306)"><circle r="4.5" fill="#58a6ff"><animate attributeName="opacity" values=".35;1;.35" dur="2.8s" repeatCount="indefinite"/></circle><text x="14" y="4" fill="#8b949e">REASONING</text></g>
+    <g transform="translate(420 306)"><circle r="4.5" fill="#bc8cff"><animate attributeName="opacity" values=".35;1;.35" dur="3.2s" begin="-.7s" repeatCount="indefinite"/></circle><text x="14" y="4" fill="#8b949e">ENGINEERING</text></g>
+    <g transform="translate(720 306)"><circle r="4.5" fill="#3fb950"><animate attributeName="opacity" values=".35;1;.35" dur="2.7s" begin="-1.1s" repeatCount="indefinite"/></circle><text x="14" y="4" fill="#8b949e">CURIOSITY</text></g>
+    <g transform="translate(974 306)"><circle r="4.5" fill="#58a6ff"><animate attributeName="opacity" values=".35;1;.35" dur="3.6s" begin="-1.6s" repeatCount="indefinite"/></circle><text x="14" y="4" fill="#8b949e">SYSTEMS</text></g>
+  </g>
 
-<circle cx="878" cy="242" r="4.8" fill="var(--accent2)"><animate attributeName="opacity" values=".45;1;.45" dur="3.3s" begin="-.8s" repeatCount="indefinite"/></circle>
-<text x="900" y="248" class="fg label">ENGINEERING</text>
-<text x="900" y="270" class="muted body">make it executable</text>
-
-<circle cx="878" cy="300" r="4.8" fill="var(--hot)"><animate attributeName="opacity" values=".45;1;.45" dur="2.9s" begin="-1.1s" repeatCount="indefinite"/></circle>
-<text x="900" y="306" class="fg label">CURIOSITY</text>
-<text x="900" y="328" class="muted body">expand the search</text>
-
-<circle cx="1080" cy="184" r="4.8" fill="var(--accent)"><animate attributeName="opacity" values=".45;1;.45" dur="3.7s" begin="-1.9s" repeatCount="indefinite"/></circle>
-<text x="1102" y="190" class="fg label">SYSTEMS</text>
-<text x="1102" y="212" class="muted body">connect the parts</text>
+  <text x="48" y="334" fill="#8b949e" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="11">LIVE GITHUB DATA → PHASE PARAMETERS → IDENTITY FIELD</text>
 </svg>\n'''
 
 

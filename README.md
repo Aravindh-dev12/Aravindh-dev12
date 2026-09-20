@@ -41,7 +41,7 @@ My GitHub activity translated into mathematical terrain: time, contribution inte
 
 <div align="center">
 
-[`portfolio`](https://aravindh-dev12.github.io) · [`repositories`](https://github.com/Aravindh-dev12?tab=repositories) · [`email`](mailto:aravindh1653@gmail.com) · [`github`](https://github.com/Aravindh-dev12)
+[`portfolio`](https://aravindhb.vercel.app/) · [`repositories`](https://github.com/Aravindh-dev12?tab=repositories) · [`email`](mailto:aravindh1653@gmail.com) · [`github`](https://github.com/Aravindh-dev12)
 
 <br/>
 
